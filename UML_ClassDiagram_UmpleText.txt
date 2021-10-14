@@ -1,0 +1,95 @@
+class LibrarySystem 
+ {
+   1 <@>-  * Account;
+   1 <@>- 1 OpeningHours;
+   1 <@>- * Event;
+   1 <@>- * Media;
+ }
+
+class Account
+{
+  1 -- * Event;
+  1 -- 0..5 Media;
+  abstract;
+  unique Integer id;
+  address;
+  name;
+  AccountType accountType;
+  Boolean isLocal;
+  Media[] checkedOutItems;
+  Integer numChecked;
+}
+
+class Online
+{
+  isA Account;
+  username;
+  password;
+  email;
+}
+
+class Offline
+{
+  isA Account;
+}
+
+class Librarian
+{
+  isA Account;
+  Time startShift;
+  Time endShift;
+}
+
+class HeadLibrarian
+{
+  1 -- 1 OpeningHours;
+  isA Librarian;
+}
+
+class OpeningHours
+{
+  Date date;
+  Time startTime;
+  Time endTime;
+  Date[] holidays;
+}
+
+class Event
+{
+  Date date;
+  Time eventStart;
+  Time eventEnd;
+}
+
+class Media
+{
+  abstract;
+  Item mediaType;
+  Integer mediaID;
+}
+
+class CheckOutItem
+{
+  isA Media;
+  Boolean isCheckedOut;
+  Boolean isReserved;
+  Integer borrowingPeriod;
+}
+
+class NonCheckOutItem
+{
+  isA Media;
+}
+
+enum Item
+{
+  Book, Movie, Music, Newspaper, Archive
+}
+
+enum AccountCategory
+{
+  Online, Offline
+}
+
+
+
