@@ -7,6 +7,7 @@ import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -440,6 +441,7 @@ public abstract class Account
     return wasAdded;
   }
   /* Code from template association_SetOneToMany */
+  @ManyToOne
   public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
   {
     boolean wasSet = false;

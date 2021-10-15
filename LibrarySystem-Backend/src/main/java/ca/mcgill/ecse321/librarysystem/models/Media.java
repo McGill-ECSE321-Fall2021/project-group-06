@@ -3,6 +3,8 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 // line 66 "model.ump"
 // line 145 "model.ump"
@@ -88,6 +90,7 @@ public abstract class Media
     return account;
   }
   /* Code from template association_SetOneToMany */
+  @ManyToOne
   public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
   {
     boolean wasSet = false;
@@ -107,6 +110,7 @@ public abstract class Media
     return wasSet;
   }
   /* Code from template association_SetOneToAtMostN */
+  @ManyToOne
   public boolean setAccount(Account aAccount)
   {
     boolean wasSet = false;

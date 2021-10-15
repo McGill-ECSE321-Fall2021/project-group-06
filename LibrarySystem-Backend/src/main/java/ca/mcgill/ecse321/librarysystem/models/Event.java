@@ -8,6 +8,7 @@ import java.sql.Time;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 // line 59 "model.ump"
 // line 134 "model.ump"
@@ -101,6 +102,7 @@ public class Event
     return account;
   }
   /* Code from template association_SetOneToMany */
+  @ManyToOne
   public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
   {
     boolean wasSet = false;
