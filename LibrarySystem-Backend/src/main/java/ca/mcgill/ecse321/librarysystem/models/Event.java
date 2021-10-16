@@ -26,13 +26,55 @@ public class Event
   private Time eventEnd;
 
   //Event Associations
-  private LibrarySystem librarySystem;
+  //private LibrarySystem librarySystem;
   private Account account;
+  private String name;
 
+  public void setName(String name){
+    this.name = name;
+  }
+  @Id
+  public String getName(){
+    return this.name;
+  }
+  
+  public void setDate(Date date){
+    this.date = date;
+  }
+
+  public Date getDate(){
+    return this.date;
+  }
+
+  public void setEventStart(Time time){
+    this.eventStart = time;
+  }
+
+  public Time getEventStart(Time time){
+    return this.eventStart;
+  }
+
+  public void setEventEnd(Time time){
+    this.eventEnd = time;
+  }
+
+  public Time getEventEnd(Time time){
+    return this.eventEnd;
+  }
+
+  @ManyToOne(optional=false)
+  public Account getAccount(){
+    return this.account;
+  }
+
+  public void setAccount(Account account){
+    this.account = account;
+  }
   //------------------------
   // CONSTRUCTOR
   //------------------------
-  public Event(Date aDate, Time aEventStart, Time aEventEnd, LibrarySystem aLibrarySystem, Account aAccount)
+
+  /*public Event(Date aDate, Time aEventStart, Time aEventEnd, LibrarySystem aLibrarySystem, Account aAccount)
   {
     date = aDate;
     eventStart = aEventStart;
@@ -47,12 +89,12 @@ public class Event
     {
       throw new RuntimeException("Unable to create event due to account. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-  }
+  }*/
 
   //------------------------
   // INTERFACE
   //------------------------
-
+  /*
   public boolean setDate(Date aDate)
   {
     boolean wasSet = false;
@@ -68,7 +110,7 @@ public class Event
     wasSet = true;
     return wasSet;
   }
-
+  
   public boolean setEventEnd(Time aEventEnd)
   {
     boolean wasSet = false;
@@ -76,7 +118,9 @@ public class Event
     wasSet = true;
     return wasSet;
   }
-@Id
+  */
+//@Id
+  /*
   public Date getDate()
   {
     return date;
@@ -90,19 +134,19 @@ public class Event
   public Time getEventEnd()
   {
     return eventEnd;
-  }
+  }*/
   /* Code from template association_GetOne */
-  public LibrarySystem getLibrarySystem()
+  /*public LibrarySystem getLibrarySystem()
   {
     return librarySystem;
   }
   /* Code from template association_GetOne */
-  public Account getAccount()
+  /*public Account getAccount()
   {
     return account;
   }
   /* Code from template association_SetOneToMany */
-  @ManyToOne
+  /*@ManyToOne
   public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
   {
     boolean wasSet = false;
@@ -122,7 +166,7 @@ public class Event
     return wasSet;
   }
   /* Code from template association_SetOneToMany */
-  public boolean setAccount(Account aAccount)
+  /*public boolean setAccount(Account aAccount)
   {
     boolean wasSet = false;
     if (aAccount == null)
@@ -166,5 +210,5 @@ public class Event
             "  " + "eventEnd" + "=" + (getEventEnd() != null ? !getEventEnd().equals(this)  ? getEventEnd().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "librarySystem = "+(getLibrarySystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySystem())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null");
-  }
+  }*/
 }
