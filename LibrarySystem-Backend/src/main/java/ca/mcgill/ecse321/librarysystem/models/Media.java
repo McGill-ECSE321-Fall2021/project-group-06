@@ -34,7 +34,7 @@ public abstract class Media
   // CONSTRUCTOR
   //------------------------
 
-  public Media(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount)
+  /*public Media(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount)
   {
     mediaType = aMediaType;
     mediaID = aMediaID;
@@ -48,50 +48,49 @@ public abstract class Media
     {
       throw new RuntimeException("Unable to create media due to account. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-  }
+  }*/
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setMediaType(Item aMediaType)
+  public void setMediaType(Item aMediaType)
   {
-    boolean wasSet = false;
-    mediaType = aMediaType;
-    wasSet = true;
-    return wasSet;
+    this.mediaType = aMediaType;
   }
 
-  public boolean setMediaID(int aMediaID)
+  public void setMediaID(int aMediaID)
   {
-    boolean wasSet = false;
-    mediaID = aMediaID;
-    wasSet = true;
-    return wasSet;
+    this.mediaID = aMediaID;
   }
-@Id
+
   public Item getMediaType()
   {
     return mediaType;
   }
-
+  @Id
   public int getMediaID()
   {
     return mediaID;
   }
   /* Code from template association_GetOne */
-  public LibrarySystem getLibrarySystem()
+  /*public LibrarySystem getLibrarySystem()
   {
     return librarySystem;
-  }
+  }*/
   /* Code from template association_GetOne */
+  @ManyToOne
   public Account getAccount()
   {
     return account;
   }
+
+  public void setAccount(Account account){
+    this.account=account;
+  }
   /* Code from template association_SetOneToMany */
-  @ManyToOne
-  public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
+
+  /*public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
   {
     boolean wasSet = false;
     if (aLibrarySystem == null)
@@ -108,10 +107,10 @@ public abstract class Media
     librarySystem.addMedia(this);
     wasSet = true;
     return wasSet;
-  }
+  }*/
   /* Code from template association_SetOneToAtMostN */
-  @ManyToOne
-  public boolean setAccount(Account aAccount)
+  
+  /*public boolean setAccount(Account aAccount)
   {
     boolean wasSet = false;
     //Must provide account to media
@@ -140,9 +139,9 @@ public abstract class Media
     account.addMedia(this);
     wasSet = true;
     return wasSet;
-  }
+  }*/
 
-  public void delete()
+  /*public void delete()
   {
     LibrarySystem placeholderLibrarySystem = librarySystem;
     this.librarySystem = null;
@@ -156,15 +155,15 @@ public abstract class Media
     {
       placeholderAccount.removeMedia(this);
     }
-  }
+  }*/
 
 
-  public String toString()
+  /*public String toString()
   {
     return super.toString() + "["+
             "mediaID" + ":" + getMediaID()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "mediaType" + "=" + (getMediaType() != null ? !getMediaType().equals(this)  ? getMediaType().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "librarySystem = "+(getLibrarySystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySystem())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null");
-  }
+  }*/
 }

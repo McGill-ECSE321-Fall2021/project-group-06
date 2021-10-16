@@ -59,7 +59,7 @@ public class OpeningHours
     startTime = aStartTime;
     endTime = aEndTime;
     holidays = new ArrayList<Date>();
-    librarySystem = new LibrarySystem(this);
+    //librarySystem = new LibrarySystem(this);
     headLibrarian = new HeadLibrarian(aIdForHeadLibrarian, aAddressForHeadLibrarian, aNameForHeadLibrarian, aAccountCategoryForHeadLibrarian, aIsLocalForHeadLibrarian, aNumCheckedForHeadLibrarian, aLibrarySystemForHeadLibrarian, aStartShiftForHeadLibrarian, aEndShiftForHeadLibrarian, this);
   }
 
@@ -166,7 +166,7 @@ public class OpeningHours
     librarySystem = null;
     if (existingLibrarySystem != null)
     {
-      existingLibrarySystem.delete();
+      //existingLibrarySystem.delete();
     }
     HeadLibrarian existingHeadLibrarian = headLibrarian;
     headLibrarian = null;

@@ -8,6 +8,7 @@ import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -27,8 +28,9 @@ public abstract class Account
   //------------------------
   // STATIC VARIABLES
   //------------------------
+  
 
-  private static Map<Integer, Account> accountsById = new HashMap<Integer, Account>();
+  //private static Map<Integer, Account> accountsById = new HashMap<Integer, Account>();
 
   //------------------------
   // MEMBER VARIABLES
@@ -40,19 +42,19 @@ public abstract class Account
   private String name;
   private AccountCategory accountCategory;
   private boolean isLocal;
-  private List<Media> checkedOutItems;
+  private Set<Media> checkedOutItems;
   private int numChecked;
 
   //Account Associations
-  private List<Event> events;
-  private List<Media> medias;
-  private LibrarySystem librarySystem;
+  private Set<Event> events;
+  private Set<Media> medias;
+  //private LibrarySystem librarySystem;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Account(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem)
+  /*public Account(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem)
   {
     address = aAddress;
     name = aName;
@@ -71,13 +73,94 @@ public abstract class Account
     {
       throw new RuntimeException("Unable to create account due to librarySystem. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-  }
+  }*/
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setId(int aId)
+  public void setId(int value){
+    this.id = value;
+  }
+  @Id
+  public int getId(){
+    return this.id;
+  }
+
+  public String getAddress()
+  {
+    return address;
+  }
+
+  public void setAddress(String address)
+  {
+    this.address = address;
+  }
+
+  public String getName()
+  {
+    return name;
+  }
+
+  public void setName(String aName)
+  {
+    this.name = aName;
+  }
+
+  public AccountCategory getAccountCategory()
+  {
+    return accountCategory;
+  }
+
+  public void setAccountCategory(AccountCategory aAccountCategory)
+  {
+    this.accountCategory = aAccountCategory;
+  }
+
+  public boolean getIsLocal()
+  {
+    return isLocal;
+  }
+
+  public void setIsLocal(boolean aIsLocal)
+  {
+    this.isLocal = aIsLocal;
+  }
+
+  public Set<Media> getCheckedOutItem()
+  {
+    return this.checkedOutItems;
+  }
+
+  public int getNumChecked()
+  {
+    return numChecked;
+  }
+
+  public void setNumChecked(int aNumChecked)
+  {
+    this.numChecked = aNumChecked;
+  }
+
+  @OneToMany(mappedBy = "Account")
+  public Set<Event> getEvents(){
+    return this.events;
+  }
+
+  public void setEvents(Set<Event> events){
+    this.events=events;
+  }
+
+  @OneToMany(mappedBy = "Account")
+  public Set<Media> getMedias(){
+    return this.medias;
+  }
+
+  public void setMedias(Set<Media> medias){
+    this.medias=medias;
+  }
+
+  /*public boolean setId(int aId)
   {
     boolean wasSet = false;
     Integer anOldId = getId();
@@ -94,41 +177,10 @@ public abstract class Account
     }
     accountsById.put(aId, this);
     return wasSet;
-  }
-
-  public boolean setAddress(String aAddress)
-  {
-    boolean wasSet = false;
-    address = aAddress;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setName(String aName)
-  {
-    boolean wasSet = false;
-    name = aName;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setAccountCategory(AccountCategory aAccountCategory)
-  {
-    boolean wasSet = false;
-    accountCategory = aAccountCategory;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setIsLocal(boolean aIsLocal)
-  {
-    boolean wasSet = false;
-    isLocal = aIsLocal;
-    wasSet = true;
-    return wasSet;
-  }
+  }*/
+  
   /* Code from template attribute_SetMany */
-  public boolean addCheckedOutItem(Media aCheckedOutItem)
+  /*public boolean addCheckedOutItem(Media aCheckedOutItem)
   {
     boolean wasAdded = false;
     wasAdded = checkedOutItems.add(aCheckedOutItem);
@@ -142,55 +194,28 @@ public abstract class Account
     return wasRemoved;
   }
 
-  public boolean setNumChecked(int aNumChecked)
-  {
-    boolean wasSet = false;
-    numChecked = aNumChecked;
-    wasSet = true;
-    return wasSet;
-  }
-@Id
-  public int getId()
-  {
-    return id;
-  }
+  
   /* Code from template attribute_GetUnique */
-  public static Account getWithId(int aId)
+  /*public static Account getWithId(int aId)
   {
     return accountsById.get(aId);
   }
   /* Code from template attribute_HasUnique */
-  public static boolean hasWithId(int aId)
+  /*public static boolean hasWithId(int aId)
   {
     return getWithId(aId) != null;
-  }
+  }*/
 
-  public String getAddress()
-  {
-    return address;
-  }
+  
 
-  public String getName()
-  {
-    return name;
-  }
+  
 
-  public AccountCategory getAccountCategory()
-  {
-    return accountCategory;
-  }
+  
 
-  public boolean getIsLocal()
-  {
-    return isLocal;
-  }
+  
   /* Code from template attribute_GetMany */
-  public Media getCheckedOutItem(int index)
-  {
-    Media aCheckedOutItem = checkedOutItems.get(index);
-    return aCheckedOutItem;
-  }
-
+  
+/*
   public Media[] getCheckedOutItems()
   {
     Media[] newCheckedOutItems = checkedOutItems.toArray(new Media[checkedOutItems.size()]);
@@ -214,18 +239,15 @@ public abstract class Account
     int index = checkedOutItems.indexOf(aCheckedOutItem);
     return index;
   }
-
-  public int getNumChecked()
-  {
-    return numChecked;
-  }
+*/
+  
   /* Code from template attribute_IsBoolean */
-  public boolean isIsLocal()
+  /*public boolean isIsLocal()
   {
     return isLocal;
-  }
+  }*/
   /* Code from template association_GetMany */
-  public Event getEvent(int index)
+  /*public Event getEvent(int index)
   {
     Event aEvent = events.get(index);
     return aEvent;
@@ -235,9 +257,9 @@ public abstract class Account
   {
     List<Event> newEvents = Collections.unmodifiableList(events);
     return newEvents;
-  }
+  }*/
 
-  public int numberOfEvents()
+  /*public int numberOfEvents()
   {
     int number = events.size();
     return number;
@@ -253,21 +275,21 @@ public abstract class Account
   {
     int index = events.indexOf(aEvent);
     return index;
-  }
+  }*/
   /* Code from template association_GetMany */
-  public Media getMedia(int index)
+  /*public Media getMedia(int index)
   {
     Media aMedia = medias.get(index);
     return aMedia;
-  }
+  }*/
 
-  public List<Media> getMedias()
+  /*public List<Media> getMedias()
   {
     List<Media> newMedias = Collections.unmodifiableList(medias);
     return newMedias;
-  }
+  }*/
 
-  public int numberOfMedias()
+  /*public int numberOfMedias()
   {
     int number = medias.size();
     return number;
@@ -283,24 +305,24 @@ public abstract class Account
   {
     int index = medias.indexOf(aMedia);
     return index;
-  }
+  }*/
   /* Code from template association_GetOne */
-  public LibrarySystem getLibrarySystem()
+  /*public LibrarySystem getLibrarySystem()
   {
     return librarySystem;
-  }
+  }*/
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEvents()
+  /*public static int minimumNumberOfEvents()
   {
     return 0;
-  }
+  }*/
   /* Code from template association_AddManyToOne */
-  public Event addEvent(Date aDate, Time aEventStart, Time aEventEnd, LibrarySystem aLibrarySystem)
+  /*public Event addEvent(Date aDate, Time aEventStart, Time aEventEnd, LibrarySystem aLibrarySystem)
   {
     return new Event(aDate, aEventStart, aEventEnd, aLibrarySystem, this);
-  }
+  }*/
 
-  public boolean addEvent(Event aEvent)
+  /*public boolean addEvent(Event aEvent)
   {
     boolean wasAdded = false;
     if (events.contains(aEvent)) { return false; }
@@ -316,9 +338,9 @@ public abstract class Account
     }
     wasAdded = true;
     return wasAdded;
-  }
+  }*/
 
-  public boolean removeEvent(Event aEvent)
+  /*public boolean removeEvent(Event aEvent)
   {
     boolean wasRemoved = false;
     //Unable to remove aEvent, as it must always have a account
@@ -328,9 +350,9 @@ public abstract class Account
       wasRemoved = true;
     }
     return wasRemoved;
-  }
+  }*/
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addEventAt(Event aEvent, int index)
+  /*public boolean addEventAt(Event aEvent, int index)
   {  
     boolean wasAdded = false;
     if(addEvent(aEvent))
@@ -362,19 +384,19 @@ public abstract class Account
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfMedias()
+  /*public static int minimumNumberOfMedias()
   {
     return 0;
-  }
+  }*/
   /* Code from template association_MaximumNumberOfMethod */
-  public static int maximumNumberOfMedias()
+  /*public static int maximumNumberOfMedias()
   {
     return 5;
-  }
+  }*/
   /* Code from template association_AddOptionalNToOne */
 
 
-  public boolean addMedia(Media aMedia)
+  /*public boolean addMedia(Media aMedia)
   {
     boolean wasAdded = false;
     if (medias.contains(aMedia)) { return false; }
@@ -395,9 +417,9 @@ public abstract class Account
     }
     wasAdded = true;
     return wasAdded;
-  }
+  }*/
 
-  public boolean removeMedia(Media aMedia)
+  /*public boolean removeMedia(Media aMedia)
   {
     boolean wasRemoved = false;
     //Unable to remove aMedia, as it must always have a account
@@ -407,9 +429,9 @@ public abstract class Account
       wasRemoved = true;
     }
     return wasRemoved;
-  }
+  }*/
   /* Code from template association_AddIndexControlFunctions */
-  public boolean addMediaAt(Media aMedia, int index)
+  /*public boolean addMediaAt(Media aMedia, int index)
   {  
     boolean wasAdded = false;
     if(addMedia(aMedia))
@@ -421,9 +443,9 @@ public abstract class Account
       wasAdded = true;
     }
     return wasAdded;
-  }
+  }*/
 
-  public boolean addOrMoveMediaAt(Media aMedia, int index)
+  /*public boolean addOrMoveMediaAt(Media aMedia, int index)
   {
     boolean wasAdded = false;
     if(medias.contains(aMedia))
@@ -439,9 +461,9 @@ public abstract class Account
       wasAdded = addMediaAt(aMedia, index);
     }
     return wasAdded;
-  }
+  }*/
   /* Code from template association_SetOneToMany */
-  @ManyToOne
+  /*@ManyToOne
   public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
   {
     boolean wasSet = false;
@@ -459,9 +481,9 @@ public abstract class Account
     librarySystem.addAccount(this);
     wasSet = true;
     return wasSet;
-  }
+  }*/
 
-  public void delete()
+  /*public void delete()
   {
     accountsById.remove(getId());
     for(int i=events.size(); i > 0; i--)
@@ -480,10 +502,10 @@ public abstract class Account
     {
       placeholderLibrarySystem.removeAccount(this);
     }
-  }
+  }*/
 
 
-  public String toString()
+  /*public String toString()
   {
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
@@ -493,5 +515,5 @@ public abstract class Account
             "numChecked" + ":" + getNumChecked()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "accountCategory" + "=" + (getAccountCategory() != null ? !getAccountCategory().equals(this)  ? getAccountCategory().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "librarySystem = "+(getLibrarySystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySystem())):"null");
-  }
+  }*/
 }

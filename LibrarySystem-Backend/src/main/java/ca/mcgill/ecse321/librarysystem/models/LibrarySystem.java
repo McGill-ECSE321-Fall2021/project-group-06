@@ -1,37 +1,30 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
 
-
 import java.util.*;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.CascadeType;
 
-import java.sql.Date;
-import java.sql.Time;
+//import java.sql.Date;
+//import java.sql.Time;
 
 // line 2 "model.ump"
 // line 103 "model.ump"
 @Entity
 public class LibrarySystem
 {
-
-  //------------------------
-  // MEMBER VARIABLES
-  //------------------------
-
-  //LibrarySystem Associations
-  private List<Account> accounts;
+  private Set<Account> accounts;
   private OpeningHours openingHours;
-  private List<Event> events;
-  private List<Media> medias;
+  private Set<Event> events;
+  private Set<Media> medias;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public LibrarySystem(OpeningHours aOpeningHours)
+  /*public LibrarySystem(OpeningHours aOpeningHours)
   {
     accounts = new ArrayList<Account>();
     if (aOpeningHours == null || aOpeningHours.getLibrarySystem() != null)
@@ -49,25 +42,29 @@ public class LibrarySystem
     openingHours = new OpeningHours(aDateForOpeningHours, aStartTimeForOpeningHours, aEndTimeForOpeningHours, this, aHeadLibrarianForOpeningHours);
     events = new ArrayList<Event>();
     medias = new ArrayList<Media>();
-  }
+  }*/
 
   //------------------------
   // INTERFACE
   //------------------------
   /* Code from template association_GetMany */
-  @Id
+  /*@Id
   public Account getAccount(int index)
   {
     Account aAccount = accounts.get(index);
     return aAccount;
-  }
-
-  public List<Account> getAccounts()
+  }*/
+  @OneToMany(cascade = {CascadeType.ALL})
+  public Set<Account> getAccounts()
   {
-    List<Account> newAccounts = Collections.unmodifiableList(accounts);
-    return newAccounts;
+    return this.accounts;
   }
 
+  public void setAccounts(Set<Account> accounts)
+  {
+    this.accounts = accounts;
+  }
+  /*
   public int numberOfAccounts()
   {
     int number = accounts.size();
@@ -84,25 +81,37 @@ public class LibrarySystem
   {
     int index = accounts.indexOf(aAccount);
     return index;
-  }
+  }*/
   /* Code from template association_GetOne */
+  @OneToOne
   public OpeningHours getOpeningHours()
   {
-    return openingHours;
+    return this.openingHours;
   }
+
+  public void setOpeningHours(OpeningHours openingHours)
+  {
+    this.openingHours = openingHours;
+  }
+
   /* Code from template association_GetMany */
-  public Event getEvent(int index)
+  
+  /*public Event getEvent(int index)
   {
     Event aEvent = events.get(index);
     return aEvent;
-  }
-
-  public List<Event> getEvents()
+  }*/
+  @OneToMany(cascade = {CascadeType.ALL})
+  public Set<Event> getEvents()
   {
-    List<Event> newEvents = Collections.unmodifiableList(events);
-    return newEvents;
+    return this.events;
   }
 
+  public void setEvents(Set<Event> events)
+  {
+    this.events = events;
+  }
+  /*
   public int numberOfEvents()
   {
     int number = events.size();
@@ -119,20 +128,24 @@ public class LibrarySystem
   {
     int index = events.indexOf(aEvent);
     return index;
-  }
+  }*/
   /* Code from template association_GetMany */
-  public Media getMedia(int index)
+  /*public Media getMedia(int index)
   {
     Media aMedia = medias.get(index);
     return aMedia;
-  }
-
-  public List<Media> getMedias()
+  }*/
+  @OneToMany(cascade = {CascadeType.ALL})
+  public Set<Media> getMedias()
   {
-    List<Media> newMedias = Collections.unmodifiableList(medias);
-    return newMedias;
+    return this.medias;
   }
 
+  public void setMedias(Set<Media> medias)
+  {
+    this.medias = medias;
+  }
+  /*
   public int numberOfMedias()
   {
     int number = medias.size();
@@ -149,15 +162,15 @@ public class LibrarySystem
   {
     int index = medias.indexOf(aMedia);
     return index;
-  }
+  }*/
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfAccounts()
+  /*public static int minimumNumberOfAccounts()
   {
     return 0;
-  }
+  }*/
   /* Code from template association_AddManyToOne */
 
-
+  /*
   public boolean addAccount(Account aAccount)
   {
     boolean wasAdded = false;
@@ -188,6 +201,7 @@ public class LibrarySystem
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
+  /*
   public boolean addAccountAt(Account aAccount, int index)
   {  
     boolean wasAdded = false;
@@ -220,11 +234,13 @@ public class LibrarySystem
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
+  /*
   public static int minimumNumberOfEvents()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
+  /*
   public Event addEvent(Date aDate, Time aEventStart, Time aEventEnd, Account aAccount)
   {
     return new Event(aDate, aEventStart, aEventEnd, this, aAccount);
@@ -260,6 +276,7 @@ public class LibrarySystem
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
+  /*
   public boolean addEventAt(Event aEvent, int index)
   {  
     boolean wasAdded = false;
@@ -292,13 +309,14 @@ public class LibrarySystem
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
+  /*
   public static int minimumNumberOfMedias()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
 
-
+  /*
   public boolean addMedia(Media aMedia)
   {
     boolean wasAdded = false;
@@ -329,6 +347,7 @@ public class LibrarySystem
     return wasRemoved;
   }
   /* Code from template association_AddIndexControlFunctions */
+  /*
   public boolean addMediaAt(Media aMedia, int index)
   {  
     boolean wasAdded = false;
@@ -391,5 +410,13 @@ public class LibrarySystem
     }
     
   }
-
+  */
+  private int id;
+  public void setId(int value){
+    this.id = value;
+  }
+  @Id
+  public int getId(){
+    return this.id;
+  }
 }
