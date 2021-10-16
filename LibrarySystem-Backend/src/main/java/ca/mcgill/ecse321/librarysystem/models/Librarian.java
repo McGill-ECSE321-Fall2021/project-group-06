@@ -29,7 +29,7 @@ public class Librarian extends Account
 
   public Librarian(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, Time aStartShift, Time aEndShift)
   {
-    super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+    //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
     startShift = aStartShift;
     endShift = aEndShift;
   }
@@ -66,7 +66,7 @@ public class Librarian extends Account
 
   public void delete()
   {
-    super.delete();
+    //super.delete();
   }
 
 

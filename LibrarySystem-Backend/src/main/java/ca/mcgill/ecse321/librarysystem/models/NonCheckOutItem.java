@@ -20,7 +20,7 @@ public class NonCheckOutItem extends Media
 
   public NonCheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount)
   {
-    super(aMediaType, aMediaID, aLibrarySystem, aAccount);
+    //super(aMediaType, aMediaID, aLibrarySystem, aAccount);
   }
 
   //------------------------
@@ -29,7 +29,7 @@ public class NonCheckOutItem extends Media
 
   public void delete()
   {
-    super.delete();
+    //super.delete();
   }
 
 }

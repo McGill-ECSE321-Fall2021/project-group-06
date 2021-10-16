@@ -23,7 +23,7 @@ public class Offline extends Account
 
   public Offline(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem)
   {
-    super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+    //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
   }
 
   //------------------------
@@ -32,7 +32,7 @@ public class Offline extends Account
 
   public void delete()
   {
-    super.delete();
+    //super.delete();
   }
 
 }

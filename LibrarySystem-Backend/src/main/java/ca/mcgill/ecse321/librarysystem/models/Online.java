@@ -29,7 +29,7 @@ public class Online extends Account
 
   public Online(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, String aUsername, String aPassword, String aEmail)
   {
-    super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+    //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
     username = aUsername;
     password = aPassword;
     email = aEmail;
@@ -80,7 +80,7 @@ public class Online extends Account
 
   public void delete()
   {
-    super.delete();
+    //super.delete();
   }
 
 

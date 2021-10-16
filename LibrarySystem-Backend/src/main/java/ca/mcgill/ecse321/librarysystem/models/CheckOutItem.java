@@ -25,7 +25,7 @@ public class CheckOutItem extends Media
   //------------------------
   public CheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount, boolean aIsCheckedOut, boolean aIsReserved, int aBorrowingPeriod)
   {
-    super(aMediaType, aMediaID, aLibrarySystem, aAccount);
+    //super(aMediaType, aMediaID, aLibrarySystem, aAccount);
     isCheckedOut = aIsCheckedOut;
     isReserved = aIsReserved;
     borrowingPeriod = aBorrowingPeriod;
@@ -86,7 +86,7 @@ public class CheckOutItem extends Media
 
   public void delete()
   {
-    super.delete();
+    //super.delete();
   }
 
 
