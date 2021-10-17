@@ -14,7 +14,7 @@ import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;;
 // line 51 "model.ump"
 // line 160 "model.ump"
 @Entity
-public class OpeningHours
+public class OpeningHour
 {
 
   //------------------------
@@ -35,32 +35,32 @@ public class OpeningHours
   // CONSTRUCTOR
   //------------------------
 
-  public OpeningHours(Date aDate, Time aStartTime, Time aEndTime, LibrarySystem aLibrarySystem, HeadLibrarian aHeadLibrarian)
+  public OpeningHour(Date aDate, Time aStartTime, Time aEndTime, LibrarySystem aLibrarySystem, HeadLibrarian aHeadLibrarian)
   {
     date = aDate;
     startTime = aStartTime;
     endTime = aEndTime;
     holidays = new ArrayList<Date>();
-    if (aLibrarySystem == null || aLibrarySystem.getOpeningHours() != null)
-    {
-      throw new RuntimeException("Unable to create OpeningHours due to aLibrarySystem. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
+    // if (aLibrarySystem == null || aLibrarySystem.getOpeningHour() != null)
+    // {
+    //   throw new RuntimeException("Unable to create OpeningHours due to aLibrarySystem. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    // }
     librarySystem = aLibrarySystem;
-    if (aHeadLibrarian == null || aHeadLibrarian.getOpeningHours() != null)
-    {
-      throw new RuntimeException("Unable to create OpeningHours due to aHeadLibrarian. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
+    // if (aHeadLibrarian == null || aHeadLibrarian.getOpeningHour() != null)
+    // {
+    //   throw new RuntimeException("Unable to create OpeningHours due to aHeadLibrarian. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    // }
     headLibrarian = aHeadLibrarian;
   }
 
-  public OpeningHours(Date aDate, Time aStartTime, Time aEndTime, int aIdForHeadLibrarian, String aAddressForHeadLibrarian, String aNameForHeadLibrarian, AccountCategory aAccountCategoryForHeadLibrarian, boolean aIsLocalForHeadLibrarian, int aNumCheckedForHeadLibrarian, LibrarySystem aLibrarySystemForHeadLibrarian, Time aStartShiftForHeadLibrarian, Time aEndShiftForHeadLibrarian)
+  public OpeningHour(Date aDate, Time aStartTime, Time aEndTime, int aIdForHeadLibrarian, String aAddressForHeadLibrarian, String aNameForHeadLibrarian, AccountCategory aAccountCategoryForHeadLibrarian, boolean aIsLocalForHeadLibrarian, int aNumCheckedForHeadLibrarian, LibrarySystem aLibrarySystemForHeadLibrarian, Time aStartShiftForHeadLibrarian, Time aEndShiftForHeadLibrarian)
   {
     date = aDate;
     startTime = aStartTime;
     endTime = aEndTime;
     holidays = new ArrayList<Date>();
     //librarySystem = new LibrarySystem(this);
-    headLibrarian = new HeadLibrarian(aIdForHeadLibrarian, aAddressForHeadLibrarian, aNameForHeadLibrarian, aAccountCategoryForHeadLibrarian, aIsLocalForHeadLibrarian, aNumCheckedForHeadLibrarian, aLibrarySystemForHeadLibrarian, aStartShiftForHeadLibrarian, aEndShiftForHeadLibrarian, this);
+    //headLibrarian = new HeadLibrarian(aIdForHeadLibrarian, aAddressForHeadLibrarian, aNameForHeadLibrarian, aAccountCategoryForHeadLibrarian, aIsLocalForHeadLibrarian, aNumCheckedForHeadLibrarian, aLibrarySystemForHeadLibrarian, aStartShiftForHeadLibrarian, aEndShiftForHeadLibrarian, this);
   }
 
   //------------------------

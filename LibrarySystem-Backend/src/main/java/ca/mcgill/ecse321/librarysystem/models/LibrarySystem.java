@@ -16,7 +16,7 @@ import javax.persistence.CascadeType;
 public class LibrarySystem
 {
   private Set<Account> accounts;
-  private OpeningHours openingHours;
+  private OpeningHour openingHour;
   private Set<Event> events;
   private Set<Media> medias;
 
@@ -84,14 +84,14 @@ public class LibrarySystem
   }*/
   /* Code from template association_GetOne */
   @OneToOne
-  public OpeningHours getOpeningHours()
+  public OpeningHour getOpeningHour()
   {
-    return this.openingHours;
+    return this.openingHour;
   }
 
-  public void setOpeningHours(OpeningHours openingHours)
+  public void setOpeningHours(OpeningHour openingHours)
   {
-    this.openingHours = openingHours;
+    this.openingHour = openingHours;
   }
 
   /* Code from template association_GetMany */

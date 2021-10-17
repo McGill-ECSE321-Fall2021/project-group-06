@@ -21,41 +21,41 @@ public class HeadLibrarian extends Librarian
   //------------------------
 
   //HeadLibrarian Associations
-  private OpeningHours openingHours;
+  private OpeningHour openingHour;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public HeadLibrarian(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, Time aStartShift, Time aEndShift, OpeningHours aOpeningHours)
+  public HeadLibrarian(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, Time aStartShift, Time aEndShift, OpeningHour aOpeningHour)
   {
     super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem, aStartShift, aEndShift);
-    if (aOpeningHours == null || aOpeningHours.getHeadLibrarian() != null)
+    if (aOpeningHour == null || aOpeningHour.getHeadLibrarian() != null)
     {
       throw new RuntimeException("Unable to create HeadLibrarian due to aOpeningHours. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    openingHours = aOpeningHours;
+    openingHour = aOpeningHour;
   }
 
   public HeadLibrarian(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, Time aStartShift, Time aEndShift, Date aDateForOpeningHours, Time aStartTimeForOpeningHours, Time aEndTimeForOpeningHours, LibrarySystem aLibrarySystemForOpeningHours)
   {
     super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem, aStartShift, aEndShift);
-    openingHours = new OpeningHours(aDateForOpeningHours, aStartTimeForOpeningHours, aEndTimeForOpeningHours, aLibrarySystemForOpeningHours, this);
+    openingHour = new OpeningHour(aDateForOpeningHours, aStartTimeForOpeningHours, aEndTimeForOpeningHours, aLibrarySystemForOpeningHours, this);
   }
 
   //------------------------
   // INTERFACE
   //------------------------
   /* Code from template association_GetOne */
-  public OpeningHours getOpeningHours()
+  public OpeningHour getOpeningHours()
   {
-    return openingHours;
+    return openingHour;
   }
 
   public void delete()
   {
-    OpeningHours existingOpeningHours = openingHours;
-    openingHours = null;
+    OpeningHour existingOpeningHours = openingHour;
+    openingHour = null;
     if (existingOpeningHours != null)
     {
       existingOpeningHours.delete();
