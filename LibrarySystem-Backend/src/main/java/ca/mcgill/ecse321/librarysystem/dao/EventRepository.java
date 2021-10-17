@@ -10,6 +10,9 @@ import ca.mcgill.ecse321.librarysystem.models.Account;
 public interface EventRepository extends CrudRepository<Event, String> {
 
 	Event findEventByName(String name);
-	List<Event> findByAccount (Account account); 
+
+	List<Event> findByAccount(Account accountId);
+
+	boolean existsByAccount(Account account);
 
 }
