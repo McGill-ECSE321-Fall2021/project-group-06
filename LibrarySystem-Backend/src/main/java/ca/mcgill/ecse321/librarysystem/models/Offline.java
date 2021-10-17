@@ -16,16 +16,22 @@ public class Offline extends Account
   //------------------------
   // MEMBER VARIABLES
   //------------------------
-
+  // @Override
+  // public void setAccountCategory(AccountCategory aAccountCategory) {
+  //     // TODO Auto-generated method stub
+  //     super.setAccountCategory(aAccountCategory);
+  // }
+  
   //------------------------
   // CONSTRUCTOR
   //------------------------
-
   // public Offline(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem)
   // {
   //   //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
   // }
-
+  public Offline(){
+  super.setAccountCategory(Account.AccountCategory.Offline);
+  }
   //------------------------
   // INTERFACE
   //------------------------

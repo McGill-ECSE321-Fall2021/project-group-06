@@ -34,6 +34,9 @@ public class Online extends Account
   //   password = aPassword;
   //   email = aEmail;
   // }
+  public Online(){
+    super.setAccountCategory(Account.AccountCategory.Online);
+    }
 
   //------------------------
   // INTERFACE
