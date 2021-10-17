@@ -8,11 +8,14 @@ import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 
 // line 38 "model.ump"
 // line 129 "model.ump"
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Librarian extends Account
 {
 
