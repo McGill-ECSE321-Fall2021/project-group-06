@@ -27,13 +27,13 @@ public class Online extends Account
   // CONSTRUCTOR
   //------------------------
 
-  public Online(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, String aUsername, String aPassword, String aEmail)
-  {
-    //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
-    username = aUsername;
-    password = aPassword;
-    email = aEmail;
-  }
+  // public Online(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, String aUsername, String aPassword, String aEmail)
+  // {
+  //   //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+  //   username = aUsername;
+  //   password = aPassword;
+  //   email = aEmail;
+  // }
 
   //------------------------
   // INTERFACE
@@ -78,17 +78,17 @@ public class Online extends Account
     return email;
   }
 
-  public void delete()
-  {
-    //super.delete();
-  }
+  // public void delete()
+  // {
+  //   //super.delete();
+  // }
 
 
-  public String toString()
-  {
-    return super.toString() + "["+
-            "username" + ":" + getUsername()+ "," +
-            "password" + ":" + getPassword()+ "," +
-            "email" + ":" + getEmail()+ "]";
-  }
+  // public String toString()
+  // {
+  //   return super.toString() + "["+
+  //           "username" + ":" + getUsername()+ "," +
+  //           "password" + ":" + getPassword()+ "," +
+  //           "email" + ":" + getEmail()+ "]";
+  // }
 }

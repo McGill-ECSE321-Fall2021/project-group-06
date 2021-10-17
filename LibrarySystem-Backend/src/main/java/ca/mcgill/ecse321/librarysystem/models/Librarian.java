@@ -27,17 +27,17 @@ public class Librarian extends Account
   // CONSTRUCTOR
   //------------------------
 
-  public Librarian(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, Time aStartShift, Time aEndShift)
-  {
-    //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
-    startShift = aStartShift;
-    endShift = aEndShift;
-  }
+  // public Librarian(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, Time aStartShift, Time aEndShift)
+  // {
+  //   //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+  //   startShift = aStartShift;
+  //   endShift = aEndShift;
+  // }
 
   //------------------------
   // INTERFACE
   //------------------------
-
+@ManyToMany
   public boolean setStartShift(Time aStartShift)
   {
     boolean wasSet = false;
@@ -64,16 +64,16 @@ public class Librarian extends Account
     return endShift;
   }
 
-  public void delete()
-  {
-    //super.delete();
-  }
+  // public void delete()
+  // {
+  //   //super.delete();
+  // }
 
 
-  public String toString()
-  {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "startShift" + "=" + (getStartShift() != null ? !getStartShift().equals(this)  ? getStartShift().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "endShift" + "=" + (getEndShift() != null ? !getEndShift().equals(this)  ? getEndShift().toString().replaceAll("  ","    ") : "this" : "null");
-  }
+  // public String toString()
+  // {
+  //   return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
+  //           "  " + "startShift" + "=" + (getStartShift() != null ? !getStartShift().equals(this)  ? getStartShift().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+  //           "  " + "endShift" + "=" + (getEndShift() != null ? !getEndShift().equals(this)  ? getEndShift().toString().replaceAll("  ","    ") : "this" : "null");
+  // }
 }

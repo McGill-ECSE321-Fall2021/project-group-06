@@ -21,18 +21,18 @@ public class Offline extends Account
   // CONSTRUCTOR
   //------------------------
 
-  public Offline(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem)
-  {
-    //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
-  }
+  // public Offline(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem)
+  // {
+  //   //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+  // }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public void delete()
-  {
-    //super.delete();
-  }
+  // public void delete()
+  // {
+  //   //super.delete();
+  // }
 
 }

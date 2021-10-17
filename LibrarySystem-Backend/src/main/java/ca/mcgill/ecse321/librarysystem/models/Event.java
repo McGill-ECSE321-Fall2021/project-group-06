@@ -29,7 +29,7 @@ public class Event
   //private LibrarySystem librarySystem;
   private Account account;
   private String name;
-
+  @ManyToOne
   public void setName(String name){
     this.name = name;
   }

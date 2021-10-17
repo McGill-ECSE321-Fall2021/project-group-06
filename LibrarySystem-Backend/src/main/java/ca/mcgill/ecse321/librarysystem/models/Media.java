@@ -27,7 +27,7 @@ public abstract class Media
   private int mediaID;
 
   //Media Associations
-  private LibrarySystem librarySystem;
+  // private LibrarySystem librarySystem;
   private Account account;
 
   //------------------------

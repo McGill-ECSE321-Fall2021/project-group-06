@@ -18,18 +18,18 @@ public class NonCheckOutItem extends Media
   // CONSTRUCTOR
   //------------------------
 
-  public NonCheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount)
-  {
-    //super(aMediaType, aMediaID, aLibrarySystem, aAccount);
-  }
+  // public NonCheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount)
+  // {
+  //   //super(aMediaType, aMediaID, aLibrarySystem, aAccount);
+  // }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public void delete()
-  {
-    //super.delete();
-  }
+  // public void delete()
+  // {
+  //   //super.delete();
+  // }
 
 }
