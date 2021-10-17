@@ -6,7 +6,10 @@ package ca.mcgill.ecse321.librarysystem.models;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -16,6 +19,8 @@ import java.sql.Time;
 // line 11 "model.ump"
 // line 112 "model.ump"
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS) //Account has a table
+//@MappedSuperclass (Account does not have a table)
 public abstract class Account
 {
 
@@ -106,7 +111,8 @@ public abstract class Account
   {
     this.name = aName;
   }
-
+  
+@Enumerated
   public AccountCategory getAccountCategory()
   {
     return accountCategory;

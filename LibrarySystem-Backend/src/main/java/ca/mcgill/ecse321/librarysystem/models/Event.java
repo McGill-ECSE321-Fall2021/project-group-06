@@ -24,12 +24,12 @@ public class Event
   private Date date;
   private Time eventStart;
   private Time eventEnd;
+  private String name;
 
   //Event Associations
   //private LibrarySystem librarySystem;
   private Account account;
-  private String name;
-
+  
   public void setName(String name){
     this.name = name;
   }

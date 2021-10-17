@@ -3,12 +3,16 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 // line 66 "model.ump"
 // line 145 "model.ump"
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Media
 {
 
@@ -27,7 +31,7 @@ public abstract class Media
   private int mediaID;
 
   //Media Associations
-  private LibrarySystem librarySystem;
+  // private LibrarySystem librarySystem;
   private Account account;
 
   //------------------------
@@ -63,7 +67,7 @@ public abstract class Media
   {
     this.mediaID = aMediaID;
   }
-
+@Enumerated
   public Item getMediaType()
   {
     return this.mediaType;

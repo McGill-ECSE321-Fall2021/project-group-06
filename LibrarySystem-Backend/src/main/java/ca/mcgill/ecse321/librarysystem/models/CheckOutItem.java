@@ -23,13 +23,13 @@ public class CheckOutItem extends Media
   //------------------------
   // CONSTRUCTOR
   //------------------------
-  public CheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount, boolean aIsCheckedOut, boolean aIsReserved, int aBorrowingPeriod)
-  {
-    //super(aMediaType, aMediaID, aLibrarySystem, aAccount);
-    isCheckedOut = aIsCheckedOut;
-    isReserved = aIsReserved;
-    borrowingPeriod = aBorrowingPeriod;
-  }
+  // public CheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount, boolean aIsCheckedOut, boolean aIsReserved, int aBorrowingPeriod)
+  // {
+  //   //super(aMediaType, aMediaID, aLibrarySystem, aAccount);
+  //   isCheckedOut = aIsCheckedOut;
+  //   isReserved = aIsReserved;
+  //   borrowingPeriod = aBorrowingPeriod;
+  // }
 
   //------------------------
   // INTERFACE
@@ -73,28 +73,28 @@ public class CheckOutItem extends Media
   {
     return borrowingPeriod;
   }
-  /* Code from template attribute_IsBoolean */
-  public boolean isIsCheckedOut()
-  {
-    return isCheckedOut;
-  }
-  /* Code from template attribute_IsBoolean */
-  public boolean isIsReserved()
-  {
-    return isReserved;
-  }
+  // /* Code from template attribute_IsBoolean */
+  // public boolean isIsCheckedOut()
+  // {
+  //   return isCheckedOut;
+  // }
+  // /* Code from template attribute_IsBoolean */
+  // public boolean isIsReserved()
+  // {
+  //   return isReserved;
+  // }
 
-  public void delete()
-  {
-    //super.delete();
-  }
+  // public void delete()
+  // {
+  //   //super.delete();
+  // }
 
 
-  public String toString()
-  {
-    return super.toString() + "["+
-            "isCheckedOut" + ":" + getIsCheckedOut()+ "," +
-            "isReserved" + ":" + getIsReserved()+ "," +
-            "borrowingPeriod" + ":" + getBorrowingPeriod()+ "]";
-  }
+  // public String toString()
+  // {
+  //   return super.toString() + "["+
+  //           "isCheckedOut" + ":" + getIsCheckedOut()+ "," +
+  //           "isReserved" + ":" + getIsReserved()+ "," +
+  //           "borrowingPeriod" + ":" + getBorrowingPeriod()+ "]";
+  // }
 }
