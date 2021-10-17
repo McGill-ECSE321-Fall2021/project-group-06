@@ -3,6 +3,7 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -63,7 +64,7 @@ public abstract class Media
   {
     this.mediaID = aMediaID;
   }
-
+@Enumerated
   public Item getMediaType()
   {
     return this.mediaType;

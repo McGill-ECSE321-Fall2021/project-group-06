@@ -7,6 +7,7 @@ import java.sql.Time;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import java.sql.Date;
 
@@ -21,7 +22,7 @@ public class HeadLibrarian extends Librarian
   //------------------------
 
   //HeadLibrarian Associations
-  private OpeningHour openingHour;
+  private Set<OpeningHour> openingHours;
 
   //------------------------
   // CONSTRUCTOR
@@ -46,10 +47,11 @@ public class HeadLibrarian extends Librarian
   //------------------------
   // INTERFACE
   //------------------------
-  /* Code from template association_GetOne */
-  public OpeningHour getOpeningHour()
+  /* Code from template association_GetMany */
+  @OneToMany (mappedBy = "HeadLibrarian")
+  public Set<OpeningHour> getOpeningHours()
   {
-    return openingHour;
+    return openingHours;
   }
 
   // public void delete()

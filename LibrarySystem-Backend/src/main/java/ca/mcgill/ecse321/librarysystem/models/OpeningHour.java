@@ -23,13 +23,14 @@ public class OpeningHour
   //------------------------
 
   //OpeningHours Attributes
+  private int id;
   private Date date;
   private Time startTime;
   private Time endTime;
-  private List<Date> holidays;
+  private Set<Date> holidays;
 
   //OpeningHours Associations
-  private LibrarySystem librarySystem;
+  //private LibrarySystem librarySystem;
   private HeadLibrarian headLibrarian;
 
   //------------------------
@@ -67,29 +68,23 @@ public class OpeningHour
   //------------------------
   // INTERFACE
   //------------------------
-  @ManyToOne
-  public boolean setDate(Date aDate)
+
+  public void setId(int id) {
+	  this.id = id;
+  }
+  public void setDate(Date aDate)
   {
-    boolean wasSet = false;
     date = aDate;
-    wasSet = true;
-    return wasSet;
   }
 
-  public boolean setStartTime(Time aStartTime)
+  public void setStartTime(Time aStartTime)
   {
-    boolean wasSet = false;
     startTime = aStartTime;
-    wasSet = true;
-    return wasSet;
   }
 
-  public boolean setEndTime(Time aEndTime)
+  public void setEndTime(Time aEndTime)
   {
-    boolean wasSet = false;
     endTime = aEndTime;
-    wasSet = true;
-    return wasSet;
   }
   // /* Code from template attribute_SetMany */
   // public boolean addHoliday(Date aHoliday)
@@ -105,7 +100,11 @@ public class OpeningHour
   //   wasRemoved = holidays.remove(aHoliday);
   //   return wasRemoved;
   // }
-  @Id
+@Id
+  public int getId() {
+	  return id;
+  }
+
   public Date getDate()
   {
     return date;
@@ -121,16 +120,15 @@ public class OpeningHour
     return endTime;
   }
   /* Code from template attribute_GetMany */
-  public Date getHoliday(int index)
-  {
-    Date aHoliday = holidays.get(index);
-    return aHoliday;
-  }
+//  public Date getHoliday(int index)
+//  {
+//    Date aHoliday = holidays.get(index);
+//    return aHoliday;
+//  }
 
-  public Date[] getHolidays()
+  public Set<Date> getHolidays()
   {
-    Date[] newHolidays = holidays.toArray(new Date[holidays.size()]);
-    return newHolidays;
+    return holidays;
   }
 
   // public int numberOfHolidays()
@@ -151,11 +149,12 @@ public class OpeningHour
   //   return index;
   // }
   /* Code from template association_GetOne */
-  public LibrarySystem getLibrarySystem()
-  {
-    return librarySystem;
-  }
+//  public LibrarySystem getLibrarySystem()
+//  {
+//    return librarySystem;
+//  }
   /* Code from template association_GetOne */
+  @ManyToOne(optional=false)
   public HeadLibrarian getHeadLibrarian()
   {
     return headLibrarian;

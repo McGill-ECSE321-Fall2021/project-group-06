@@ -8,6 +8,7 @@ import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 // line 38 "model.ump"
 // line 129 "model.ump"
@@ -20,8 +21,9 @@ public class Librarian extends Account
   //------------------------
 
   //Librarian Attributes
-  private Time startShift;
-  private Time endShift;
+  private Shift shift;
+  //Librarian Associations
+  private Set<Shift> shifts; 
 
   //------------------------
   // CONSTRUCTOR
@@ -37,32 +39,19 @@ public class Librarian extends Account
   //------------------------
   // INTERFACE
   //------------------------
-@ManyToMany
-  public boolean setStartShift(Time aStartShift)
-  {
-    boolean wasSet = false;
-    startShift = aStartShift;
-    wasSet = true;
-    return wasSet;
+  public void setShift(Shift aShift) {
+	  shift = aShift;
   }
 
-  public boolean setEndShift(Time aEndShift)
-  {
-    boolean wasSet = false;
-    endShift = aEndShift;
-    wasSet = true;
-    return wasSet;
+  @Id
+  public Shift getShift() {
+	  return shift;
   }
-@Id
-  public Time getStartShift()
-  {
-    return startShift;
+  @ManyToMany
+  public Set<Shift> getShifts() {
+	  return this.shifts;
   }
 
-  public Time getEndShift()
-  {
-    return endShift;
-  }
 
   // public void delete()
   // {

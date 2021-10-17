@@ -6,6 +6,7 @@ package ca.mcgill.ecse321.librarysystem.models;
 import java.util.*;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -106,7 +107,8 @@ public abstract class Account
   {
     this.name = aName;
   }
-
+  
+@Enumerated
   public AccountCategory getAccountCategory()
   {
     return accountCategory;
