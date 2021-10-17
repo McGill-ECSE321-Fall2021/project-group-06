@@ -66,12 +66,12 @@ public abstract class Media
 
   public Item getMediaType()
   {
-    return mediaType;
+    return this.mediaType;
   }
   @Id
   public int getMediaID()
   {
-    return mediaID;
+    return this.mediaID;
   }
   /* Code from template association_GetOne */
   /*public LibrarySystem getLibrarySystem()
@@ -82,7 +82,7 @@ public abstract class Media
   @ManyToOne
   public Account getAccount()
   {
-    return account;
+    return this.account;
   }
 
   public void setAccount(Account account){
