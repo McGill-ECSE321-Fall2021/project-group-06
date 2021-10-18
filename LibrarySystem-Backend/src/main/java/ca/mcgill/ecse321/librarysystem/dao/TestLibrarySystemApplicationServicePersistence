@@ -44,6 +44,8 @@ public class TestLibrarySystemApplicationService {
     // private Account account;
     private Offline offline;
     private Online online;
+    private Librarian librarian;
+    private HeadLibrarian headLibrarian;
     //Testing for Account
     private static final int ID_KEY = 1;
     private static final int NONEXISTING_KEY = 0;
@@ -100,7 +102,7 @@ public class TestLibrarySystemApplicationService {
     } 
 
     @Test
-    public void testGetAccountCategoryOnfline(){
+    public void testGetAccountCategoryOnline(){
         assertEquals(Account.AccountCategory.Online, online.getAccountCategory());
     }
 
@@ -161,44 +163,48 @@ public class TestLibrarySystemApplicationService {
         offline.setMedias(medias);
         assertEquals(medias, offline.getMedias());
     }
-    
+
     @Test
 	public void testGetLibrarians(){
-		assertEquals(null, offline.getLibrarians());
+		int shift = 0;
+		assertEquals(id, librarian.getShift());
 	}
 
 	@Test
     public void testSetLibrarians(){
-        Set<Librarian> librarians = new HashSet<Librarian>();
-        Librarian l = new Librarian();
-        librarians.add(l);
-        offline.setLibrarians(librarians);
-        assertEquals(librarians, offline.getLibrarians());
+       Shift shift = new Shift(0);
+       librarian.setShift(shift);
+       int findShift = librarian.getShift();
+       assertEquals(shift,findShift);
     }
 
     @Test
 	public void testGetHeadLibrarians(){
-		assertEquals(null, offline.getHeadLibrarians());
+		int shift = 0;
+		assertEquals(shift, headLibrarian.getShift());
 	}
 
 	@Test
     public void testSetHeadLibrarians(){
-        Set<Librarian> headLibrarians = new HashSet<HeadLibrarian>();
-        HeadLibrarian h = new HeadLibrarian();
-        headLibrarians.add(h);
-        offline.setHeadLibrarians(headLibrarians);
-        assertEquals(headLibrarians, offline.getHeadLibrarians());
+        Shift shift = new Shift(0);
+        headLibrarian.setShift(shift);
+        int findShift = headLibrarian.getShift();
+        assertEquals(shift,findShift);
     }
 
     @Test
     public void testGetShifts(){
-    	assertEquals(null, offline.getShift);
+   		int id =0;
+    	assertEquals(id, shift.getShiftID());
     }
 
     @Test
     public void testSetShifts(){
-
-    }
+		int id = 6;
+        shift.setId(id);
+        int setId = shift.getId();
+        assertEquals(id, setId);
+    } 
 
     @AfterEach
     public void clearDatabase(){
