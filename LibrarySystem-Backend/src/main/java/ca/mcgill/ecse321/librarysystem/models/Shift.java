@@ -43,32 +43,32 @@ public class Shift {
       this.librarian = librarian;
     }
     
-//    private Date date;
-//    public void setDate(Date date){
-//        this.date = date;
-//    }
-//
-//    public Date getDate(){
-//        return this.date;
-//    }
-//
-//    private Time startTime;
-//    public void setStartTime(Time startTime){
-//        this.startTime = startTime;
-//    }
-//
-//    public Time getStartTime(){
-//        return this.startTime;
-//    }
-//
-//    private Time endTime;
-//    public void setEndTime(Time endTime){
-//        this.endTime = endTime;
-//    }
-//
-//    public Time getEndTime(){
-//        return this.endTime;
-//    }
+    private Date date;
+    public void setDate(Date date){
+        this.date = date;
+    }
+
+    public Date getDate(){
+        return this.date;
+    }
+
+    private Time startTime;
+    public void setStartTime(Time startTime){
+        this.startTime = startTime;
+    }
+
+    public Time getStartTime(){
+        return this.startTime;
+    }
+
+    private Time endTime;
+    public void setEndTime(Time endTime){
+        this.endTime = endTime;
+    }
+
+    public Time getEndTime(){
+        return this.endTime;
+    }
 //
 //    private HeadLibrarian headLibrarian;
 //    @ManyToOne(optional=false)
