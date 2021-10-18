@@ -35,7 +35,7 @@ import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 
 
 @ExtendWith(MockitoExtension.class)
-public class TestLibrarySystemApplicationPersistance {
+public class TestLibrarySystemApplicationService {
 
     @Mock AccountRepository accountRepository;
     @Mock EventRepository eventRepository;
