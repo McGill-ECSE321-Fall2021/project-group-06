@@ -16,20 +16,20 @@ import javax.persistence.ManyToOne;
 public class Event
 {
 
-  //------------------------
-  // MEMBER VARIABLES
-  //------------------------
-
-  //Event Attributes
+//  //------------------------
+//  // MEMBER VARIABLES
+//  //------------------------
+//
+//  //Event Attributes
   private Date date;
   private Time eventStart;
   private Time eventEnd;
   private String name;
-
-  //Event Associations
-  //private LibrarySystem librarySystem;
+//
+//  //Event Associations
+//  //private LibrarySystem librarySystem;
   private Account account;
-  
+//  
   public void setName(String name){
     this.name = name;
   }
@@ -66,30 +66,9 @@ public class Event
   public Account getAccount(){
     return this.account;
   }
-
   public void setAccount(Account account){
     this.account = account;
   }
-  //------------------------
-  // CONSTRUCTOR
-  //------------------------
-
-  /*public Event(Date aDate, Time aEventStart, Time aEventEnd, LibrarySystem aLibrarySystem, Account aAccount)
-  {
-    date = aDate;
-    eventStart = aEventStart;
-    eventEnd = aEventEnd;
-    boolean didAddLibrarySystem = setLibrarySystem(aLibrarySystem);
-    if (!didAddLibrarySystem)
-    {
-      throw new RuntimeException("Unable to create event due to librarySystem. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-    boolean didAddAccount = setAccount(aAccount);
-    if (!didAddAccount)
-    {
-      throw new RuntimeException("Unable to create event due to account. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
-    }
-  }*/
 
   //------------------------
   // INTERFACE
@@ -146,69 +125,5 @@ public class Event
     return account;
   }
   /* Code from template association_SetOneToMany */
-  /*@ManyToOne
-  public boolean setLibrarySystem(LibrarySystem aLibrarySystem)
-  {
-    boolean wasSet = false;
-    if (aLibrarySystem == null)
-    {
-      return wasSet;
-    }
-
-    LibrarySystem existingLibrarySystem = librarySystem;
-    librarySystem = aLibrarySystem;
-    if (existingLibrarySystem != null && !existingLibrarySystem.equals(aLibrarySystem))
-    {
-      existingLibrarySystem.removeEvent(this);
-    }
-    librarySystem.addEvent(this);
-    wasSet = true;
-    return wasSet;
-  }
-  /* Code from template association_SetOneToMany */
-  /*public boolean setAccount(Account aAccount)
-  {
-    boolean wasSet = false;
-    if (aAccount == null)
-    {
-      return wasSet;
-    }
-
-    Account existingAccount = account;
-    account = aAccount;
-    if (existingAccount != null && !existingAccount.equals(aAccount))
-    {
-      existingAccount.removeEvent(this);
-    }
-    account.addEvent(this);
-    wasSet = true;
-    return wasSet;
-  }
-
-  public void delete()
-  {
-    LibrarySystem placeholderLibrarySystem = librarySystem;
-    this.librarySystem = null;
-    if(placeholderLibrarySystem != null)
-    {
-      placeholderLibrarySystem.removeEvent(this);
-    }
-    Account placeholderAccount = account;
-    this.account = null;
-    if(placeholderAccount != null)
-    {
-      placeholderAccount.removeEvent(this);
-    }
-  }
-
-
-  public String toString()
-  {
-    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "eventStart" + "=" + (getEventStart() != null ? !getEventStart().equals(this)  ? getEventStart().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "eventEnd" + "=" + (getEventEnd() != null ? !getEventEnd().equals(this)  ? getEventEnd().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "librarySystem = "+(getLibrarySystem()!=null?Integer.toHexString(System.identityHashCode(getLibrarySystem())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "account = "+(getAccount()!=null?Integer.toHexString(System.identityHashCode(getAccount())):"null");
-  }*/
+  
 }

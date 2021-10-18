@@ -65,7 +65,7 @@ public class Online extends Account
     wasSet = true;
     return wasSet;
   }
-@Id
+
   public String getUsername()
   {
     return username;

@@ -35,26 +35,54 @@ public class TestLibrarySystemPersistence {
 	@AfterEach
 	public void clearDatabase() {
 		// Fisrt, we clear registrations to avoid exceptions due to inconsistencies
-		openingHourRepository.deleteAll();
-		shiftRepository.deleteAll();
-		eventRepository.deleteAll();
-		// Then we can clear the other tables
+		
+		
+		
+//		// Then we can clear the other tables
 		accountRepository.deleteAll();
+		shiftRepository.deleteAll();
 		mediaRepository.deleteAll();
+		openingHourRepository.deleteAll();
+		eventRepository.deleteAll();
+		
 	}
 	
 	@Test
-	public void testPersistAndLoadCheckOutItem() {
-		/*Media media = new CheckOutItem();
-		media.setType(Media.Item.Book);
-		int mediaId = 727;
-		media.setID(mediaId);
-		mediaRepository.save(media);
-		media = null;
-		media = mediaRepository.findMediaById(mediaId);
-		assertNotNull(media);
-		assertEquals(mediaId, media.getID());
-		assertEquals(Media.Item.Book, media.getType());*/
-		assertEquals(5,5);
+	public void testPersistAndLoadMedia() {
+//		Media media = new CheckOutItem();
+//		Account acc = new Online();
+//		acc.setId(69);
+//		accountRepository.save(acc);
+//		media.setType(Media.Item.Book);
+//		int mediaId = 727;
+//		media.setID(mediaId);
+//		media.setAccount(acc);
+//		mediaRepository.save(media);
+//		media = null;
+//		media = mediaRepository.findMediaByID(mediaId);
+//		assertNotNull(media);
+//		assertEquals(mediaId, media.getID());
+//		assertEquals(Media.Item.Book, media.getType());
+		
+//		Account acc = new Online();
+//		acc.setId(69);
+//		acc.setAccountCategory(Account.AccountCategory.Online);
+//		acc.setAddress("123street");
+//		acc.setEvents(null);
+//		acc.setIsLocal(true);
+//		acc.setMedias(null);
+//		acc.setName("andy");
+//		acc.setNumChecked(727);
+//		accountRepository.save(acc);
+//		Event event = new Event();
+//		String name = "event1";
+//		event.setName(name);
+//		event.setAccount(acc);
+//		eventRepository.save(event);
+//		event = null;
+//		event = eventRepository.findEventByName(name);
+//		assertNotNull(event);
+//		assertEquals(name, event.getName());
+		
 	}
 }
