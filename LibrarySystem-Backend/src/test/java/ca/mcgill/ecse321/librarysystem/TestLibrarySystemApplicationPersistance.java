@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
@@ -16,6 +17,7 @@ import java.util.Calendar;
 import java.util.*;
 
 import org.apache.tomcat.jni.User;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +28,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
+import ca.mcgill.ecse321.librarysystem.dao.AccountRepository;
 import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 
@@ -34,13 +37,42 @@ import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 @ExtendWith(MockitoExtension.class)
 public class TestLibrarySystemApplicationPersistance {
 
-    // @Mock AccountRepository aRepository;
-    @Mock Account account;
+    @Mock AccountRepository accountRepository;
+    @Mock EventRepository eventRepository;
+    @Mock MediaRepository mediaRepository;
+    @Mock OpeningHourRepository openingHourRepository;
+    @Mock ShiftRepository shiftRepository;
+
+    // @InjectMocks
+    // private Account account;
     @InjectMocks
     private Offline offline;
     @InjectMocks
     private Online online;
     //Testing for Account
+    private static final int ID_KEY = 1;
+    private static final int NONEXISTING_KEY = 0;
+
+	@BeforeEach
+	public void setMockOutput() {
+		lenient().when(accountRepository.findAccountById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			if (invocation.getArgument(0).equals(ID_KEY)) {
+				Account offline = new Offline();
+				offline.setId(ID_KEY);
+				return offline;
+			} else {
+				return null;
+			}
+		});
+		// Whenever anything is saved, just return the parameter object
+		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
+			return invocation.getArgument(0);
+		};
+		lenient().when(accountRepository.save(any(Account.class))).thenAnswer(returnParameterAsAnswer);
+		lenient().when(eventRepository.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
+		lenient().when(mediaRepository.save(any(Media.class))).thenAnswer(returnParameterAsAnswer);
+	}
+
     @Test
     public void testSetId(){
         int id = 10;
@@ -153,5 +185,14 @@ public class TestLibrarySystemApplicationPersistance {
         medias.add(m);
         offline.setMedias(medias);
         assertEquals(medias, offline.getMedias());
+    }
+
+    @AfterEach
+    public void clearDatabse(){
+        accountRepository.deleteAll();
+        eventRepository.deleteAll();
+        mediaRepository.deleteAll();
+        openingHourRepository.deleteAll();
+        shiftRepository.deleteAll();
     }
 }
