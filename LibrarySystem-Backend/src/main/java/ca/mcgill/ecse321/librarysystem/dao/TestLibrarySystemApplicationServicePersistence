@@ -161,6 +161,44 @@ public class TestLibrarySystemApplicationService {
         offline.setMedias(medias);
         assertEquals(medias, offline.getMedias());
     }
+    
+    @Test
+	public void testGetLibrarians(){
+		assertEquals(null, offline.getLibrarians());
+	}
+
+	@Test
+    public void testSetLibrarians(){
+        Set<Librarian> librarians = new HashSet<Librarian>();
+        Librarian l = new Librarian();
+        librarians.add(l);
+        offline.setLibrarians(librarians);
+        assertEquals(librarians, offline.getLibrarians());
+    }
+
+    @Test
+	public void testGetHeadLibrarians(){
+		assertEquals(null, offline.getHeadLibrarians());
+	}
+
+	@Test
+    public void testSetHeadLibrarians(){
+        Set<Librarian> headLibrarians = new HashSet<HeadLibrarian>();
+        HeadLibrarian h = new HeadLibrarian();
+        headLibrarians.add(h);
+        offline.setHeadLibrarians(headLibrarians);
+        assertEquals(headLibrarians, offline.getHeadLibrarians());
+    }
+
+    @Test
+    public void testGetShifts(){
+    	assertEquals(null, offline.getShift);
+    }
+
+    @Test
+    public void testSetShifts(){
+
+    }
 
     @AfterEach
     public void clearDatabase(){
