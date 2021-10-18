@@ -44,8 +44,6 @@ public class TestLibrarySystemApplicationService {
     // private Account account;
     private Offline offline;
     private Online online;
-    private Librarian librarian;
-    private HeadLibrarian headLibrarian;
     //Testing for Account
     private static final int ID_KEY = 1;
     private static final int NONEXISTING_KEY = 0;
@@ -164,47 +162,6 @@ public class TestLibrarySystemApplicationService {
         assertEquals(medias, offline.getMedias());
     }
 
-    @Test
-	public void testGetLibrarians(){
-		int shift = 0;
-		assertEquals(id, librarian.getShift());
-	}
-
-	@Test
-    public void testSetLibrarians(){
-       Shift shift = new Shift(0);
-       librarian.setShift(shift);
-       int findShift = librarian.getShift();
-       assertEquals(shift,findShift);
-    }
-
-    @Test
-	public void testGetHeadLibrarians(){
-		int shift = 0;
-		assertEquals(shift, headLibrarian.getShift());
-	}
-
-	@Test
-    public void testSetHeadLibrarians(){
-        Shift shift = new Shift(0);
-        headLibrarian.setShift(shift);
-        int findShift = headLibrarian.getShift();
-        assertEquals(shift,findShift);
-    }
-
-    @Test
-    public void testGetShifts(){
-   		int id =0;
-    	assertEquals(id, shift.getShiftID());
-    }
-
-    @Test
-    public void testSetShifts(){
-		int id = 6;
-        shift.setId(id);
-        int setId = shift.getId();
-        assertEquals(id, setId);
-    } 
 
     @AfterEach
     public void clearDatabase(){

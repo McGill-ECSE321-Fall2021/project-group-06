@@ -186,6 +186,54 @@ public class TestLibrarySystemApplicationService {
         offline.setMedias(medias);
         assertEquals(medias, offline.getMedias());
     }
+    
+    @Test
+	public void testGetLibrarians(){
+		int id = 0;
+		Librarian librarian = new Librarian();
+		assertEquals(id, librarian.getId());
+	}
+
+	@Test
+    public void testSetLibrarians(){
+       Shift shift = new Shift();
+       Librarian librarian = new Librarian();
+       librarian.setShift(shift);
+       Shift findShift = librarian.getShift();
+       assertEquals(shift,findShift);
+    }
+
+    @Test
+	public void testGetHeadLibrarians(){
+		int id = 0;
+		HeadLibrarian headLibrarian = new HeadLibrarian();
+		assertEquals(id, headLibrarian.getShift());
+	}
+
+	@Test
+    public void testSetHeadLibrarians(){
+        int id = 0;
+        HeadLibrarian head = new HeadLibrarian();
+        head.setId(0);
+        int headID = head.getId();
+        assertEquals(id, headID );
+        
+    }
+
+    @Test
+    public void testGetShifts(){
+   		int id =0;
+   		Shift shift = new Shift();
+    	assertEquals(id, shift.getShiftID());
+    }
+
+    @Test
+    public void testSetShifts(){
+		int id = 0;
+		Shift shift = new Shift();
+		shift.setShiftID(id);
+        assertEquals(id,shift.getShiftID());
+    }
 
     @AfterEach
     public void clearDatabase(){
