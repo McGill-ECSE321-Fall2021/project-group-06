@@ -8,6 +8,8 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -48,7 +50,7 @@ public class TestLibrarySystemPersistence {
 	}
 	
 	@Test
-	public void testPersistAndLoadMedia() {
+	public void testPersistAndLoadOffline() {
 //		Media media = new CheckOutItem();
 //		Account acc = new Online();
 //		acc.setId(69);
@@ -63,6 +65,20 @@ public class TestLibrarySystemPersistence {
 //		assertNotNull(media);
 //		assertEquals(mediaId, media.getID());
 //		assertEquals(Media.Item.Book, media.getType());
+		Account acc = new Offline();
+		//eventRepository.save(event);
+		acc.setAccountCategory(Account.AccountCategory.Offline);
+		acc.setAddress("ezstt");
+		acc.setId(727);
+		acc.setIsLocal(true);
+		acc.setName("Bobster");
+		acc.setNumChecked(747);
+		accountRepository.save(acc);
+		acc = null;
+		acc = accountRepository.findAccountById(727);
+		assertNotNull(acc);
+		assertEquals("Bobster", acc.getName());
+
 		
 //		Account acc = new Online();
 //		acc.setId(69);

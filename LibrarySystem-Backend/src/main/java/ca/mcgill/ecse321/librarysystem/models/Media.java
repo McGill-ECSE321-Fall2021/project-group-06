@@ -57,7 +57,7 @@ public enum Item { Book, Movie, Music, Newspaper, Archive }
     return this.mediaID;
   }
 
-  @ManyToOne(optional=false)
+  @ManyToOne(optional=true)
   public Account getAccount()
   {
     return this.account;

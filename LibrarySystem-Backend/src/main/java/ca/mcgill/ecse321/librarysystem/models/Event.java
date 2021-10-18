@@ -62,7 +62,7 @@ public class Event
     return this.eventEnd;
   }
 
-  @ManyToOne(optional=false)
+  @ManyToOne(optional=true)
   public Account getAccount(){
     return this.account;
   }
