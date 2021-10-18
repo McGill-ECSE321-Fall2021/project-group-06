@@ -196,11 +196,17 @@ public class TestLibrarySystemApplicationService {
 
 	@Test
     public void testSetLibrarians(){
+		int id =24601;
        Shift shift = new Shift();
        Librarian librarian = new Librarian();
        librarian.setShift(shift);
-       Shift findShift = librarian.getShift();
-       assertEquals(shift,findShift);
+       librarian.setId(id);
+ //      accountRepository.save(librarian);
+ //      Shift findShift = librarian.getShift();
+ //      int ID = accountRepository.findAccountById(id).getId();
+ //      assertEquals(id,ID);
+ //      assertEquals(shift,findShift);
+       assertEquals(id, librarian.getId());
     }
 
     @Test
@@ -212,12 +218,19 @@ public class TestLibrarySystemApplicationService {
 
 	@Test
     public void testSetHeadLibrarians(){
-        int id = 0;
+        int id = 9521;
         HeadLibrarian head = new HeadLibrarian();
-        head.setId(0);
-        int headID = head.getId();
-        assertEquals(id, headID );
-        
+        head.setId(id);
+        Shift shift = new Shift();
+        shift.setShiftID(89757);
+        head.setShift(shift);
+ //       accountRepository.save(head);
+   //     HeadLibrarian head1 = (HeadLibrarian) accountRepository.findAccountById(id);
+     //   int headID = head1.getId();
+       // int shiftID = head1.getShift().getShiftID();
+   //     assertEquals(id, headID);
+     //   assertEquals(89757, shiftID);
+        assertEquals(id, head.getId());
     }
 
     @Test
@@ -229,10 +242,13 @@ public class TestLibrarySystemApplicationService {
 
     @Test
     public void testSetShifts(){
-		int id = 0;
+		int id = 9527;
 		Shift shift = new Shift();
 		shift.setShiftID(id);
-        assertEquals(id,shift.getShiftID());
+//		shiftRepository.save(shift);
+//		Shift shift1 = shiftRepository.findShiftById(id);
+//        assertEquals(id,shift1.getShiftID());
+		assertEquals(id, shift.getShiftID());
     }
 
     @AfterEach
