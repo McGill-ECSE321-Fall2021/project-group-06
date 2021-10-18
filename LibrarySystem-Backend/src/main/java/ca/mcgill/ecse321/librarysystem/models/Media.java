@@ -58,22 +58,22 @@ public abstract class Media
   // INTERFACE
   //------------------------
 
-  public void setMediaType(Item aMediaType)
+  public void setType(Item aMediaType)
   {
     this.mediaType = aMediaType;
   }
 
-  public void setMediaID(int aMediaID)
+  public void setID(int aMediaID)
   {
     this.mediaID = aMediaID;
   }
 @Enumerated
-  public Item getMediaType()
+  public Item getType()
   {
     return this.mediaType;
   }
   @Id
-  public int getMediaID()
+  public int getID()
   {
     return this.mediaID;
   }
