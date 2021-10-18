@@ -85,4 +85,28 @@ public class TestLibrarySystemPersistence {
 //		assertEquals(name, event.getName());
 		
 	}
+	
+	@Test
+	public void testPersistAndLoadOnline() {
+		String username = "group6";
+		String password = "stupidProject";
+		String email = "group6@mail.mcgill.ca";
+		int id=6;
+		
+		Online online=new Online();
+		online.setUsername(username);
+		online.setPassword(password);
+		online.setEmail(email);
+		online.setId(id);
+		
+		accountRepository.save(online);
+		online=null;
+		online=(Online) accountRepository.findAccountById(id);
+		
+		assertNotNull(online);
+		assertEquals(username, online.getUsername());
+		assertEquals(password, online.getPassword());
+		assertEquals(email, online.getEmail());
+		assertEquals(id, online.getId());
+	}
 }
