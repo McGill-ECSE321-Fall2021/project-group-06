@@ -10,7 +10,7 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 public interface ShiftRepository extends CrudRepository<Shift, Integer> {
 
-    Shift findShiftById(int id);
+    Shift findShiftByShiftID(int shiftID);
 
     List<Shift> findByHeadLibrarian(HeadLibrarian headLibrarianName);
 

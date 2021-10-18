@@ -35,20 +35,18 @@ public class CheckOutItem extends Media
   // INTERFACE
   //------------------------
 
-  public boolean setIsCheckedOut(boolean aIsCheckedOut)
+  public void setIsCheckedOut(boolean aIsCheckedOut)
   {
     boolean wasSet = false;
     isCheckedOut = aIsCheckedOut;
     wasSet = true;
-    return wasSet;
   }
 
-  public boolean setIsReserved(boolean aIsReserved)
+  public void setIsReserved(boolean aIsReserved)
   {
     boolean wasSet = false;
     isReserved = aIsReserved;
     wasSet = true;
-    return wasSet;
   }
 
   public boolean setBorrowingPeriod(int aBorrowingPeriod)
@@ -58,7 +56,7 @@ public class CheckOutItem extends Media
     wasSet = true;
     return wasSet;
   }
-@Id
+
   public boolean getIsCheckedOut()
   {
     return isCheckedOut;
@@ -84,17 +82,5 @@ public class CheckOutItem extends Media
   //   return isReserved;
   // }
 
-  // public void delete()
-  // {
-  //   //super.delete();
-  // }
-
-
-  // public String toString()
-  // {
-  //   return super.toString() + "["+
-  //           "isCheckedOut" + ":" + getIsCheckedOut()+ "," +
-  //           "isReserved" + ":" + getIsReserved()+ "," +
-  //           "borrowingPeriod" + ":" + getBorrowingPeriod()+ "]";
-  // }
+ 
 }

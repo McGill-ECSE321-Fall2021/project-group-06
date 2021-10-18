@@ -89,7 +89,7 @@ public class LibrarySystem
     return this.openingHour;
   }
 
-  public void setOpeningHours(OpeningHour openingHours)
+  public void setOpeningHour(OpeningHour openingHours)
   {
     this.openingHour = openingHours;
   }
@@ -110,6 +110,17 @@ public class LibrarySystem
   public void setEvents(Set<Event> events)
   {
     this.events = events;
+  }
+  private Set<Shift> shift;
+  @OneToMany(cascade = {CascadeType.ALL})
+  public Set<Shift> getShift()
+  {
+    return this.shift;
+  }
+
+  public void setShift(Set<Shift> shift)
+  {
+    this.shift = shift;
   }
   /*
   public int numberOfEvents()

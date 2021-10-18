@@ -10,14 +10,6 @@ import javax.persistence.Entity;
 public class NonCheckOutItem extends Media
 {
 
-  //------------------------
-  // MEMBER VARIABLES
-  //------------------------
-
-  //------------------------
-  // CONSTRUCTOR
-  //------------------------
-
   // public NonCheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount)
   // {
   //   //super(aMediaType, aMediaID, aLibrarySystem, aAccount);

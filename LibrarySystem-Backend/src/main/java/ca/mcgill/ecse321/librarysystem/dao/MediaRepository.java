@@ -9,8 +9,8 @@ import ca.mcgill.ecse321.librarysystem.models.Account;
 
 public interface MediaRepository extends CrudRepository<Media, Integer> {
 
-	Media findMediaById(int id);
+	Media findMediaByID(int ID);
 
-    List<Account> findByMedia(Media mediaId);
+    //List<Account> findByMedia(Media mediaId);
 
 }
