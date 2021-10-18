@@ -188,7 +188,7 @@ public class TestLibrarySystemApplicationPersistance {
     }
 
     @AfterEach
-    public void clearDatabse(){
+    public void clearDatabase(){
         accountRepository.deleteAll();
         eventRepository.deleteAll();
         mediaRepository.deleteAll();
