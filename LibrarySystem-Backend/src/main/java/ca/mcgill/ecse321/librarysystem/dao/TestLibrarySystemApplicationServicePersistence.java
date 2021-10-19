@@ -100,7 +100,7 @@ public class TestLibrarySystemApplicationService {
     } 
 
     @Test
-    public void testGetAccountCategoryOnfline(){
+    public void testGetAccountCategoryOnline(){
         assertEquals(Account.AccountCategory.Online, online.getAccountCategory());
     }
 
@@ -161,6 +161,7 @@ public class TestLibrarySystemApplicationService {
         offline.setMedias(medias);
         assertEquals(medias, offline.getMedias());
     }
+
 
     @AfterEach
     public void clearDatabase(){
