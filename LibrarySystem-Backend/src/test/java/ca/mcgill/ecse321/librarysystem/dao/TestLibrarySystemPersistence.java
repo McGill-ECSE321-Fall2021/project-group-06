@@ -37,11 +37,7 @@ public class TestLibrarySystemPersistence {
 	
 	@AfterEach
 	public void clearDatabase() {
-		// Fisrt, we clear registrations to avoid exceptions due to inconsistencies
 		
-		
-		
-//		// Then we can clear the other tables
 		accountRepository.deleteAll();
 		shiftRepository.deleteAll();
 		mediaRepository.deleteAll();
@@ -66,25 +62,6 @@ public class TestLibrarySystemPersistence {
 		acc.setIsLocal(local);
 		acc.setName(name);
 		acc.setNumChecked(numChecked);
-
-		// Set<Event> events = new HashSet<Event>();
-		// Event e = new Event();
-		// events.add(e);
-
-		// Media media = new CheckOutItem();
-		// media.setType(Media.Item.Book);
-		// int mediaId = 7;
-		// media.setID(mediaId);
-		// media.setAccount(acc);
-		// mediaRepository.save(media);
-
-		// Set<Media> medias = new HashSet<Media>();
-       	// Media m = new NonCheckOutItem();
-       	// medias.add(media);
-		
-		// acc.setEvents(events);
-		// acc.setMedias(medias);
-
 
 		accountRepository.save(acc);
 		acc = null;
