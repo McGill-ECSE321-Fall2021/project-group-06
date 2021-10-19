@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -149,12 +150,12 @@ public class TestLibrarySystemPersistence {
 		
 		// Persistence testing
 		movieItem = null;
-		movieItem = mediaRepository.findMediaById(movieItemID);
+		movieItem = mediaRepository.findMediaByID(movieItemID);
 		
 		assertNotNull(movieItem);			// Check movieItem was saved in mediaRepository
-		assertEquals(true, getIsCheckedOut());
-		assertEquals(false, getIsReserved());
-		assertEquals(borrowingPeriod, getBorrowingPeriod());
+		assertEquals(true, movieItem.getIsCheckedOut());
+		assertEquals(false, movieItem.getIsReserved());
+		assertEquals(borrowingPeriod, movieItem.getBorrowingPeriod());
 	}
 	
 	@Test
@@ -189,15 +190,15 @@ public class TestLibrarySystemPersistence {
 		assertEquals(endTime, testEvent.getEventEnd());
 		
 		// Persistence testing: findByAccount (List<Event>)
-		testEvent = null;
-		List<Event> listEvent = eventRepository.findByAccount(acc.getId()); 
+		List<Event> listEvent = null;
+		listEvent = eventRepository.findByAccount(acc); 
 		assertNotNull(listEvent);
 		
-		for (Event testEvent: listEvent) {
-			assertNotNull(testEvent);
-			assertEquals(date, testEvent.getDate());
-			assertEquals(startTime, testEvent.getEventStart());
-			assertEquals(endTime, testEvent.getEventEnd());
+		for (Event testEvent1: listEvent) {
+			assertNotNull(testEvent1);
+			assertEquals(date, testEvent1.getDate());
+			assertEquals(startTime, testEvent1.getEventStart());
+			assertEquals(endTime, testEvent1.getEventEnd());
 		}
 	}
 }
