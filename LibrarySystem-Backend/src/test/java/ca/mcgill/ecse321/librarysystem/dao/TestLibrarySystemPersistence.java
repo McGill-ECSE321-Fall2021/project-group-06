@@ -69,19 +69,21 @@ public class TestLibrarySystemPersistence {
 
 		// Set<Event> events = new HashSet<Event>();
 		// Event e = new Event();
+		// String ename = "BTSConcert";
+		// // int eventId = 7;
+		// e.setName(ename);
 		// events.add(e);
 
-		// Media media = new CheckOutItem();
+		// Media media = new NonCheckOutItem();
 		// media.setType(Media.Item.Book);
 		// int mediaId = 7;
 		// media.setID(mediaId);
 		// media.setAccount(acc);
-		// mediaRepository.save(media);
+		// // mediaRepository.save(media);
 
 		// Set<Media> medias = new HashSet<Media>();
-       	// Media m = new NonCheckOutItem();
        	// medias.add(media);
-		
+
 		// acc.setEvents(events);
 		// acc.setMedias(medias);
 
@@ -98,6 +100,10 @@ public class TestLibrarySystemPersistence {
 		assertEquals(name, acc.getName());
 		assertEquals(numChecked, acc.getNumChecked());
 		// assertEquals(events, acc.getEvents());
+		// Set<Media> mtest = acc.getMedias();
+		// int mtestsize = mtest.size();
+		// int mediasize = ((Set<Media>) media).size();
+		// assertEquals(mediasize, mtestsize);
 		// assertEquals(medias, acc.getMedias());
 		
 	}
@@ -124,5 +130,10 @@ public class TestLibrarySystemPersistence {
 		assertEquals(password, online.getPassword());
 		assertEquals(email, online.getEmail());
 		assertEquals(id, online.getId());
+	}
+
+	@Test
+	public void testPersistAndLoadEvent(){
+
 	}
 }
