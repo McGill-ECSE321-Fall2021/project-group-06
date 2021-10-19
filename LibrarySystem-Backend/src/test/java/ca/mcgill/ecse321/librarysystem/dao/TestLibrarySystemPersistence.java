@@ -148,4 +148,15 @@ public class TestLibrarySystemPersistence {
 	public void testPersistAndLoadShift() {
 		
 	}
+	public void testPersistAndLoadOpeningHour(){
+		int id = 7;
+		OpeningHour oh = new OpeningHour();
+		oh.setId(id);
+		openingHourRepository.save(oh);
+		oh = null;
+		oh = openingHourRepository.findOpeningHourById(id);
+		assertNotNull(oh);
+		assertEquals(id, oh.getId());
+	}
+
 }
