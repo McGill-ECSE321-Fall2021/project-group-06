@@ -37,12 +37,12 @@ public class TestLibrarySystemPersistence {
 	
 	@AfterEach
 	public void clearDatabase() {
-		
-		accountRepository.deleteAll();
+
+		eventRepository.deleteAll();
 		shiftRepository.deleteAll();
-		mediaRepository.deleteAll();
 		openingHourRepository.deleteAll();
-		//eventRepository.deleteAll();
+		mediaRepository.deleteAll();
+		accountRepository.deleteAll();
 		
 	}
 	@Test
@@ -146,7 +146,7 @@ public class TestLibrarySystemPersistence {
 		online.setEmail(email);
 		online.setId(id);
 		
-		accountRepository.save(online);
+		accountRepository.save((Account)online);
 		online=null;
 		online=(Online) accountRepository.findAccountById(id);
 		
@@ -231,32 +231,33 @@ public class TestLibrarySystemPersistence {
 	
 	@Test
 	public void testPersistAndLoadHeadLibrarian() {
-		HeadLibrarian headLibrarian = new HeadLibrarian();
-		Set<Shift> shifts = new HashSet<Shift>();
-		Shift shift = new Shift();
-		shift.setShiftID(7);
-		shifts.add(shift);
-		int id = 2;
-		String address = "mars";
-		AccountCategory offline = Account.AccountCategory.Offline;
+		Account lib = new HeadLibrarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 666;
 		boolean local = true;
-		String name = "Marius";
-		
-				
-		headLibrarian.setAddress(address);
-		headLibrarian.setName(name);
-		headLibrarian.setAccountCategory(offline);
-		headLibrarian.setIsLocal(local);
-		headLibrarian.setShift(shifts);
-		headLibrarian.setId(id);
-		
-		accountRepository.save(headLibrarian);
-		
-		headLibrarian = null;
-		
-		headLibrarian = (HeadLibrarian) accountRepository.findAccountById(id);
-		assertNotNull(headLibrarian);
-		assertEquals(id, headLibrarian.getId());
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+		lib = null;
+		lib = accountRepository.findAccountById(id);
+
+		assertNotNull(lib);
+		assertEquals(off, lib.getAccountCategory());
+		assertEquals(address, lib.getAddress());
+		assertEquals(id, lib.getId());
+		assertEquals(local, lib.getIsLocal());
+		assertEquals(name, lib.getName());
+		assertEquals(numChecked, lib.getNumChecked());
 	}
 	
 	@Test
@@ -267,7 +268,6 @@ public class TestLibrarySystemPersistence {
 		AccountCategory offline = Account.AccountCategory.Offline;
 		boolean local = true;
 		String name = "Marius";
-		
 				
 		headLibrarian.setAddress(address);
 		headLibrarian.setName(name);
@@ -300,22 +300,33 @@ public class TestLibrarySystemPersistence {
 		assertEquals(endTime, shift.getEndTime());
 		assertEquals(id, shift.getShiftID());
 	}
-	// @Test
-	// public void testPersistAndLoadHeadLibrarian() {
-		
-	// }
-	
-	// @Test
-	// public void testPersistAndLoadShift() {
-		
-	// }
+
+	@Test
 	public void testPersistAndLoadOpeningHour(){
+		Account lib = new HeadLibrarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id1 = 666;
+		boolean local = true;
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id1);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+
 		int id = 7;
-		String s = "2020-20-20";
-		Date date = Date.valueOf(s);
-		Time startTime = Time.valueOf("00:00");
-		Time endTime = Time.valueOf("20:20");
+		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
+		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 		OpeningHour oh = new OpeningHour();
+		oh.setHeadLibrarian((HeadLibrarian)lib);
 		oh.setId(id);
 		oh.setDate(date);
 		oh.setStartTime(startTime);
@@ -324,10 +335,11 @@ public class TestLibrarySystemPersistence {
 		oh = null;
 		oh = openingHourRepository.findOpeningHourById(id);
 		assertNotNull(oh);
+		assertEquals(lib.getId(),oh.getHeadLibrarian().getId());
 		assertEquals(id, oh.getId());
 		assertEquals(date, oh.getDate());
 		assertEquals(startTime, oh.getStartTime());
-		assertEquals(startTime, oh.getEndTime());
+		assertEquals(endTime, oh.getEndTime());
 	}
 
 }
