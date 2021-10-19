@@ -99,7 +99,6 @@ public class TestLibrarySystemPersistence {
 //		event = eventRepository.findEventByName(name);
 //		assertNotNull(event);
 //		assertEquals(name, event.getName());
-		
 	}
 	
 	@Test
@@ -107,7 +106,7 @@ public class TestLibrarySystemPersistence {
 		String username = "group6";
 		String password = "stupidProject";
 		String email = "group6@mail.mcgill.ca";
-		int id=6;
+		int id=7;
 		
 		Online online=new Online();
 		online.setUsername(username);
