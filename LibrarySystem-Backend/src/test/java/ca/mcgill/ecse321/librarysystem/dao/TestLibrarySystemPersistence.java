@@ -133,4 +133,99 @@ public class TestLibrarySystemPersistence {
 	public void testPersistAndLoadEvent(){
 
 	}
+	
+	@Test
+	public void testPersistAndLoadLibrarian() {
+		Librarian librarian = new Librarian();
+		Set<Shift> shifts = new HashSet<Shift>();
+		Shift shift = new Shift();
+		shift.setShiftID(7);
+		shifts.add(shift);
+		int id = 2;
+/*		String address = "mars";
+		AccountCategory offline = Account.AccountCategory.Offline;
+		boolean local = true;
+		String name = "Marius";
+		
+				
+		librarian.setAddress(address);
+		librarian.setName(name);
+		librarian.setAccountCategory(offline);
+		librarian.setIsLocal(local);*/
+		librarian.setShift(shifts);
+		librarian.setId(id);
+		
+		accountRepository.save(librarian);
+		
+		librarian = null;
+		
+		librarian = (Librarian) accountRepository.findAccountById(id);
+		assertNotNull(librarian);
+		assertEquals(id, librarian.getId());
+		assertEquals(shifts, librarian.getShift());
+//		assertEquals(shifts, librarian.getShift());
+	}
+	
+	@Test
+	public void testPersistAndLoadHeadLibrarian() {
+		Account headLibrarian = new HeadLibrarian();
+		Set<Shift> shifts = new HashSet<Shift>();
+		Shift shift = new Shift();
+		shifts.add(shift);
+		shift.setShiftID(9526);
+		headLibrarian.setAddress("earth");
+		headLibrarian.setId(24602);
+		headLibrarian.setName("cosset");
+	//	headLibrarian.setShift(shifts);
+		
+		accountRepository.save(headLibrarian);
+		
+		headLibrarian = null;
+		
+		headLibrarian = (HeadLibrarian) accountRepository.findAccountById(24702);
+		assertNotNull(headLibrarian);
+		assertEquals("cosset", headLibrarian.getName());
+	}
+	
+	@Test
+	public void testPersistAndLoadShift() {
+		HeadLibrarian headLibrarian = new HeadLibrarian();
+		Librarian librarian = new Librarian();
+		Set<Librarian> librarians = new HashSet<Librarian>();
+		librarian.setName("pto");
+		librarians.add(librarian);
+		Set<Shift> shifts = new HashSet<Shift>();
+		Shift shift = new Shift();
+		shift.setShiftID(89757);
+		shifts.add(shift);
+		String address = "Atlantis";
+		int id = 10086;
+		String name = "aquaman";
+		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
+		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
+				
+		
+		headLibrarian.setAddress(address);
+		headLibrarian.setId(id);
+		headLibrarian.setName(name);
+		headLibrarian.setShift(shifts);
+		shift.setDate(date);
+		shift.setHeadLibrarian(headLibrarian);
+		shift.setStartTime(startTime);
+		shift.setEndTime(endTime);
+		shift.setLibrarian(librarians);
+		
+		shiftRepository.save(shift);
+		
+		shift = null;
+		
+		shift = shiftRepository.findShiftByShiftID(id);
+		assertNotNull(shift);
+		assertEquals(headLibrarian, shift.getHeadLibrarian());
+		assertEquals(librarians, shift.getLibrarian());
+		assertEquals(startTime, shift.getStartTime());
+		assertEquals(endTime, shift.getEndTime());
+		assertEquals(id, shift.getShiftID());
+	}
 }
