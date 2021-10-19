@@ -19,12 +19,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.models.*;
-
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-
 public class TestLibrarySystemPersistence {
 	@Autowired
 	private AccountRepository accountRepository;
@@ -43,9 +41,7 @@ public class TestLibrarySystemPersistence {
 		
 		
 		
-
 //		// Then we can clear the other tables
-
 		accountRepository.deleteAll();
 		shiftRepository.deleteAll();
 		mediaRepository.deleteAll();
@@ -56,7 +52,6 @@ public class TestLibrarySystemPersistence {
 	
 	@Test
 	public void testPersistAndLoadOffline() {
-
 		Account acc = new Offline();
 		String address = "ezstt";
 		AccountCategory off = Account.AccountCategory.Offline;
@@ -104,7 +99,6 @@ public class TestLibrarySystemPersistence {
 		assertEquals(numChecked, acc.getNumChecked());
 		// assertEquals(events, acc.getEvents());
 		// assertEquals(medias, acc.getMedias());
-
 		
 	}
 	
@@ -131,67 +125,4 @@ public class TestLibrarySystemPersistence {
 		assertEquals(email, online.getEmail());
 		assertEquals(id, online.getId());
 	}
-
-	@Test
-	public void testPersistAndLoadLibrarian() {
-		Librarian librarian = new Librarian();
-		Shift shift = new Shift();
-		shift.setShiftID(9527);
-		librarian.setAddress("mars");
-		librarian.setId(24601);
-		librarian.setName("marius");
-		librarian.setShift(shift);
-		
-		accountRepository.save(librarian);
-		
-		librarian = null;
-		
-		librarian = (Librarian) accountRepository.findAccountById(24701);
-		assertNotNull(librarian);
-		assertEquals("marius", librarian.getName());
-	}
-	
-	@Test
-	public void testPersistAndLoadHeadLibrarian() {
-		HeadLibrarian headLibrarian = new HeadLibrarian();
-		Shift shift = new Shift();
-		shift.setShiftID(9526);
-		headLibrarian.setAddress("earth");
-		headLibrarian.setId(24602);
-		headLibrarian.setName("cosset");
-		headLibrarian.setShift(shift);
-		
-		accountRepository.save(headLibrarian);
-		
-		headLibrarian = null;
-		
-		headLibrarian = (HeadLibrarian) accountRepository.findAccountById(24702);
-		assertNotNull(headLibrarian);
-		assertEquals("cosset", headLibrarian.getName());
-	}
-	
-	@Test
-	public void testPersistAndLoadShift() {
-		HeadLibrarian headLibrarian = new HeadLibrarian();
-		Shift shift = new Shift();
-		shift.setShiftID(89757);
-		headLibrarian.setAddress("atlantis");
-		headLibrarian.setId(10086);
-		headLibrarian.setName("aquaman");
-		headLibrarian.setShift(shift);
-		shift.setDate(java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3)));
-		shift.setHeadLibrarian(headLibrarian);
-		shift.setStartTime(java.sql.Time.valueOf(LocalTime.of(8,05)));
-		shift.setEndTime(java.sql.Time.valueOf(LocalTime.of(18, 35)));
-		
-		shiftRepository.save(shift);
-		
-		shift = null;
-		
-		shift = shiftRepository.findShiftById(89757);
-		assertNotNull(shift);
-		assertEquals(headLibrarian, shift.getHeadLibrarian());
-	}
-	
-
 }
