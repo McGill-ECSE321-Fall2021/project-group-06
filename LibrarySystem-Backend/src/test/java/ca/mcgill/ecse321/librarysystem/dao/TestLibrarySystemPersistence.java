@@ -132,35 +132,35 @@ public class TestLibrarySystemPersistence {
 		assertEquals(email, online.getEmail());
 		assertEquals(id, online.getId());
 	}
-	@Test
-	public void testPersistAndLoadHeadLibrarian(){
-		Account hl = new HeadLibrarian();
-		String address = "ezstt";
-		AccountCategory off = Account.AccountCategory.Offline;
-		int id = 727;
-		boolean local = true;
-		String name = "BTS";
-		int numChecked = 747;
+	// @Test
+	// public void testPersistAndLoadHeadLibrarian(){
+	// 	Account hl = new HeadLibrarian();
+	// 	String address = "ezstt";
+	// 	AccountCategory off = Account.AccountCategory.Offline;
+	// 	int id = 727;
+	// 	boolean local = true;
+	// 	String name = "BTS";
+	// 	int numChecked = 747;
 
-		hl.setAccountCategory(off);
-		hl.setAddress(address);
-		hl.setId(id);
-		hl.setIsLocal(local);
-		hl.setName(name);
-		hl.setNumChecked(numChecked);
+	// 	hl.setAccountCategory(off);
+	// 	hl.setAddress(address);
+	// 	hl.setId(id);
+	// 	hl.setIsLocal(local);
+	// 	hl.setName(name);
+	// 	hl.setNumChecked(numChecked);
 
-		accountRepository.save(hl);
-		hl = null;
-		hl = accountRepository.findAccountById(id);
+	// 	accountRepository.save(hl);
+	// 	hl = null;
+	// 	hl = accountRepository.findAccountById(id);
 
-		assertNotNull(hl);
-		assertEquals(off, hl.getAccountCategory());
-		assertEquals(address, hl.getAddress());
-		assertEquals(id, hl.getId());
-		assertEquals(local, hl.getIsLocal());
-		assertEquals(name, hl.getName());
-		assertEquals(numChecked, hl.getNumChecked());
-	}
+	// 	assertNotNull(hl);
+	// 	assertEquals(off, hl.getAccountCategory());
+	// 	assertEquals(address, hl.getAddress());
+	// 	assertEquals(id, hl.getId());
+	// 	assertEquals(local, hl.getIsLocal());
+	// 	assertEquals(name, hl.getName());
+	// 	assertEquals(numChecked, hl.getNumChecked());
+	// }
 	public void testPersistAndLoadOpeningHour(){
 		int id = 7;
 		OpeningHour oh = new OpeningHour();
