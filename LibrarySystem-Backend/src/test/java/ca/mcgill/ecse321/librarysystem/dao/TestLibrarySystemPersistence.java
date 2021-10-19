@@ -125,4 +125,24 @@ public class TestLibrarySystemPersistence {
 		assertEquals(email, online.getEmail());
 		assertEquals(id, online.getId());
 	}
+
+	@Test
+	public void testPersistAndLoadShift(){
+		// Shift shift = new Shift();
+		// Date date = java.sql.Date.valueOf(LocalDate.of(2020, Month.JANUARY, 31));
+		// Time startTime = java.sql.Time.valueOf(LocalTime.of(11, 35));
+		// Time endTime = java.sql.Time.valueOf(LocalTime.of(13, 25));
+		// shift.setDate(date);
+		// shift.setEndTime(endTime);
+		// shift.setStartTime(startTime);
+		// HeadLibrarian acc = new HeadLibrarian();
+		// acc.setAccountCategory(Account.AccountCategory.Offline);
+		// acc.setAddress("ezstt");
+		// acc.setId(727);
+		// acc.setIsLocal(true);
+		// acc.setName("Bobster");
+		// accountRepository.save(acc);
+		// shift.setHeadLibrarian(acc);
+		// shiftRepository.save(shift);
+	}
 }
