@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.models.*;
+import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -51,54 +52,53 @@ public class TestLibrarySystemPersistence {
 	
 	@Test
 	public void testPersistAndLoadOffline() {
-//		Media media = new CheckOutItem();
-//		Account acc = new Online();
-//		acc.setId(69);
-//		accountRepository.save(acc);
-//		media.setType(Media.Item.Book);
-//		int mediaId = 727;
-//		media.setID(mediaId);
-//		media.setAccount(acc);
-//		mediaRepository.save(media);
-//		media = null;
-//		media = mediaRepository.findMediaByID(mediaId);
-//		assertNotNull(media);
-//		assertEquals(mediaId, media.getID());
-//		assertEquals(Media.Item.Book, media.getType());
 		Account acc = new Offline();
-		//eventRepository.save(event);
-		acc.setAccountCategory(Account.AccountCategory.Offline);
-		acc.setAddress("ezstt");
-		acc.setId(727);
-		acc.setIsLocal(true);
-		acc.setName("Bobster");
-		acc.setNumChecked(747);
+		String address = "ezstt";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 727;
+		boolean local = true;
+		String name = "BTS";
+		int numChecked = 747;
+
+		acc.setAccountCategory(off);
+		acc.setAddress(address);
+		acc.setId(id);
+		acc.setIsLocal(local);
+		acc.setName(name);
+		acc.setNumChecked(numChecked);
+
+		// Set<Event> events = new HashSet<Event>();
+		// Event e = new Event();
+		// events.add(e);
+
+		// Media media = new CheckOutItem();
+		// media.setType(Media.Item.Book);
+		// int mediaId = 7;
+		// media.setID(mediaId);
+		// media.setAccount(acc);
+		// mediaRepository.save(media);
+
+		// Set<Media> medias = new HashSet<Media>();
+       	// Media m = new NonCheckOutItem();
+       	// medias.add(media);
+		
+		// acc.setEvents(events);
+		// acc.setMedias(medias);
+
+
 		accountRepository.save(acc);
 		acc = null;
-		acc = accountRepository.findAccountById(727);
-		assertNotNull(acc);
-		assertEquals("Bobster", acc.getName());
+		acc = accountRepository.findAccountById(id);
 
-		
-//		Account acc = new Online();
-//		acc.setId(69);
-//		acc.setAccountCategory(Account.AccountCategory.Online);
-//		acc.setAddress("123street");
-//		acc.setEvents(null);
-//		acc.setIsLocal(true);
-//		acc.setMedias(null);
-//		acc.setName("andy");
-//		acc.setNumChecked(727);
-//		accountRepository.save(acc);
-//		Event event = new Event();
-//		String name = "event1";
-//		event.setName(name);
-//		event.setAccount(acc);
-//		eventRepository.save(event);
-//		event = null;
-//		event = eventRepository.findEventByName(name);
-//		assertNotNull(event);
-//		assertEquals(name, event.getName());
+		assertNotNull(acc);
+		assertEquals(off, acc.getAccountCategory());
+		assertEquals(address, acc.getAddress());
+		assertEquals(id, acc.getId());
+		assertEquals(local, acc.getIsLocal());
+		assertEquals(name, acc.getName());
+		assertEquals(numChecked, acc.getNumChecked());
+		// assertEquals(events, acc.getEvents());
+		// assertEquals(medias, acc.getMedias());
 		
 	}
 	
