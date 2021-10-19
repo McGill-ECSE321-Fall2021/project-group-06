@@ -170,6 +170,5 @@ public class TestLibrarySystemPersistence {
 		oh = openingHourRepository.findOpeningHourById(id);
 		assertNotNull(oh);
 		assertEquals(id, oh.getId());
-		//Test
 	}
 }
