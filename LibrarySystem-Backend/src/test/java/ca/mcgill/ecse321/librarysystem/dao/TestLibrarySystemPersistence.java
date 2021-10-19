@@ -170,9 +170,9 @@ public class TestLibrarySystemPersistence {
 		HeadLibrarian headLibrarian = new HeadLibrarian();
 		Shift shift = new Shift();
 		shift.setShiftID(89757);
-		headLibrarian.setAddress("earth");
-		headLibrarian.setId(24602);
-		headLibrarian.setName("cosset");
+		headLibrarian.setAddress("atlantis");
+		headLibrarian.setId(10086);
+		headLibrarian.setName("aquaman");
 		headLibrarian.setShift(shift);
 		shift.setDate(java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3)));
 		shift.setHeadLibrarian(headLibrarian);
