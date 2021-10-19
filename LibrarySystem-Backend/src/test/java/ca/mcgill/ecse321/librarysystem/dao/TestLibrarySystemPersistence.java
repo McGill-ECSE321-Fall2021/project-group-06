@@ -42,7 +42,7 @@ public class TestLibrarySystemPersistence {
 		shiftRepository.deleteAll();
 		mediaRepository.deleteAll();
 		openingHourRepository.deleteAll();
-		eventRepository.deleteAll();
+		//eventRepository.deleteAll();
 		
 	}
 	@Test
@@ -56,6 +56,22 @@ public class TestLibrarySystemPersistence {
 		something = mediaRepository.findMediaByID(DN);
 		assertEquals(DN, something.getID());
 		assertEquals(Media.Item.Archive, something.getType());
+	}
+	@Test
+	public void testPersistAndLoadNonCheckOutItem(){
+
+		Media something = new NonCheckOutItem();
+		int DN = 123;
+		something.setType(Media.Item.Book);
+		something.setID(DN);
+
+		mediaRepository.save(something);
+		something = null;
+		something = mediaRepository.findMediaByID(DN);
+
+		assertEquals(DN, something.getID());
+		assertEquals(Media.Item.Book, something.getType());
+
 	}
 
 	@Test
@@ -159,6 +175,7 @@ public class TestLibrarySystemPersistence {
 		acc.setName(name);
 		acc.setNumChecked(numChecked);
 		accountRepository.save(acc);
+
 		String DN = "helpme";
 		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
@@ -213,66 +230,75 @@ public class TestLibrarySystemPersistence {
 //		assertEquals(shifts, librarian.getShift());
 	}
 	
-	// @Test
-	// public void testPersistAndLoadHeadLibrarian() {
-	// 	Account headLibrarian = new HeadLibrarian();
-	// 	Set<Shift> shifts = new HashSet<Shift>();
-	// 	Shift shift = new Shift();
-	// 	shifts.add(shift);
-	// 	shift.setShiftID(9526);
-	// 	headLibrarian.setAddress("earth");
-	// 	headLibrarian.setId(24602);
-	// 	headLibrarian.setName("cosset");
-	// //	headLibrarian.setShift(shifts);
+	@Test
+	public void testPersistAndLoadHeadLibrarian() {
+		HeadLibrarian headLibrarian = new HeadLibrarian();
+		Set<Shift> shifts = new HashSet<Shift>();
+		Shift shift = new Shift();
+		shift.setShiftID(7);
+		shifts.add(shift);
+		int id = 2;
+		String address = "mars";
+		AccountCategory offline = Account.AccountCategory.Offline;
+		boolean local = true;
+		String name = "Marius";
 		
-	// 	accountRepository.save(headLibrarian);
-		
-	// 	headLibrarian = null;
-		
-	// 	headLibrarian = (HeadLibrarian) accountRepository.findAccountById(24702);
-	// 	assertNotNull(headLibrarian);
-	// 	assertEquals("cosset", headLibrarian.getName());
-	// }
-	
-	// @Test
-	// public void testPersistAndLoadShift() {
-	// 	HeadLibrarian headLibrarian = new HeadLibrarian();
-	// 	Librarian librarian = new Librarian();
-	// 	Set<Librarian> librarians = new HashSet<Librarian>();
-	// 	librarian.setName("pto");
-	// 	librarians.add(librarian);
-	// 	Set<Shift> shifts = new HashSet<Shift>();
-	// 	Shift shift = new Shift();
-	// 	shift.setShiftID(89757);
-	// 	shifts.add(shift);
-	// 	String address = "Atlantis";
-	// 	int id = 10086;
-	// 	String name = "aquaman";
-	// 	Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
-	// 	Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
-	// 	Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 				
+		headLibrarian.setAddress(address);
+		headLibrarian.setName(name);
+		headLibrarian.setAccountCategory(offline);
+		headLibrarian.setIsLocal(local);
+		headLibrarian.setShift(shifts);
+		headLibrarian.setId(id);
 		
-	// 	headLibrarian.setAddress(address);
-	// 	headLibrarian.setId(id);
-	// 	headLibrarian.setName(name);
-	// 	headLibrarian.setShift(shifts);
-	// 	shift.setDate(date);
-	// 	shift.setHeadLibrarian(headLibrarian);
-	// 	shift.setStartTime(startTime);
-	// 	shift.setEndTime(endTime);
-	// 	shift.setLibrarian(librarians);
+		accountRepository.save(headLibrarian);
 		
-	// 	shiftRepository.save(shift);
+		headLibrarian = null;
 		
-	// 	shift = null;
+		headLibrarian = (HeadLibrarian) accountRepository.findAccountById(id);
+		assertNotNull(headLibrarian);
+		assertEquals(id, headLibrarian.getId());
+	}
+	
+	@Test
+	public void testPersistAndLoadShift() {
+		HeadLibrarian headLibrarian = new HeadLibrarian();
+		int id1 = 2;
+		String address = "mars";
+		AccountCategory offline = Account.AccountCategory.Offline;
+		boolean local = true;
+		String name = "Marius";
 		
-	// 	shift = shiftRepository.findShiftByShiftID(id);
-	// 	assertNotNull(shift);
-	// 	assertEquals(headLibrarian, shift.getHeadLibrarian());
-	// 	assertEquals(librarians, shift.getLibrarian());
-	// 	assertEquals(startTime, shift.getStartTime());
-	// 	assertEquals(endTime, shift.getEndTime());
-	// 	assertEquals(id, shift.getShiftID());
-	// }
+				
+		headLibrarian.setAddress(address);
+		headLibrarian.setName(name);
+		headLibrarian.setAccountCategory(offline);
+		headLibrarian.setIsLocal(local);
+		headLibrarian.setId(id1);
+		
+		accountRepository.save(headLibrarian);
+
+		Shift shift = new Shift();
+		int id = 10086;
+		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
+		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
+		
+		shift.setShiftID(id);
+		shift.setHeadLibrarian(headLibrarian);
+		shift.setDate(date);
+		shift.setStartTime(startTime);
+		shift.setEndTime(endTime);
+		
+		shiftRepository.save(shift);
+		
+		shift = null;
+		
+		shift = shiftRepository.findShiftByShiftID(id);
+		assertEquals(date,shift.getDate());
+		assertEquals(id1, shift.getHeadLibrarian().getId());
+		assertEquals(startTime, shift.getStartTime());
+		assertEquals(endTime, shift.getEndTime());
+		assertEquals(id, shift.getShiftID());
+	}
 }
