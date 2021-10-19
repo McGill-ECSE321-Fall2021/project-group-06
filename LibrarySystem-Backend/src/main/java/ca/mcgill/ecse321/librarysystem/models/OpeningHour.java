@@ -1,5 +1,3 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
 
 import java.sql.Date;
@@ -12,34 +10,25 @@ import javax.persistence.ManyToOne;
 
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 
-// line 51 "model.ump"
-// line 160 "model.ump"
 @Entity
 public class OpeningHour
 {
 
-  //------------------------
-  // MEMBER VARIABLES
-  //------------------------
+  //The OpeningHour class is a class that holds a date which the Library will be open.
+  //Only the HeadLibrarian is associated to this class, since they are the only ones
+  //Who should be able to set Opening Hours for the library.
 
   //OpeningHours Attributes
   private int id;
   private Date date;
   private Time startTime;
   private Time endTime;
-  //private Set<Date> holidays;
+  //private Set<Date> holiday;
+  //The Holiday class is one that should have been written down, but since it is not specified, it will be written later on.
 
   //OpeningHours Associations
-  //private LibrarySystem librarySystem;
   private HeadLibrarian headLibrarian;
 
-  
-
-  //------------------------
-  // INTERFACE
-  //------------------------
-
-  
   public void setDate(Date aDate)
   {
     date = aDate;
@@ -57,6 +46,9 @@ public class OpeningHour
   public void setId(int id) {
 	  this.id = id;
   }
+  //Each opening hour will be identified with an ID for simplicity
+  //alone. It could have been date, since the library should only open once
+  //per day, but as a team we decided that int is far more easy to work with.
   @Id
   public int getId() {
 	  return id;
@@ -76,41 +68,19 @@ public class OpeningHour
   {
     return endTime;
   }
-  /* Code from template attribute_GetMany */
-//  public Date getHoliday(int index)
+
+//  public Set<Date> getHoliday()
 //  {
-//    Date aHoliday = holidays.get(index);
-//    return aHoliday;
+//    return this.holiday;
 //  }
 
-//  public Set<Date> getHolidays()
-//  {
-//    return holidays;
+//  public void setHoliday(Set<Date> holiday){
+//    this.holiday=holiday;
 //  }
 
-  // public int numberOfHolidays()
-  // {
-  //   int number = holidays.size();
-  //   return number;
-  // }
+//This part was not working since Holiday was not a separate java class. It will be implemented later.
 
-  // public boolean hasHolidays()
-  // {
-  //   boolean has = holidays.size() > 0;
-  //   return has;
-  // }
-
-  // public int indexOfHoliday(Date aHoliday)
-  // {
-  //   int index = holidays.indexOf(aHoliday);
-  //   return index;
-  // }
-  /* Code from template association_GetOne */
-//  public LibrarySystem getLibrarySystem()
-//  {
-//    return librarySystem;
-//  }
-  /* Code from template association_GetOne */
+  //optional=false here because opening hours should not be created without a headlibrarian.
   @ManyToOne(optional=false)
   public HeadLibrarian getHeadLibrarian()
   {
@@ -120,6 +90,4 @@ public class OpeningHour
   public void setHeadLibrarian(HeadLibrarian headLibrarian) {
 	  this.headLibrarian = (HeadLibrarian) headLibrarian;
   }
-
-  
 }

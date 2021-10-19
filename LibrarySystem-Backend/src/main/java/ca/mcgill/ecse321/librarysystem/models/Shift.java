@@ -12,6 +12,13 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Shift {
+    //The Shift class is simply a class which holds librarians, a date, and two times.
+    //It simply states which librarians should work when.
+    //It is assigned by the HeadLibrarian.
+
+    //Since there are multiple shifts per day, multiple librarians per shift, and the same
+    //HeadLibrarian can assign multiple shifts, we decided to differentiate the shifts
+    //with an ID integer.
     private int shiftID;
     public void setShiftID(int shiftID)
     {
@@ -32,7 +39,7 @@ public class Shift {
     public void setHeadLibrarian(HeadLibrarian headLibrarian){
       this.headLibrarian = headLibrarian;
     }
-//    
+    
     private Set<Librarian> librarian;
     
     @ManyToMany(cascade={CascadeType.ALL})
@@ -69,24 +76,4 @@ public class Shift {
     public Time getEndTime(){
         return this.endTime;
     }
-//
-//    private HeadLibrarian headLibrarian;
-//    @ManyToOne(optional=false)
-//    public HeadLibrarian getHeadLibrarian(){
-//        return this.headLibrarian;
-//    }
-//
-//    public void setHeadLibrarian(HeadLibrarian headLibrarian){
-//        this.headLibrarian = headLibrarian;
-//    }
-
-    //private Set<Librarian> librarians;
-//    @ManyToMany
-//    public Set<Librarian> getLibrarians(){
-//        return this.librarians;
-//    }
-//
-//    public void setLibrarians(Set<Librarian> librarians){
-//        this.librarians = librarians;
-//    }
 }
