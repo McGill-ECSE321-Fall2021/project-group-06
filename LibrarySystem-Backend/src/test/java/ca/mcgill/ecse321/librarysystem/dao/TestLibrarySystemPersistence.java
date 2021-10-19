@@ -200,34 +200,33 @@ public class TestLibrarySystemPersistence {
 	
 	@Test
 	public void testPersistAndLoadLibrarian() {
-		Librarian librarian = new Librarian();
-		Set<Shift> shifts = new HashSet<Shift>();
-		Shift shift = new Shift();
-		shift.setShiftID(7);
-		shifts.add(shift);
-		int id = 2;
-		String address = "mars";
-		AccountCategory offline = Account.AccountCategory.Offline;
+		Account lib = new Librarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 666;
 		boolean local = true;
-		String name = "Marius";
-		
-				
-		librarian.setAddress(address);
-		librarian.setName(name);
-		librarian.setAccountCategory(offline);
-		librarian.setIsLocal(local);
-		librarian.setShift(shifts);
-		librarian.setId(id);
-		
-		accountRepository.save(librarian);
-		
-		librarian = null;
-		
-		librarian = (Librarian) accountRepository.findAccountById(id);
-		assertNotNull(librarian);
-		assertEquals(id, librarian.getId());
-//		assertEquals(shifts, librarian.getShift());
-//		assertEquals(shifts, librarian.getShift());
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+		lib = null;
+		lib = accountRepository.findAccountById(id);
+
+		assertNotNull(lib);
+		assertEquals(off, lib.getAccountCategory());
+		assertEquals(address, lib.getAddress());
+		assertEquals(id, lib.getId());
+		assertEquals(local, lib.getIsLocal());
+		assertEquals(name, lib.getName());
+		assertEquals(numChecked, lib.getNumChecked());
 	}
 	
 	@Test
@@ -301,4 +300,34 @@ public class TestLibrarySystemPersistence {
 		assertEquals(endTime, shift.getEndTime());
 		assertEquals(id, shift.getShiftID());
 	}
+	// @Test
+	// public void testPersistAndLoadHeadLibrarian() {
+		
+	// }
+	
+	// @Test
+	// public void testPersistAndLoadShift() {
+		
+	// }
+	public void testPersistAndLoadOpeningHour(){
+		int id = 7;
+		String s = "2020-20-20";
+		Date date = Date.valueOf(s);
+		Time startTime = Time.valueOf("00:00");
+		Time endTime = Time.valueOf("20:20");
+		OpeningHour oh = new OpeningHour();
+		oh.setId(id);
+		oh.setDate(date);
+		oh.setStartTime(startTime);
+		oh.setEndTime(endTime);
+		openingHourRepository.save(oh);
+		oh = null;
+		oh = openingHourRepository.findOpeningHourById(id);
+		assertNotNull(oh);
+		assertEquals(id, oh.getId());
+		assertEquals(date, oh.getDate());
+		assertEquals(startTime, oh.getStartTime());
+		assertEquals(startTime, oh.getEndTime());
+	}
+
 }
