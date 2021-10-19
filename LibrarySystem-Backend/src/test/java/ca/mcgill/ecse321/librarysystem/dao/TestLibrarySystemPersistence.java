@@ -129,10 +129,10 @@ public class TestLibrarySystemPersistence {
 		assertEquals(id, online.getId());
 	}
 
-	@Test
-	public void testPersistAndLoadEvent(){
+// 	@Test
+// 	public void testPersistAndLoadEvent(){
 
-	}
+// 	}
 	
 	@Test
 	public void testPersistAndLoadLibrarian() {
@@ -165,13 +165,13 @@ public class TestLibrarySystemPersistence {
 		assertEquals(numChecked, lib.getNumChecked());
 	}
 	
-	@Test
-	public void testPersistAndLoadHeadLibrarian() {
+	// @Test
+	// public void testPersistAndLoadHeadLibrarian() {
 		
-	}
+	// }
 	
-	@Test
-	public void testPersistAndLoadShift() {
+// 	@Test
+// 	public void testPersistAndLoadShift() {
 		
-	}
+// 	}
 }
