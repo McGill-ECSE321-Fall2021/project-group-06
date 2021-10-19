@@ -1,5 +1,3 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
 
 
@@ -14,9 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 
 import java.sql.Date;
-
-// line 45 "model.ump"
-// line 139 "model.ump"
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class HeadLibrarian extends Librarian
@@ -26,7 +21,7 @@ public class HeadLibrarian extends Librarian
   private Set<OpeningHour> openingHour;
   private Set<Shift> shift;
   
-  /* Code from template association_GetMany */
+  //A headlibrarian will create multiple openings for the library.
   @OneToMany(cascade={CascadeType.ALL})
   public Set<OpeningHour> getOpeningHour()
   {
@@ -36,7 +31,9 @@ public class HeadLibrarian extends Librarian
 	  this.openingHour = openingHour;
   }
   
-  @ManyToMany(cascade={CascadeType.ALL})
+  //The head librarian will create multiple shifts for the librarians. But only
+  //one Head Librarian can create 1 shift, so no co-authors on shift.
+  @OneToMany(cascade={CascadeType.ALL})
   public Set<Shift> getShifts()
   {
     return this.shift;

@@ -1,8 +1,4 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
-
-
 import java.sql.Time;
 import java.util.*;
 
@@ -14,31 +10,15 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-// line 38 "model.ump"
-// line 129 "model.ump"
-//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Librarian extends Account
 {
-
-  //------------------------
-  // MEMBER VARIABLES
-  //------------------------
-
-  //Librarian Attributes
-  //private Shift shift;
-  //Librarian Associations
-  private Set<Shift> shift; 
-
-//  public void setShift(Shift aShift) {
-//	  shift = aShift;
-//  }
-
-//  @Id
-//  public Shift getShift() {
-//	  return shift;
-//  }
+	//The Librarian class will have shifts and some methods we will write later.
+	//Since it is an account, it inherits the ID as primary key.
+  	private Set<Shift> shift; 
   
+	//Each shift will have multiple librarians, just as each librarian will have multiple shifts
 	@ManyToMany(cascade={CascadeType.ALL})
 	  public Set<Shift> getShift()
 	  {

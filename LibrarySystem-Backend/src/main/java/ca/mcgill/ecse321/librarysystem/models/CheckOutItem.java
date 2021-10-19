@@ -1,39 +1,18 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-// line 73 "model.ump"
-// line 150 "model.ump"
 @Entity
 public class CheckOutItem extends Media
 {
-
-  //------------------------
-  // MEMBER VARIABLES
-  //------------------------
+  //The checkoutitem class is simply one of the two possible medias.
+  //It inherits the mediaID as a primary key.
 
   //CheckOutItem Attributes
   private boolean isCheckedOut;
   private boolean isReserved;
   private int borrowingPeriod;
-
-  //------------------------
-  // CONSTRUCTOR
-  //------------------------
-  // public CheckOutItem(Item aMediaType, int aMediaID, LibrarySystem aLibrarySystem, Account aAccount, boolean aIsCheckedOut, boolean aIsReserved, int aBorrowingPeriod)
-  // {
-  //   //super(aMediaType, aMediaID, aLibrarySystem, aAccount);
-  //   isCheckedOut = aIsCheckedOut;
-  //   isReserved = aIsReserved;
-  //   borrowingPeriod = aBorrowingPeriod;
-  // }
-
-  //------------------------
-  // INTERFACE
-  //------------------------
 
   public void setIsCheckedOut(boolean aIsCheckedOut)
   {
@@ -49,6 +28,9 @@ public class CheckOutItem extends Media
     wasSet = true;
   }
 
+  //Some of the setters will have this format.
+  //This is because we initially generate the code.
+  //We tested and the setters work even with this syntax.
   public boolean setBorrowingPeriod(int aBorrowingPeriod)
   {
     boolean wasSet = false;
@@ -71,16 +53,4 @@ public class CheckOutItem extends Media
   {
     return borrowingPeriod;
   }
-  // /* Code from template attribute_IsBoolean */
-  // public boolean isIsCheckedOut()
-  // {
-  //   return isCheckedOut;
-  // }
-  // /* Code from template attribute_IsBoolean */
-  // public boolean isIsReserved()
-  // {
-  //   return isReserved;
-  // }
-
- 
 }
