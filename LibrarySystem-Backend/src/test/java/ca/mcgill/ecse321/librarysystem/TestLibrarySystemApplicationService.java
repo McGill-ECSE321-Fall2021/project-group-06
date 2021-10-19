@@ -1,3 +1,4 @@
+
 package ca.mcgill.ecse321.librarysystem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -298,3 +299,4 @@ public class TestLibrarySystemApplicationService {
         shiftRepository.deleteAll();
     }
 }
+
