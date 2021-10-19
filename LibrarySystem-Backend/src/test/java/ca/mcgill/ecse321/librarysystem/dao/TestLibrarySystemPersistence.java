@@ -129,15 +129,41 @@ public class TestLibrarySystemPersistence {
 		assertEquals(id, online.getId());
 	}
 
-	// @Test
-	// public void testPersistAndLoadEvent(){
+// 	@Test
+// 	public void testPersistAndLoadEvent(){
 
-	// }
+// 	}
 	
-	// @Test
-	// public void testPersistAndLoadLibrarian() {
-		
-	// }
+	@Test
+	public void testPersistAndLoadLibrarian() {
+		Account lib = new Librarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 666;
+		boolean local = true;
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+		lib = null;
+		lib = accountRepository.findAccountById(id);
+
+		assertNotNull(lib);
+		assertEquals(off, lib.getAccountCategory());
+		assertEquals(address, lib.getAddress());
+		assertEquals(id, lib.getId());
+		assertEquals(local, lib.getIsLocal());
+		assertEquals(name, lib.getName());
+		assertEquals(numChecked, lib.getNumChecked());
+	}
 	
 	// @Test
 	// public void testPersistAndLoadHeadLibrarian() {
