@@ -1,24 +1,46 @@
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
+
+
 import java.util.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+// line 25 "model.ump"
+// line 119 "model.ump"
 @Entity
 public class Online extends Account
 {
-  //Online is one of the accounts. It is a bit special since it has 3 attributes extra.
+
+  //------------------------
+  // MEMBER VARIABLES
+  //------------------------
+
   //Online Attributes
   private String username;
   private String password;
   private String email;
 
-  // public Online(){
-  //   super.setAccountCategory(Account.AccountCategory.Online);
-  //   }
+  //------------------------
+  // CONSTRUCTOR
+  //------------------------
 
-  //It extends Account and inherits the ID primary key.
+  // public Online(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, String aUsername, String aPassword, String aEmail)
+  // {
+  //   //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+  //   username = aUsername;
+  //   password = aPassword;
+  //   email = aEmail;
+  // }
+  public Online(){
+    super.setAccountCategory(Account.AccountCategory.Online);
+    }
 
+  //------------------------
+  // INTERFACE
+  //------------------------
 
   public boolean setUsername(String aUsername)
   {
@@ -43,7 +65,7 @@ public class Online extends Account
     wasSet = true;
     return wasSet;
   }
-
+@Id
   public String getUsername()
   {
     return username;
@@ -58,4 +80,18 @@ public class Online extends Account
   {
     return email;
   }
+
+  // public void delete()
+  // {
+  //   //super.delete();
+  // }
+
+
+  // public String toString()
+  // {
+  //   return super.toString() + "["+
+  //           "username" + ":" + getUsername()+ "," +
+  //           "password" + ":" + getPassword()+ "," +
+  //           "email" + ":" + getEmail()+ "]";
+  // }
 }

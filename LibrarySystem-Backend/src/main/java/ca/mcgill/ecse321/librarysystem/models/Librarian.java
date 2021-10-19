@@ -1,31 +1,71 @@
+/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
+
+
 import java.sql.Time;
 import java.util.*;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
+// line 38 "model.ump"
+// line 129 "model.ump"
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Librarian extends Account
 {
-	//The Librarian class will have shifts and some methods we will write later.
-	//Since it is an account, it inherits the ID as primary key.
-  	private Set<Shift> shift; 
-  
-	//Each shift will have multiple librarians, just as each librarian will have multiple shifts
-	@ManyToMany(cascade={CascadeType.ALL})
-	  public Set<Shift> getShift()
-	  {
-	    return this.shift;
-	  }
-	  public void setShift(Set<Shift> shift) {
-		  this.shift = shift;
-	  }
 
+  //------------------------
+  // MEMBER VARIABLES
+  //------------------------
+
+  //Librarian Attributes
+  private Shift shift;
+  //Librarian Associations
+  private Set<Shift> shifts; 
+
+  //------------------------
+  // CONSTRUCTOR
+  //------------------------
+
+  // public Librarian(int aId, String aAddress, String aName, AccountCategory aAccountCategory, boolean aIsLocal, int aNumChecked, LibrarySystem aLibrarySystem, Time aStartShift, Time aEndShift)
+  // {
+  //   //super(aId, aAddress, aName, aAccountCategory, aIsLocal, aNumChecked, aLibrarySystem);
+  //   startShift = aStartShift;
+  //   endShift = aEndShift;
+  // }
+
+  //------------------------
+  // INTERFACE
+  //------------------------
+  public void setShift(Shift aShift) {
+	  shift = aShift;
+  }
+
+  @Id
+  public Shift getShift() {
+	  return shift;
+  }
+  @ManyToMany
+  public Set<Shift> getShifts() {
+	  return this.shifts;
+  }
+
+
+  // public void delete()
+  // {
+  //   //super.delete();
+  // }
+
+
+  // public String toString()
+  // {
+  //   return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
+  //           "  " + "startShift" + "=" + (getStartShift() != null ? !getStartShift().equals(this)  ? getStartShift().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+  //           "  " + "endShift" + "=" + (getEndShift() != null ? !getEndShift().equals(this)  ? getEndShift().toString().replaceAll("  ","    ") : "this" : "null");
+  // }
 }
