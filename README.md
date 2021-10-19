@@ -1,16 +1,15 @@
-# project-group-06
-project-group-06 created by GitHub Classroom
+Welcome to the project-group-06 wiki!
 
-Members:
+ECSE321: Intro to Software Eng.
 
-Isabella Hao
+# Group 6
 
-David Hu
-
-Samuel Lin
-
-Joyce Liu
-
-Niels Mainville
-
-Howard Yu
+## Deliverable 1
+|Members         | Roles                   | Ind. Efforts |
+|----------------|---------------          |--            |
+|Isabella Hao    |Participant              |10 |
+|David Hu        |Project Manager/Leader   |25 |
+|Samuel Lin      |Note-taker/Time-taker    |10  |
+|Joyce Liu       |Participant              |15  |
+|Niels Mainville |Facilitator              | 20 |
+|Howard Yu       |Participant              | 20 |
