@@ -136,96 +136,64 @@ public class TestLibrarySystemPersistence {
 	
 	@Test
 	public void testPersistAndLoadLibrarian() {
-		Librarian librarian = new Librarian();
-		Set<Shift> shifts = new HashSet<Shift>();
-		Shift shift = new Shift();
-		shift.setShiftID(7);
-		shifts.add(shift);
-		int id = 2;
-		String address = "mars";
-		AccountCategory offline = Account.AccountCategory.Offline;
+		Account lib = new Librarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 666;
 		boolean local = true;
-		String name = "Marius";
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+		lib = null;
+		lib = accountRepository.findAccountById(id);
+
+		assertNotNull(lib);
+		assertEquals(off, lib.getAccountCategory());
+		assertEquals(address, lib.getAddress());
+		assertEquals(id, lib.getId());
+		assertEquals(local, lib.getIsLocal());
+		assertEquals(name, lib.getName());
+		assertEquals(numChecked, lib.getNumChecked());
+
 		
-				
-		librarian.setAddress(address);
-		librarian.setName(name);
-		librarian.setAccountCategory(offline);
-		librarian.setIsLocal(local);
-		librarian.setShift(shifts);
-		librarian.setId(id);
-		
-		accountRepository.save(librarian);
-		
-		librarian = null;
-		
-		librarian = (Librarian) accountRepository.findAccountById(id);
-		assertNotNull(librarian);
-		assertEquals(id, librarian.getId());
-//		assertEquals(shifts, librarian.getShift());
-//		assertEquals(shifts, librarian.getShift());
-	}
-	
-	@Test
-	public void testPersistAndLoadHeadLibrarian() {
-		Account headLibrarian = new HeadLibrarian();
-		Set<Shift> shifts = new HashSet<Shift>();
-		Shift shift = new Shift();
-		shifts.add(shift);
-		shift.setShiftID(9526);
-		headLibrarian.setAddress("earth");
-		headLibrarian.setId(24602);
-		headLibrarian.setName("cosset");
-	//	headLibrarian.setShift(shifts);
-		
-		accountRepository.save(headLibrarian);
-		
-		headLibrarian = null;
-		
-		headLibrarian = (HeadLibrarian) accountRepository.findAccountById(24702);
-		assertNotNull(headLibrarian);
-		assertEquals("cosset", headLibrarian.getName());
 	}
 	
 	@Test
 	public void testPersistAndLoadShift() {
-		HeadLibrarian headLibrarian = new HeadLibrarian();
-		Librarian librarian = new Librarian();
-		Set<Librarian> librarians = new HashSet<Librarian>();
-		librarian.setName("pto");
-		librarians.add(librarian);
-		Set<Shift> shifts = new HashSet<Shift>();
-		Shift shift = new Shift();
-		shift.setShiftID(89757);
-		shifts.add(shift);
-		String address = "Atlantis";
-		int id = 10086;
-		String name = "aquaman";
-		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
-				
 		
-		headLibrarian.setAddress(address);
-		headLibrarian.setId(id);
-		headLibrarian.setName(name);
-		headLibrarian.setShift(shifts);
-		shift.setDate(date);
-		shift.setHeadLibrarian(headLibrarian);
+		Shift shift = new Shift();
+		int id = 89757;
+		String d = "2021-12-25";
+		String st = "15:55";
+		String et = "8:07";
+		Date date = Date.valueOf(d);
+		Time startTime = Time.valueOf(st);
+		Time endTime = Time.valueOf(et);
+		
+		shift.setShiftID(id);
 		shift.setStartTime(startTime);
 		shift.setEndTime(endTime);
-		shift.setLibrarian(librarians);
+		shift.setDate(date);
 		
 		shiftRepository.save(shift);
-		
-		shift = null;
-		
+		shift=null;
 		shift = shiftRepository.findShiftByShiftID(id);
+		
 		assertNotNull(shift);
-		assertEquals(headLibrarian, shift.getHeadLibrarian());
-		assertEquals(librarians, shift.getLibrarian());
+		assertEquals(id, shift.getShiftID());
+		assertEquals(date, shift.getDate());
 		assertEquals(startTime, shift.getStartTime());
 		assertEquals(endTime, shift.getEndTime());
-		assertEquals(id, shift.getShiftID());
+		
+		
 	}
 }
