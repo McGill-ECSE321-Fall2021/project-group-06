@@ -150,13 +150,23 @@ public class TestLibrarySystemPersistence {
 	// }
 	public void testPersistAndLoadOpeningHour(){
 		int id = 7;
+		String s = "2020-20-20";
+		Date date = Date.valueOf(s);
+		Time startTime = Time.valueOf("00:00");
+		Time endTime = Time.valueOf("20:20");
 		OpeningHour oh = new OpeningHour();
 		oh.setId(id);
+		oh.setDate(date);
+		oh.setStartTime(startTime);
+		oh.setEndTime(endTime);
 		openingHourRepository.save(oh);
 		oh = null;
 		oh = openingHourRepository.findOpeningHourById(id);
 		assertNotNull(oh);
 		assertEquals(id, oh.getId());
+		assertEquals(date, oh.getDate());
+		assertEquals(startTime, oh.getStartTime());
+		assertEquals(startTime, oh.getEndTime());
 	}
 
 }
