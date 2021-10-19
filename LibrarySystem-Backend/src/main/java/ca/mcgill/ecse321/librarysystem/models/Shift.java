@@ -32,7 +32,7 @@ public class Shift {
     
     private HeadLibrarian headLibrarian;
     
-    @ManyToOne(cascade={CascadeType.ALL})
+    @ManyToOne(optional=false)
     public HeadLibrarian getHeadLibrarian(){
       return this.headLibrarian;
     }

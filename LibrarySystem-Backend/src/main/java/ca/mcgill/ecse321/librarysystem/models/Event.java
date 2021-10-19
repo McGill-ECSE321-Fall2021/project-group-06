@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.librarysystem.models;
 import java.sql.Date;
 import java.sql.Time;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -39,7 +38,7 @@ public class Event
     this.eventStart = time;
   }
 
-  public Time getEventStart(Time time){
+  public Time getEventStart(){
     return this.eventStart;
   }
 
@@ -47,7 +46,7 @@ public class Event
     this.eventEnd = time;
   }
 
-  public Time getEventEnd(Time time){
+  public Time getEventEnd(){
     return this.eventEnd;
   }
 
