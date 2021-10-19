@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
@@ -11,7 +12,9 @@ import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.*;
@@ -200,20 +203,32 @@ public class TestLibrarySystemApplicationService {
        Shift shift = new Shift();
        Librarian librarian = new Librarian();
        librarian.setShift(shift);
+       /*
+       shift.setShiftID(996);
+       Librarian librarian = new Librarian();
+       librarian.setShift(shift);
        librarian.setId(id);
- //      accountRepository.save(librarian);
- //      Shift findShift = librarian.getShift();
+       librarian.setName("John");
+       accountRepository.save(librarian);
+       
+       librarian = null;
+       
+       librarian = accountRepository.save(librarian);*/
+       Shift findShift = librarian.getShift();
  //      int ID = accountRepository.findAccountById(id).getId();
  //      assertEquals(id,ID);
- //      assertEquals(shift,findShift);
-       assertEquals(id, librarian.getId());
+       assertEquals(shift,findShift);
+       
+ //      assertNotNull(librarian);
+  //     assertEquals(id, librarian.getId());
     }
 
     @Test
 	public void testGetHeadLibrarians(){
-		int id = 0;
+		int id = 95279;
 		HeadLibrarian headLibrarian = new HeadLibrarian();
-		assertEquals(id, headLibrarian.getShift());
+		headLibrarian.setId(id);
+		assertEquals(id, headLibrarian.getId());
 	}
 
 	@Test
@@ -245,9 +260,32 @@ public class TestLibrarySystemApplicationService {
 		int id = 9527;
 		Shift shift = new Shift();
 		shift.setShiftID(id);
-//		shiftRepository.save(shift);
-//		Shift shift1 = shiftRepository.findShiftById(id);
-//        assertEquals(id,shift1.getShiftID());
+		/*
+		shift.setStartTime(java.sql.Time.valueOf(LocalTime.of(13, 00)));
+		shift.setEndTime(java.sql.Time.valueOf(LocalTime.of(17, 55)));
+		HeadLibrarian head = new HeadLibrarian();
+		head.setId(id);
+		Set<Librarian> librarians = new HashSet<Librarian>();
+        Librarian lib = new Librarian();
+        librarians.add(lib);
+		shift.setHeadLibrarian(head);
+		shift.setLibrarians(librarians);
+		shift.setDate(java.sql.Date.valueOf(LocalDate.of(2021, Month.JANUARY, 3)));
+		shiftRepository.save(shift);
+		
+		shift = null;
+		
+		shift = shiftRepository.findShiftById(id);*/
+//		Date shiftDate = shiftRepository.findShiftById(id).getDate();
+//		Time start = shiftRepository.findShiftById(id).getStartTime();
+	//	Time end = shiftRepository.findShiftById(id).getEndTime();
+	//	HeadLibrarian hl = shiftRepository.findShiftById(id).getHeadLibrarian();
+//		Set<Librarian> libs = shiftRepository.findShiftById(id).getLibrarians();
+		assertNotNull(shift);
+		assertEquals(id,shift.getShiftID());
+//		int shiftID =shift.getShiftID();
+//        assertEquals(id,shiftID);
+        
 		assertEquals(id, shift.getShiftID());
     }
 
