@@ -129,25 +129,25 @@ public class TestLibrarySystemPersistence {
 		assertEquals(id, online.getId());
 	}
 
-	@Test
-	public void testPersistAndLoadEvent(){
+	// @Test
+	// public void testPersistAndLoadEvent(){
 
-	}
+	// }
 	
-	@Test
-	public void testPersistAndLoadLibrarian() {
+	// @Test
+	// public void testPersistAndLoadLibrarian() {
 		
-	}
+	// }
 	
-	@Test
-	public void testPersistAndLoadHeadLibrarian() {
+	// @Test
+	// public void testPersistAndLoadHeadLibrarian() {
 		
-	}
+	// }
 	
-	@Test
-	public void testPersistAndLoadShift() {
+	// @Test
+	// public void testPersistAndLoadShift() {
 		
-	}
+	// }
 	public void testPersistAndLoadOpeningHour(){
 		int id = 7;
 		OpeningHour oh = new OpeningHour();
