@@ -1,5 +1,3 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 package ca.mcgill.ecse321.librarysystem.models;
 
 
@@ -17,51 +15,33 @@ import javax.persistence.OneToMany;
 import java.sql.Date;
 import java.sql.Time;
 
-// line 11 "model.ump"
-// line 112 "model.ump"
-//@Entity
-//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS) //Account has a table
-//@MappedSuperclass (Account does not have a table)
+
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Account
 {
+  //The Account class is an abstract class that englobes Librarian, HeadLibrarian, Online and Offline users.
+  //Since most of the users will have somewhat similar attributes, we decided to generalize
+  //The methods for each are not yet written, nor shown in the UML class diagram.
+  //However, they will be very different for each of the subclasses.
 
-//  //------------------------
-//  // ENUMERATIONS
-//  //------------------------
-//
+  //Enum to quickly identify which type of account it is. This is not necessary
   public enum AccountCategory { Online, Offline }
-//
-//  //------------------------
-//  // STATIC VARIABLES
-//  //------------------------
-//  
-//
-//  //private static Map<Integer, Account> accountsById = new HashMap<Integer, Account>();
-//
-//  //------------------------
-//  // MEMBER VARIABLES
-//  //------------------------
-//
-//  //Account Attributes
+
+  //All the Private Attributes to Account, ID is the primary key
   private int id;
   private String address;
   private String name;
   private AccountCategory accountCategory;
   private boolean isLocal;
-  private Set<Media> checkedOutItems;
+  //This is not necessary, but may facilitate readability later
   private int numChecked;
-//
-//  //Account Associations
+
+  //Account Associations
   private Set<Event> events;
   private Set<Media> medias;
-//  //private LibrarySystem librarySystem;
-//
-//  
-//
-//  ----------------------
-//
+
+  //Identify all accounts with an ID
   public void setId(int value){
     this.id = value;
   }
@@ -100,7 +80,7 @@ public abstract class Account
   {
     this.accountCategory = aAccountCategory;
   }
-//
+
   public boolean getIsLocal()
   {
     return isLocal;
@@ -110,25 +90,18 @@ public abstract class Account
   {
     this.isLocal = aIsLocal;
   }
-//
-//  public Set<Media> getCheckedOutItem()
-//  {
-//    return this.checkedOutItems;
-//  }
-//  public void setCheckedOutItem(Set<Media> checkedOutItems) {
-//	  this.checkedOutItems = checkedOutItems;
-//  }
-//
+
   public int getNumChecked()
   {
     return numChecked;
   }
-//
+
   public void setNumChecked(int aNumChecked)
   {
     this.numChecked = aNumChecked;
   }
 
+  //Associations
   @OneToMany(cascade={CascadeType.ALL})
   public Set<Event> getEvents(){
     return this.events;
@@ -145,29 +118,4 @@ public abstract class Account
   public void setMedias(Set<Media> medias){
     this.medias=medias;
   }
-
-//  
-//  
-//
-//  
-//
-//  
-//
-//  
-//
-//  
-//
-//  
-//
-// 
-//
-// 
-//
-// 
-//  
-//
-//  
-//
-//
-//  
 }
