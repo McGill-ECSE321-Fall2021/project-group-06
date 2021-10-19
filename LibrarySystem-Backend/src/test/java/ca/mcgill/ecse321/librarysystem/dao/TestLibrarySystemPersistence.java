@@ -74,15 +74,16 @@ public class TestLibrarySystemPersistence {
 		// e.setName(ename);
 		// events.add(e);
 
-		// Media media = new NonCheckOutItem();
-		// media.setType(Media.Item.Book);
-		// int mediaId = 7;
-		// media.setID(mediaId);
-		// media.setAccount(acc);
-		// // mediaRepository.save(media);
+		Media media = new NonCheckOutItem();
+		media.setType(Media.Item.Book);
+		int mediaId = 7;
+		media.setID(mediaId);
+		media.setAccount(acc);
 
-		// Set<Media> medias = new HashSet<Media>();
-       	// medias.add(media);
+		Set<Media> medias = new HashSet<Media>();
+       	medias.add(media);
+		// mediaRepository.save(media);
+
 
 		// acc.setEvents(events);
 		// acc.setMedias(medias);
