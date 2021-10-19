@@ -39,7 +39,7 @@ public class Event
     this.eventStart = time;
   }
 
-  public Time getEventStart(Time time){
+  public Time getEventStart(){
     return this.eventStart;
   }
 
@@ -47,7 +47,7 @@ public class Event
     this.eventEnd = time;
   }
 
-  public Time getEventEnd(Time time){
+  public Time getEventEnd(){
     return this.eventEnd;
   }
 
