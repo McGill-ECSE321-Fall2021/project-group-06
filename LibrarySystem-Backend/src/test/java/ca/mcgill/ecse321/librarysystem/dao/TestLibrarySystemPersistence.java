@@ -288,7 +288,6 @@ public class TestLibrarySystemPersistence {
 		shift.setDate(date);
 		shift.setStartTime(startTime);
 		shift.setEndTime(endTime);
-		
 		shiftRepository.save(shift);
 		
 		shift = null;
