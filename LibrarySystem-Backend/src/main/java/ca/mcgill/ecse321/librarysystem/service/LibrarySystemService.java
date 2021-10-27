@@ -64,17 +64,43 @@ public class LibrarySystemService {
 	}
 
 	@Transactional
-	public List<Media> getAllCheckoutItem() {
+	public List<CheckOutItem> getAllCheckoutItem() {
         List<Media> something = toList(mediaRepository.findAll());
-        List<Media> checkoutItems = new ArrayList<Media>();
+        List<CheckOutItem> checkoutItems = new ArrayList<CheckOutItem>();
         for(Media media: something){
             if (media instanceof CheckOutItem){
-                checkoutItems.add(media);
+                checkoutItems.add((CheckOutItem)media);
             }
         }
 		return checkoutItems;
 	}
+	public NonCheckOutItem createNonCheckOutItem(Account account, int aBorrowingPeriod, int aMediaID, boolean aIsCheckedOut, boolean aIsReserved, Item aMediaType) {
+		NonCheckOutItem noncheckoutItem = new NonCheckOutItem();
+		noncheckoutItem.setAccount(account);
 
+        noncheckoutItem.setID(aMediaID);
+        noncheckoutItem.setType(aMediaType);
+		mediaRepository.save(noncheckoutItem);
+		return noncheckoutItem;
+	}
+
+	@Transactional
+	public NonCheckOutItem getNonCheckoutItem(int ID) {
+		NonCheckOutItem noncheckoutItem = (NonCheckOutItem) mediaRepository.findMediaByID(ID);
+		return noncheckoutItem;
+	}
+
+	@Transactional
+	public List<NonCheckOutItem> getAllNonCheckoutItem() {
+        List<Media> something = toList(mediaRepository.findAll());
+        List<NonCheckOutItem> noncheckoutItems = new ArrayList<NonCheckOutItem>();
+        for(Media media: something){
+            if (media instanceof CheckOutItem){
+                noncheckoutItems.add((NonCheckOutItem)media);
+            }
+        }
+		return noncheckoutItems;
+	}
 	@Transactional
 	public Event createEvent(String name,Date date, Time startTime, Time endTime, Account account) {
 		Event event = new Event();
