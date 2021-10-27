@@ -42,8 +42,8 @@ public abstract class Account
   private Set<Media> medias;
 
   //Identify all accounts with an ID
-  public void setId(int value){
-    this.id = value;
+  public void setId(int id){
+    this.id = id;
   }
   @Id
   public int getId(){

@@ -28,6 +28,7 @@ import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Online;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
+import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 
 @Service
@@ -43,6 +44,141 @@ public class LibrarySystemService {
     OpeningHourRepository openingHourRepository;
     @Autowired
     ShiftRepository shiftRepository;
+
+    @Transactional
+	public Online createOnline(AccountCategory aAccountCategory, String address, String aEmail, HashSet<Event> events, int id, boolean aIsLocal, HashSet<Media> medias, String aName, int aNumChecked, String aPassword, String aUsername) {
+		Online online = new Online();
+		online.setAccountCategory(aAccountCategory);
+		online.setAddress(address);
+		online.setEmail(aEmail);
+		online.setEvents(events);
+		online.setId(id);
+		online.setIsLocal(aIsLocal);
+		online.setMedias(medias);
+		online.setName(aName);
+		online.setNumChecked(aNumChecked);
+		online.setPassword(aPassword);
+		online.setUsername(aUsername);
+		accountRepository.save(online);
+		return online;
+	}
+
+	@Transactional
+	public Online getOnline(int id) {
+		Online online = (Online) accountRepository.findAccountById(id);
+		return online;
+	}
+
+	@Transactional
+	public List<Online> getAllOnline() {
+        List<Account> something = toList(accountRepository.findAll());
+        List<Online> onlines = new ArrayList<Online>();
+        for(Account online: something){
+            if (online instanceof Online){
+                onlines.add((Online) online);
+            }
+        }
+		return onlines;
+	}
+
+	@Transactional
+	public Offline createOffline(AccountCategory aAccountCategory, String address, HashSet<Event> events, int id, boolean aIsLocal, HashSet<Media> medias, String aName, int aNumChecked) {
+		Offline offline = new Offline();
+		offline.setAccountCategory(aAccountCategory);
+		offline.setAddress(address);
+		offline.setEvents(events);
+		offline.setId(id);
+		offline.setIsLocal(aIsLocal);
+		offline.setMedias(medias);
+		offline.setName(aName);
+		offline.setNumChecked(aNumChecked);
+		accountRepository.save(offline);
+		return offline;
+	}
+
+	@Transactional
+	public Offline getOffline(int id) {
+		Offline offline = (Offline) accountRepository.findAccountById(id);
+		return offline;
+	}
+
+	@Transactional
+	public List<Offline> getAllOffline() {
+        List<Account> something = toList(accountRepository.findAll());
+        List<Offline> offlines = new ArrayList<Offline>();
+        for(Account offline: something){
+            if (offline instanceof Offline){
+                offlines.add((Offline) offline);
+            }
+        }
+		return offlines;
+	}
+
+	@Transactional
+	public Librarian createLibrarian(AccountCategory aAccountCategory, String address, HashSet<Event> events, int id, boolean aIsLocal, HashSet<Media> medias, String aName, int aNumChecked) {
+		Librarian librarian = new Librarian();
+		librarian.setAccountCategory(aAccountCategory);
+		librarian.setAddress(address);
+		librarian.setEvents(events);
+		librarian.setId(id);
+		librarian.setIsLocal(aIsLocal);
+		librarian.setMedias(medias);
+		librarian.setName(aName);
+		librarian.setNumChecked(aNumChecked);
+		accountRepository.save(librarian);
+		return librarian;
+	}
+
+	@Transactional
+	public Librarian getLibrarian(int id) {
+		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
+		return librarian;
+	}
+
+	@Transactional
+	public List<Librarian> getAllLibrarian() {
+        List<Account> something = toList(accountRepository.findAll());
+        List<Librarian> librarians = new ArrayList<Librarian>();
+        for(Account librarian: something){
+            if (librarian instanceof Librarian){
+                librarians.add((Librarian) librarian);
+            }
+        }
+		return librarians;
+	}
+
+	@Transactional
+	public HeadLibrarian createHeadLibrarian(AccountCategory aAccountCategory, String address, HashSet<Event> events, int id, boolean aIsLocal, HashSet<Media> medias, String aName, int aNumChecked) {
+		HeadLibrarian headLibrarian = new HeadLibrarian();
+		headLibrarian.setAccountCategory(aAccountCategory);
+		headLibrarian.setAddress(address);
+		headLibrarian.setEvents(events);
+		headLibrarian.setId(id);
+		headLibrarian.setIsLocal(aIsLocal);
+		headLibrarian.setMedias(medias);
+		headLibrarian.setName(aName);
+		headLibrarian.setNumChecked(aNumChecked);
+		accountRepository.save(headLibrarian);
+		return headLibrarian;
+	}
+
+	@Transactional
+	public HeadLibrarian getHeadLibrarian(int id) {
+		HeadLibrarian headLibrarian = (HeadLibrarian) accountRepository.findAccountById(id);
+		return headLibrarian;
+	}
+
+	@Transactional
+	public List<HeadLibrarian> getAllHeadLibrarian() {
+        List<Account> something = toList(accountRepository.findAll());
+        List<HeadLibrarian> headLibrarians = new ArrayList<HeadLibrarian>();
+        for(Account headLibrarian: something){
+            if (headLibrarian instanceof HeadLibrarian){
+                headLibrarians.add((HeadLibrarian) headLibrarian);
+            }
+        }
+		return headLibrarians;
+	}
 
     @Transactional
 	public CheckOutItem createCheckOutItem(Account account, int aBorrowingPeriod, int aMediaID, boolean aIsCheckedOut, boolean aIsReserved, Item aMediaType) {
@@ -74,6 +210,8 @@ public class LibrarySystemService {
         }
 		return checkoutItems;
 	}
+
+	@Transactional
 	public NonCheckOutItem createNonCheckOutItem(Account account, int aBorrowingPeriod, int aMediaID, boolean aIsCheckedOut, boolean aIsReserved, Item aMediaType) {
 		NonCheckOutItem noncheckoutItem = new NonCheckOutItem();
 		noncheckoutItem.setAccount(account);
@@ -90,12 +228,13 @@ public class LibrarySystemService {
 		return noncheckoutItem;
 	}
 
+
 	@Transactional
 	public List<NonCheckOutItem> getAllNonCheckoutItem() {
         List<Media> something = toList(mediaRepository.findAll());
         List<NonCheckOutItem> noncheckoutItems = new ArrayList<NonCheckOutItem>();
         for(Media media: something){
-            if (media instanceof CheckOutItem){
+            if (media instanceof NonCheckOutItem){
                 noncheckoutItems.add((NonCheckOutItem)media);
             }
         }
@@ -109,8 +248,6 @@ public class LibrarySystemService {
         event.setEventStart(startTime);
         event.setEventEnd(endTime);
         event.setAccount(account);
-        //we need a setId?????
-        event.setName(account.getName());
 		eventRepository.save(event);
 		return event;
 	}
@@ -127,14 +264,13 @@ public class LibrarySystemService {
 	}
 
 	@Transactional
-	public OpeningHour createOpeningHour(String name, Date date, Time startTime, Time endTime, HeadLibrarian headLibrarian) {
+	public OpeningHour createOpeningHour(int id, Date date, Time startTime, Time endTime, HeadLibrarian headLibrarian) {
 		OpeningHour openingHour = new OpeningHour();
         openingHour.setDate(date);
         openingHour.setStartTime(startTime);
         openingHour.setEndTime(endTime);
         openingHour.setHeadLibrarian(headLibrarian);
-        //following set id in tutorial
-        openingHour.setId(headLibrarian.getName().hashCode());
+        openingHour.setId(id);
 		openingHourRepository.save(openingHour);
 		return openingHour;
 	}
