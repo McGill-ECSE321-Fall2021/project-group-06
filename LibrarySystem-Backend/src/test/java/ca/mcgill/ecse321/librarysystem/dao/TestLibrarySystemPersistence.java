@@ -10,7 +10,6 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -38,19 +37,43 @@ public class TestLibrarySystemPersistence {
 	
 	@AfterEach
 	public void clearDatabase() {
-		// Fisrt, we clear registrations to avoid exceptions due to inconsistencies
-		
-		
-		
-//		// Then we can clear the other tables
-		accountRepository.deleteAll();
-		shiftRepository.deleteAll();
-		mediaRepository.deleteAll();
-		openingHourRepository.deleteAll();
+
 		eventRepository.deleteAll();
+		shiftRepository.deleteAll();
+		openingHourRepository.deleteAll();
+		mediaRepository.deleteAll();
+		accountRepository.deleteAll();
 		
 	}
-	
+	@Test
+	public void testPersistAndLoadCheckOutItem(){
+		Media something = new CheckOutItem();
+		int DN = 123;
+		something.setType(Media.Item.Archive);
+		something.setID(DN);
+		mediaRepository.save(something);
+		something = null;
+		something = mediaRepository.findMediaByID(DN);
+		assertEquals(DN, something.getID());
+		assertEquals(Media.Item.Archive, something.getType());
+	}
+	@Test
+	public void testPersistAndLoadNonCheckOutItem(){
+
+		Media something = new NonCheckOutItem();
+		int DN = 123;
+		something.setType(Media.Item.Book);
+		something.setID(DN);
+
+		mediaRepository.save(something);
+		something = null;
+		something = mediaRepository.findMediaByID(DN);
+
+		assertEquals(DN, something.getID());
+		assertEquals(Media.Item.Book, something.getType());
+
+	}
+
 	@Test
 	public void testPersistAndLoadOffline() {
 		Account acc = new Offline();
@@ -70,19 +93,22 @@ public class TestLibrarySystemPersistence {
 
 		// Set<Event> events = new HashSet<Event>();
 		// Event e = new Event();
+		// String ename = "BTSConcert";
+		// // int eventId = 7;
+		// e.setName(ename);
 		// events.add(e);
 
-		// Media media = new CheckOutItem();
-		// media.setType(Media.Item.Book);
-		// int mediaId = 7;
-		// media.setID(mediaId);
-		// media.setAccount(acc);
+		Media media = new NonCheckOutItem();
+		media.setType(Media.Item.Book);
+		int mediaId = 7;
+		media.setID(mediaId);
+		media.setAccount(acc);
+
+		Set<Media> medias = new HashSet<Media>();
+       	medias.add(media);
 		// mediaRepository.save(media);
 
-		// Set<Media> medias = new HashSet<Media>();
-       	// Media m = new NonCheckOutItem();
-       	// medias.add(media);
-		
+
 		// acc.setEvents(events);
 		// acc.setMedias(medias);
 
@@ -99,6 +125,10 @@ public class TestLibrarySystemPersistence {
 		assertEquals(name, acc.getName());
 		assertEquals(numChecked, acc.getNumChecked());
 		// assertEquals(events, acc.getEvents());
+		// Set<Media> mtest = acc.getMedias();
+		// int mtestsize = mtest.size();
+		// int mediasize = ((Set<Media>) media).size();
+		// assertEquals(mediasize, mtestsize);
 		// assertEquals(medias, acc.getMedias());
 		
 	}
@@ -108,7 +138,7 @@ public class TestLibrarySystemPersistence {
 		String username = "group6";
 		String password = "stupidProject";
 		String email = "group6@mail.mcgill.ca";
-		int id=6;
+		int id=7;
 		
 		Online online=new Online();
 		online.setUsername(username);
@@ -116,7 +146,7 @@ public class TestLibrarySystemPersistence {
 		online.setEmail(email);
 		online.setId(id);
 		
-		accountRepository.save(online);
+		accountRepository.save((Account)online);
 		online=null;
 		online=(Online) accountRepository.findAccountById(id);
 		
@@ -126,79 +156,189 @@ public class TestLibrarySystemPersistence {
 		assertEquals(email, online.getEmail());
 		assertEquals(id, online.getId());
 	}
-	
+
 	@Test
-	public void testPersistAndLoadCheckOutItem() {
-		
-		// Set up test account to perform operations on CheckOutItem / Media
-		Account acc = new Online();
-		acc.setId(17);
+	public void testPersistAndLoadEvent(){
+		Event something = new Event();
+		Account acc = new Offline();
+		String address = "ezstt";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 727;
+		boolean local = true;
+		String name = "BTS";
+		int numChecked = 747;
+
+		acc.setAccountCategory(off);
+		acc.setAddress(address);
+		acc.setId(id);
+		acc.setIsLocal(local);
+		acc.setName(name);
+		acc.setNumChecked(numChecked);
 		accountRepository.save(acc);
-		
-		// Create movie media and set Media details AND CheckOutItem details
-		CheckOutItem movieItem = new CheckOutItem();
-		movieItem.setType(Media.Item.Movie);		// Also verify that CheckOutItem can inherit methods from Media
-		int movieItemID = 71;
-		movieItem.setID(movieItemID);
-		movieItem.setAccount(acc);
-		movieItem.setIsCheckedOut(true);
-		movieItem.setIsReserved(false);
-		int borrowingPeriod = 21;
-		movieItem.setBorrowingPeriod(borrowingPeriod);
-		
-		mediaRepository.save(movieItem); 	// Save it in Media repository
-		
-		// Persistence testing
-		movieItem = null;
-		movieItem = mediaRepository.findMediaByID(movieItemID);
-		
-		assertNotNull(movieItem);			// Check movieItem was saved in mediaRepository
-		assertEquals(true, movieItem.getIsCheckedOut());
-		assertEquals(false, movieItem.getIsReserved());
-		assertEquals(borrowingPeriod, movieItem.getBorrowingPeriod());
+
+		String DN = "helpme";
+		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
+		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
+
+		something.setAccount(acc);
+		something.setEventStart(startTime);
+		something.setEventEnd(endTime);
+		something.setDate(date);
+		something.setName(DN);
+
+		eventRepository.save(something);
+		something=null;
+		something=eventRepository.findEventByName(DN);
+
+		assertEquals(startTime, something.getEventStart());
+		assertEquals(endTime, something.getEventEnd());
+		assertEquals(id, something.getAccount().getId());
+		assertEquals(DN, something.getName());
+		assertEquals(date, something.getDate());
 	}
 	
 	@Test
-	public void testPersistAndLoadEvent() {
-		// Set up test account to perform operations on Event
-		Account acc = new Online();
-		acc.setId(18);
-		accountRepository.save(acc);
-		
-		// Create Event and set its details
-		Event testEvent = new Event();
-		testEvent.setAccount(acc);
-		String testEventName = "Event 1";
-		Date date = java.sql.Date.valueOf(LocalDate.of(2021, Month.OCTOBER, 31));
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(11, 00));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(12, 00));
-		testEvent.setName(testEventName);
-		testEvent.setDate(date);
-		testEvent.setEventStart(startTime);
-		testEvent.setEventEnd(endTime);
-		
-		eventRepository.save(testEvent);	// Save it in Event repository
-		
-		// Persistence testing: findEventByName (Event)
-		
-		testEvent = null;
-		testEvent = eventRepository.findEventByName(testEventName);
-		
-		assertNotNull(testEvent);
-		assertEquals(date, testEvent.getDate());
-		assertEquals(startTime, testEvent.getEventStart());
-		assertEquals(endTime, testEvent.getEventEnd());
-		
-		// Persistence testing: findByAccount (List<Event>)
-		List<Event> listEvent = null;
-		listEvent = eventRepository.findByAccount(acc); 
-		assertNotNull(listEvent);
-		
-		for (Event testEvent1: listEvent) {
-			assertNotNull(testEvent1);
-			assertEquals(date, testEvent1.getDate());
-			assertEquals(startTime, testEvent1.getEventStart());
-			assertEquals(endTime, testEvent1.getEventEnd());
-		}
+	public void testPersistAndLoadLibrarian() {
+		Account lib = new Librarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 666;
+		boolean local = true;
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+		lib = null;
+		lib = accountRepository.findAccountById(id);
+
+		assertNotNull(lib);
+		assertEquals(off, lib.getAccountCategory());
+		assertEquals(address, lib.getAddress());
+		assertEquals(id, lib.getId());
+		assertEquals(local, lib.getIsLocal());
+		assertEquals(name, lib.getName());
+		assertEquals(numChecked, lib.getNumChecked());
 	}
+	
+	@Test
+	public void testPersistAndLoadHeadLibrarian() {
+		Account lib = new HeadLibrarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id = 666;
+		boolean local = true;
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+		lib = null;
+		lib = accountRepository.findAccountById(id);
+
+		assertNotNull(lib);
+		assertEquals(off, lib.getAccountCategory());
+		assertEquals(address, lib.getAddress());
+		assertEquals(id, lib.getId());
+		assertEquals(local, lib.getIsLocal());
+		assertEquals(name, lib.getName());
+		assertEquals(numChecked, lib.getNumChecked());
+	}
+	
+	@Test
+	public void testPersistAndLoadShift() {
+		HeadLibrarian headLibrarian = new HeadLibrarian();
+		int id1 = 2;
+		String address = "mars";
+		AccountCategory offline = Account.AccountCategory.Offline;
+		boolean local = true;
+		String name = "Marius";
+				
+		headLibrarian.setAddress(address);
+		headLibrarian.setName(name);
+		headLibrarian.setAccountCategory(offline);
+		headLibrarian.setIsLocal(local);
+		headLibrarian.setId(id1);
+		
+		accountRepository.save(headLibrarian);
+
+		Shift shift = new Shift();
+		int id = 10086;
+		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
+		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
+		
+		shift.setShiftID(id);
+		shift.setHeadLibrarian(headLibrarian);
+		shift.setDate(date);
+		shift.setStartTime(startTime);
+		shift.setEndTime(endTime);
+		shiftRepository.save(shift);
+		
+		shift = null;
+		
+		shift = shiftRepository.findShiftByShiftID(id);
+		assertEquals(date,shift.getDate());
+		assertEquals(id1, shift.getHeadLibrarian().getId());
+		assertEquals(startTime, shift.getStartTime());
+		assertEquals(endTime, shift.getEndTime());
+		assertEquals(id, shift.getShiftID());
+	}
+
+	@Test
+	public void testPersistAndLoadOpeningHour(){
+		Account lib = new HeadLibrarian();
+		String address = "earth";
+		AccountCategory off = Account.AccountCategory.Offline;
+		int id1 = 666;
+		boolean local = true;
+		String name = "batman";
+		int numChecked = 6;
+
+		lib.setAccountCategory(off);
+		lib.setAddress(address);
+		lib.setId(id1);
+		lib.setIsLocal(local);
+		lib.setName(name);
+		lib.setNumChecked(numChecked);
+
+
+		accountRepository.save(lib);
+
+		int id = 7;
+		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
+		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
+		OpeningHour oh = new OpeningHour();
+		oh.setHeadLibrarian((HeadLibrarian)lib);
+		oh.setId(id);
+		oh.setDate(date);
+		oh.setStartTime(startTime);
+		oh.setEndTime(endTime);
+		openingHourRepository.save(oh);
+		oh = null;
+		oh = openingHourRepository.findOpeningHourById(id);
+		assertNotNull(oh);
+		assertEquals(lib.getId(),oh.getHeadLibrarian().getId());
+		assertEquals(id, oh.getId());
+		assertEquals(date, oh.getDate());
+		assertEquals(startTime, oh.getStartTime());
+		assertEquals(endTime, oh.getEndTime());
+	}
+
 }
