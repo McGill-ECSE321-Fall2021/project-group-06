@@ -18,9 +18,10 @@ public class OpeningHourDto {
 	public OpeningHourDto() {
 	}
 
-	// public OpeningHourDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
+    //this class needs to have a headLibrarian, so we will have to include it
+    public OpeningHourDto(int id) {
+        this(id, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"), new HeadLibrarianDto());
+    }
 
 	public OpeningHourDto(int id, Date date, Time startTime, Time endTime, HeadLibrarianDto headLibrarian) {
         this.id = id;

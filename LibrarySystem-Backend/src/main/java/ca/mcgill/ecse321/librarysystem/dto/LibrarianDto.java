@@ -10,10 +10,7 @@ public class LibrarianDto extends AccountDto {
     
 	public LibrarianDto() {
 	}
-
-	// public HeadLibrarianDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
+	//we don't need another constructor I don't think so
 
 	public LibrarianDto( HashSet<ShiftDto> shifts) {
         this.shifts = shifts;

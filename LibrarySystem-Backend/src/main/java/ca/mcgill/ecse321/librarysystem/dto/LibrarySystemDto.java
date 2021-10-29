@@ -14,9 +14,7 @@ public class LibrarySystemDto {
 	public LibrarySystemDto() {
 	}
 
-	// public HeadLibrarianDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
+    //we don't need another constructor I don't think so, since LibrarySystem can have nothing in it.
 
 	public LibrarySystemDto( HashSet<AccountDto> accounts, HashSet<OpeningHourDto> openingHours, HashSet<EventDto> events, HashSet<MediaDto> medias) {
         this.accounts = accounts;
