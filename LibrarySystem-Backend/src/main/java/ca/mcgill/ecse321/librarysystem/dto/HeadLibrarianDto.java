@@ -11,11 +11,7 @@ public class HeadLibrarianDto extends LibrarianDto {
     
 	public HeadLibrarianDto() {
 	}
-
-	// public HeadLibrarianDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
-
+    //we don't need another constructor I don't think so)
 	public HeadLibrarianDto(HashSet<OpeningHourDto> openingHours, HashSet<ShiftDto> shifts) {
         this.openingHours = openingHours;
         this.shifts = shifts;

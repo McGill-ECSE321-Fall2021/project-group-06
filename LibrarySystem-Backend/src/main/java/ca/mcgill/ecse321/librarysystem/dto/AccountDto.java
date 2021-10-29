@@ -3,7 +3,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
 
-public class AccountDto {
+public abstract class AccountDto {
 
     public enum AccountCategory { Online, Offline }
 
@@ -21,10 +21,9 @@ public class AccountDto {
     public AccountDto() {
 	}
 
-	// public AccountDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
-
+    public AccountDto(int id, AccountCategory accountCategory) {
+        this(id, "123@example.com", "Jack Mehoff", accountCategory, true, 1, null, null);
+	}
 	public AccountDto(int id, String address, String name, AccountCategory accountCategory, boolean isLocal, int numChecked, HashSet<EventDto> events, HashSet<MediaDto> medias) {
         this.id = id;
         this.address = address;

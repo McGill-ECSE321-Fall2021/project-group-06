@@ -12,10 +12,6 @@ public class OnlineDto {
 	public OnlineDto() {
 	}
 
-	// public OnlineDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
-
 	public OnlineDto(String username, String password, String email) {
         this.username = username;
         this.password = password;

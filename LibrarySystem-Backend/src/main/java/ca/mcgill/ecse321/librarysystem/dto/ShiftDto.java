@@ -18,10 +18,9 @@ public class ShiftDto {
     
 	public ShiftDto() {
 	}
-
-	// public OpeningHourDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
+    public ShiftDto(int shiftID) {
+        this(shiftID, new HeadLibrarianDto(), null, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
+    }
 
 	public ShiftDto(int shiftID, HeadLibrarianDto headLibrarian, HashSet<LibrarianDto> librarians, Date date, Time startTime, Time endTime) {
         this.shiftID = shiftID;

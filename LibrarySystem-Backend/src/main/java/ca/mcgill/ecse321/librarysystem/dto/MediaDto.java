@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
 
-public class MediaDto {
+public abstract class MediaDto {
 
     public enum Item { Book, Movie, Music, Newspaper, Archive }
 
@@ -18,9 +18,10 @@ public class MediaDto {
 	public MediaDto() {
 	}
 
-	// public HeadLibrarianDto(String name) {
-	// 	this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
-	// }
+    public MediaDto(int mediaID){
+        this.mediaID = mediaID;
+        this.mediaType = Item.Book;
+    }
 
 	public MediaDto(Item mediaType, int mediaID, AccountDto account) {
         this.mediaType = mediaType;
