@@ -20,6 +20,12 @@ public class Shift {
     //HeadLibrarian can assign multiple shifts, we decided to differentiate the shifts
     //with an ID integer.
     private int shiftID;
+    private HeadLibrarian headLibrarian;
+    private Set<Librarian> librarian;
+    private Date date;
+    private Time startTime;
+    private Time endTime;
+    
     public void setShiftID(int shiftID)
     {
         this.shiftID = shiftID;
@@ -30,9 +36,9 @@ public class Shift {
         return this.shiftID;
     }
     
-    private HeadLibrarian headLibrarian;
+
     
-    @ManyToOne(cascade={CascadeType.ALL})
+    @ManyToOne(optional=false)
     public HeadLibrarian getHeadLibrarian(){
       return this.headLibrarian;
     }
@@ -40,7 +46,7 @@ public class Shift {
       this.headLibrarian = headLibrarian;
     }
     
-    private Set<Librarian> librarian;
+
     
     @ManyToMany(cascade={CascadeType.ALL})
     public Set<Librarian> getLibrarian(){
@@ -50,7 +56,7 @@ public class Shift {
       this.librarian = librarian;
     }
     
-    private Date date;
+
     public void setDate(Date date){
         this.date = date;
     }
@@ -59,7 +65,7 @@ public class Shift {
         return this.date;
     }
 
-    private Time startTime;
+
     public void setStartTime(Time startTime){
         this.startTime = startTime;
     }
@@ -68,7 +74,7 @@ public class Shift {
         return this.startTime;
     }
 
-    private Time endTime;
+
     public void setEndTime(Time endTime){
         this.endTime = endTime;
     }
