@@ -11,6 +11,7 @@ import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
+import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import javassist.expr.Instanceof;
 
@@ -29,7 +30,9 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public ViewPersonalShift 
+    public void ViewPersonalShift () {
+		
+	}
     
     /**
 	 * @author Isabella Hao
@@ -37,6 +40,8 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public CreateOfflineAccount
+    public Offline CreateOfflineAccount(int id, String name) {
+		return null;
+	}
     
 }

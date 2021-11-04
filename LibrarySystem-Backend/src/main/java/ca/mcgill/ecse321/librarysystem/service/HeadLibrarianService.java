@@ -16,6 +16,7 @@ import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
+import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 
