@@ -31,8 +31,10 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public void viewPersonalShift () {
-		
+    public void viewPersonalShift(int id) {
+		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
+		String name = librarian.getName();
+		List<Shift> shifts = shiftRepository.findByLibrarian(librarian);
 	}
     
     /**
@@ -41,8 +43,20 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public Offline createOfflineAccount(int id, String name) {
-		return null;
+    public Offline createOfflineAccount(int libId, int id, String name,
+    		String address, AccountCategory accountCategory, 
+    		boolean local, int itemsChecked) {
+		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
+		if(librarian == null)
+			throw new IllegalArgumentException("Authorization Denied.");
+		Offline account = new Offline();
+		account.setAccountCategory(accountCategory);
+		account.setAddress(address);
+		account.setId(id);
+		account.setIsLocal(local);
+		account.setNumChecked(itemsChecked);
+		account.setName(name);
+		return account;
 	}
 	@Transactional
 	public Librarian createLibrarian(int id, String name, String address, Set<Shift> shifts,
