@@ -44,4 +44,22 @@ public class LibrarianService {
 		return null;
 	}
     
+	
+	@Transactional
+	public List<Librarian> getLibrarians(){
+		List<Account> allAccounts=(List<Account>) accountRepository.findAll();
+		List<Librarian> allLibrarians=new ArrayList<>();
+		for (Account a : allAccounts) {
+			if (a instanceof Librarian){
+				allLibrarians.add((Librarian) a);
+			}
+		}
+		return allLibrarians;
+	}
+	
+	@Transactional
+    public void deleteHeadLibrarian(int aId) {
+    	accountRepository.delete(accountRepository.findAccountById(aId));
+    }
 }
+	
