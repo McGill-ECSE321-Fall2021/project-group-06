@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class ShiftService {
 	 * @param id Librarian id
 	 */
     @Transactional
-    public List<Shift> AssignSchedules(int id, Date date){
+    public Set<Shift> AssignSchedules(int id, Date date){
 		return null;
     	
     }
@@ -46,7 +47,7 @@ public class ShiftService {
 	 * 
 	 */
     @Transactional
-    public List<Shift> EditAssignedSchedules(int shiftId, Date date){
+    public Set<Shift> EditAssignedSchedules(int shiftId, Date date){
 		return null;
     	
     }
@@ -57,14 +58,29 @@ public class ShiftService {
 	 * 
 	 */
     @Transactional
-    public List<Shift> ViewSchedule(int id, Date date){
+    public Set<Shift> ViewSchedule(int id, Date date){
 		return null;
     	
     }
     
+  //deleteAllClass(); updateClass();
     @Transactional
-    public List<Shift> getShifts(){
-    	List<Shift> shifts=(List<Shift>) shiftRepository.findAll();
+    public Shift createShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
+    		Date date, Time start, Time end) {
+    	Shift shift = new Shift();
+    	shift.setDate(date);
+    	shift.setEndTime(end);
+    	shift.setHeadLibrarian(head);
+    	shift.setStartTime(start);
+    	shift.setShiftID(id);
+    	shift.setLibrarian(librarians);
+    	return shift;
+    	
+    }
+    
+    @Transactional
+    public Set<Shift> getShifts(){
+    	Set<Shift> shifts=(Set<Shift>) shiftRepository.findAll();
     	return shifts;
     	
     }
@@ -73,5 +89,23 @@ public class ShiftService {
     public void deleteShift(int id) {
     	shiftRepository.delete(shiftRepository.findShiftByShiftID(id));
     }
+    
+    @Transactional
+    public void deleteAllShift() {
+    	shiftRepository.deleteAll();
+    }
+    
+    @Transactional
+    public void updateShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
+    		Date date, Time start, Time end) {
+    	Shift shift =shiftRepository.findShiftByShiftID(id);
+    	shift.setDate(date);
+    	shift.setEndTime(end);
+    	shift.setHeadLibrarian(head);
+    	shift.setStartTime(start);
+    	shift.setShiftID(id);
+    	shift.setLibrarian(librarians);
+    }
+    
    
 }

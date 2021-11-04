@@ -17,6 +17,7 @@ import javassist.expr.Instanceof;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class LibrarianService {
 	 @Autowired
@@ -30,7 +31,7 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public void ViewPersonalShift () {
+    public void viewPersonalShift () {
 		
 	}
     
@@ -40,10 +41,44 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public Offline CreateOfflineAccount(int id, String name) {
+    public Offline createOfflineAccount(int id, String name) {
 		return null;
 	}
-    
+	@Transactional
+	public Librarian createLibrarian(int id, String name, String address, Set<Shift> shifts,
+			AccountCategory accountCategory, boolean local, int itemsChecked) {
+		Librarian librarian = new Librarian();
+		librarian.setAccountCategory(accountCategory);
+		librarian.setAddress(address);
+		librarian.setId(id);
+		librarian.setName(name);
+		librarian.setIsLocal(local);
+		librarian.setNumChecked(itemsChecked);
+		librarian.setShift(shifts);
+		
+		return null;
+	}
+	
+	@Transactional 
+	public void updateLibrarian(int id, String name, String address, Set<Shift> shifts) {
+		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
+    	librarian.setAddress(address);
+    	librarian.setName(name);
+    	librarian.setShift(shifts);
+  
+    }
+	
+	@Transactional
+	public void deleteAllLibrarian() {
+		List<Account> allAccounts=(List<Account>) accountRepository.findAll();
+		List<Librarian> allLibrarians = new ArrayList<>();
+		for (Account a : allAccounts) {
+			if (a instanceof Librarian)
+				allLibrarians.add((Librarian) a);
+		}
+		for(Librarian l : allLibrarians) 
+			accountRepository.delete(l);
+	}
 	
 	@Transactional
 	public List<Librarian> getLibrarians(){
@@ -58,7 +93,7 @@ public class LibrarianService {
 	}
 	
 	@Transactional
-    public void deleteHeadLibrarian(int aId) {
+    public void deleteLibrarian(int aId) {
     	accountRepository.delete(accountRepository.findAccountById(aId));
     }
 }
