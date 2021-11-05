@@ -26,17 +26,23 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 public class ShiftService {
 	@Autowired
 	ShiftRepository shiftRepository;
+	@Autowired
+	AccountRepository accountRepository;
 	
 	/**
 	 * @author Isabella Hao
 	 * Assign Schedules
 	 * 
-	 * @param id Librarian id
+	 * @param libId Librarian id
+	 * @param id shift id
 	 */
     @Transactional
-    public Set<Shift> AssignSchedules(int id, Date date){
-		return null;
-    	
+    public void AssignSchedules(int libId, int id){
+		Librarian lib = (Librarian) accountRepository.findAccountById(libId);
+    	Shift shift = shiftRepository.findShiftByShiftID(id);
+		Set<Librarian> libs = shift.getLibrarian();
+		libs.add(lib);
+		shift.setLibrarian(libs);
     }
     
    
@@ -45,11 +51,18 @@ public class ShiftService {
 	 * @author Isabella Hao
 	 * Edit Assigned Schedules
 	 * 
+	 * @param shiftId shift id
+	 * @param 
 	 */
     @Transactional
-    public Set<Shift> EditAssignedSchedules(int shiftId, Date date){
-		return null;
-    	
+    public void EditAssignedSchedules(int shiftId, Set<Librarian> libs,
+    		HeadLibrarian hd, Date date, Time start, Time end){
+    	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
+    	shift.setDate(date);
+    	shift.setEndTime(end);
+    	shift.setHeadLibrarian(hd);
+    	shift.setLibrarian(libs);
+    	shift.setStartTime(start);
     }
     
     /**
