@@ -21,10 +21,10 @@ import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.service.LibrarianService;
 
 
-//@CrossOrigin(origins="*")
-//@RestController
+@CrossOrigin(origins="*")
+@RestController
 public class LibrarianController {
-	/*@Autowired
+	@Autowired
 	private LibrarianService librarianService;
 	
 	
@@ -68,7 +68,7 @@ public class LibrarianController {
 	 * @param id
 	 * @param addr
 	 * @param name
-	 * @return librarian Dto
+	 * @return librarian Dto */
 	 
 	@PostMapping(value= {"/createLibrarian/{id}/{addr}/{name}", "/createLibrarian/{id}/{addr}/{name}/"})
 	public LibrarianDto createLibrarian(@PathVariable("id") int id, @PathVariable("addr") String addr,
@@ -80,7 +80,7 @@ public class LibrarianController {
 	/**
 	 * Find librarian of given parameter
 	 * @param id
-	 * @return librarian Dto
+	 * @return librarian Dto */
 	 
 	@GetMapping(value= {"/librarian/{id}", "/librarian/{id}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("id") int id) {
@@ -94,7 +94,7 @@ public class LibrarianController {
 	 * @param aAddress
 	 * @param aName
 	 * @param itemsChecked
-	 * @return updated librarian Dto
+	 * @return updated librarian Dto */
 	 
 	@PutMapping(value= {"/updateLibrarian/{id}/{addr}/{name}/{items}", "/updateLibrarian/{id}/{addr}/{name}/{items}/"})
 	public LibrarianDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("addr") String aAddress, 
@@ -106,7 +106,7 @@ public class LibrarianController {
 	/**
 	 * Delete librarian of corresponding parameter
 	 * @param id
-	 * @return deleted librarian Dto
+	 * @return deleted librarian Dto */
 	 
 	@PutMapping(value= {"/deleteLibrarian/{id}", "/deleteLibrarian/{id}/"})
 	public LibrarianDto deleteLibrarian(int id) {
@@ -118,7 +118,7 @@ public class LibrarianController {
 	 * @param id
 	 * @param addr
 	 * @param name
-	 * @return offline Dto
+	 * @return offline Dto */
 	 
 	@PostMapping(value= {"/createOfflineAccount/{id}/{addr}/{name}", "/createOfflineAccount/{id}/{addr}/{name}/"})
 	public OfflineDto createOfflineAccount(@PathVariable("id") int id, @PathVariable("addr") String addr, 
@@ -129,24 +129,24 @@ public class LibrarianController {
 	/**
 	 *  View personal schedule
 	 * @param id
-	 * @return Shift Dto
+	 * @return Shift Dto */
 	 
 	@GetMapping(value= {"/viewPersonalSchedule/{id}", "/viewPersonalSchedule/{id}/"})
 	public ShiftDto viewPersonalSchedule(@PathVariable("id") int id) {
 		return (ShiftDto) convertToDto(librarianService.viewPersonalShift(id));
-	}
+	} 
 	
 	/**
 	 * Find all librarians
-	 * @return list of librarians Dto
+	 * @return list of librarians Dto */
 	 
-	@GetMapping(value= {"/getLibrarians", "/getLibrarians/"})
+	@GetMapping(value= {"/getLibrariansX", "/getLibrariansX/"})
 	public List<LibrarianDto> getLibrarians(){
 		List<LibrarianDto> librDtos=new ArrayList<>();
 		for (Librarian l : librarianService.getLibrarians()) {
 			librDtos.add(convertToDto(l));
 		}
 		return librDtos;
-	}*/
+	} 
 	
 }

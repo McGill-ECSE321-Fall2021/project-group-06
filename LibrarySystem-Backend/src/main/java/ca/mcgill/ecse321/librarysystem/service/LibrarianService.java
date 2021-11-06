@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
@@ -13,8 +14,9 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class LibrarianService {
-	 /*@Autowired
+	 @Autowired
 	 AccountRepository accountRepository;
 	 @Autowired
 	 ShiftRepository shiftRepository;
@@ -22,7 +24,7 @@ public class LibrarianService {
 	/**
 	 * @author Isabella Hao
 	 * View Personal Shift
-	 * 
+	 *  */
 	 
 	@Transactional
     public List<Shift> viewPersonalShift(int id) {
@@ -35,7 +37,7 @@ public class LibrarianService {
     /**
 	 * @author Isabella Hao
 	 * Create Offline Account
-	 * 
+	 * */
 	 
 	@Transactional
     public Offline createOfflineAccount(int id, String name,
@@ -113,6 +115,6 @@ public class LibrarianService {
 	public Librarian getLibrarian(int id) {
 		Librarian lib = (Librarian) accountRepository.findAccountById(id);
 		return lib;
-	}*/
+	}
 }
 	
