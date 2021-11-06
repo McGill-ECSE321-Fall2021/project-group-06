@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibrarianService {
-	 @Autowired
+	 /*@Autowired
 	 AccountRepository accountRepository;
 	 @Autowired
 	 ShiftRepository shiftRepository;
@@ -23,7 +23,7 @@ public class LibrarianService {
 	 * @author Isabella Hao
 	 * View Personal Shift
 	 * 
-	 */
+	 
 	@Transactional
     public List<Shift> viewPersonalShift(int id) {
 		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
@@ -36,7 +36,7 @@ public class LibrarianService {
 	 * @author Isabella Hao
 	 * Create Offline Account
 	 * 
-	 */
+	 
 	@Transactional
     public Offline createOfflineAccount(int id, String name,
     		String address, AccountCategory accountCategory, 
@@ -113,6 +113,6 @@ public class LibrarianService {
 	public Librarian getLibrarian(int id) {
 		Librarian lib = (Librarian) accountRepository.findAccountById(id);
 		return lib;
-	}
+	}*/
 }
 	
