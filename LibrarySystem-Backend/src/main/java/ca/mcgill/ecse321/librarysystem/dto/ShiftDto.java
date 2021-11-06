@@ -3,6 +3,9 @@ package ca.mcgill.ecse321.librarysystem.dto;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.*;
+
+import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
+import ca.mcgill.ecse321.librarysystem.models.Shift;
 public class ShiftDto {
 
     private int shiftID;

@@ -31,10 +31,11 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public void viewPersonalShift(int id) {
+    public List<Shift> viewPersonalShift(int id) {
 		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
 		String name = librarian.getName();
 		List<Shift> shifts = shiftRepository.findByLibrarian(librarian);
+		return shifts;
 	}
     
     /**
@@ -43,12 +44,12 @@ public class LibrarianService {
 	 * 
 	 */
 	@Transactional
-    public Offline createOfflineAccount(int libId, int id, String name,
+    public Offline createOfflineAccount(int id, String name,
     		String address, AccountCategory accountCategory, 
     		boolean local, int itemsChecked) {
-		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
-		if(librarian == null)
-			throw new IllegalArgumentException("Authorization Denied.");
+		//Librarian librarian = (Librarian) accountRepository.findAccountById(id);
+		//if(librarian == null)
+		//	throw new IllegalArgumentException("Authorization Denied.");
 		Offline account = new Offline();
 		account.setAccountCategory(accountCategory);
 		account.setAddress(address);
@@ -58,8 +59,9 @@ public class LibrarianService {
 		account.setName(name);
 		return account;
 	}
+	
 	@Transactional
-	public Librarian createLibrarian(int id, String name, String address, Set<Shift> shifts,
+	public Librarian createLibrarian(int id, String name, String address,
 			AccountCategory accountCategory, boolean local, int itemsChecked) {
 		Librarian librarian = new Librarian();
 		librarian.setAccountCategory(accountCategory);
@@ -68,17 +70,17 @@ public class LibrarianService {
 		librarian.setName(name);
 		librarian.setIsLocal(local);
 		librarian.setNumChecked(itemsChecked);
-		librarian.setShift(shifts);
 		
-		return null;
+		return librarian;
 	}
 	
 	@Transactional 
-	public void updateLibrarian(int id, String name, String address, Set<Shift> shifts) {
+	public Librarian updateLibrarian(int id, String name, String address, int itemsChecked) {
 		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
     	librarian.setAddress(address);
     	librarian.setName(name);
-    	librarian.setShift(shifts);
+    	librarian.setNumChecked(itemsChecked);
+    	return librarian;
   
     }
 	
@@ -107,8 +109,16 @@ public class LibrarianService {
 	}
 	
 	@Transactional
-    public void deleteLibrarian(int aId) {
-    	accountRepository.delete(accountRepository.findAccountById(aId));
-    }
+    public Librarian deleteLibrarian(int aId) {
+    	Librarian librarian = (Librarian) accountRepository.findAccountById(aId);
+    	accountRepository.delete(librarian);
+    	return librarian;
+	}
+	
+	@Transactional 
+	public Librarian getLibrarian(int id) {
+		Librarian lib = (Librarian) accountRepository.findAccountById(id);
+		return lib;
+	}
 }
 	

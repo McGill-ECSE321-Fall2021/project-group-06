@@ -37,23 +37,24 @@ public class ShiftService {
 	 * @param id shift id
 	 */
     @Transactional
-    public void AssignSchedules(int libId, int id){
+    public Shift assignSchedules(int libId, int id){
 		Librarian lib = (Librarian) accountRepository.findAccountById(libId);
     	Shift shift = shiftRepository.findShiftByShiftID(id);
 		Set<Librarian> libs = shift.getLibrarian();
 		libs.add(lib);
 		shift.setLibrarian(libs);
+		return shift;
     }
     
    
     
-    /**
-	 * @author Isabella Hao
+    /*
+
 	 * Edit Assigned Schedules
 	 * 
-	 * @param shiftId shift id
-	 * @param 
-	 */
+	 * Same as update Shift
+	 * commented out
+	 
     @Transactional
     public void EditAssignedSchedules(int shiftId, Set<Librarian> libs,
     		HeadLibrarian hd, Date date, Time start, Time end){
@@ -64,6 +65,7 @@ public class ShiftService {
     	shift.setLibrarian(libs);
     	shift.setStartTime(start);
     }
+    */
     
     /**
 	 * @author Isabella Hao
@@ -71,12 +73,17 @@ public class ShiftService {
 	 * 
 	 */
     @Transactional
-    public Set<Shift> ViewSchedule(int id, Date date){
-		return null;
-    	
+    public Shift viewSchedule(int shiftID){
+    	Shift shift = shiftRepository.findShiftByShiftID(shiftID); 
+    	return shift;
     }
     
-  //deleteAllClass(); updateClass();
+    @Transactional
+    public Shift getShift(int id) {
+    	Shift shift = shiftRepository.findShiftByShiftID(id);
+    	return shift;
+    }
+    
     @Transactional
     public Shift createShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
     		Date date, Time start, Time end) {
@@ -92,15 +99,17 @@ public class ShiftService {
     }
     
     @Transactional
-    public Set<Shift> getShifts(){
-    	Set<Shift> shifts=(Set<Shift>) shiftRepository.findAll();
+    public List<Shift> getShifts(){
+    	List<Shift> shifts=(List<Shift>) shiftRepository.findAll();
     	return shifts;
     	
     }
     
     @Transactional
-    public void deleteShift(int id) {
-    	shiftRepository.delete(shiftRepository.findShiftByShiftID(id));
+    public Shift deleteShift(int id) {
+    	Shift shift =shiftRepository.findShiftByShiftID(id);
+    	shiftRepository.delete(shift);
+    	return shift;
     }
     
     @Transactional
