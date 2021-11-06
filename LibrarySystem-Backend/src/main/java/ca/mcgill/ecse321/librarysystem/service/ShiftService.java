@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.AccountRepository;
@@ -14,19 +15,19 @@ import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 
-
+@Service
 public class ShiftService {
-	/*@Autowired
+	@Autowired
 	ShiftRepository shiftRepository;
 	@Autowired
 	AccountRepository accountRepository;
 	
-	/**
-	 * @author Isabella Hao
-	 * Assign Schedules
-	 * 
-	 * @param libId Librarian id
-	 * @param id shift id
+	// /**
+	//  * @author Isabella Hao
+	//  * Assign Schedules
+	//  * 
+	//  * @param libId Librarian id
+	//  * @param id shift id */
 	 
     @Transactional
     public Shift assignSchedules(int libId, int id){
@@ -40,12 +41,12 @@ public class ShiftService {
     
    
     
-    /*
+    
 
-	 * Edit Assigned Schedules
-	 * 
-	 * Same as update Shift
-	 * commented out
+	//  * Edit Assigned Schedules
+	//  * 
+	//  * Same as update Shift
+	//  * commented out
 	 
     @Transactional
     public void EditAssignedSchedules(int shiftId, Set<Librarian> libs,
@@ -57,12 +58,12 @@ public class ShiftService {
     	shift.setLibrarian(libs);
     	shift.setStartTime(start);
     }
-    */
+    
     
     /**
 	 * @author Isabella Hao
 	 * View Schedules
-	 * 
+	 * */
 	 
     @Transactional
     public Shift viewSchedule(int shiftID){
@@ -120,7 +121,7 @@ public class ShiftService {
     	shift.setShiftID(id);
     	shift.setLibrarian(librarians);
     	return shift;
-    }*/
+    }
     
    
 }
