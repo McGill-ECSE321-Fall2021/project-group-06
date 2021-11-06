@@ -4,6 +4,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -67,9 +68,9 @@ public class ShiftController {
 	 * @return librarian Dto
 	 */
 	@PostMapping(value= {"/createShift/{id}/{addr}/{name}", "/createShift/{id}/{addr}/{name}/"})
-	public ShiftDto createShift(@PathVariable("id") int id, @PathVariable("headLibrarian") String head,
+	public ShiftDto createShift(@PathVariable("id") int id, @PathVariable("headLibrarian") HeadLibrarian head,
 			@PathVariable("librarians") Set<Librarian> libs, @PathVariable("date") Date date, @PathVariable("startTime") Time start, @PathVariable("endTime") Time end) {
-		Shift shift=librarianService.createLibrarian(id, head, libs, head,date, start, end);
+		Shift shift=shiftService.createShift(id, head, libs, date, start, end);
 		return convertToDto(shift);
 	}
 	/**

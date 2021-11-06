@@ -118,7 +118,7 @@ public class ShiftService {
     }
     
     @Transactional
-    public void updateShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
+    public Shift updateShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
     		Date date, Time start, Time end) {
     	Shift shift =shiftRepository.findShiftByShiftID(id);
     	shift.setDate(date);
@@ -127,6 +127,7 @@ public class ShiftService {
     	shift.setStartTime(start);
     	shift.setShiftID(id);
     	shift.setLibrarian(librarians);
+    	return shift;
     }
     
    
