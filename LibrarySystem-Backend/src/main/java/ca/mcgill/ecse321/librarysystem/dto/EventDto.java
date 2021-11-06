@@ -7,8 +7,8 @@ public class EventDto {
 
 	private String name;
 	private Date eventDate;
-	private Time startTime;
-	private Time endTime;
+	private Time eventStart;
+	private Time eventEnd;
     
 	public EventDto() {
 	}
@@ -17,11 +17,11 @@ public class EventDto {
 		this(name, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
 	}
 
-	public EventDto(String name, Date eventDate, Time startTime, Time endTime) {
+	public EventDto(String name, Date eventDate, Time eventStart, Time eventEnd) {
 		this.name = name;
 		this.eventDate = eventDate;
-		this.startTime = startTime;
-		this.endTime = endTime;
+		this.eventStart = eventStart;
+		this.eventEnd = eventEnd;
 	}
 
 	public String getName() {
@@ -32,12 +32,12 @@ public class EventDto {
 		return eventDate;
 	}
 
-	public Time getStartTime() {
-		return startTime;
+	public Time getEventStart() {
+		return eventStart;
 	}
 
 	public Time getEndTime() {
-		return endTime;
+		return eventEnd;
 	}
 
 }
