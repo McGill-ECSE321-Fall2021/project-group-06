@@ -140,7 +140,7 @@ public class LibrarianController {
 	 * Find all librarians
 	 * @return list of librarians Dto */
 	 
-	@GetMapping(value= {"/getLibrariansX", "/getLibrariansX/"})
+	@GetMapping(value= {"/getLibrarians", "/getLibrarians/"})
 	public List<LibrarianDto> getLibrarians(){
 		List<LibrarianDto> librDtos=new ArrayList<>();
 		for (Librarian l : librarianService.getLibrarians()) {

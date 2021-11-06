@@ -113,10 +113,10 @@ public class HeadLibrarianController {
 	 * Find all librarians
 	 * @return list of librarians Dto
 	 */
-	@GetMapping(value= {"/getLibrarians", "/getLibrarians/"})
-	public List<LibrarianDto> getLibrarians(){
-		List<LibrarianDto> librDtos=new ArrayList<>();
-		for (Librarian l : headService.getLibrarians()) {
+	@GetMapping(value= {"/getHeadLibrarians", "/getHeadLibrarians/"})
+	public List<HeadLibrarianDto> getHeadLibrarians(){
+		List<HeadLibrarianDto> librDtos=new ArrayList<>();
+		for (HeadLibrarian l : headService.getHeadLibrarians()) {
 			librDtos.add(convertToDto(l));
 		}
 		return librDtos;

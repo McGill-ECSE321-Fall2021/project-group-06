@@ -103,8 +103,8 @@ public class HeadLibrarianService {
     public HeadLibrarian deleteHeadLibrarian(int aId) {
     	HeadLibrarian head=(HeadLibrarian) accountRepository.findAccountById(aId);
     	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) head));
-    	mediaRepository.deleteAll(mediaRepository.findByAccount(head));
-    	eventRepository.deleteAll(eventRepository.findByAccount(head));
+    	head.setMedias(null);
+    	head.setEvents(null);
     	accountRepository.delete(head);
 		return head;
     }
@@ -159,23 +159,23 @@ public class HeadLibrarianService {
     	}
 		Account firedLibr=accountRepository.findAccountById(aId);
     	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) firedLibr));
-    	mediaRepository.deleteAll(mediaRepository.findByAccount(firedLibr));
-    	eventRepository.deleteAll(eventRepository.findByAccount(firedLibr));
+    	firedLibr.setMedias(null);
+    	firedLibr.setEvents(null);
     	accountRepository.delete(firedLibr);
 		return (Librarian) firedLibr;
     }
 	
 	/**
-	 * Find all librarians
-	 * @return list of all librarians
+	 * Find all head librarians
+	 * @return list of all head librarians
 	 */
 	@Transactional
-	public List<Librarian> getLibrarians(){
+	public List<HeadLibrarian> getHeadLibrarians(){
 		List<Account> allAccounts=(List<Account>) accountRepository.findAll();
-		List<Librarian> allLibrarians=new ArrayList<>();
+		List<HeadLibrarian> allLibrarians=new ArrayList<>();
 		for (Account a : allAccounts) {
-			if (a instanceof Librarian){
-				allLibrarians.add((Librarian) a);
+			if (a instanceof HeadLibrarian){
+				allLibrarians.add((HeadLibrarian) a);
 			}
 		}
 		return allLibrarians;
