@@ -17,6 +17,7 @@ public enum Item { Book, Movie, Music, Newspaper, Archive }
   //Media Attributes
   private Item mediaType;
   private int mediaID;
+  //NEEDS DATE OF CHECKOUT, HOWARD!
 
   //Media Associations
   private Account account;
