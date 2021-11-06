@@ -20,10 +20,10 @@ import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.service.ShiftService;
 
-@CrossOrigin(origins="*")
-@RestController
+//@CrossOrigin(origins="*")
+//@RestController
 public class ShiftController {
-	@Autowired
+	/*@Autowired
 	private ShiftService shiftService;
 	
 	
@@ -52,7 +52,7 @@ public class ShiftController {
 	 * @param addr
 	 * @param name
 	 * @return librarian Dto
-	 */
+	 
 	@PostMapping(value= {"/createShift/{id}/{addr}/{name}", "/createShift/{id}/{addr}/{name}/"})
 	public ShiftDto createShift(@PathVariable("id") int id, @PathVariable("headLibrarian") HeadLibrarian head,
 			@PathVariable("librarians") Set<Librarian> libs, @PathVariable("date") Date date, @PathVariable("startTime") Time start, @PathVariable("endTime") Time end) {
@@ -63,7 +63,7 @@ public class ShiftController {
 	 * Find shift of given parameter
 	 * @param id
 	 * @return shift Dto
-	 */
+	 
 	@GetMapping(value= {"/shift/{id}", "/shift/{id}/"})
 	public ShiftDto getShiftById(@PathVariable("id") int id) {
 		return convertToDto(shiftService.getShift(id));
@@ -78,7 +78,7 @@ public class ShiftController {
 	 * @param start
 	 * @param end
 	 * @return updated shift  Dto
-	 */
+	 
 	@PutMapping(value= {"/updateShift/{id}/{head}/{librarians}/{date}/{start}/{end}/", "/updateHeadlibrarian/{id}/{head}/{librarians}/{date}/{start}/{end}/"})
 	public ShiftDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("head") HeadLibrarian head, @PathVariable("librarians") Set<Librarian> librarians,
 			@PathVariable("date") Date date, @PathVariable("start") Time start,
@@ -91,7 +91,7 @@ public class ShiftController {
 	 * Delete shift of corresponding parameter
 	 * @param id
 	 * @return deleted shift Dto
-	 */
+	 
 	@PutMapping(value= {"/deleteShift/{id}", "/deleteShift/{id}/"})
 	public ShiftDto deleteShift(int id) {
 		return convertToDto(shiftService.deleteShift(id));
@@ -102,7 +102,7 @@ public class ShiftController {
 	 * @param id
 	 * @param libId
 	 * @return offline Dto
-	 */
+	 
 	@PostMapping(value= {"/assignSchedules/{id}/{libId}/", "/assignSchedules/{id}/{libId}"})
 	public ShiftDto assignSchedule(@PathVariable("id") int id,
 			@PathVariable("libId") int libId) {
@@ -113,7 +113,7 @@ public class ShiftController {
 	 * View schedule
 	 * @param id
 	 * @return Shift Dto
-	 */
+	 
 	@GetMapping(value= {"/viewSchedule/{id}", "/viewSchedule/{id}/"})
 	public ShiftDto viewSchedule(@PathVariable("id") int id) {
 		return (ShiftDto) convertToDto(shiftService.viewSchedule(id));
@@ -122,7 +122,7 @@ public class ShiftController {
 	/**
 	 * Find all shifts
 	 * @return list of librarians Dto
-	 */
+	 
 	@GetMapping(value= {"/getShifts", "/getShifts/"})
 	public List<ShiftDto> getShifts(){
 		List<ShiftDto> shiftDto=new ArrayList<>();
@@ -130,6 +130,6 @@ public class ShiftController {
 			shiftDto.add(convertToDto(s));
 		}
 		return shiftDto;
-	}
+	}*/
 	
 }
