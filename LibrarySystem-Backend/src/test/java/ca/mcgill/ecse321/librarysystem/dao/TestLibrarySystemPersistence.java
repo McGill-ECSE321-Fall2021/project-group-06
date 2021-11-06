@@ -227,10 +227,6 @@ public class TestLibrarySystemPersistence {
 		assertEquals(local, lib.getIsLocal());
 		assertEquals(name, lib.getName());
 		assertEquals(numChecked, lib.getNumChecked());
-<<<<<<< HEAD
-
-		
-=======
 	}
 	
 	@Test
@@ -262,13 +258,10 @@ public class TestLibrarySystemPersistence {
 		assertEquals(local, lib.getIsLocal());
 		assertEquals(name, lib.getName());
 		assertEquals(numChecked, lib.getNumChecked());
->>>>>>> 1327d7cfb9d6c3a050b94d02e44d1dbcfbe5654c
 	}
 	
 	@Test
 	public void testPersistAndLoadShift() {
-<<<<<<< HEAD
-		
 		Shift shift = new Shift();
 		int id = 89757;
 		String d = "2021-12-25";
@@ -283,46 +276,13 @@ public class TestLibrarySystemPersistence {
 		shift.setEndTime(endTime);
 		shift.setDate(date);
 		
-=======
-		HeadLibrarian headLibrarian = new HeadLibrarian();
-		int id1 = 2;
-		String address = "mars";
-		AccountCategory offline = Account.AccountCategory.Offline;
-		boolean local = true;
-		String name = "Marius";
-				
-		headLibrarian.setAddress(address);
-		headLibrarian.setName(name);
-		headLibrarian.setAccountCategory(offline);
-		headLibrarian.setIsLocal(local);
-		headLibrarian.setId(id1);
-		
-		accountRepository.save(headLibrarian);
-
-		Shift shift = new Shift();
-		int id = 10086;
-		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
-		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
-		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
-		
-		shift.setShiftID(id);
-		shift.setHeadLibrarian(headLibrarian);
-		shift.setDate(date);
-		shift.setStartTime(startTime);
-		shift.setEndTime(endTime);
->>>>>>> 1327d7cfb9d6c3a050b94d02e44d1dbcfbe5654c
 		shiftRepository.save(shift);
 		shift=null;
 		shift = shiftRepository.findShiftByShiftID(id);
-<<<<<<< HEAD
 		
 		assertNotNull(shift);
 		assertEquals(id, shift.getShiftID());
 		assertEquals(date, shift.getDate());
-=======
-		assertEquals(date,shift.getDate());
-		assertEquals(id1, shift.getHeadLibrarian().getId());
->>>>>>> 1327d7cfb9d6c3a050b94d02e44d1dbcfbe5654c
 		assertEquals(startTime, shift.getStartTime());
 		assertEquals(endTime, shift.getEndTime());
 		
