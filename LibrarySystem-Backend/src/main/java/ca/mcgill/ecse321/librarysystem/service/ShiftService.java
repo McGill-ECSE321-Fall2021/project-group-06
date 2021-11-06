@@ -16,7 +16,7 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 
 public class ShiftService {
-	@Autowired
+	/*@Autowired
 	ShiftRepository shiftRepository;
 	@Autowired
 	AccountRepository accountRepository;
@@ -27,7 +27,7 @@ public class ShiftService {
 	 * 
 	 * @param libId Librarian id
 	 * @param id shift id
-	 */
+	 
     @Transactional
     public Shift assignSchedules(int libId, int id){
 		Librarian lib = (Librarian) accountRepository.findAccountById(libId);
@@ -63,7 +63,7 @@ public class ShiftService {
 	 * @author Isabella Hao
 	 * View Schedules
 	 * 
-	 */
+	 
     @Transactional
     public Shift viewSchedule(int shiftID){
     	Shift shift = shiftRepository.findShiftByShiftID(shiftID); 
@@ -120,7 +120,7 @@ public class ShiftService {
     	shift.setShiftID(id);
     	shift.setLibrarian(librarians);
     	return shift;
-    }
+    }*/
     
    
 }
