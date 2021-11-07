@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +13,7 @@ import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Service
 public class ShiftService {
@@ -50,9 +50,9 @@ public class ShiftService {
 	 
     @Transactional
     public void EditAssignedSchedules(int shiftId, Set<Librarian> libs,
-    		HeadLibrarian hd, Date date, Time start, Time end){
+    		HeadLibrarian hd, DayOfWeek DayOfWeek, Time start, Time end){
     	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
-    	shift.setDate(date);
+    	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
     	shift.setHeadLibrarian(hd);
     	shift.setLibrarian(libs);
@@ -79,9 +79,9 @@ public class ShiftService {
     
     @Transactional
     public Shift createShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
-    		Date date, Time start, Time end) {
+    		DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift = new Shift();
-    	shift.setDate(date);
+    	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
     	shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
@@ -112,9 +112,9 @@ public class ShiftService {
     
     @Transactional
     public Shift updateShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
-    		Date date, Time start, Time end) {
+    		DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift =shiftRepository.findShiftByShiftID(id);
-    	shift.setDate(date);
+    	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
     	shift.setHeadLibrarian(head);
     	shift.setStartTime(start);

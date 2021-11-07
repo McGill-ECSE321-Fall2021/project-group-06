@@ -1,14 +1,10 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
-import java.sql.Date;
 import java.sql.Time;
-import java.util.*;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Entity
 public class OpeningHour
@@ -20,7 +16,7 @@ public class OpeningHour
 
   //OpeningHours Attributes
   private int id;
-  private Date date;
+  private DayOfWeek DayOfWeek;
   private Time startTime;
   private Time endTime;
   //private Set<Date> holiday;
@@ -29,9 +25,9 @@ public class OpeningHour
   //OpeningHours Associations
   private HeadLibrarian headLibrarian;
 
-  public void setDate(Date aDate)
+  public void setDayOfWeek(DayOfWeek DayOfWeek)
   {
-    date = aDate;
+    this.DayOfWeek = DayOfWeek;
   }
 
   public void setStartTime(Time aStartTime)
@@ -54,9 +50,9 @@ public class OpeningHour
 	  return id;
   }
 
-  public Date getDate()
+  public DayOfWeek getDayOfWeek()
   {
-    return date;
+    return this.DayOfWeek;
   }
 
   public Time getStartTime()

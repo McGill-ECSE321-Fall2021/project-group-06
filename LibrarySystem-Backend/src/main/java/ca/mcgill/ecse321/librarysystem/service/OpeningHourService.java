@@ -2,7 +2,6 @@ package ca.mcgill.ecse321.librarysystem.service;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,9 @@ import ca.mcgill.ecse321.librarysystem.dao.EventRepository;
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
-import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Service
 public class OpeningHourService {
@@ -40,12 +39,12 @@ public class OpeningHourService {
      * @param endTime
      */
     @Transactional
-    public OpeningHour createOpeningHour(int id, Date date, Time startTime, Time endTime){
+    public OpeningHour createOpeningHour(int id, DayOfWeek DayOfWeek, Time startTime, Time endTime){
         if (id == 0){
             throw new IllegalArgumentException("Opening Hour Id cannot be 0");
         }
-        if (date == null){
-            throw new IllegalArgumentException("Opening Hour date cannot be empty");
+        if (DayOfWeek == null){
+            throw new IllegalArgumentException("Opening Hour day cannot be empty");
         }
         if (startTime == null){
             throw new IllegalArgumentException("Opening Hour stating time cannot be empty");
@@ -55,7 +54,7 @@ public class OpeningHourService {
         }
         OpeningHour openingHour = new OpeningHour();
         openingHour.setId(id);
-        openingHour.setDate(date);
+        openingHour.setDayOfWeek(DayOfWeek);
         openingHour.setStartTime(startTime);
         openingHour.setEndTime(endTime);
         openingHourRepository.save(openingHour);
