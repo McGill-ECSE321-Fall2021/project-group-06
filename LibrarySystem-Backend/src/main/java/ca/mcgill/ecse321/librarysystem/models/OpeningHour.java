@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
-
 @Entity
 public class OpeningHour
 {

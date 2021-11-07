@@ -15,14 +15,15 @@ public class Shift {
     //The Shift class is simply a class which holds librarians, a date, and two times.
     //It simply states which librarians should work when.
     //It is assigned by the HeadLibrarian.
-
+    private enum DayOfWeek {Monday, Tuesday, Wednesday, Thursday, Friday};
     //Since there are multiple shifts per day, multiple librarians per shift, and the same
     //HeadLibrarian can assign multiple shifts, we decided to differentiate the shifts
     //with an ID integer.
+
     private int shiftID;
     private HeadLibrarian headLibrarian;
     private Set<Librarian> librarian;
-    private Date date;
+    private DayOfWeek DayOfWeek;
     private Time startTime;
     private Time endTime;
     
@@ -57,12 +58,12 @@ public class Shift {
     }
     
 
-    public void setDate(Date date){
-        this.date = date;
+    public void setDayOfWeek(DayOfWeek DayOfWeek){
+        this.DayOfWeek = DayOfWeek;
     }
 
-    public Date getDate(){
-        return this.date;
+    public DayOfWeek getDayOfWeek(){
+        return this.DayOfWeek;
     }
 
 
