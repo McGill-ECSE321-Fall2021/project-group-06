@@ -20,6 +20,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -279,13 +280,13 @@ public class TestLibrarySystemPersistence {
 
 		Shift shift = new Shift();
 		int id = 10086;
-		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		DayOfWeek dayOfWeek = DayOfWeek.Monday;
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 		
 		shift.setShiftID(id);
 		shift.setHeadLibrarian(headLibrarian);
-		shift.setDate(date);
+		shift.setDayOfWeek(dayOfWeek);
 		shift.setStartTime(startTime);
 		shift.setEndTime(endTime);
 		shiftRepository.save(shift);
@@ -293,7 +294,7 @@ public class TestLibrarySystemPersistence {
 		shift = null;
 		
 		shift = shiftRepository.findShiftByShiftID(id);
-		assertEquals(date,shift.getDate());
+		assertEquals(dayOfWeek,shift.getDayOfWeek());
 		assertEquals(id1, shift.getHeadLibrarian().getId());
 		assertEquals(startTime, shift.getStartTime());
 		assertEquals(endTime, shift.getEndTime());
@@ -321,13 +322,13 @@ public class TestLibrarySystemPersistence {
 		accountRepository.save(lib);
 
 		int id = 7;
-		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		DayOfWeek dayOfWeek = DayOfWeek.Monday;
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 		OpeningHour oh = new OpeningHour();
 		oh.setHeadLibrarian((HeadLibrarian)lib);
 		oh.setId(id);
-		oh.setDate(date);
+		oh.setDayOfWeek(dayOfWeek);
 		oh.setStartTime(startTime);
 		oh.setEndTime(endTime);
 		openingHourRepository.save(oh);
@@ -336,7 +337,7 @@ public class TestLibrarySystemPersistence {
 		assertNotNull(oh);
 		assertEquals(lib.getId(),oh.getHeadLibrarian().getId());
 		assertEquals(id, oh.getId());
-		assertEquals(date, oh.getDate());
+		assertEquals(dayOfWeek, oh.getDayOfWeek());
 		assertEquals(startTime, oh.getStartTime());
 		assertEquals(endTime, oh.getEndTime());
 	}

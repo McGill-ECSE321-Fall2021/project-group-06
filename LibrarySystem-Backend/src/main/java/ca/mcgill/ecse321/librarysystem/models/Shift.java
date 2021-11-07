@@ -15,7 +15,7 @@ public class Shift {
     //The Shift class is simply a class which holds librarians, a date, and two times.
     //It simply states which librarians should work when.
     //It is assigned by the HeadLibrarian.
-    private enum DayOfWeek {Monday, Tuesday, Wednesday, Thursday, Friday};
+    public enum DayOfWeek {Monday, Tuesday, Wednesday, Thursday, Friday};
     //Since there are multiple shifts per day, multiple librarians per shift, and the same
     //HeadLibrarian can assign multiple shifts, we decided to differentiate the shifts
     //with an ID integer.
