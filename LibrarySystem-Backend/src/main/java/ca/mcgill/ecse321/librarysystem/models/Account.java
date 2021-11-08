@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
-
 import java.util.*;
 
 import javax.persistence.CascadeType;
@@ -9,11 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import java.sql.Date;
-import java.sql.Time;
 
 
 @Entity
