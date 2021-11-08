@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Id;
 
 @Entity
@@ -25,7 +26,7 @@ public class Librarian
 		return this.id;
 	}
 	//Each shift will have multiple librarians, just as each librarian will have multiple shifts
-	@ManyToMany(cascade={CascadeType.ALL})
+	@OneToMany(cascade={CascadeType.ALL})
 	public Set<Shift> getShift()
 	{
 		return this.shift;

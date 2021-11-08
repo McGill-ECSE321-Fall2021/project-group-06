@@ -29,15 +29,15 @@ public class ShiftService {
 	//  * @param libId Librarian id
 	//  * @param id shift id */
 	 
-    @Transactional
-    public Shift assignSchedules(int libId, int id){
-		Librarian lib = librarianRepository.findLibrarianById(libId);
-    	Shift shift = shiftRepository.findShiftByShiftID(id);
-		Set<Librarian> libs = shift.getLibrarian();
-		libs.add(lib);
-		shift.setLibrarian(libs);
-		return shift;
-    }
+    // @Transactional
+    // public Shift assignSchedules(int libId, int id){
+	// 	Librarian lib = librarianRepository.findLibrarianById(libId);
+    // 	Shift shift = shiftRepository.findShiftByShiftID(id);
+	// 	Librarian libs = shift.getLibrarian();
+	// 	libs.add(lib);
+	// 	shift.setLibrarian(libs);
+	// 	return shift;
+    // }
     
    
     
@@ -49,13 +49,13 @@ public class ShiftService {
 	//  * commented out
 	 
     @Transactional
-    public void EditAssignedSchedules(int shiftId, Set<Librarian> libs,
+    public void EditAssignedSchedules(int shiftId, Librarian lib,
     		HeadLibrarian hd, DayOfWeek DayOfWeek, Time start, Time end){
     	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
     	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
     	shift.setHeadLibrarian(hd);
-    	shift.setLibrarian(libs);
+    	shift.setLibrarian(lib);
     	shift.setStartTime(start);
     }
     
@@ -78,7 +78,7 @@ public class ShiftService {
     }
     
     @Transactional
-    public Shift createShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
+    public Shift createShift(int id, HeadLibrarian head, Librarian librarians, 
     		DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift = new Shift();
     	shift.setDayOfWeek(DayOfWeek);
@@ -111,7 +111,7 @@ public class ShiftService {
     }
     
     @Transactional
-    public Shift updateShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
+    public Shift updateShift(int id, HeadLibrarian head, Librarian librarians, 
     		DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift =shiftRepository.findShiftByShiftID(id);
     	shift.setDayOfWeek(DayOfWeek);
