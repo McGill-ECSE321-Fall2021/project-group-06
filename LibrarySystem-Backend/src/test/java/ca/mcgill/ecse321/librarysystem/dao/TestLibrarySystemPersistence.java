@@ -25,6 +25,7 @@ import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class TestLibrarySystemPersistence {
+	
 	@Autowired
 	private AccountRepository accountRepository;
 	@Autowired
@@ -35,16 +36,18 @@ public class TestLibrarySystemPersistence {
 	private OpeningHourRepository openingHourRepository;
 	@Autowired
 	private ShiftRepository shiftRepository;
-	
+	@Autowired
+	private LibrarianRepository librarianRepository;
+
 	@AfterEach
 	public void clearDatabase() {
-
+		
 		eventRepository.deleteAll();
 		shiftRepository.deleteAll();
 		openingHourRepository.deleteAll();
 		mediaRepository.deleteAll();
+		librarianRepository.deleteAll();
 		accountRepository.deleteAll();
-		
 	}
 	@Test
 	public void testPersistAndLoadCheckOutItem(){
@@ -146,7 +149,6 @@ public class TestLibrarySystemPersistence {
 		online.setPassword(password);
 		online.setEmail(email);
 		online.setId(id);
-		
 		accountRepository.save((Account)online);
 		online=null;
 		online=(Online) accountRepository.findAccountById(id);
@@ -201,83 +203,35 @@ public class TestLibrarySystemPersistence {
 	
 	@Test
 	public void testPersistAndLoadLibrarian() {
-		Account lib = new Librarian();
-		String address = "earth";
-		AccountCategory off = Account.AccountCategory.Offline;
-		int id = 666;
-		boolean local = true;
-		String name = "batman";
-		int numChecked = 6;
-
-		lib.setAccountCategory(off);
-		lib.setAddress(address);
+		Librarian lib = new Librarian();
+		int id = 1;
 		lib.setId(id);
-		lib.setIsLocal(local);
-		lib.setName(name);
-		lib.setNumChecked(numChecked);
-
-
-		accountRepository.save(lib);
+		librarianRepository.save(lib);
 		lib = null;
-		lib = accountRepository.findAccountById(id);
-
+		lib = librarianRepository.findLibrarianById(id);
 		assertNotNull(lib);
-		assertEquals(off, lib.getAccountCategory());
-		assertEquals(address, lib.getAddress());
 		assertEquals(id, lib.getId());
-		assertEquals(local, lib.getIsLocal());
-		assertEquals(name, lib.getName());
-		assertEquals(numChecked, lib.getNumChecked());
 	}
 	
 	@Test
 	public void testPersistAndLoadHeadLibrarian() {
-		Account lib = new HeadLibrarian();
-		String address = "earth";
-		AccountCategory off = Account.AccountCategory.Offline;
+		HeadLibrarian lib = new HeadLibrarian();
 		int id = 666;
-		boolean local = true;
-		String name = "batman";
-		int numChecked = 6;
-
-		lib.setAccountCategory(off);
-		lib.setAddress(address);
 		lib.setId(id);
-		lib.setIsLocal(local);
-		lib.setName(name);
-		lib.setNumChecked(numChecked);
-
-
-		accountRepository.save(lib);
+		librarianRepository.save(lib);
 		lib = null;
-		lib = accountRepository.findAccountById(id);
+		lib = (HeadLibrarian)librarianRepository.findLibrarianById(id);
 
 		assertNotNull(lib);
-		assertEquals(off, lib.getAccountCategory());
-		assertEquals(address, lib.getAddress());
 		assertEquals(id, lib.getId());
-		assertEquals(local, lib.getIsLocal());
-		assertEquals(name, lib.getName());
-		assertEquals(numChecked, lib.getNumChecked());
 	}
 	
 	@Test
 	public void testPersistAndLoadShift() {
 		HeadLibrarian headLibrarian = new HeadLibrarian();
 		int id1 = 2;
-		String address = "mars";
-		AccountCategory offline = Account.AccountCategory.Offline;
-		boolean local = true;
-		String name = "Marius";
-				
-		headLibrarian.setAddress(address);
-		headLibrarian.setName(name);
-		headLibrarian.setAccountCategory(offline);
-		headLibrarian.setIsLocal(local);
 		headLibrarian.setId(id1);
-		
-		accountRepository.save(headLibrarian);
-
+		librarianRepository.save(headLibrarian);
 		Shift shift = new Shift();
 		int id = 10086;
 		DayOfWeek dayOfWeek = DayOfWeek.Monday;
@@ -303,23 +257,11 @@ public class TestLibrarySystemPersistence {
 
 	@Test
 	public void testPersistAndLoadOpeningHour(){
-		Account lib = new HeadLibrarian();
-		String address = "earth";
-		AccountCategory off = Account.AccountCategory.Offline;
+		HeadLibrarian lib = new HeadLibrarian();
 		int id1 = 666;
-		boolean local = true;
-		String name = "batman";
-		int numChecked = 6;
 
-		lib.setAccountCategory(off);
-		lib.setAddress(address);
 		lib.setId(id1);
-		lib.setIsLocal(local);
-		lib.setName(name);
-		lib.setNumChecked(numChecked);
-
-
-		accountRepository.save(lib);
+		librarianRepository.save(lib);
 
 		int id = 7;
 		DayOfWeek dayOfWeek = DayOfWeek.Monday;

@@ -11,17 +11,11 @@ import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
-import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
-import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Online;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class AccountService {

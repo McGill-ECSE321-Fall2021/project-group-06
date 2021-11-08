@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class LibrarianService {
 	 @Autowired
-	 AccountRepository accountRepository;
+	 LibrarianRepository librarianRepository;
 	 @Autowired
 	 ShiftRepository shiftRepository;
 	
@@ -28,8 +28,7 @@ public class LibrarianService {
 	 
 	@Transactional
     public List<Shift> viewPersonalShift(int id) {
-		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
-		String name = librarian.getName();
+		Librarian librarian = (Librarian) librarianRepository.findLibrarianById(id);
 		List<Shift> shifts = shiftRepository.findByLibrarian(librarian);
 		return shifts;
 	}
@@ -57,63 +56,44 @@ public class LibrarianService {
 	}
 	
 	@Transactional
-	public Librarian createLibrarian(int id, String name, String address,
-			AccountCategory accountCategory, boolean local, int itemsChecked) {
+	public Librarian createLibrarian(int id) {
 		Librarian librarian = new Librarian();
-		librarian.setAccountCategory(accountCategory);
-		librarian.setAddress(address);
 		librarian.setId(id);
-		librarian.setName(name);
-		librarian.setIsLocal(local);
-		librarian.setNumChecked(itemsChecked);
 		
 		return librarian;
 	}
 	
 	@Transactional 
-	public Librarian updateLibrarian(int id, String name, String address, int itemsChecked) {
-		Librarian librarian = (Librarian) accountRepository.findAccountById(id);
-    	librarian.setAddress(address);
-    	librarian.setName(name);
-    	librarian.setNumChecked(itemsChecked);
+	public Librarian updateLibrarian(int id, int newID) {
+		Librarian librarian = (Librarian) librarianRepository.findLibrarianById(id);
+		librarian.setId(newID);
     	return librarian;
   
     }
 	
 	@Transactional
 	public void deleteAllLibrarian() {
-		List<Account> allAccounts=(List<Account>) accountRepository.findAll();
-		List<Librarian> allLibrarians = new ArrayList<>();
-		for (Account a : allAccounts) {
-			if (a instanceof Librarian)
-				allLibrarians.add((Librarian) a);
-		}
+		List<Librarian> allLibrarians=(List<Librarian>) librarianRepository.findAll();
 		for(Librarian l : allLibrarians) 
-			accountRepository.delete(l);
+			librarianRepository.delete(l);
 	}
 	
 	@Transactional
 	public List<Librarian> getLibrarians(){
-		List<Account> allAccounts=(List<Account>) accountRepository.findAll();
-		List<Librarian> allLibrarians=new ArrayList<>();
-		for (Account a : allAccounts) {
-			if (a instanceof Librarian){
-				allLibrarians.add((Librarian) a);
-			}
-		}
+		List<Librarian> allLibrarians=(List<Librarian>) librarianRepository.findAll();
 		return allLibrarians;
 	}
 	
 	@Transactional
     public Librarian deleteLibrarian(int aId) {
-    	Librarian librarian = (Librarian) accountRepository.findAccountById(aId);
-    	accountRepository.delete(librarian);
+    	Librarian librarian = (Librarian) librarianRepository.findLibrarianById(aId);
+    	librarianRepository.delete(librarian);
     	return librarian;
 	}
 	
 	@Transactional 
 	public Librarian getLibrarian(int id) {
-		Librarian lib = (Librarian) accountRepository.findAccountById(id);
+		Librarian lib = (Librarian) librarianRepository.findLibrarianById(id);
 		return lib;
 	}
 }
