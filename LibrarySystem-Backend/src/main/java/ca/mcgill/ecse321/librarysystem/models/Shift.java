@@ -1,5 +1,4 @@
 package ca.mcgill.ecse321.librarysystem.models;
-import java.sql.Date;
 import java.sql.Time;
 import java.util.Set;
 

@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
 public class CheckOutItem extends Media
@@ -16,16 +15,12 @@ public class CheckOutItem extends Media
 
   public void setIsCheckedOut(boolean aIsCheckedOut)
   {
-    boolean wasSet = false;
-    isCheckedOut = aIsCheckedOut;
-    wasSet = true;
+    this.isCheckedOut = aIsCheckedOut;
   }
 
   public void setIsReserved(boolean aIsReserved)
   {
-    boolean wasSet = false;
-    isReserved = aIsReserved;
-    wasSet = true;
+    this.isReserved = aIsReserved;
   }
 
   //Some of the setters will have this format.

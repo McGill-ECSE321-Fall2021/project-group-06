@@ -10,21 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
 import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
 import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
-import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.service.HeadLibrarianService;
 import ca.mcgill.ecse321.librarysystem.service.OpeningHourService;
-import ca.mcgill.ecse321.librarysystem.service.ShiftService;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -45,9 +40,8 @@ public class HeadLibrarianController {
 	 * @return head librarian Dto
 	 */
 	@PostMapping(value= {"/createHeadlibrarian/{id}/{addr}/{name}", "/createHeadlibrarian/{id}/{addr}/{name}/"})
-	public HeadLibrarianDto createHeadLibrarian(@PathVariable("id") int id, @PathVariable("addr") String addr,
-			@PathVariable("name") String name) {
-		HeadLibrarian head=headService.createHeadLibrarian(id, addr, name, AccountCategory.Offline, true, 0);
+	public HeadLibrarianDto createHeadLibrarian(@PathVariable("id") int id) {
+		HeadLibrarian head=headService.createHeadLibrarian(id);
 		return convertToDto(head);
 	}
 	/**
@@ -70,9 +64,8 @@ public class HeadLibrarianController {
 	 * @return updated head librarian Dto
 	 */
 	@PutMapping(value= {"/updateHeadlibrarian/{id}/{addr}/{name}/{items}", "/updateHeadlibrarian/{id}/{addr}/{name}/{items}/"})
-	public HeadLibrarianDto updateHeadLibrarianInfo(@PathVariable("id") int aId, @PathVariable("addr") String aAddress, 
-			@PathVariable("name") String aName, @PathVariable("items") int itemsChecked) {
-		HeadLibrarian head=headService.updateHeadLibrarianInfo(aId, aAddress, aName, itemsChecked);
+	public HeadLibrarianDto updateHeadLibrarianInfo(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
+		HeadLibrarian head=headService.updateHeadLibrarianInfo(aId, newID);
 		return convertToDto(head);
 	}
 	
@@ -94,9 +87,8 @@ public class HeadLibrarianController {
 	 * @return librarian Dto
 	 */
 	@PostMapping(value= {"/hireLibrarian/{id}/{addr}/{name}", "/hireLibrarian/{id}/{addr}/{name}/"})
-	public LibrarianDto hireLibrarian(@PathVariable("id") int id, @PathVariable("addr") String addr, 
-			@PathVariable("name") String name) {
-		return convertToDto(headService.hireLibrarian(id, addr, name, AccountCategory.Offline, true, 0));
+	public LibrarianDto hireLibrarian(@PathVariable("id") int id) {
+		return convertToDto(headService.hireLibrarian(id));
 	}
 	
 	/**
