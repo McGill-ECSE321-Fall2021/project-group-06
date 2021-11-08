@@ -208,7 +208,7 @@ public class TestLibrarySystemPersistence {
 		lib.setId(id);
 		librarianRepository.save(lib);
 		lib = null;
-		lib = librarianRepository.findLibrarianById(id);
+		lib = librarianRepository.findLibrarianByID(id);
 		librarianRepository.deleteAll();
 		assertNotNull(lib);
 		assertEquals(id, lib.getId());
@@ -221,7 +221,7 @@ public class TestLibrarySystemPersistence {
 		lib.setId(id);
 		librarianRepository.save(lib);
 		lib = null;
-		lib = (HeadLibrarian)librarianRepository.findLibrarianById(id);
+		lib = (HeadLibrarian)librarianRepository.findLibrarianByID(id);
 
 		assertNotNull(lib);
 		assertEquals(id, lib.getId());

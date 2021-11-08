@@ -28,7 +28,7 @@ public class LibrarianService {
 	 
 	@Transactional
     public List<Shift> viewPersonalShift(int id) {
-		Librarian librarian = (Librarian) librarianRepository.findLibrarianById(id);
+		Librarian librarian = (Librarian) librarianRepository.findLibrarianByID(id);
 		List<Shift> shifts = shiftRepository.findByLibrarian(librarian);
 		return shifts;
 	}
@@ -65,7 +65,7 @@ public class LibrarianService {
 	
 	@Transactional 
 	public Librarian updateLibrarian(int id, int newID) {
-		Librarian librarian = (Librarian) librarianRepository.findLibrarianById(id);
+		Librarian librarian = (Librarian) librarianRepository.findLibrarianByID(id);
 		librarian.setId(newID);
     	return librarian;
   
@@ -86,14 +86,14 @@ public class LibrarianService {
 	
 	@Transactional
     public Librarian deleteLibrarian(int aId) {
-    	Librarian librarian = (Librarian) librarianRepository.findLibrarianById(aId);
+    	Librarian librarian = (Librarian) librarianRepository.findLibrarianByID(aId);
     	librarianRepository.delete(librarian);
     	return librarian;
 	}
 	
 	@Transactional 
 	public Librarian getLibrarian(int id) {
-		Librarian lib = (Librarian) librarianRepository.findLibrarianById(id);
+		Librarian lib = (Librarian) librarianRepository.findLibrarianByID(id);
 		return lib;
 	}
 }

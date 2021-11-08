@@ -7,6 +7,6 @@ import ca.mcgill.ecse321.librarysystem.models.Librarian;
 public interface LibrarianRepository extends CrudRepository<Librarian, Integer> {
 
 	//This is simply the Primary Key for Account
-	Librarian findLibrarianById(int ID);
+	Librarian findLibrarianByID(int ID);
 
 }

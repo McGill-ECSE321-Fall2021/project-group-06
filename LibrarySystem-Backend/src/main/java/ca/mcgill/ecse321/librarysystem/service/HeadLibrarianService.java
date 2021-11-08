@@ -10,11 +10,8 @@ import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
-import ca.mcgill.ecse321.librarysystem.models.Account;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +71,7 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian getHeadLibrarian(int aId) {
-    	return (HeadLibrarian) librarianRepository.findLibrarianById(aId);
+    	return (HeadLibrarian) librarianRepository.findLibrarianByID(aId);
     }
     
     /**
@@ -86,7 +83,7 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
-    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
+    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianByID(aId);
 		head.setId(newID);
 		return head;
     }
@@ -97,7 +94,7 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian deleteHeadLibrarian(int aId) {
-    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
+    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianByID(aId);
     	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) head));
     	librarianRepository.delete(head);
 		return head;
@@ -133,7 +130,7 @@ public class HeadLibrarianService {
     	if (aId==0) {
     		throw new IllegalArgumentException("There is not an account with id 0.");
     	}
-		Librarian firedLibr=librarianRepository.findLibrarianById(aId);
+		Librarian firedLibr=librarianRepository.findLibrarianByID(aId);
     	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) firedLibr));
     	librarianRepository.delete(firedLibr);
 		return (Librarian) firedLibr;
