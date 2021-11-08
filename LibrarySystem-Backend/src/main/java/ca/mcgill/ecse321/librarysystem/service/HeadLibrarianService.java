@@ -71,7 +71,7 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian getHeadLibrarian(int aId) {
-    	return (HeadLibrarian) librarianRepository.findLibrarianByID(aId);
+    	return (HeadLibrarian) librarianRepository.findLibrarianById(aId);
     }
     
     /**
@@ -83,7 +83,7 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
-    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianByID(aId);
+    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
 		head.setId(newID);
 		return head;
     }
@@ -94,7 +94,7 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian deleteHeadLibrarian(int aId) {
-    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianByID(aId);
+    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
     	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) head));
     	librarianRepository.delete(head);
 		return head;
@@ -130,7 +130,7 @@ public class HeadLibrarianService {
     	if (aId==0) {
     		throw new IllegalArgumentException("There is not an account with id 0.");
     	}
-		Librarian firedLibr=librarianRepository.findLibrarianByID(aId);
+		Librarian firedLibr=librarianRepository.findLibrarianById(aId);
     	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) firedLibr));
     	librarianRepository.delete(firedLibr);
 		return (Librarian) firedLibr;

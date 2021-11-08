@@ -31,7 +31,7 @@ public class ShiftService {
 	 
     @Transactional
     public Shift assignSchedules(int libId, int id){
-		Librarian lib = librarianRepository.findLibrarianByID(libId);
+		Librarian lib = librarianRepository.findLibrarianById(libId);
     	Shift shift = shiftRepository.findShiftByShiftID(id);
 		Set<Librarian> libs = shift.getLibrarian();
 		libs.add(lib);
