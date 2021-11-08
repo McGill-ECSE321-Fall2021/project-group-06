@@ -209,7 +209,6 @@ public class TestLibrarySystemPersistence {
 		librarianRepository.save(lib);
 		lib = null;
 		lib = librarianRepository.findLibrarianById(id);
-		librarianRepository.deleteAll();
 		assertNotNull(lib);
 		assertEquals(id, lib.getId());
 	}
