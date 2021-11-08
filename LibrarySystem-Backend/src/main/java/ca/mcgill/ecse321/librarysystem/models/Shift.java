@@ -1,12 +1,8 @@
 package ca.mcgill.ecse321.librarysystem.models;
 import java.sql.Time;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -20,7 +16,7 @@ public class Shift {
     //with an ID integer.
 
     private int shiftID;
-    private HeadLibrarian headLibrarian;
+    private Librarian headLibrarian;
     private Librarian librarian;
     private DayOfWeek DayOfWeek;
     private Time startTime;
@@ -39,10 +35,10 @@ public class Shift {
 
     
     @ManyToOne(optional=false)
-    public HeadLibrarian getHeadLibrarian(){
+    public Librarian getHeadLibrarian(){
       return this.headLibrarian;
     }
-    public void setHeadLibrarian(HeadLibrarian headLibrarian){
+    public void setHeadLibrarian(Librarian headLibrarian){
       this.headLibrarian = headLibrarian;
     }
     
