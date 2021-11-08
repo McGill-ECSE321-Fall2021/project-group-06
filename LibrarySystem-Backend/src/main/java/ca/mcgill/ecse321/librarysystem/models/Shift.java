@@ -21,7 +21,7 @@ public class Shift {
 
     private int shiftID;
     private HeadLibrarian headLibrarian;
-    private Set<Librarian> librarian;
+    private Librarian librarian;
     private DayOfWeek DayOfWeek;
     private Time startTime;
     private Time endTime;
@@ -48,11 +48,11 @@ public class Shift {
     
 
     
-    @ManyToMany(cascade={CascadeType.ALL})
-    public Set<Librarian> getLibrarian(){
+    @ManyToOne(optional=false)
+    public Librarian getLibrarian(){
       return this.librarian;
     }
-    public void setLibrarian(Set<Librarian> librarian){
+    public void setLibrarian(Librarian librarian){
       this.librarian = librarian;
     }
     

@@ -228,6 +228,11 @@ public class TestLibrarySystemPersistence {
 	
 	@Test
 	public void testPersistAndLoadShift() {
+		Librarian lib = new Librarian();
+		int idlib = 1;
+		lib.setId(idlib);
+		librarianRepository.save(lib);
+
 		HeadLibrarian headLibrarian = new HeadLibrarian();
 		int id1 = 2;
 		headLibrarian.setId(id1);
@@ -240,6 +245,7 @@ public class TestLibrarySystemPersistence {
 		
 		shift.setShiftID(id);
 		shift.setHeadLibrarian(headLibrarian);
+		shift.setLibrarian(lib);
 		shift.setDayOfWeek(dayOfWeek);
 		shift.setStartTime(startTime);
 		shift.setEndTime(endTime);
