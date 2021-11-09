@@ -16,7 +16,7 @@ public class Event
   private Time eventEnd;
   private String name;
 
-  private Account account;
+  //private Account account;
   //we will use name as ID since it was done in the tutorial.
   public void setName(String name){
     this.name = name;
@@ -51,11 +51,11 @@ public class Event
   }
 
   //Each event MUST be booked by an account, so optional is false
-  @ManyToOne(optional=false)
-  public Account getAccount(){
-    return this.account;
-  }
-  public void setAccount(Account account){
-    this.account = account;
-  }
+  // @ManyToOne(optional=false)
+  // public Account getAccount(){
+  //   return this.account;
+  // }
+  // public void setAccount(Account account){
+  //   this.account = account;
+  // }
 }

@@ -49,13 +49,12 @@ public class ShiftService {
 	//  * commented out
 	 
     @Transactional
-    public void EditAssignedSchedules(int shiftId, Librarian lib,
-    		HeadLibrarian hd, DayOfWeek DayOfWeek, Time start, Time end){
+    public void EditAssignedSchedules(int shiftId, DayOfWeek DayOfWeek, Time start, Time end){
     	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
     	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
-    	shift.setHeadLibrarian(hd);
-    	shift.setLibrarian(lib);
+    	//shift.setHeadLibrarian(hd);
+    	//shift.setLibrarian(lib);
     	shift.setStartTime(start);
     }
     
@@ -78,15 +77,14 @@ public class ShiftService {
     }
     
     @Transactional
-    public Shift createShift(int id, HeadLibrarian head, Librarian librarians, 
-    		DayOfWeek DayOfWeek, Time start, Time end) {
+    public Shift createShift(int id, DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift = new Shift();
     	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
-    	shift.setHeadLibrarian(head);
+    	//shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
     	shift.setShiftID(id);
-    	shift.setLibrarian(librarians);
+    	//shift.setLibrarian(librarians);
     	return shift;
     	
     }
@@ -111,15 +109,14 @@ public class ShiftService {
     }
     
     @Transactional
-    public Shift updateShift(int id, HeadLibrarian head, Librarian librarians, 
-    		DayOfWeek DayOfWeek, Time start, Time end) {
+    public Shift updateShift(int id, DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift =shiftRepository.findShiftByShiftID(id);
     	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
-    	shift.setHeadLibrarian(head);
+    	//shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
     	shift.setShiftID(id);
-    	shift.setLibrarian(librarians);
+    	//shift.setLibrarian(librarians);
     	return shift;
     }
     

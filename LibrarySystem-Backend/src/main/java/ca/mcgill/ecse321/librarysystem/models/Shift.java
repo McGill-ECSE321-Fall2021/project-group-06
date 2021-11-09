@@ -16,8 +16,8 @@ public class Shift {
     //with an ID integer.
 
     private int shiftID;
-    private Librarian headLibrarian;
-    private Librarian librarian;
+    //private Librarian headLibrarian;
+    //private Librarian librarian;
     private DayOfWeek DayOfWeek;
     private Time startTime;
     private Time endTime;
@@ -34,23 +34,23 @@ public class Shift {
     
 
     
-    @ManyToOne(optional=false)
-    public Librarian getHeadLibrarian(){
-      return this.headLibrarian;
-    }
-    public void setHeadLibrarian(Librarian headLibrarian){
-      this.headLibrarian = headLibrarian;
-    }
+    // @ManyToOne(optional=false)
+    // public Librarian getHeadLibrarian(){
+    //   return this.headLibrarian;
+    // }
+    // public void setHeadLibrarian(Librarian headLibrarian){
+    //   this.headLibrarian = headLibrarian;
+    // }
     
 
     
-    @ManyToOne(optional=false)
-    public Librarian getLibrarian(){
-      return this.librarian;
-    }
-    public void setLibrarian(Librarian librarian){
-      this.librarian = librarian;
-    }
+    // @ManyToOne(optional=false)
+    // public Librarian getLibrarian(){
+    //   return this.librarian;
+    // }
+    // public void setLibrarian(Librarian librarian){
+    //   this.librarian = librarian;
+    // }
     
 
     public void setDayOfWeek(DayOfWeek DayOfWeek){

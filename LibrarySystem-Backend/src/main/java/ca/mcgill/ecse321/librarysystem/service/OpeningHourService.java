@@ -69,12 +69,12 @@ public class OpeningHourService {
         return openingHourRepository.findOpeningHourById(id);
     }
 
-    @Transactional
-    public List<OpeningHour> getOpeningHourList(HeadLibrarian headLibrarianName){
-        if (headLibrarianName == null){
-            throw new IllegalArgumentException("Head Librarian cannot be null");
-        }
-        return openingHourRepository.findByHeadLibrarian(headLibrarianName);
-    }
+    // @Transactional
+    // public List<OpeningHour> getOpeningHourList(HeadLibrarian headLibrarianName){
+    //     if (headLibrarianName == null){
+    //         throw new IllegalArgumentException("Head Librarian cannot be null");
+    //     }
+    //     return openingHourRepository.findByHeadLibrarian(headLibrarianName);
+    // }
 
 }

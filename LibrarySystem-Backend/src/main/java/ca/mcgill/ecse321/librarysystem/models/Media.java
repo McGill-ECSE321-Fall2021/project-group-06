@@ -20,7 +20,7 @@ public enum Item { Book, Movie, Music, Newspaper, Archive }
   //NEEDS DATE OF CHECKOUT, HOWARD!
 
   //Media Associations
-  private Account account;
+  //private Account account;
 
   public void setID(int aMediaID)
   {
@@ -44,14 +44,14 @@ public enum Item { Book, Movie, Music, Newspaper, Archive }
   }
 
   //Each media does not require to be borrowed to be created
-  @ManyToOne(optional=true)
-  public Account getAccount()
-  {
-    return this.account;
-  }
+  // @ManyToOne(optional=true)
+  // public Account getAccount()
+  // {
+  //   return this.account;
+  // }
 
-  public void setAccount(Account account){
-    this.account=account;
-  }
+  // public void setAccount(Account account){
+  //   this.account=account;
+  // }
 
 }
