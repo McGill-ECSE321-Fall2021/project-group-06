@@ -2,8 +2,11 @@ package ca.mcgill.ecse321.librarysystem.dto;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.HashSet;
 
-public class OnlineDto {
+import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+
+public class OnlineDto extends AccountDto{
 
     private String username;
     private String password;
@@ -13,6 +16,13 @@ public class OnlineDto {
 	}
 
 	public OnlineDto(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+	}
+
+    public OnlineDto(int id, String address, String name, AccountCategory accountCategory, boolean isLocal, int numChecked, HashSet<EventDto> events, HashSet<MediaDto> medias, String username, String password, String email) {
+        super(id, address, name, accountCategory, isLocal, numChecked, events, medias);
         this.username = username;
         this.password = password;
         this.email = email;
