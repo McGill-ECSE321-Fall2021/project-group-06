@@ -33,6 +33,5 @@ import ca.mcgill.ecse321.librarysystem.service.ShiftService;
 public class AccountController {
     @Autowired
 	private AccountService headService;
-	@Autowired
-	private OpeningHourService hourService;
+	
 }

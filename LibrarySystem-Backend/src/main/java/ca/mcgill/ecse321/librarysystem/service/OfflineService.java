@@ -12,12 +12,9 @@ import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
-import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
-import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Media;
 import ca.mcgill.ecse321.librarysystem.models.NonCheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Offline;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 import java.util.ArrayList;
 import java.util.List;
