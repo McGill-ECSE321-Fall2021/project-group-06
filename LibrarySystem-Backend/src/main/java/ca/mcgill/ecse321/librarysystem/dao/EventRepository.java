@@ -12,10 +12,6 @@ public interface EventRepository extends CrudRepository<Event, String> {
 	//Primary key for event
 	Event findEventByName(String Name);
 
-	//Each Account has multiple events
-	List<Event> findByAccount(Account accountId);
 
-	//We can check if it exists within account.
-	boolean existsByAccount(Account accountId);
 
 }

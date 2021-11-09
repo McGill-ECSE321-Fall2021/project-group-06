@@ -26,7 +26,7 @@ public enum Item { Book, Movie, Music, Newspaper, Archive }
   {
     this.mediaID = aMediaID;
   }
-@Enumerated
+  @Enumerated
   public Item getType()
   {
     return this.mediaType;

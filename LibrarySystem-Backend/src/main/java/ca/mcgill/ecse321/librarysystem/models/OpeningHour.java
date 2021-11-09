@@ -3,7 +3,6 @@ package ca.mcgill.ecse321.librarysystem.models;
 import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Entity
