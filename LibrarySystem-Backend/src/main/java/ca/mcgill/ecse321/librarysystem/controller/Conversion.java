@@ -13,7 +13,7 @@ public class Conversion {
   
     public static CheckOutItemDto convertToDTO(CheckOutItem checkOutItem) {
 		if(checkOutItem==null) throw new IllegalArgumentException("Checkout item not found.");
-		CheckOutItemDto checkOutItemDto = new CheckOutItemDto(checkOutItem.getID(),checkOutItem.getIsCheckedOut(),checkOutItem.getIsReserved(), checkOutItem.getBorrowingPeriod());
+		CheckOutItemDto checkOutItemDto = new CheckOutItemDto(checkOutItem.getID(),checkOutItem.getIsCheckedOut(),checkOutItem.getIsReserved(), checkOutItem.getBorrowingPeriod(), checkOutItem.getStartDate());
         return checkOutItemDto;
 	  }
   
