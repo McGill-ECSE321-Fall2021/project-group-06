@@ -1,14 +1,9 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
-import java.sql.Date;
 import java.sql.Time;
-import java.util.*;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Entity
 public class OpeningHour
@@ -20,18 +15,18 @@ public class OpeningHour
 
   //OpeningHours Attributes
   private int id;
-  private Date date;
+  private DayOfWeek DayOfWeek;
   private Time startTime;
   private Time endTime;
   //private Set<Date> holiday;
   //The Holiday class is one that should have been written down, but since it is not specified, it will be written later on.
 
   //OpeningHours Associations
-  private HeadLibrarian headLibrarian;
+  //private HeadLibrarian headLibrarian;
 
-  public void setDate(Date aDate)
+  public void setDayOfWeek(DayOfWeek DayOfWeek)
   {
-    date = aDate;
+    this.DayOfWeek = DayOfWeek;
   }
 
   public void setStartTime(Time aStartTime)
@@ -54,9 +49,9 @@ public class OpeningHour
 	  return id;
   }
 
-  public Date getDate()
+  public DayOfWeek getDayOfWeek()
   {
-    return date;
+    return this.DayOfWeek;
   }
 
   public Time getStartTime()
@@ -81,13 +76,13 @@ public class OpeningHour
 //This part was not working since Holiday was not a separate java class. It will be implemented later.
 
   //optional=false here because opening hours should not be created without a headlibrarian.
-  @ManyToOne(optional=false)
-  public HeadLibrarian getHeadLibrarian()
-  {
-    return (HeadLibrarian) headLibrarian;
-  }
+  // @ManyToOne(optional=false)
+  // public HeadLibrarian getHeadLibrarian()
+  // {
+  //   return (HeadLibrarian) headLibrarian;
+  // }
   
-  public void setHeadLibrarian(HeadLibrarian headLibrarian) {
-	  this.headLibrarian = (HeadLibrarian) headLibrarian;
-  }
+  // public void setHeadLibrarian(HeadLibrarian headLibrarian) {
+	//   this.headLibrarian = (HeadLibrarian) headLibrarian;
+  // }
 }

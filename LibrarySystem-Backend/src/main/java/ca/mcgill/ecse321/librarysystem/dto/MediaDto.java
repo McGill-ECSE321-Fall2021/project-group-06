@@ -9,7 +9,7 @@ public abstract class MediaDto {
     private int mediaID;
   
     //Media Associations
-    private AccountDto account;
+    //private AccountDto account;
     
 	public MediaDto() {
 	}
@@ -17,12 +17,13 @@ public abstract class MediaDto {
     public MediaDto(int mediaID){
         this.mediaID = mediaID;
         this.mediaType = Item.Book;
+        //this.account = null;
     }
 
-	public MediaDto(Item mediaType, int mediaID, AccountDto account) {
+	public MediaDto(Item mediaType, int mediaID) {
         this.mediaType = mediaType;
         this.mediaID = mediaID;
-        this.account = account;
+        //this.account = account;
 	}
 
     public Item getMediaType() {
@@ -33,8 +34,6 @@ public abstract class MediaDto {
         return mediaID;
     }
 
-    public AccountDto getAccount() {
-        return account;
-    }
+    
 
 }

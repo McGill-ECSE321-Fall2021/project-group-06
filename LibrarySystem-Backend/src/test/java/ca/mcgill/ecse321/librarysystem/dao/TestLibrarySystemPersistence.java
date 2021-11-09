@@ -20,10 +20,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class TestLibrarySystemPersistence {
+	
 	@Autowired
 	private AccountRepository accountRepository;
 	@Autowired
@@ -34,16 +36,18 @@ public class TestLibrarySystemPersistence {
 	private OpeningHourRepository openingHourRepository;
 	@Autowired
 	private ShiftRepository shiftRepository;
-	
+	@Autowired
+	private LibrarianRepository librarianRepository;
+
 	@AfterEach
 	public void clearDatabase() {
-
+		
 		eventRepository.deleteAll();
 		shiftRepository.deleteAll();
 		openingHourRepository.deleteAll();
 		mediaRepository.deleteAll();
+		librarianRepository.deleteAll();
 		accountRepository.deleteAll();
-		
 	}
 	@Test
 	public void testPersistAndLoadCheckOutItem(){
@@ -102,7 +106,7 @@ public class TestLibrarySystemPersistence {
 		media.setType(Media.Item.Book);
 		int mediaId = 7;
 		media.setID(mediaId);
-		media.setAccount(acc);
+		//media.setAccount(acc);
 
 		Set<Media> medias = new HashSet<Media>();
        	medias.add(media);
@@ -145,7 +149,6 @@ public class TestLibrarySystemPersistence {
 		online.setPassword(password);
 		online.setEmail(email);
 		online.setId(id);
-		
 		accountRepository.save((Account)online);
 		online=null;
 		online=(Online) accountRepository.findAccountById(id);
@@ -181,7 +184,7 @@ public class TestLibrarySystemPersistence {
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 
-		something.setAccount(acc);
+		//something.setAccount(acc);
 		something.setEventStart(startTime);
 		something.setEventEnd(endTime);
 		something.setDate(date);
@@ -193,99 +196,57 @@ public class TestLibrarySystemPersistence {
 
 		assertEquals(startTime, something.getEventStart());
 		assertEquals(endTime, something.getEventEnd());
-		assertEquals(id, something.getAccount().getId());
+		//assertEquals(id, something.getAccount().getId());
 		assertEquals(DN, something.getName());
 		assertEquals(date, something.getDate());
 	}
 	
 	@Test
 	public void testPersistAndLoadLibrarian() {
-		Account lib = new Librarian();
-		String address = "earth";
-		AccountCategory off = Account.AccountCategory.Offline;
-		int id = 666;
-		boolean local = true;
-		String name = "batman";
-		int numChecked = 6;
-
-		lib.setAccountCategory(off);
-		lib.setAddress(address);
+		Librarian lib = new Librarian();
+		int id = 1;
 		lib.setId(id);
-		lib.setIsLocal(local);
-		lib.setName(name);
-		lib.setNumChecked(numChecked);
-
-
-		accountRepository.save(lib);
+		librarianRepository.save(lib);
 		lib = null;
-		lib = accountRepository.findAccountById(id);
-
+		lib = librarianRepository.findLibrarianById(id);
 		assertNotNull(lib);
-		assertEquals(off, lib.getAccountCategory());
-		assertEquals(address, lib.getAddress());
 		assertEquals(id, lib.getId());
-		assertEquals(local, lib.getIsLocal());
-		assertEquals(name, lib.getName());
-		assertEquals(numChecked, lib.getNumChecked());
 	}
 	
 	@Test
 	public void testPersistAndLoadHeadLibrarian() {
-		Account lib = new HeadLibrarian();
-		String address = "earth";
-		AccountCategory off = Account.AccountCategory.Offline;
+		HeadLibrarian lib = new HeadLibrarian();
 		int id = 666;
-		boolean local = true;
-		String name = "batman";
-		int numChecked = 6;
-
-		lib.setAccountCategory(off);
-		lib.setAddress(address);
 		lib.setId(id);
-		lib.setIsLocal(local);
-		lib.setName(name);
-		lib.setNumChecked(numChecked);
-
-
-		accountRepository.save(lib);
+		librarianRepository.save(lib);
 		lib = null;
-		lib = accountRepository.findAccountById(id);
+		lib = (HeadLibrarian)librarianRepository.findLibrarianById(id);
 
 		assertNotNull(lib);
-		assertEquals(off, lib.getAccountCategory());
-		assertEquals(address, lib.getAddress());
 		assertEquals(id, lib.getId());
-		assertEquals(local, lib.getIsLocal());
-		assertEquals(name, lib.getName());
-		assertEquals(numChecked, lib.getNumChecked());
 	}
 	
 	@Test
 	public void testPersistAndLoadShift() {
+		Librarian lib = new Librarian();
+		int idlib = 1;
+		lib.setId(idlib);
+		librarianRepository.save(lib);
+
 		HeadLibrarian headLibrarian = new HeadLibrarian();
 		int id1 = 2;
-		String address = "mars";
-		AccountCategory offline = Account.AccountCategory.Offline;
-		boolean local = true;
-		String name = "Marius";
-				
-		headLibrarian.setAddress(address);
-		headLibrarian.setName(name);
-		headLibrarian.setAccountCategory(offline);
-		headLibrarian.setIsLocal(local);
 		headLibrarian.setId(id1);
-		
-		accountRepository.save(headLibrarian);
-
+		librarianRepository.save(headLibrarian);
 		Shift shift = new Shift();
 		int id = 10086;
-		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		DayOfWeek dayOfWeek = DayOfWeek.Monday;
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 		
 		shift.setShiftID(id);
-		shift.setHeadLibrarian(headLibrarian);
-		shift.setDate(date);
+		//shift.setHeadLibrarian(headLibrarian);
+		//shift.setLibrarian(lib);
+		shift.setDayOfWeek(dayOfWeek);
 		shift.setStartTime(startTime);
 		shift.setEndTime(endTime);
 		shiftRepository.save(shift);
@@ -293,8 +254,8 @@ public class TestLibrarySystemPersistence {
 		shift = null;
 		
 		shift = shiftRepository.findShiftByShiftID(id);
-		assertEquals(date,shift.getDate());
-		assertEquals(id1, shift.getHeadLibrarian().getId());
+		assertEquals(dayOfWeek,shift.getDayOfWeek());
+		//assertEquals(id1, shift.getHeadLibrarian().getId());
 		assertEquals(startTime, shift.getStartTime());
 		assertEquals(endTime, shift.getEndTime());
 		assertEquals(id, shift.getShiftID());
@@ -302,41 +263,29 @@ public class TestLibrarySystemPersistence {
 
 	@Test
 	public void testPersistAndLoadOpeningHour(){
-		Account lib = new HeadLibrarian();
-		String address = "earth";
-		AccountCategory off = Account.AccountCategory.Offline;
+		HeadLibrarian lib = new HeadLibrarian();
 		int id1 = 666;
-		boolean local = true;
-		String name = "batman";
-		int numChecked = 6;
 
-		lib.setAccountCategory(off);
-		lib.setAddress(address);
 		lib.setId(id1);
-		lib.setIsLocal(local);
-		lib.setName(name);
-		lib.setNumChecked(numChecked);
-
-
-		accountRepository.save(lib);
+		librarianRepository.save(lib);
 
 		int id = 7;
-		Date date = java.sql.Date.valueOf(LocalDate.of(2022, Month.JANUARY, 3));
+		DayOfWeek dayOfWeek = DayOfWeek.Monday;
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 		OpeningHour oh = new OpeningHour();
-		oh.setHeadLibrarian((HeadLibrarian)lib);
+		//oh.setHeadLibrarian((HeadLibrarian)lib);
 		oh.setId(id);
-		oh.setDate(date);
+		oh.setDayOfWeek(dayOfWeek);
 		oh.setStartTime(startTime);
 		oh.setEndTime(endTime);
 		openingHourRepository.save(oh);
 		oh = null;
 		oh = openingHourRepository.findOpeningHourById(id);
 		assertNotNull(oh);
-		assertEquals(lib.getId(),oh.getHeadLibrarian().getId());
+		//assertEquals(lib.getId(),oh.getHeadLibrarian().getId());
 		assertEquals(id, oh.getId());
-		assertEquals(date, oh.getDate());
+		assertEquals(dayOfWeek, oh.getDayOfWeek());
 		assertEquals(startTime, oh.getStartTime());
 		assertEquals(endTime, oh.getEndTime());
 	}

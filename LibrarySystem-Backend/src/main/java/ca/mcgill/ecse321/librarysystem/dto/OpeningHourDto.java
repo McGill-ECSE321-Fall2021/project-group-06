@@ -1,31 +1,29 @@
 package ca.mcgill.ecse321.librarysystem.dto;
-
-import java.sql.Date;
 import java.sql.Time;
-
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 public class OpeningHourDto {
 
     private int id;
-    private Date date;
+    private DayOfWeek dayOfWeek;
     private Time startTime;
     private Time endTime;
     //private Set<Date> holiday;
     //The Holiday class is one that should have been written down, but since it is not specified, it will be written later on.
   
     //OpeningHours Associations
-    private HeadLibrarianDto headLibrarian;
+    //private HeadLibrarianDto headLibrarian;
     
 	public OpeningHourDto() {
 	}
 
     //this class needs to have a headLibrarian, so we will have to include it
     public OpeningHourDto(int id) {
-        this(id, Date.valueOf("1971-01-01"), Time.valueOf("00:00:00"), Time.valueOf("23:59:59"), new HeadLibrarianDto());
+        this(id, DayOfWeek.Monday, Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
     }
 
-	public OpeningHourDto(int id, Date date, Time startTime, Time endTime, HeadLibrarianDto headLibrarian) {
+	public OpeningHourDto(int id, DayOfWeek dayOfWeek, Time startTime, Time endTime) {
         this.id = id;
-        this.date = date;
+        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
     }
@@ -34,8 +32,8 @@ public class OpeningHourDto {
         return id;
     }
 
-    public Date getDate() {
-        return date;
+    public DayOfWeek getDayOfWeek() {
+        return this.dayOfWeek;
     }
 
     public Time getStartTime() {
@@ -46,8 +44,4 @@ public class OpeningHourDto {
     public Time getEndTime() {
         return endTime;
     }
-
-    public HeadLibrarianDto getHeadLibrarian() {
-        return headLibrarian;
-    } 
 }

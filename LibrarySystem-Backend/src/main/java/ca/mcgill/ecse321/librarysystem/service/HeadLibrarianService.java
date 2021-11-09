@@ -9,6 +9,7 @@ import ca.mcgill.ecse321.librarysystem.dao.EventRepository;
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
+import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
@@ -23,6 +24,8 @@ public class HeadLibrarianService {
 	
 	@Autowired
     AccountRepository accountRepository;
+	@Autowired
+    LibrarianRepository librarianRepository;
     @Autowired
     EventRepository eventRepository;
     @Autowired
@@ -44,30 +47,24 @@ public class HeadLibrarianService {
      */
     
     @Transactional
-    public HeadLibrarian createHeadLibrarian(int aId, String aAddress, String aName, 
-    		AccountCategory accountCategory, boolean local, int itemsChecked) {
+    public HeadLibrarian createHeadLibrarian(int aId) {
     	if (aId==0) {
             throw new IllegalArgumentException("Head Librarian id cannot be 0.");
         }
-    	if (aAddress==null) {
-    		throw new IllegalArgumentException("Head Librarian must have an address.");
-    	}
-    	if (aName==null) {
-    		throw new IllegalArgumentException("Head Librarian must have a name.");
-    	}
-    	if (accountCategory==AccountCategory.Online) {
-    		throw new IllegalArgumentException("Head Librarian account must be of type offline.");
-    	}
-    	if (local==false) {
-    		throw new IllegalArgumentException("Head Librarian must be a local");
-    	}
+    	// if (aAddress==null) {
+    	// 	throw new IllegalArgumentException("Head Librarian must have an address.");
+    	// }
+    	// if (aName==null) {
+    	// 	throw new IllegalArgumentException("Head Librarian must have a name.");
+    	// }
+    	// if (accountCategory==AccountCategory.Online) {
+    	// 	throw new IllegalArgumentException("Head Librarian account must be of type offline.");
+    	// }
+    	// if (local==false) {
+    	// 	throw new IllegalArgumentException("Head Librarian must be a local");
+    	// }
     	HeadLibrarian head=new HeadLibrarian();
     	head.setId(aId);
-    	head.setAddress(aAddress);
-    	head.setName(aName);
-    	head.setAccountCategory(accountCategory);
-    	head.setIsLocal(local);
-    	head.setNumChecked(itemsChecked);
 		return head;
     }
     /**
@@ -77,7 +74,7 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian getHeadLibrarian(int aId) {
-    	return (HeadLibrarian) accountRepository.findAccountById(aId);
+    	return (HeadLibrarian) librarianRepository.findLibrarianById(aId);
     }
     
     /**
@@ -88,10 +85,9 @@ public class HeadLibrarianService {
      * @param itemsChecked
      */
     @Transactional
-    public HeadLibrarian updateHeadLibrarianInfo(int aId, String aAddress, String aName, int itemsChecked) {
-    	HeadLibrarian head=(HeadLibrarian) accountRepository.findAccountById(aId);
-    	head.setAddress(aAddress);
-    	head.setName(aName);
+    public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
+    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
+		head.setId(newID);
 		return head;
     }
     
@@ -101,11 +97,9 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian deleteHeadLibrarian(int aId) {
-    	HeadLibrarian head=(HeadLibrarian) accountRepository.findAccountById(aId);
-    	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) head));
-    	head.setMedias(null);
-    	head.setEvents(null);
-    	accountRepository.delete(head);
+    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
+    	//shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) head));
+    	librarianRepository.delete(head);
 		return head;
     }
     
@@ -120,31 +114,13 @@ public class HeadLibrarianService {
      * @return
      */
     @Transactional
-    public Librarian hireLibrarian(int aId, String aAddress, String aName, 
-    		AccountCategory accountCategory, boolean local, int itemsChecked) {
+    public Librarian hireLibrarian(int aId) {
     	//i.e. createLibrarian
     	if (aId==0) {
     		throw new IllegalArgumentException("Librarian id cannot be 0.");
     	}
-    	if (aAddress==null) {
-    		throw new IllegalArgumentException("Librarian must have an address.");
-    	}
-    	if (aName==null) {
-    		throw new IllegalArgumentException("Librarian must have a name.");
-    	}
-    	if (accountCategory==AccountCategory.Online) {
-    		throw new IllegalArgumentException("Librarian account must be of type offline.");
-    	}
-    	if (local==false) {
-    		throw new IllegalArgumentException("Librarian must be a local");
-    	}
     	Librarian librarian=new Librarian();
     	librarian.setId(aId);
-    	librarian.setAddress(aAddress);
-    	librarian.setName(aName);
-    	librarian.setAccountCategory(accountCategory);
-    	librarian.setIsLocal(local);
-    	librarian.setNumChecked(itemsChecked);
 		return librarian;
     }
     
@@ -157,11 +133,9 @@ public class HeadLibrarianService {
     	if (aId==0) {
     		throw new IllegalArgumentException("There is not an account with id 0.");
     	}
-		Account firedLibr=accountRepository.findAccountById(aId);
-    	shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) firedLibr));
-    	firedLibr.setMedias(null);
-    	firedLibr.setEvents(null);
-    	accountRepository.delete(firedLibr);
+		Librarian firedLibr=librarianRepository.findLibrarianById(aId);
+    	//shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) firedLibr));
+    	librarianRepository.delete(firedLibr);
 		return (Librarian) firedLibr;
     }
 	
@@ -171,13 +145,13 @@ public class HeadLibrarianService {
 	 */
 	@Transactional
 	public List<HeadLibrarian> getHeadLibrarians(){
-		List<Account> allAccounts=(List<Account>) accountRepository.findAll();
-		List<HeadLibrarian> allLibrarians=new ArrayList<>();
-		for (Account a : allAccounts) {
+		List<Librarian> allLibrarians=(List<Librarian>) librarianRepository.findAll();
+		List<HeadLibrarian> allHeadLibrarians=new ArrayList<>();
+		for (Librarian a : allHeadLibrarians) {
 			if (a instanceof HeadLibrarian){
 				allLibrarians.add((HeadLibrarian) a);
 			}
 		}
-		return allLibrarians;
+		return allHeadLibrarians;
 	}
 }

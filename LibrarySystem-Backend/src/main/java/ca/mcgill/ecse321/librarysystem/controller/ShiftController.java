@@ -1,5 +1,4 @@
 package ca.mcgill.ecse321.librarysystem.controller;
-import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +17,7 @@ import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 import ca.mcgill.ecse321.librarysystem.service.ShiftService;
 
 @CrossOrigin(origins="*")
@@ -56,8 +56,8 @@ public class ShiftController {
 	 
 	@PostMapping(value= {"/createShift/{id}/{addr}/{name}", "/createShift/{id}/{addr}/{name}/"})
 	public ShiftDto createShift(@PathVariable("id") int id, @PathVariable("headLibrarian") HeadLibrarian head,
-			@PathVariable("librarians") Set<Librarian> libs, @PathVariable("date") Date date, @PathVariable("startTime") Time start, @PathVariable("endTime") Time end) {
-		Shift shift=shiftService.createShift(id, head, libs, date, start, end);
+			@PathVariable("librarians") Librarian libs, @PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("startTime") Time start, @PathVariable("endTime") Time end) {
+		Shift shift=shiftService.createShift(id, DayOfWeek, start, end);
 		return convertToDto(shift);
 	}
 	/**
@@ -81,10 +81,10 @@ public class ShiftController {
 	 * @return updated shift  Dto */
 	 
 	@PutMapping(value= {"/updateShift/{id}/{head}/{librarians}/{date}/{start}/{end}/", "/updateHeadlibrarian/{id}/{head}/{librarians}/{date}/{start}/{end}/"})
-	public ShiftDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("head") HeadLibrarian head, @PathVariable("librarians") Set<Librarian> librarians,
-			@PathVariable("date") Date date, @PathVariable("start") Time start,
+	public ShiftDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("head") HeadLibrarian head, @PathVariable("librarians") Librarian librarians,
+			@PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("start") Time start,
 			 @PathVariable("end") Time end) {
-		Shift shift=shiftService.updateShift(aId, head, librarians, date, start, end);
+		Shift shift=shiftService.updateShift(aId, DayOfWeek, start, end);
 		return convertToDto(shift);
 	}
 	
@@ -104,11 +104,11 @@ public class ShiftController {
 	 * @param libId
 	 * @return offline Dto */
 	 
-	@PostMapping(value= {"/assignSchedules/{id}/{libId}/", "/assignSchedules/{id}/{libId}"})
-	public ShiftDto assignSchedule(@PathVariable("id") int id,
-			@PathVariable("libId") int libId) {
-		return convertToDto(shiftService.assignSchedules(id, libId));
-	}
+	// @PostMapping(value= {"/assignSchedules/{id}/{libId}/", "/assignSchedules/{id}/{libId}"})
+	// public ShiftDto assignSchedule(@PathVariable("id") int id,
+	// 		@PathVariable("libId") int libId) {
+	// 	return convertToDto(shiftService.assignSchedules(id, libId));
+	// }
 	
 	/**
 	 * View schedule

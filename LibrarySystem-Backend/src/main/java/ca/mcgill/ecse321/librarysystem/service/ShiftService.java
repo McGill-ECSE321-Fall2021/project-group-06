@@ -1,6 +1,5 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import java.util.Set;
@@ -9,18 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ca.mcgill.ecse321.librarysystem.dao.AccountRepository;
+import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Service
 public class ShiftService {
 	@Autowired
 	ShiftRepository shiftRepository;
-	@Autowired
-	AccountRepository accountRepository;
+	// @Autowired
+	// LibrarianRepository librarianRepository;
 	
 	// /**
 	//  * @author Isabella Hao
@@ -29,15 +29,15 @@ public class ShiftService {
 	//  * @param libId Librarian id
 	//  * @param id shift id */
 	 
-    @Transactional
-    public Shift assignSchedules(int libId, int id){
-		Librarian lib = (Librarian) accountRepository.findAccountById(libId);
-    	Shift shift = shiftRepository.findShiftByShiftID(id);
-		Set<Librarian> libs = shift.getLibrarian();
-		libs.add(lib);
-		shift.setLibrarian(libs);
-		return shift;
-    }
+    // @Transactional
+    // public Shift assignSchedules(int libId, int id){
+	// 	Librarian lib = librarianRepository.findLibrarianById(libId);
+    // 	Shift shift = shiftRepository.findShiftByShiftID(id);
+	// 	Librarian libs = shift.getLibrarian();
+	// 	libs.add(lib);
+	// 	shift.setLibrarian(libs);
+	// 	return shift;
+    // }
     
    
     
@@ -49,13 +49,12 @@ public class ShiftService {
 	//  * commented out
 	 
     @Transactional
-    public void EditAssignedSchedules(int shiftId, Set<Librarian> libs,
-    		HeadLibrarian hd, Date date, Time start, Time end){
+    public void EditAssignedSchedules(int shiftId, DayOfWeek DayOfWeek, Time start, Time end){
     	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
-    	shift.setDate(date);
+    	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
-    	shift.setHeadLibrarian(hd);
-    	shift.setLibrarian(libs);
+    	//shift.setHeadLibrarian(hd);
+    	//shift.setLibrarian(lib);
     	shift.setStartTime(start);
     }
     
@@ -78,15 +77,14 @@ public class ShiftService {
     }
     
     @Transactional
-    public Shift createShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
-    		Date date, Time start, Time end) {
+    public Shift createShift(int id, DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift = new Shift();
-    	shift.setDate(date);
+    	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
-    	shift.setHeadLibrarian(head);
+    	//shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
     	shift.setShiftID(id);
-    	shift.setLibrarian(librarians);
+    	//shift.setLibrarian(librarians);
     	return shift;
     	
     }
@@ -111,15 +109,14 @@ public class ShiftService {
     }
     
     @Transactional
-    public Shift updateShift(int id, HeadLibrarian head, Set<Librarian> librarians, 
-    		Date date, Time start, Time end) {
+    public Shift updateShift(int id, DayOfWeek DayOfWeek, Time start, Time end) {
     	Shift shift =shiftRepository.findShiftByShiftID(id);
-    	shift.setDate(date);
+    	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
-    	shift.setHeadLibrarian(head);
+    	//shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
     	shift.setShiftID(id);
-    	shift.setLibrarian(librarians);
+    	//shift.setLibrarian(librarians);
     	return shift;
     }
     

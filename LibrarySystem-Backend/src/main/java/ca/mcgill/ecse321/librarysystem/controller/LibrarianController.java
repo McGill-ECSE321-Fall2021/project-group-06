@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.librarysystem.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -52,7 +53,7 @@ public class LibrarianController {
 		return account;
 	}
 	
-	private List<ShiftDto> convertToDto(List<Shift> s){
+	private List<ShiftDto> convertToDto(Set<Shift> s){
 		if(s==null)
 			throw new IllegalArgumentException("Shifts not found");
 		List<ShiftDto> shifts = new ArrayList<>();
@@ -71,9 +72,8 @@ public class LibrarianController {
 	 * @return librarian Dto */
 	 
 	@PostMapping(value= {"/createLibrarian/{id}/{addr}/{name}", "/createLibrarian/{id}/{addr}/{name}/"})
-	public LibrarianDto createLibrarian(@PathVariable("id") int id, @PathVariable("addr") String addr,
-			@PathVariable("name") String name) {
-		Librarian librarian=librarianService.createLibrarian(id, name, addr, AccountCategory.Offline, true, 0);
+	public LibrarianDto createLibrarian(@PathVariable("id") int id) {
+		Librarian librarian=librarianService.createLibrarian(id);
 		return convertToDto(librarian);
 	}
 	
@@ -97,9 +97,8 @@ public class LibrarianController {
 	 * @return updated librarian Dto */
 	 
 	@PutMapping(value= {"/updateLibrarian/{id}/{addr}/{name}/{items}", "/updateLibrarian/{id}/{addr}/{name}/{items}/"})
-	public LibrarianDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("addr") String aAddress, 
-			@PathVariable("name") String aName, @PathVariable("items") int itemsChecked) {
-		Librarian lib=librarianService.updateLibrarian(aId, aName,  aAddress, itemsChecked);
+	public LibrarianDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
+		Librarian lib=librarianService.updateLibrarian(aId, newID);
 		return convertToDto(lib);
 	}
 	
