@@ -1,11 +1,9 @@
 package ca.mcgill.ecse321.librarysystem.dto;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.*;
 
-public class LibrarianDto extends AccountDto {
-
+public class LibrarianDto {
+    private int id;
     private Set<ShiftDto> shifts;
     
 	public LibrarianDto() {
@@ -19,5 +17,9 @@ public class LibrarianDto extends AccountDto {
     public Set<ShiftDto> getShifts() {
         return shifts;
     }   
+
+    public int getId(){
+        return this.id;
+    }
 
 }

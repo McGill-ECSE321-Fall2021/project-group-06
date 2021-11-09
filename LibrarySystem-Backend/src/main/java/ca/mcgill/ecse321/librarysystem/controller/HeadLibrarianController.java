@@ -120,7 +120,7 @@ public class HeadLibrarianController {
 		if (h==null) {
 			throw new IllegalArgumentException("Head Librarian not found.");
 		}
-		HeadLibrarianDto headDto=new HeadLibrarianDto(createOpHourDtosForHead(h), null);
+		HeadLibrarianDto headDto=new HeadLibrarianDto(createOpHourDtosForHead(h));
 		/*either:
 		   --> keep above null & headDto.setShifts(shifts) after shiftDto constructor has been established
 		 		(shifts is hashSet of ShiftDto)
