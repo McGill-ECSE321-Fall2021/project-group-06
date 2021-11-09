@@ -25,14 +25,4 @@ public class HeadLibrarian extends Librarian
 	  this.openingHour = openingHour;
   }
   
-  // //The head librarian will create multiple shifts for the librarians. But only
-  // //one Head Librarian can create 1 shift, so no co-authors on shift.
-  // @OneToMany(cascade={CascadeType.ALL})
-  // public Set<Shift> getShifts()
-  // {
-  //   return this.shift;
-  // }
-  // public void setShifts(Set<Shift> shift) {
-	//   this.shift = shift;
-  // }
 }
