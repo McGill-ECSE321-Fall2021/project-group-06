@@ -19,8 +19,8 @@ import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Service
 public class OpeningHourService {
-    @Autowired
-    AccountRepository accountRepository;
+    // @Autowired
+    // AccountRepository accountRepository;
     @Autowired
     EventRepository eventRepository;
     @Autowired

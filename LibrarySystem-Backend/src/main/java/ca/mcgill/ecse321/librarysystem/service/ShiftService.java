@@ -19,8 +19,8 @@ import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 public class ShiftService {
 	@Autowired
 	ShiftRepository shiftRepository;
-	@Autowired
-	LibrarianRepository librarianRepository;
+	// @Autowired
+	// LibrarianRepository librarianRepository;
 	
 	// /**
 	//  * @author Isabella Hao

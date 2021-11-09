@@ -15,8 +15,8 @@ import ca.mcgill.ecse321.librarysystem.models.Account;
 @Service
 public class MediaService {
     
-    @Autowired
-    private AccountRepository accountRepository;
+    // @Autowired
+    // private AccountRepository accountRepository;
 
     @Autowired
     private MediaRepository mediaRepository;
@@ -52,25 +52,25 @@ public class MediaService {
      * @return List<Media>
      * @author Samuel
      */
-    @Transactional
-    public List<Media> getAllMediaByAccountID(int accountID) {
+    // @Transactional
+    // public List<Media> getAllMediaByAccountID(int accountID) {
 
-        // Input validation
-        String error = "";
+    //     // Input validation
+    //     String error = "";
 
-        if (accountRepository.findAccountById(accountID) == null){
-            error = error + "Account not found! ";
-        }
-        error = error.trim();
+    //     if (accountRepository.findAccountById(accountID) == null){
+    //         error = error + "Account not found! ";
+    //     }
+    //     error = error.trim();
 
-        if (error.length() > 0){
-            throw new IllegalArgumentException(error);
-        }
+    //     if (error.length() > 0){
+    //         throw new IllegalArgumentException(error);
+    //     }
 
-        Account account = accountRepository.findAccountById(accountID);
-        List<Media> mediaList = mediaRepository.findByAccount(account);
-        return mediaList;
-    }
+    //     Account account = accountRepository.findAccountById(accountID);
+    //     List<Media> mediaList = mediaRepository.findByAccount(account);
+    //     return mediaList;
+    // }
 
     /**
      * 
@@ -112,27 +112,27 @@ public class MediaService {
      * @return List<Media>
      * @author Samuel
      */
-    @Transactional
-    public List<Media> deleteAllMediaByAccountID(int accountID){
+    // @Transactional
+    // public List<Media> deleteAllMediaByAccountID(int accountID){
 
-        // Input validation
-        String error = "";
+    //     // Input validation
+    //     String error = "";
 
-        if (accountRepository.findAccountById(accountID) == null){
-            error = error + "Account ID not found";
-            error = error.trim();
-            throw new IllegalArgumentException(error);
-        }
+    //     if (accountRepository.findAccountById(accountID) == null){
+    //         error = error + "Account ID not found";
+    //         error = error.trim();
+    //         throw new IllegalArgumentException(error);
+    //     }
 
-        Account account = accountRepository.findAccountById(accountID);
-        List<Media> mediaList = mediaRepository.findByAccount(account);
+    //     Account account = accountRepository.findAccountById(accountID);
+    //     List<Media> mediaList = mediaRepository.findByAccount(account);
 
-        for (Media media : mediaList){
-            mediaRepository.delete(media);
-        }
+    //     for (Media media : mediaList){
+    //         mediaRepository.delete(media);
+    //     }
 
-        return mediaList;
-    }
+    //     return mediaList;
+    // }
 
     /**
      * 
