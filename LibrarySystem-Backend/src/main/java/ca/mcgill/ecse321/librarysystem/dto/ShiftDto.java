@@ -1,15 +1,12 @@
 package ca.mcgill.ecse321.librarysystem.dto;
-
-import java.sql.Date;
 import java.sql.Time;
-import java.util.*;
 
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 public class ShiftDto {
 
     private int shiftID;
     private HeadLibrarianDto headLibrarian;
-    private Set<LibrarianDto> librarians;
+    private LibrarianDto librarian;
     private DayOfWeek dayOfWeek;
     private Time startTime;
     private Time endTime;
@@ -21,13 +18,13 @@ public class ShiftDto {
 	public ShiftDto() {
 	}
     public ShiftDto(int shiftID) {
-        this(shiftID, new HeadLibrarianDto(), null, DayOfWeek.Monday, Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
+        this(shiftID, new HeadLibrarianDto(), new LibrarianDto(), DayOfWeek.Monday, Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
     }
 
-	public ShiftDto(int shiftID, HeadLibrarianDto headLibrarian, HashSet<LibrarianDto> librarians, DayOfWeek dayOfWeek, Time startTime, Time endTime) {
+	public ShiftDto(int shiftID, HeadLibrarianDto headLibrarian, LibrarianDto librarian, DayOfWeek dayOfWeek, Time startTime, Time endTime) {
         this.shiftID = shiftID;
         this.headLibrarian = headLibrarian;
-        this.librarians =librarians;
+        this.librarian =librarian;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -41,8 +38,8 @@ public class ShiftDto {
         return headLibrarian;
     }
 
-    public Set<LibrarianDto> getLibrarians() {
-        return librarians;
+    public LibrarianDto getLibrarian() {
+        return librarian;
     }
 
     public DayOfWeek getDayOfWeek() {
