@@ -21,6 +21,7 @@ public abstract class MediaDto {
     public MediaDto(int mediaID){
         this.mediaID = mediaID;
         this.mediaType = Item.Book;
+        this.account = null;
     }
 
 	public MediaDto(Item mediaType, int mediaID, AccountDto account) {
