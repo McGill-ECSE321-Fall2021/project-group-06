@@ -18,7 +18,7 @@ public class CheckOutItemDto extends MediaDto {
         this.isReserved = false;
 
     }
-	public CheckOutItemDto(int mediaID, AccountDto account, boolean isCheckedOut, boolean isReserved, int borrowingPeriod) {
+	public CheckOutItemDto(int mediaID, boolean isCheckedOut, boolean isReserved, int borrowingPeriod) {
         super(Item.Book, mediaID);
         this.isCheckedOut = isCheckedOut;
         this.isReserved = isReserved;
