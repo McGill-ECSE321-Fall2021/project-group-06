@@ -19,8 +19,8 @@ import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Service
 public class OpeningHourService {
-    @Autowired
-    AccountRepository accountRepository;
+    // @Autowired
+    // AccountRepository accountRepository;
     @Autowired
     EventRepository eventRepository;
     @Autowired
@@ -69,12 +69,12 @@ public class OpeningHourService {
         return openingHourRepository.findOpeningHourById(id);
     }
 
-    @Transactional
-    public List<OpeningHour> getOpeningHourList(HeadLibrarian headLibrarianName){
-        if (headLibrarianName == null){
-            throw new IllegalArgumentException("Head Librarian cannot be null");
-        }
-        return openingHourRepository.findByHeadLibrarian(headLibrarianName);
-    }
+    // @Transactional
+    // public List<OpeningHour> getOpeningHourList(HeadLibrarian headLibrarianName){
+    //     if (headLibrarianName == null){
+    //         throw new IllegalArgumentException("Head Librarian cannot be null");
+    //     }
+    //     return openingHourRepository.findByHeadLibrarian(headLibrarianName);
+    // }
 
 }

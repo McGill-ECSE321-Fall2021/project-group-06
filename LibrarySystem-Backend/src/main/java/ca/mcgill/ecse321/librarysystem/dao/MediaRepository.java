@@ -12,7 +12,6 @@ public interface MediaRepository extends CrudRepository<Media, Integer> {
     //Primary Key for Media
 	Media findMediaByID(int ID);
 
-    //We can find a list of media within each accounts.
-    List<Media> findByAccount(Account accountId);
+   
 
 }

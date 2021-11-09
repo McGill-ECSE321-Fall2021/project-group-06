@@ -17,8 +17,8 @@ import ca.mcgill.ecse321.librarysystem.models.Account;
 @Service
 public class EventService {
 
-    @Autowired
-    private AccountRepository accountRepository;
+    // @Autowired
+    // private AccountRepository accountRepository;
     @Autowired
     private EventRepository eventRepository;
 
@@ -90,25 +90,25 @@ public class EventService {
      * @author Samuel
      * @throws Exception
      */
-    @Transactional
-    public List<Event> getEventsByAccountID(int id) {
+    // @Transactional
+    // public List<Event> getEventsByAccountID(int id) {
 
-        // Input validation
-        String error = "";
+    //     // Input validation
+    //     String error = "";
 
-        if (accountRepository.findAccountById(id) == null){
-            error = error + "Account not found! ";
-        }
-        error = error.trim();
+    //     if (accountRepository.findAccountById(id) == null){
+    //         error = error + "Account not found! ";
+    //     }
+    //     error = error.trim();
 
-        if (error.length() > 0){
-            throw new IllegalArgumentException(error);
-        }
+    //     if (error.length() > 0){
+    //         throw new IllegalArgumentException(error);
+    //     }
 
-        Account account = accountRepository.findAccountById(id);
-        List<Event> eventList = eventRepository.findByAccount(account);
-        return eventList;
-    }
+    //     Account account = accountRepository.findAccountById(id);
+    //     List<Event> eventList = eventRepository.findByAccount(account);
+    //     return eventList;
+    // }
 
     /**
      * @return events (as a list)
@@ -222,27 +222,27 @@ public class EventService {
      * @param id
      * @author Samuel
      */
-    @Transactional
-    public List<Event> deleteAllEventsByAccountID(int id){
+    // @Transactional
+    // public List<Event> deleteAllEventsByAccountID(int id){
 
-        // Input validation
-        String error = "";
+    //     // Input validation
+    //     String error = "";
 
-        if (accountRepository.findAccountById(id) == null){
-            error = error + "Account ID not found";
-            error = error.trim();
-            throw new IllegalArgumentException(error);
-        }
+    //     if (accountRepository.findAccountById(id) == null){
+    //         error = error + "Account ID not found";
+    //         error = error.trim();
+    //         throw new IllegalArgumentException(error);
+    //     }
 
-        Account account = accountRepository.findAccountById(id);
-        List<Event> eventList = eventRepository.findByAccount(account);
+    //     Account account = accountRepository.findAccountById(id);
+    //     List<Event> eventList = eventRepository.findByAccount(account);
 
-        for (Event event : eventList){
-            eventRepository.delete(event);
-        }
+    //     for (Event event : eventList){
+    //         eventRepository.delete(event);
+    //     }
 
-        return eventList;
-    }
+    //     return eventList;
+    // }
 
     /**
      * *** Ibidem

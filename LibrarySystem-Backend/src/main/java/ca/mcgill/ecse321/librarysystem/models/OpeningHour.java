@@ -3,7 +3,6 @@ package ca.mcgill.ecse321.librarysystem.models;
 import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
 @Entity
@@ -23,7 +22,7 @@ public class OpeningHour
   //The Holiday class is one that should have been written down, but since it is not specified, it will be written later on.
 
   //OpeningHours Associations
-  private HeadLibrarian headLibrarian;
+  //private HeadLibrarian headLibrarian;
 
   public void setDayOfWeek(DayOfWeek DayOfWeek)
   {
@@ -77,13 +76,13 @@ public class OpeningHour
 //This part was not working since Holiday was not a separate java class. It will be implemented later.
 
   //optional=false here because opening hours should not be created without a headlibrarian.
-  @ManyToOne(optional=false)
-  public HeadLibrarian getHeadLibrarian()
-  {
-    return (HeadLibrarian) headLibrarian;
-  }
+  // @ManyToOne(optional=false)
+  // public HeadLibrarian getHeadLibrarian()
+  // {
+  //   return (HeadLibrarian) headLibrarian;
+  // }
   
-  public void setHeadLibrarian(HeadLibrarian headLibrarian) {
-	  this.headLibrarian = (HeadLibrarian) headLibrarian;
-  }
+  // public void setHeadLibrarian(HeadLibrarian headLibrarian) {
+	//   this.headLibrarian = (HeadLibrarian) headLibrarian;
+  // }
 }

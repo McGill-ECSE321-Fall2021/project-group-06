@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.librarysystem.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -52,7 +53,7 @@ public class LibrarianController {
 		return account;
 	}
 	
-	private List<ShiftDto> convertToDto(List<Shift> s){
+	private List<ShiftDto> convertToDto(Set<Shift> s){
 		if(s==null)
 			throw new IllegalArgumentException("Shifts not found");
 		List<ShiftDto> shifts = new ArrayList<>();

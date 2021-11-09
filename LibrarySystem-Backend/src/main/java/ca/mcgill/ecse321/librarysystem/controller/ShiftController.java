@@ -57,7 +57,7 @@ public class ShiftController {
 	@PostMapping(value= {"/createShift/{id}/{addr}/{name}", "/createShift/{id}/{addr}/{name}/"})
 	public ShiftDto createShift(@PathVariable("id") int id, @PathVariable("headLibrarian") HeadLibrarian head,
 			@PathVariable("librarians") Librarian libs, @PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("startTime") Time start, @PathVariable("endTime") Time end) {
-		Shift shift=shiftService.createShift(id, head, libs, DayOfWeek, start, end);
+		Shift shift=shiftService.createShift(id, DayOfWeek, start, end);
 		return convertToDto(shift);
 	}
 	/**
@@ -84,7 +84,7 @@ public class ShiftController {
 	public ShiftDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("head") HeadLibrarian head, @PathVariable("librarians") Librarian librarians,
 			@PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("start") Time start,
 			 @PathVariable("end") Time end) {
-		Shift shift=shiftService.updateShift(aId, head, librarians, DayOfWeek, start, end);
+		Shift shift=shiftService.updateShift(aId, DayOfWeek, start, end);
 		return convertToDto(shift);
 	}
 	

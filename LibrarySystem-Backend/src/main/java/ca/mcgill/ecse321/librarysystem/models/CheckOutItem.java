@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.models;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 
 @Entity
@@ -12,10 +14,15 @@ public class CheckOutItem extends Media
   private boolean isCheckedOut;
   private boolean isReserved;
   private int borrowingPeriod;
+  private Date startDate;
 
   public void setIsCheckedOut(boolean aIsCheckedOut)
   {
     this.isCheckedOut = aIsCheckedOut;
+  }
+
+  public void setStartDate(Date startDate){
+    this.startDate = startDate;
   }
 
   public void setIsReserved(boolean aIsReserved)
@@ -47,5 +54,9 @@ public class CheckOutItem extends Media
   public int getBorrowingPeriod()
   {
     return borrowingPeriod;
+  }
+
+  public Date getStartDate(){
+    return this.startDate;
   }
 }

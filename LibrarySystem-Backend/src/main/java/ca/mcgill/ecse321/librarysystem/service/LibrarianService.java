@@ -13,6 +13,7 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class LibrarianService {
@@ -27,9 +28,10 @@ public class LibrarianService {
 	 *  */
 	 
 	@Transactional
-    public List<Shift> viewPersonalShift(int id) {
+    public Set<Shift> viewPersonalShift(int id) {
 		Librarian librarian = (Librarian) librarianRepository.findLibrarianById(id);
-		List<Shift> shifts = shiftRepository.findByLibrarian(librarian);
+		Set<Shift> shifts = librarian.getShift();
+
 		return shifts;
 	}
     

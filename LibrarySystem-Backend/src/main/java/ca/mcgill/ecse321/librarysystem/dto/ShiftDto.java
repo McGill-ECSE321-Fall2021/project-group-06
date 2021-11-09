@@ -5,8 +5,6 @@ import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 public class ShiftDto {
 
     private int shiftID;
-    private HeadLibrarianDto headLibrarian;
-    private LibrarianDto librarian;
     private DayOfWeek dayOfWeek;
     private Time startTime;
     private Time endTime;
@@ -18,13 +16,11 @@ public class ShiftDto {
 	public ShiftDto() {
 	}
     public ShiftDto(int shiftID) {
-        this(shiftID, new HeadLibrarianDto(), new LibrarianDto(), DayOfWeek.Monday, Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
+        this(shiftID, DayOfWeek.Monday, Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
     }
 
-	public ShiftDto(int shiftID, HeadLibrarianDto headLibrarian, LibrarianDto librarian, DayOfWeek dayOfWeek, Time startTime, Time endTime) {
+	public ShiftDto(int shiftID, DayOfWeek dayOfWeek, Time startTime, Time endTime) {
         this.shiftID = shiftID;
-        this.headLibrarian = headLibrarian;
-        this.librarian =librarian;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -34,13 +30,13 @@ public class ShiftDto {
         return shiftID;
     }
 
-    public HeadLibrarianDto getHeadLibrarian() {
-        return headLibrarian;
-    }
+    // public HeadLibrarianDto getHeadLibrarian() {
+    //     return headLibrarian;
+    // }
 
-    public LibrarianDto getLibrarian() {
-        return librarian;
-    }
+    // public LibrarianDto getLibrarian() {
+    //     return librarian;
+    // }
 
     public DayOfWeek getDayOfWeek() {
         return this.dayOfWeek;
