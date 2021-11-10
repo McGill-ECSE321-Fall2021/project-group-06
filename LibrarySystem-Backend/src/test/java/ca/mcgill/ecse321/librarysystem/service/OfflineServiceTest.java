@@ -83,7 +83,7 @@ public class OfflineServiceTest {
 	public void testCreateOffline() {
 		assertEquals(0, offlineService.getAllOfflines().size());
         
-        int id = 727;
+        int id = 726;
         String address = "Badeu C-TYPEDTHRFL street";
         String name = "RyuK";
         AccountCategory accountCategory = AccountCategory.Offline;
@@ -106,5 +106,27 @@ public class OfflineServiceTest {
         assertEquals(numChecked, offline.getNumChecked());
         //assertEquals(5, 6);
 	}
+
+    @Test
+    public void testCreateOfflineTakenId(){
+        assertEquals(0, offlineService.getAllOfflines().size());
+
+        int id = OFFLINE_ID;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "RyuK";
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Offline offline = null;
+        String error = "";
+        try {
+            offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(offline);
+        assertEquals(error, "This Id already exists");
+    }
 
 }
