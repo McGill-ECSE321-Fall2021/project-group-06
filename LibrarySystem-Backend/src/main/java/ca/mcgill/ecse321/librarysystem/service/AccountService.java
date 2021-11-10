@@ -57,18 +57,24 @@ public class AccountService {
     }
 
     @Transactional
-    public Event bookEvent(String name, int id, Date date, Time start, Time end){
+    public Account bookEvent(String name, int id){
+        Account account = accountRepository.findAccountById(id);
         if(accountRepository.findAccountById(id) == null) {
             throw new IllegalArgumentException("Invalid Id");
         }
-        Event event = new Event();
-        event.setDate(date);
-        event.setEventEnd(start);
-        event.setEventStart(end);
-        event.setName(name);
-        accountRepository.findAccountById(id).getEvents().add(event);
+        if(eventRepository.findEventByName(name) == null) {
+            throw new IllegalArgumentException("Invalid Name");
+        }
+        Event event = eventRepository.findEventByName(name);
+        if (account instanceof Offline){
+            account = (Offline) accountRepository.findAccountById(id);
+        }
+        account.getEvents().add(event);
+        accountRepository.save(account);
         eventRepository.save(event);
+        return account;
         //event.setAccount(accountRepository.findAccountById(id));
-        throw new IllegalArgumentException("System Error");
+        //throw new IllegalArgumentException("System Error");
     }
+    
 }

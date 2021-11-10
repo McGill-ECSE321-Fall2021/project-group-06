@@ -140,7 +140,7 @@ public class OfflineService {
         }
     	Offline offline=(Offline) accountRepository.findAccountById(aId);
     	accountRepository.delete(offline);
-		return offline;
+		return (Offline) accountRepository.findAccountById(aId);
     }
 
     @Transactional
@@ -156,7 +156,7 @@ public class OfflineService {
 	}
 
     @Transactional
-    public Media checkoutAnItem(int mediaId, int id){
+    public Offline checkoutAnItem(int mediaId, int id){
         Offline offline = (Offline) accountRepository.findAccountById(id);
         if(offline == null){
             throw new IllegalArgumentException("This account does not exist!");
@@ -168,18 +168,27 @@ public class OfflineService {
                 throw new IllegalArgumentException("This media Id is non-existent!");
             } else if (mediaRepository.findMediaByID(mediaId) instanceof NonCheckOutItem){
                 throw new IllegalArgumentException("This media Id corresponds to an item that you cannot check out!");
+            } else if (((CheckOutItem)mediaRepository.findMediaByID(mediaId)).getIsCheckedOut()){
+                throw new IllegalArgumentException("This media is already checked out!");
             } else if (mediaRepository.findMediaByID(mediaId) instanceof CheckOutItem){
+                offline = (Offline) accountRepository.findAccountById(id);
+                ((CheckOutItem)mediaRepository.findMediaByID(mediaId)).setIsCheckedOut(true);
                 offline.getMedias().add(mediaRepository.findMediaByID(mediaId));
                 offline.setNumChecked(offline.getNumChecked()+1);
-                return mediaRepository.findMediaByID(mediaId);
+                //offline.setNumChecked(3);
+                accountRepository.save(offline);
+                mediaRepository.save(mediaRepository.findMediaByID(mediaId));
+                //throw new IllegalArgumentException("System Error");
+                return offline;
             }
         }
         throw new IllegalArgumentException("System Error");
     }
 
     @Transactional
-    public Media returnAnItem(int mediaId, int id){
+    public Offline returnAnItem(int mediaId, int id){
         Offline offline = (Offline) accountRepository.findAccountById(id);
+        Media mediaTest = new CheckOutItem();
         if(offline == null){
             throw new IllegalArgumentException("This account does not exist!");
         }
@@ -190,16 +199,51 @@ public class OfflineService {
                 throw new IllegalArgumentException("This media Id is non-existent!");
             } else if (mediaRepository.findMediaByID(mediaId) instanceof NonCheckOutItem){
                 throw new IllegalArgumentException("This media Id corresponds to an item that you cannot check out!");
-            } else if (mediaRepository.findMediaByID(mediaId) instanceof CheckOutItem){
-                if (offline.getMedias().contains(mediaRepository.findById(mediaId))){
-                    offline.getMedias().remove(mediaRepository.findMediaByID(mediaId));
+            }  else if (mediaRepository.findMediaByID(mediaId) instanceof CheckOutItem){
+                mediaTest=null;
+                for (Media media : offline.getMedias()){
+                    if (media.getID()==mediaId){
+                        mediaTest = media;
+                    }
+                }
+                if (mediaTest!=null){
+                    offline.getMedias().remove(mediaTest);
                     offline.setNumChecked(offline.getNumChecked()-1);
+                    //offline.setNumChecked(id);
+                    accountRepository.save(offline);
+                    mediaRepository.save(mediaRepository.findMediaByID(mediaId));
+                    return offline;
                 } else {
                     throw new IllegalArgumentException("This user does not have the following item checked out!");
                 }
-                return mediaRepository.findMediaByID(mediaId);
             }
         }
         throw new IllegalArgumentException("System Error");
+    }
+
+    @Transactional
+    public Media reserveAnItem(int mediaId){
+        if(mediaRepository.findMediaByID(mediaId) == null){
+            throw new IllegalArgumentException("This media Id is non-existent!");
+        }
+        CheckOutItem mediaTest = (CheckOutItem) mediaRepository.findMediaByID(mediaId);
+        if(mediaTest.getIsReserved()){
+            throw new IllegalArgumentException("This media is already reserved!");
+        }
+        mediaTest.setIsReserved(true);
+        return mediaTest;
+    }
+
+    @Transactional
+    public Media checkAnItem(int mediaId){
+        if(mediaRepository.findMediaByID(mediaId) == null){
+            throw new IllegalArgumentException("This media Id is non-existent!");
+        }
+        CheckOutItem mediaTest = (CheckOutItem) mediaRepository.findMediaByID(mediaId);
+        if(mediaTest.getIsCheckedOut()){
+            throw new IllegalArgumentException("This media is already CheckedOut!");
+        }
+        mediaTest.setIsCheckedOut(true);
+        return mediaTest;
     }
 }
