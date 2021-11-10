@@ -3,10 +3,12 @@ package ca.mcgill.ecse321.librarysystem.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,10 +43,26 @@ public class OfflineController {
     @Autowired
 	private OfflineService offlineService;
 
-    @PostMapping(value = {"/offines/{id}", "/offlines/{id}/"})
+    @GetMapping(value = {"/offlines", "/offlines/"})
+    public List<OfflineDto> getAllOfflines(){
+        return offlineService.getAllOfflines().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
+    }
+
+    @PostMapping(value = {"/offlines/{id}", "/offlines/{id}/"})
     public OfflineDto createOffline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam AccountCategory accountCategory, @RequestParam boolean isLocal, @RequestParam int numChecked){
         Offline offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
         return (Conversion.convertToDto(offline));
+    }
+
+    @PutMapping(value = {"/edit_offline/{id}"})
+    public OfflineDto updateOffline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam int numChecked){
+        Offline offline = offlineService.updateOffline(id, address, name, numChecked);
+        return (Conversion.convertToDto(offline));
+    }
+
+    @DeleteMapping(value = {"/delete_offline/{id}"})
+    public void deleteOffline(@PathVariable("id") int id){
+        offlineService.deleteOffline(id);
     }
 
 }
