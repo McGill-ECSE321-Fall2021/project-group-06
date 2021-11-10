@@ -1,7 +1,6 @@
 package ca.mcgill.ecse321.librarysystem.dto;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 import java.sql.Date;
-import java.sql.Time;
 
 public class CheckOutItemDto extends MediaDto {
 
