@@ -148,6 +148,7 @@ public class OnlineService {
         online.setPassword(password);
         online.setEmail(email);
         usernameIsValid(username);
+        accountRepository.save(online);
 		return online;
     }
 
