@@ -36,9 +36,6 @@ public class CheckOutItemService {
         if(mediaRepository.findMediaByID(mediaID)!=null){
             error = error + "Media Id already exists";
         }
-        if (mediaType == null) {
-            error = error + "Media type not found! (null)";
-        }
         if (borrowingPeriod <0){
             error = error + "borrowingPeriod must be more that 0";
         }
@@ -46,19 +43,11 @@ public class CheckOutItemService {
             error = error + "startDate cannot be null";
         }
         boolean isValidType = false;
-        for (Item item: Item.values()){
-
-            if (mediaType.equals(item)) {
-                isValidType = true;
-                break;
-            }
+        if (mediaType == Item.Book || mediaType == Item.Movie || mediaType == Item.Music) {
+            isValidType = true;
         }
         if (!isValidType){
             error = error + "Media type invalid!";
-        }
-
-        if (mediaRepository.findMediaByID(mediaID) != null) {
-            error = error + "Media ID already exists!";
         }
         error = error.trim();
         if (error.length() > 0) {
@@ -80,22 +69,12 @@ public class CheckOutItemService {
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
-        if(mediaID == 0){
-            error = error + "Media Id cannot be 0";
-        }
         if(mediaRepository.findMediaByID(mediaID)==null){
             error = error + "Media Id does not exist";
         }
-        if (newMediaType == null) {
-            error = error + "Media type not found! (null)";
-        }
         boolean isValidType = false;
-        for (Item item: Item.values()){
-
-            if (newMediaType.equals(item)) {
-                isValidType = true;
-                break;
-            }
+        if (newMediaType == Item.Book || newMediaType == Item.Movie || newMediaType == Item.Music) {
+            isValidType = true;
         }
         if (!isValidType){
             error = error + "Media type invalid!";
