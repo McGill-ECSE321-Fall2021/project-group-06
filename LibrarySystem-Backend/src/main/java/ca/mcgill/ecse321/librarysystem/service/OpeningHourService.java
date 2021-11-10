@@ -75,6 +75,9 @@ public class OpeningHourService {
     @Transactional
     public boolean deleteShift(int id){
         OpeningHour openingHour = openingHourRepository.findOpeningHourById(id);
+        if (openingHour == null){
+            throw new IllegalArgumentException("Opening Hour Id does not exist");
+        }
         openingHourRepository.delete(openingHour);
         return true;
     }
