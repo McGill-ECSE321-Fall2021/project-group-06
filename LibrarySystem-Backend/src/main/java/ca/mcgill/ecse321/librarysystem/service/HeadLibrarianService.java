@@ -21,6 +21,7 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -195,7 +196,7 @@ public class HeadLibrarianService {
 			throw new IllegalArgumentException("startTime cannot be null");
 		}
 		if (endTime == null) {
-			throw new IllegalArgumentException("endTime cannot");
+			throw new IllegalArgumentException("endTime cannot be null");
 		}
 		OpeningHour openingHour= new OpeningHour();
 		openingHour.setDayOfWeek(dayOfWeek);
@@ -226,7 +227,7 @@ public class HeadLibrarianService {
 			throw new IllegalArgumentException("startTime cannot be null");
 		}
 		if (newEndTime == null) {
-			throw new IllegalArgumentException("endTime cannot");
+			throw new IllegalArgumentException("endTime cannot be null");
 		}
 		OpeningHour openingHour= new OpeningHour();
 		openingHour.setDayOfWeek(newDayOfWeek);
@@ -260,7 +261,7 @@ public class HeadLibrarianService {
 			throw new IllegalArgumentException("startTime cannot be null");
 		}
 		if (endTime == null) {
-			throw new IllegalArgumentException("endTime cannot");
+			throw new IllegalArgumentException("endTime cannot be null");
 		}
 		Shift shift = new Shift();
 		shift.setDayOfWeek(dayOfWeek);
@@ -291,7 +292,7 @@ public class HeadLibrarianService {
 			throw new IllegalArgumentException("startTime cannot be null");
 		}
 		if (newEndTime == null) {
-			throw new IllegalArgumentException("endTime cannot");
+			throw new IllegalArgumentException("endTime cannot be null");
 		}
 		Shift shift = new Shift();
 		shift.setDayOfWeek(newDayOfWeek);
@@ -314,7 +315,15 @@ public class HeadLibrarianService {
 		if(shiftRepository.findShiftByShiftID(shiftID)==null){
 			throw new IllegalArgumentException("shift does not exist");
 		}
-		librarianRepository.findLibrarianById(id).getShift().add(shiftRepository.findShiftByShiftID(shiftID));
+		if (librarianRepository.findLibrarianById(id).getShift()==null) {
+			Set<Shift> shifts=new HashSet<Shift>();
+			Shift theShift=shiftRepository.findShiftByShiftID(shiftID);
+			shifts.add(theShift);
+			librarianRepository.findLibrarianById(id).setShift(shifts);
+		}
+		else {
+			librarianRepository.findLibrarianById(id).getShift().add(shiftRepository.findShiftByShiftID(shiftID));
+		}
 		return librarianRepository.findLibrarianById(id).getShift();
 	}
 }
