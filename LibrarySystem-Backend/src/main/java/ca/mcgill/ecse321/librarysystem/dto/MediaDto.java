@@ -1,12 +1,8 @@
 package ca.mcgill.ecse321.librarysystem.dto;
+import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.util.*;
 
 public abstract class MediaDto {
-
-    public enum Item { Book, Movie, Music, Newspaper, Archive }
 
     //Media Attributes
     private Item mediaType;
