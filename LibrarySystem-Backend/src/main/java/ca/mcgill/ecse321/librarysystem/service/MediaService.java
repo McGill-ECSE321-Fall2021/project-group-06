@@ -141,20 +141,6 @@ public class MediaService {
         mediaRepository.deleteAll();
         return toList(mediaList);
     }
-
-    @Transactional
-    public Media updateMedia(Item mediaType, int mediaID){
-        if (mediaRepository.findMediaByID(mediaID) == null){
-            throw new IllegalArgumentException("Media ID does not exist");
-        }
-        if (mediaType == null){
-            throw new IllegalArgumentException("media type cannot be empty.");
-        }
-        Media media = mediaRepository.findMediaByID(mediaID);
-        media.setType(mediaType);
-        mediaRepository.save(media);
-        return media;
-    }
     // Helper method that converts Iterables to Lists
 
     private <T> List<T> toList(Iterable<T> iterable){
