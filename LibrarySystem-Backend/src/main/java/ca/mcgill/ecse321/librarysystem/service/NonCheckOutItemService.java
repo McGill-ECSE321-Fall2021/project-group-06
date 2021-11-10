@@ -26,25 +26,15 @@ public class NonCheckOutItemService {
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
-
-        if (mediaType == null) {
-            error = error + "Media type not found! (null)";
-        }
-
         boolean isValidType = false;
-        for (Item item: Item.values()){
-
-            if (mediaType.equals(item)) {
-                isValidType = true;
-                break;
-            }
+        if(mediaType == Item.Archive || mediaType == Item.Newspaper){
+            isValidType = true;
         }
         if (!isValidType){
             error = error + "Media type invalid!";
         }
-
-        if (mediaRepository.findMediaByID(mediaID) != null) {
-            error = error + "Media ID already exists!";
+        if (mediaRepository.findMediaByID(mediaID) != null || mediaID == 0) {
+            error = error + "Media ID invalid!";
         }
         error = error.trim();
         if (error.length() > 0) {
@@ -53,6 +43,33 @@ public class NonCheckOutItemService {
 
         NonCheckOutItem nonCheckOutItem = new NonCheckOutItem();
         nonCheckOutItem.setType(mediaType);
+        nonCheckOutItem.setID(mediaID);
+        mediaRepository.save(nonCheckOutItem);
+        return nonCheckOutItem;
+    }
+
+    @Transactional
+    public NonCheckOutItem updateNonCheckOutItem (Item newMediaType, int mediaID){
+
+        // Input validation (methods from tutorial notes 2.6.1)
+        String error ="";
+        boolean isValidType = false;
+        if(newMediaType == Item.Archive || newMediaType == Item.Newspaper){
+            isValidType = true;
+        }
+        if (!isValidType){
+            error = error + "Media type invalid!";
+        }
+        if (mediaRepository.findMediaByID(mediaID) == null) {
+            error = error + "Media does not exist";
+        }
+        error = error.trim();
+        if (error.length() > 0) {
+            throw new IllegalArgumentException(error);
+        }
+
+        NonCheckOutItem nonCheckOutItem = new NonCheckOutItem();
+        nonCheckOutItem.setType(newMediaType);
         nonCheckOutItem.setID(mediaID);
         mediaRepository.save(nonCheckOutItem);
         return nonCheckOutItem;

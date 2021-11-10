@@ -68,29 +68,6 @@ public class CheckOutItemServiceTest {
     private static final boolean IS_CHECKEDOUT = false;
     private static final boolean IS_RESERVED = false;
 
-
-    private static final String OFFLINE_ADDRESS = "727 bluezenithhdhr street";
-    private static final String OFFLINE_NAME = "WhiteCat";
-    private static final AccountCategory OFFLINE_ACCOUNTCATEGORY = AccountCategory.Offline;
-    private static final boolean OFFLINE_ISLOCAL = true;
-    private static final int OFFLINE_ITEMSCHECKED = 1;
-
-    private static final int CHECKOUTITEM_ID = 6969;
-    private static final int CHECKOUTITEM_ID2 = 69696;
-    private static final boolean CHECKOUTITEM_ISCHECKEDOUT = false;
-    private static final boolean CHECKOUTITEM_ISRESERVED = false;
-    private static final Item CHECKOUTITEM_ITEM = Item.Book;
-    private static final String STRING_DATE = "2021-09-11";
-    private static final Date CHECKOUTITEM_DATE = Date.valueOf(STRING_DATE);
-    private static final int CHECKOUTITEM_BORROWINGPERIOD = 797;
-
-    private static final Date EVENT_DATE = Date.valueOf(STRING_DATE);
-    private static final String EVENT_START_STRING = "10:00:00";
-    private static final String EVENT_END_STRING = "18:00:00";
-    private static final Time EVENT_STARTTIME = Time.valueOf(EVENT_START_STRING);
-    private static final Time EVENT_ENDTIME = Time.valueOf(EVENT_END_STRING);
-    private static final String EVENT_NAME = "MREKK DOES NOT DESERVE #1";
-
     
     @BeforeEach
     public void setMockOutput() {
@@ -381,22 +358,4 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
 		assertTrue(error.contains("Media ID cannot be found!"));
 	}
-    // @Test
-    // public void testDeleteExistingCheckOutItem(){
-    //     assertNotNull(mediaService.getMedia(MEDIA_ID));
-    //     mediaService.deleteMedia(MEDIA_ID);
-    //     assertEquals(null, mediaDao.findById(MEDIA_ID));
-    // }
-    // @Test
-    // public void testDeleteAllCheckOutItem(){
-    //     mediaService.deleteAllMedias();
-    //     CheckOutItem media = new CheckOutItem();
-    //     media.setBorrowingPeriod(10);
-    //     media.setID(32132);
-    //     media.setIsCheckedOut(false);
-    //     media.setIsReserved(false);
-    //     media.setStartDate(Date.valueOf("2021-09-11"));
-    //     mediaDao.save(media);
-    //     assertEquals(1,mediaDao.);
-    // }
 }
