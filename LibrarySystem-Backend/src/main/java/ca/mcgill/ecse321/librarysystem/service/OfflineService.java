@@ -60,15 +60,15 @@ public class OfflineService {
     	if (aName==null) {
     		throw new IllegalArgumentException("Offline Account must have a name.");
     	}
+        if (accountCategory==null){
+            throw new IllegalArgumentException("account must have a type");
+        }
     	if (accountCategory==AccountCategory.Online) {
     		throw new IllegalArgumentException("Offline account must be of type offline.");
     	}
     	if (local==false) {
     		throw new IllegalArgumentException("Offline Account must be a local");
     	}
-        if (accountRepository.findAccountById(aId)!=null) {
-            throw new IllegalArgumentException("This Id already exists");
-        }
     	Offline offline=new Offline();
     	offline.setId(aId);
     	offline.setAddress(aAddress);
@@ -105,10 +105,10 @@ public class OfflineService {
         if (accountRepository.findAccountById(aId) == null) {
             throw new IllegalArgumentException("Offline Account id does not exist.");
         }
-        if (aAddress.length()==0){
+        if (aAddress == null || aAddress.length()==0){
             throw new IllegalArgumentException("address cannot be empty");
         }
-        if(aName.length()==0){
+        if(aName == null || aName.length()==0){
             throw new IllegalArgumentException("name cannot be empty");
         }
         if(itemsChecked < 0){
