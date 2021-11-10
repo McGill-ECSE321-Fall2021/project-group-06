@@ -7,4 +7,6 @@ public interface AccountRepository extends CrudRepository<Account, Integer> {
 	//This is simply the Primary Key for Account
 	Account findAccountById(int id);
 
+	//Account findAccountByAddress(String address);
+
 }
