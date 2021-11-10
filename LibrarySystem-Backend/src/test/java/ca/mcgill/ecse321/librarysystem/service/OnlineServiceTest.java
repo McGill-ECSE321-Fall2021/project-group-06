@@ -118,5 +118,17 @@ public class OnlineServiceTest {
         assertEquals(email, online.getEmail());
         //assertEquals(5, 6);
 	}
-
+    @Test
+    public void testGetOnline(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+        Online online = null;
+        try {
+         online = onlineService.getOnline(ONLINE_ID);
+        }catch(IllegalArgumentException e) {
+            fail();
+        }
+        assertNotNull(online);
+        assertEquals(online.getUsername(), ONLINE_USERNAME);
+        assertEquals(online.getPassword(), ONLINE_PASSWORD);
+    }	
 }
