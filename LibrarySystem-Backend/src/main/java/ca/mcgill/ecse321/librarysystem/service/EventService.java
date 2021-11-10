@@ -71,7 +71,7 @@ public class EventService {
      * @author Samuel
      */
     @Transactional
-    public Event getEventByName(String name){
+    public Event getEvent(String name){
         
         // Input validation
         String error = "";
@@ -192,13 +192,13 @@ public class EventService {
      * @author Samuel
      */
     @Transactional
-    public Event deleteEventByName(String name) {
+    public Event deleteEvent(String name) {
         
         // Input validation
         String error = "";
         
         if (name == null || name.trim().length() == 0) {
-            error = error + "Event name cannot be empty! ";
+            error = error + "Event name cannot be empty!";
             error = error.trim();
             throw new IllegalArgumentException(error);
         }

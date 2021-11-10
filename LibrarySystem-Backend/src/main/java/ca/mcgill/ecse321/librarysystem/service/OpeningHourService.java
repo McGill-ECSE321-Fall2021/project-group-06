@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
+import org.aspectj.apache.bcel.classfile.Module.Open;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,7 +48,7 @@ public class OpeningHourService {
             throw new IllegalArgumentException("Opening Hour day cannot be empty");
         }
         if (startTime == null){
-            throw new IllegalArgumentException("Opening Hour stating time cannot be empty");
+            throw new IllegalArgumentException("Opening Hour starting time cannot be empty");
         }
         if (endTime == null){
             throw new IllegalArgumentException("Opening Hour ending time cannot be empty");
@@ -67,6 +68,21 @@ public class OpeningHourService {
             throw new IllegalArgumentException("Opening Hour Id cannot be 0");
         }
         return openingHourRepository.findOpeningHourById(id);
+    }
+    @Transactional
+    public boolean deleteShift(int id){
+        OpeningHour openingHour = openingHourRepository.findOpeningHourById(id);
+        openingHourRepository.delete(openingHour);
+        return true;
+    }
+    @Transactional
+    public OpeningHour updateOpeningHours(int id, DayOfWeek day, Time start, Time end){
+        OpeningHour openingHour = openingHourRepository.findOpeningHourById(id);
+        openingHour.setDayOfWeek(day);
+        openingHour.setStartTime(start);
+        openingHour.setEndTime(end);
+        openingHour.setId(id);
+        return openingHour;
     }
 
     // @Transactional

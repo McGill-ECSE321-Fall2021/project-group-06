@@ -111,7 +111,7 @@ public class LibrarianController {
 	@GetMapping(value= {"/getLibrarians", "/getLibrarians/"})
 	public List<LibrarianDto> getLibrarians(){
 		List<LibrarianDto> librDtos=new ArrayList<>();
-		for (Librarian l : librarianService.getLibrarians()) {
+		for (Librarian l : librarianService.getAllLibrarians()) {
 			librDtos.add(Conversion.convertToDto(l));
 		}
 		return librDtos;
