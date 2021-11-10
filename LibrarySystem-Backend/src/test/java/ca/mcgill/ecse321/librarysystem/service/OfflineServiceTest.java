@@ -67,7 +67,7 @@ public class OfflineServiceTest {
     private static final String OFFLINE_NAME = "WhiteCat";
     private static final AccountCategory OFFLINE_ACCOUNTCATEGORY = AccountCategory.Offline;
     private static final boolean OFFLINE_ISLOCAL = true;
-    private static final int OFFLINE_ITEMSCHECKED = 1;
+    private static final int OFFLINE_ITEMSCHECKED = 0;
 
     private static final int CHECKOUTITEM_ID = 6969;
     private static final boolean CHECKOUTITEM_ISCHECKEDOUT = false;
@@ -126,7 +126,7 @@ public class OfflineServiceTest {
                 checkOutItem.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
                 checkOutItem.setIsReserved(CHECKOUTITEM_ISRESERVED);
                 checkOutItem.setStartDate(CHECKOUTITEM_DATE);
-                medias.add(checkOutItem);
+                //medias.add(checkOutItem);
                 offline.setMedias(medias);
 
                 Set<Event> events = new HashSet<Event>();
@@ -227,18 +227,7 @@ public class OfflineServiceTest {
         assertNotNull(offline);
     }
 
-    @Test
-    public void testOfflineUpdate(){
-        Offline offline = null;
-        try{
-            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 1140);
-        } catch(IllegalArgumentException e) {
-			fail();
-		} 
-        assertEquals("Ascension to Heaven HDDTHR", offline.getAddress());
-        assertEquals("Merami", offline.getName());
-        assertEquals(1140, offline.getNumChecked());
-    }
+    
 
     @Test
     public void testOfflineDelete(){
@@ -253,22 +242,37 @@ public class OfflineServiceTest {
     }
 
     @Test
+    public void testOfflineUpdate(){
+        Offline offline = null;
+        try{
+            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2);
+        } catch(IllegalArgumentException e) {
+			fail();
+		} 
+        assertEquals("Ascension to Heaven HDDTHR", offline.getAddress());
+        assertEquals("Merami", offline.getName());
+        assertEquals(2, offline.getNumChecked());
+    }
+
+    @Test
     public void testOfflineCheckout(){
-        Offline offline = offlineService.getOffline(OFFLINE_ID);
+        Offline offline = null;
 
-
+        //Media bruh = new CheckOutItem();
         try {
             //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
-            offlineService.checkoutAnItem(CHECKOUTITEM_ID, OFFLINE_ID);
-            offline = offlineService.getOffline(OFFLINE_ID);
+            offline = offlineService.checkoutAnItem(CHECKOUTITEM_ID, OFFLINE_ID);
+            
+            //offline = offlineService.getOffline(OFFLINE_ID);
         } catch(IllegalArgumentException e) {
 			//error = e.getMessage();
             fail();
 		} 
         //assertEquals(5, 5);
-        //assertNotNull(media);
+        //assertNotNull(bruh);
         assertEquals(1, offline.getMedias().size());
         assertEquals(1, offline.getNumChecked());
+        //assertEquals(true, ((CheckOutItem)mediaDao.findMediaByID(CHECKOUTITEM_ID)).getIsCheckedOut());
         //assertEquals("This media Id is non-existent!", error);
 
     }

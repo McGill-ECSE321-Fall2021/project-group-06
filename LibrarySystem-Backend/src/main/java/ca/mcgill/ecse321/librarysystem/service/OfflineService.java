@@ -131,7 +131,7 @@ public class OfflineService {
 	}
 
     @Transactional
-    public Media checkoutAnItem(int mediaId, int id){
+    public Offline checkoutAnItem(int mediaId, int id){
         Offline offline = (Offline) accountRepository.findAccountById(id);
         if(offline == null){
             throw new IllegalArgumentException("This account does not exist!");
@@ -144,12 +144,16 @@ public class OfflineService {
             } else if (mediaRepository.findMediaByID(mediaId) instanceof NonCheckOutItem){
                 throw new IllegalArgumentException("This media Id corresponds to an item that you cannot check out!");
             } else if (mediaRepository.findMediaByID(mediaId) instanceof CheckOutItem){
+                offline = (Offline) accountRepository.findAccountById(id);
                 offline.getMedias().add(mediaRepository.findMediaByID(mediaId));
                 offline.setNumChecked(offline.getNumChecked()+1);
+                //offline.setNumChecked(3);
+                
                 ((CheckOutItem)mediaRepository.findMediaByID(mediaId)).setIsCheckedOut(true);
                 accountRepository.save(offline);
                 mediaRepository.save(mediaRepository.findMediaByID(mediaId));
-                return mediaRepository.findMediaByID(mediaId);
+                //throw new IllegalArgumentException("System Error");
+                return offline;
             }
         }
         throw new IllegalArgumentException("System Error");
@@ -172,6 +176,7 @@ public class OfflineService {
                 if (offline.getMedias().contains(mediaRepository.findById(mediaId))){
                     offline.getMedias().remove(mediaRepository.findMediaByID(mediaId));
                     offline.setNumChecked(offline.getNumChecked()-1);
+                    //offline.setNumChecked(id);
                 } else {
                     throw new IllegalArgumentException("This user does not have the following item checked out!");
                 }
