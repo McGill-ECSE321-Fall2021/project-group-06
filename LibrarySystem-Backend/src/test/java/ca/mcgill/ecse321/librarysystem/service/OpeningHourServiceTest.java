@@ -170,7 +170,7 @@ public class OpeningHourServiceTest {
     @Test
     public void testDeleteExistingOpeningHour(){
         assertNotNull(openingHourService.getOpeningHour(ID_KEY));
-        assertTrue(openingHourService.deleteShift(ID_KEY));
+        assertTrue(openingHourService.deleteOpeningHour(ID_KEY));
     }
     @Test
     public void testDeleteNonExistingOpeningHour(){
@@ -178,7 +178,7 @@ public class OpeningHourServiceTest {
         Boolean oHDel = false;
         String error = null;
         try{
-            oHDel = openingHourService.deleteShift(NON_ID_KEY);
+            oHDel = openingHourService.deleteOpeningHour(NON_ID_KEY);
         } catch (IllegalArgumentException e){
             error = e.getMessage();
         }

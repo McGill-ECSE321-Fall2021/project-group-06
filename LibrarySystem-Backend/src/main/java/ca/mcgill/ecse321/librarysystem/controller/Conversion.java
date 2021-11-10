@@ -1,5 +1,8 @@
 package ca.mcgill.ecse321.librarysystem.controller;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+
 import ca.mcgill.ecse321.librarysystem.dto.*;
 import ca.mcgill.ecse321.librarysystem.models.*;
 
@@ -49,11 +52,6 @@ public class Conversion {
 		if(nonCheckOutItem==null) throw new IllegalArgumentException("NonCheckout item not found.");
         return new NonCheckOutItemDto(nonCheckOutItem.getType(), nonCheckOutItem.getID());
 	}
-
-    public static EventDto convertToDto(Event event){
-        if(event==null) throw new IllegalArgumentException("Event not found.");
-        return new EventDto(event.getName(),event.getDate(), event.getEventStart(),event.getEventEnd());
-    }
     
     public static OfflineDto convertToDto(Offline offline){
         if(offline==null) throw new IllegalArgumentException("Customer not found.");
@@ -96,5 +94,28 @@ public class Conversion {
             }
         }
         return new OnlineDto(online.getId(), online.getAddress(), online.getName(), online.getAccountCategory(), online.getIsLocal(), online.getNumChecked(), events, medias, online.getUsername(), online.getPassword(), online.getEmail());
+    }
+
+    public static EventDto convertToDto(Event event) {
+        if (event == null) {
+            throw new IllegalArgumentException("Event not found");
+        }
+        EventDto eventDto = new EventDto(event.getName(),event.getDate(),event.getEventStart(),event.getEventEnd());
+        return eventDto;
+    }
+
+    public static List<EventDto> convertToDto(List<Event> eventList) {
+        List<EventDto> eventDtoList = new ArrayList<>();
+        
+        if (eventList.size() == 0){
+            throw new IllegalArgumentException("No elements inside Event List");
+        }
+
+        for (Event event: eventList){
+            EventDto eventDto = convertToDto(event);
+            eventDtoList.add(eventDto);
+        }
+        
+        return eventDtoList;
     }
 }
