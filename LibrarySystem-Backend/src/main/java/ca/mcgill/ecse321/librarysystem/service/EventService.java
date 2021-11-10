@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ca.mcgill.ecse321.librarysystem.dao.AccountRepository;
 import ca.mcgill.ecse321.librarysystem.dao.EventRepository;
 import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Account;
 
 @Service
 public class EventService {
