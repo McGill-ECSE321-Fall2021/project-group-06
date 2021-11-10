@@ -32,7 +32,7 @@ import ca.mcgill.ecse321.librarysystem.service.HeadLibrarianService;
 import ca.mcgill.ecse321.librarysystem.service.OpeningHourService;
 import ca.mcgill.ecse321.librarysystem.service.ShiftService;
 
-
+//author David Hu
 @CrossOrigin(origins="*")
 @RestController
 public class AccountController {
