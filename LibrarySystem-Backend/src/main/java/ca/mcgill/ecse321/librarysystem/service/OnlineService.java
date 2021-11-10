@@ -77,6 +77,8 @@ public class OnlineService {
         if (email==null){
             throw new IllegalArgumentException("Online Account must have an email");
         }
+        usernameIsValid(username);
+
     	Online online=new Online();
     	online.setId(aId);
     	online.setAddress(aAddress);
@@ -92,13 +94,12 @@ public class OnlineService {
 
     /**
      * Find offline with given parameter
-     * @param aId
+     * @param onlineUsername
      * @return the offline
      */
     @Transactional
-    public Online getOnline(int aId) {
-        
-    	return (Online) accountRepository.findAccountById(aId);
+    public Online getOnline(int id) {
+    	return (Online) accountRepository.findAccountById(id);
     }
 
     /**
@@ -109,11 +110,15 @@ public class OnlineService {
      * @param itemsChecked
      */
     @Transactional
-    public Online updateOnline(int aId, String aAddress, String aName, int itemsChecked) {
+    public Online updateOnline(int aId, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
     	Online online=(Online) accountRepository.findAccountById(aId);
     	online.setAddress(aAddress);
     	online.setName(aName);
         online.setNumChecked(itemsChecked);
+        online.setUsername(username);
+        online.setPassword(password);
+        online.setEmail(email);
+        usernameIsValid(username);
 		return online;
     }
 
@@ -187,5 +192,13 @@ public class OnlineService {
         }
         throw new IllegalArgumentException("System Error");
     }
+
+
+    //helper methods
+
+    private boolean usernameIsValid(String username) {
+		if(accountRepository.findOnlineByUsername(username)!=null) throw new IllegalArgumentException("Username is already taken");
+        return true;
+	}
 
 }
