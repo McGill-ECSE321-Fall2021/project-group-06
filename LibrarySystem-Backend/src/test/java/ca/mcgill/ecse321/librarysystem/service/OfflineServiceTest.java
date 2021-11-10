@@ -27,7 +27,7 @@ import org.mockito.stubbing.Answer;
 import ca.mcgill.ecse321.librarysystem.dao.*;
 import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
-
+//author David Hu
 @ExtendWith(MockitoExtension.class)
 public class OfflineServiceTest {
     @Mock
@@ -78,7 +78,7 @@ public class OfflineServiceTest {
 		//lenient().when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
 		//lenient().when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
     }
-
+    
     @Test
 	public void testCreateOffline() {
 		assertEquals(0, offlineService.getAllOfflines().size());
