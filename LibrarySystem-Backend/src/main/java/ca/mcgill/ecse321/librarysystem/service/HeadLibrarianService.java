@@ -9,15 +9,20 @@ import ca.mcgill.ecse321.librarysystem.dao.EventRepository;
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
+import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
 import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
+import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class HeadLibrarianService {
@@ -166,7 +171,120 @@ public class HeadLibrarianService {
 		}
 		return allHeadLibrarians;
 	}
-  //create opening hour
-  //create shift
-  //assigns shifts
+  @Transactional
+	public OpeningHour createOpeningHour(int id, DayOfWeek dayOfWeek, Time startTime, Time endTime){
+    if (openingHourRepository.findOpeningHourById(id)!=null) {
+      throw new IllegalArgumentException("opening hour exists");
+    }
+    if (id == 0) {
+      throw new IllegalArgumentException("opening hour id cannot be 0");
+    }
+    if (dayOfWeek == null) {
+      throw new IllegalArgumentException("day of week cannot be null");
+    }
+    if (startTime == null) {
+      throw new IllegalArgumentException("startTime cannot be null");
+    }
+    if (endTime == null) {
+      throw new IllegalArgumentException("endTime cannot");
+    }
+    OpeningHour openingHour= new OpeningHour();
+    openingHour.setDayOfWeek(dayOfWeek);
+    openingHour.setEndTime(endTime);
+    openingHour.setId(id);
+    openingHour.setStartTime(startTime);
+    openingHourRepository.save(openingHour);
+    return openingHour;
+	}
+  @Transactional
+	public OpeningHour updateOpeningHour(int id, int newId, DayOfWeek newDayOfWeek, Time newStartTime, Time newEndTime){
+    if (openingHourRepository.findOpeningHourById(id)==null) {
+      throw new IllegalArgumentException("opening hour does not exist");
+    }
+    if (openingHourRepository.findOpeningHourById(newId)!=null && id != newId) {
+      throw new IllegalArgumentException("opening hour exists");
+    }
+    if (newId == 0) {
+      throw new IllegalArgumentException("opening hour id cannot be 0");
+    }
+    if (newDayOfWeek == null) {
+      throw new IllegalArgumentException("day of week cannot be null");
+    }
+    if (newStartTime == null) {
+      throw new IllegalArgumentException("startTime cannot be null");
+    }
+    if (newEndTime == null) {
+      throw new IllegalArgumentException("endTime cannot");
+    }
+    OpeningHour openingHour= new OpeningHour();
+    openingHour.setDayOfWeek(newDayOfWeek);
+    openingHour.setEndTime(newEndTime);
+    openingHour.setId(id);
+    openingHour.setStartTime(newStartTime);
+    openingHourRepository.save(openingHour);
+    return openingHour;
+	}
+  @Transactional
+	public Shift createShift(int shiftID, DayOfWeek dayOfWeek, Time startTime, Time endTime){
+    if (shiftRepository.findShiftByShiftID(shiftID)!=null) {
+      throw new IllegalArgumentException("shift exists");
+    }
+    if (shiftID == 0) {
+      throw new IllegalArgumentException("shift cannot be 0");
+    }
+    if (dayOfWeek == null) {
+      throw new IllegalArgumentException("day of week cannot be null");
+    }
+    if (startTime == null) {
+      throw new IllegalArgumentException("startTime cannot be null");
+    }
+    if (endTime == null) {
+      throw new IllegalArgumentException("endTime cannot");
+    }
+    Shift shift = new Shift();
+    shift.setDayOfWeek(dayOfWeek);
+    shift.setEndTime(endTime);
+    shift.setShiftID(shiftID);
+    shift.setStartTime(startTime);
+    shiftRepository.save(shift);
+    return shift;
+	}
+  @Transactional
+	public Shift updateShift(int shiftID, int newShiftID, DayOfWeek newDayOfWeek, Time newStartTime, Time newEndTime){
+    if (shiftRepository.findShiftByShiftID(shiftID)==null) {
+      throw new IllegalArgumentException("shift does not exist");
+    }
+    if (shiftRepository.findShiftByShiftID(newShiftID)!=null && shiftID != newShiftID) {
+      throw new IllegalArgumentException("shift exists");
+    }
+    if (newShiftID == 0) {
+      throw new IllegalArgumentException("shiftID cannot be 0");
+    }
+    if (newDayOfWeek == null) {
+      throw new IllegalArgumentException("day of week cannot be null");
+    }
+    if (newStartTime == null) {
+      throw new IllegalArgumentException("startTime cannot be null");
+    }
+    if (newEndTime == null) {
+      throw new IllegalArgumentException("endTime cannot");
+    }
+    Shift shift = new Shift();
+    shift.setDayOfWeek(newDayOfWeek);
+    shift.setEndTime(newEndTime);
+    shift.setShiftID(newShiftID);
+    shift.setStartTime(newStartTime);
+    shiftRepository.save(shift);
+    return shift;
+	}
+  public Set<Shift> assignShift(int id, int shiftID){
+    if(librarianRepository.findLibrarianById(id)==null){
+      throw new IllegalArgumentException("librarian does not exist");
+    }
+    if(shiftRepository.findShiftByShiftID(shiftID)==null){
+      throw new IllegalArgumentException("shift does not exist");
+    }
+    librarianRepository.findLibrarianById(id).getShift().add(shiftRepository.findShiftByShiftID(shiftID));
+    return librarianRepository.findLibrarianById(id).getShift();
+  }
 }

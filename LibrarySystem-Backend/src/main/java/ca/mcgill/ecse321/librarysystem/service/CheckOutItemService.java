@@ -75,6 +75,7 @@ public class CheckOutItemService {
         mediaRepository.save(checkOutItem);
         return checkOutItem;
     }
+    @Transactional
     public Media updateCheckOutItem (int mediaID, int newMediaID, boolean newIsCheckedOut, boolean newIsReserved, int newBorrowingPeriod, Date newStartDate){
 
         // Input validation (methods from tutorial notes 2.6.1)
@@ -88,7 +89,7 @@ public class CheckOutItemService {
         if(newMediaID == 0){
             error = error + "Media Id cannot be 0";
         }
-        if(mediaRepository.findMediaByID(newMediaID)!=null){
+        if(mediaRepository.findMediaByID(newMediaID)!=null && mediaID != newMediaID){
             error = error + "Media Id already exists";
         }
         if (newBorrowingPeriod <=0){
