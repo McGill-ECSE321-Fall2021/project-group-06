@@ -39,14 +39,14 @@ public class AccountController {
     @Autowired
 	private AccountService accountService;
 
-	@PostMapping(value={"/login", "/login/"})
+	@GetMapping(value={"/login", "/login/"})
 	public AccountDto login(@RequestParam int id, @RequestParam String password) throws IllegalArgumentException{
 		Account account = null;
 		account = accountService.login(id, password);
 		if (account instanceof Offline){
-			return null;
+			return Conversion.convertToDto((Offline) account);
 		} else if (account instanceof Online){
-			return null;
+			return Conversion.convertToDto((Online) account);
 		} else {
 			return null;
 		}

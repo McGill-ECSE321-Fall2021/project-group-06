@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.librarysystem.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import ca.mcgill.ecse321.librarysystem.dto.*;
 import ca.mcgill.ecse321.librarysystem.models.*;
@@ -57,21 +58,25 @@ public class Conversion {
         if(offline==null) throw new IllegalArgumentException("Customer not found.");
         
         HashSet<EventDto> events = new HashSet<EventDto>();
-        HashSet<Event> modelEvents = (HashSet)offline.getEvents();
-        for(Event event: modelEvents){
-            events.add(convertToDto(event));
+        Set<Event> modelEvents = offline.getEvents();
+        if(modelEvents!=null){
+            for(Event event: modelEvents){
+                events.add(convertToDto(event));
+            }
         }
-
         HashSet<MediaDto> medias = new HashSet<MediaDto>();
-        HashSet<Media> modelMedias = (HashSet)offline.getMedias();
-        for(Media media: modelMedias){
-            if(media instanceof CheckOutItem){
-                medias.add(convertToDto((CheckOutItem)media));
-            }
-            if(media instanceof NonCheckOutItem){
-                medias.add(convertToDto((NonCheckOutItem)media));
+        Set<Media> modelMedias = offline.getMedias();
+        if(modelMedias!=null){
+            for(Media media: modelMedias){
+                if(media instanceof CheckOutItem){
+                    medias.add(convertToDto((CheckOutItem)media));
+                }
+                if(media instanceof NonCheckOutItem){
+                    medias.add(convertToDto((NonCheckOutItem)media));
+                }
             }
         }
+        
         return new OfflineDto(offline.getId(), offline.getAddress(), offline.getName(), offline.getAccountCategory(), offline.getIsLocal(), offline.getNumChecked(), events, medias);
     }
     
