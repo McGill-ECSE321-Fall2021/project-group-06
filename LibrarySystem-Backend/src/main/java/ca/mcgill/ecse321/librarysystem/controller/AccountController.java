@@ -22,6 +22,8 @@ import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
 import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
+import ca.mcgill.ecse321.librarysystem.models.Offline;
+import ca.mcgill.ecse321.librarysystem.models.Online;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
@@ -41,6 +43,12 @@ public class AccountController {
 	public AccountDto login(@RequestParam int id, @RequestParam String password) throws IllegalArgumentException{
 		Account account = null;
 		account = accountService.login(id, password);
-		return null;
+		if (account instanceof Offline){
+			return null;
+		} else if (account instanceof Online){
+			return null;
+		} else {
+			return null;
+		}
 	}
 }
