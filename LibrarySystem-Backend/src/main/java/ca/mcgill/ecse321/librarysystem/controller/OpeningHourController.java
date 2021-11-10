@@ -56,5 +56,27 @@ public class OpeningHourController {
 	public OpeningHourDto getOpeningHourById(@PathVariable("id") int id) {
 		return Conversion.convertToDto(service.getOpeningHour(id));
 	}
-   
+     /**
+	 * Update Opening Hour
+	 * @param id
+	 * @param newDay
+	 * @param newStart
+	 * @param newEnd
+	 * @return updated Opening Hour Dto */
+	 
+	@PutMapping(value= {"/updateOpeningHour/{id}/{newDay}/{newStart}/{newEnd}/"})
+	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @PathVariable("newDay") DayOfWeek newDay, @PathVariable("newStart") Time newStart,
+			@PathVariable("newEnd") Time newEnd) {
+		OpeningHour oH=service.updateOpeningHours(aId, newDay, newStart, newEnd);
+		return Conversion.convertToDto(oH);
+	}
+    /**
+	 * Delete Opening Hour of corresponding parameter
+	 * @param id
+	 * @return deleted Opening Hour Dto */
+	 
+	// @PutMapping(value= {"/deleteOpeningHour/{id}", "/deleteOpeningHour/{id}/"})
+	// public OpeningHourDto deleteOpeningHour(int id) {
+	// 	// return Conversion.convertToDto(service.deleteOpeningHour(id)
+	// }
 }
