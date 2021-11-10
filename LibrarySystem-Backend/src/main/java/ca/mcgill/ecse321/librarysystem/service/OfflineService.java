@@ -18,7 +18,7 @@ import ca.mcgill.ecse321.librarysystem.models.Offline;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//author David Hu
 @Service
 public class OfflineService {
     @Autowired
