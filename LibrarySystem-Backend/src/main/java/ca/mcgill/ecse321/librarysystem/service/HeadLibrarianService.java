@@ -84,19 +84,19 @@ public class HeadLibrarianService {
      * @param aName
      * @param itemsChecked
      */
-    @Transactional
-    public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
-      if (librarianRepository.findLibrarianById(aId)==null) {
-        throw new IllegalArgumentException("Librarian does not exist");
-      }
-      if (librarianRepository.findLibrarianById(newID)!=null) {
-        throw new IllegalArgumentException("Librarian id already exists");
-      }
-    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
-		  head.setId(newID);
-      librarianRepository.save(head);
-		  return head;
-    }
+    // @Transactional
+    // public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
+    //   if (librarianRepository.findLibrarianById(aId)==null) {
+    //     throw new IllegalArgumentException("Librarian does not exist");
+    //   }
+    //   if (librarianRepository.findLibrarianById(newID)!=null) {
+    //     throw new IllegalArgumentException("Librarian id already exists");
+    //   }
+    // 	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
+		//   head.setId(newID);
+    //   librarianRepository.save(head);
+		//   return head;
+    // }
     
     /**
      * Delete head librarian corresponding to the given parameter
