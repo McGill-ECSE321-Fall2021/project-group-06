@@ -89,6 +89,7 @@ public class OnlineService {
         online.setUsername(username);
         online.setPassword(password);
         online.setEmail(email);
+        accountRepository.save(online);
 		return online;
     }
 
@@ -119,6 +120,7 @@ public class OnlineService {
         online.setPassword(password);
         online.setEmail(email);
         usernameIsValid(username);
+        accountRepository.save(online);
 		return online;
     }
 

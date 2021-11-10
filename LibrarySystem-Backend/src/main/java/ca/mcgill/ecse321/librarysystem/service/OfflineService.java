@@ -73,6 +73,7 @@ public class OfflineService {
     	offline.setAccountCategory(accountCategory);
     	offline.setIsLocal(local);
     	offline.setNumChecked(itemsChecked);
+        accountRepository.save(offline);
 		return offline;
     }
 
@@ -100,6 +101,7 @@ public class OfflineService {
     	offline.setAddress(aAddress);
     	offline.setName(aName);
         offline.setNumChecked(itemsChecked);
+        accountRepository.save(offline);
 		return offline;
     }
 
@@ -113,7 +115,7 @@ public class OfflineService {
     	//mediaRepository.deleteAll(mediaRepository.findByAccount(offline));
     	//eventRepository.deleteAll(eventRepository.findByAccount(offline));
     	accountRepository.delete(offline);
-		return offline;
+		return (Offline) accountRepository.findAccountById(aId);
     }
 
     @Transactional
@@ -144,6 +146,7 @@ public class OfflineService {
             } else if (mediaRepository.findMediaByID(mediaId) instanceof CheckOutItem){
                 offline.getMedias().add(mediaRepository.findMediaByID(mediaId));
                 offline.setNumChecked(offline.getNumChecked()+1);
+                ((CheckOutItem)mediaRepository.findMediaByID(mediaId)).setIsCheckedOut(true);
                 return mediaRepository.findMediaByID(mediaId);
             }
         }
