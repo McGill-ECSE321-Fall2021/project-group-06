@@ -9,6 +9,36 @@ public class Conversion {
         if(openingHour == null) throw new IllegalArgumentException("Opening Hour not found.");
         return new OpeningHourDto(openingHour.getId(), openingHour.getDayOfWeek(), openingHour.getStartTime(), openingHour.getEndTime());
     }
+
+    public static ShiftDto convertToDto(Shift shift){
+        if(shift == null) throw new IllegalArgumentException("Shift not found.");
+        return new ShiftDto(shift.getShiftID(),shift.getDayOfWeek(),shift.getStartTime(),shift.getEndTime());
+    }
+
+    public static LibrarianDto convertToDto(Librarian librarian){
+        if(librarian == null) throw new IllegalArgumentException("libarian not found.");
+        HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
+        HashSet<Shift> modelShifts = (HashSet)librarian.getShift();
+        for(Shift shift: modelShifts){
+            shifts.add(convertToDto(shift));
+        }
+        return new LibrarianDto(shifts);
+    }
+
+    public static HeadLibrarianDto convertToDto(HeadLibrarian headLibrarian){
+        if(headLibrarian == null) throw new IllegalArgumentException("headLibarian not found.");
+        HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
+        HashSet<Shift> modelShifts = (HashSet)headLibrarian.getShift();
+        for(Shift shift: modelShifts){
+            shifts.add(convertToDto(shift));
+        }
+        HashSet<OpeningHourDto> openingHours = new HashSet<OpeningHourDto>();
+        HashSet<OpeningHour> modelOpeningHours = (HashSet)headLibrarian.getOpeningHour();
+        for(OpeningHour openingHour: modelOpeningHours){
+            openingHours.add(convertToDto(openingHour));
+        }
+        return new HeadLibrarianDto(openingHours, shifts);
+    }
     
     public static CheckOutItemDto convertToDto(CheckOutItem checkOutItem) {
 		if(checkOutItem==null) throw new IllegalArgumentException("Checkout item not found.");
