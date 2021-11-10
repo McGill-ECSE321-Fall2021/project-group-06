@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.dto;
 
+import java.sql.Date;
+
 public class CheckOutItemDto extends MediaDto {
 
     private boolean isCheckedOut;
