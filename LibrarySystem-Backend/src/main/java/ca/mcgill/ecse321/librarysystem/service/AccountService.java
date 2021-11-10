@@ -67,6 +67,7 @@ public class AccountService {
         event.setEventStart(end);
         event.setName(name);
         accountRepository.findAccountById(id).getEvents().add(event);
+        eventRepository.save(event);
         //event.setAccount(accountRepository.findAccountById(id));
         throw new IllegalArgumentException("System Error");
     }

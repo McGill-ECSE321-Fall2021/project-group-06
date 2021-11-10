@@ -21,6 +21,8 @@ public class LibrarianService {
 	 LibrarianRepository librarianRepository;
 	 @Autowired
 	 ShiftRepository shiftRepository;
+	 @Autowired
+	 AccountRepository accountRepository;
 	
 	/**
 	 * @author Isabella Hao
@@ -29,6 +31,9 @@ public class LibrarianService {
 	 
 	@Transactional
     public Set<Shift> viewPersonalShift(int id) {
+		if (librarianRepository.findLibrarianById(id) == null){
+			throw new IllegalArgumentException("Librarian id does not exist");
+		}
 		Librarian librarian = (Librarian) librarianRepository.findLibrarianById(id);
 		Set<Shift> shifts = librarian.getShift();
 
@@ -54,48 +59,70 @@ public class LibrarianService {
 		account.setIsLocal(local);
 		account.setNumChecked(itemsChecked);
 		account.setName(name);
+		accountRepository.save(account);
 		return account;
 	}
 	
 	@Transactional
 	public Librarian createLibrarian(int id) {
+		if (id==0) {
+            throw new IllegalArgumentException("Librarian id cannot be 0.");
+        }
+		if (librarianRepository.findLibrarianById(id) != null){
+			throw new IllegalArgumentException("Librarian id already exist");
+		}
 		Librarian librarian = new Librarian();
 		librarian.setId(id);
-		
+		librarianRepository.save(librarian);
 		return librarian;
 	}
-	
 	@Transactional 
 	public Librarian updateLibrarian(int id, int newID) {
-		Librarian librarian = (Librarian) librarianRepository.findLibrarianById(id);
+		if (librarianRepository.findLibrarianById(id) == null){
+			throw new IllegalArgumentException("Librarian id does not exist");
+		}
+		if (librarianRepository.findLibrarianById(newID) != null){
+			throw new IllegalArgumentException("Librarian id already exist");
+		}
+		if (newID == 0){
+			throw new IllegalArgumentException("Librarian id cannot be 0");
+		}
+		Librarian librarian = librarianRepository.findLibrarianById(id);
 		librarian.setId(newID);
+		librarianRepository.save(librarian);
     	return librarian;
   
     }
 	
 	@Transactional
 	public void deleteAllLibrarian() {
-		List<Librarian> allLibrarians=(List<Librarian>) librarianRepository.findAll();
+		Iterable<Librarian> allLibrarians= librarianRepository.findAll();
 		for(Librarian l : allLibrarians) 
 			librarianRepository.delete(l);
 	}
 	
 	@Transactional
-	public List<Librarian> getLibrarians(){
+	public List<Librarian> getAllLibrarians(){
 		List<Librarian> allLibrarians=(List<Librarian>) librarianRepository.findAll();
 		return allLibrarians;
 	}
 	
 	@Transactional
     public Librarian deleteLibrarian(int aId) {
-    	Librarian librarian = (Librarian) librarianRepository.findLibrarianById(aId);
+		if (librarianRepository.findLibrarianById(aId) == null){
+			throw new IllegalArgumentException("Librarian id does not exist");
+		}
+    	Librarian librarian = librarianRepository.findLibrarianById(aId);
     	librarianRepository.delete(librarian);
     	return librarian;
 	}
 	
 	@Transactional 
 	public Librarian getLibrarian(int id) {
-		Librarian lib = (Librarian) librarianRepository.findLibrarianById(id);
+		if (librarianRepository.findLibrarianById(id) == null){
+			throw new IllegalArgumentException("Librarian id does not exist");
+		}
+		Librarian lib = librarianRepository.findLibrarianById(id);
 		return lib;
 	}
 }

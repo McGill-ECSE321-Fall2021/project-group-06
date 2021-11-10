@@ -2,16 +2,11 @@ package ca.mcgill.ecse321.librarysystem.service;
 
 import java.sql.Time;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
-import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
-import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
@@ -56,6 +51,7 @@ public class ShiftService {
     	//shift.setHeadLibrarian(hd);
     	//shift.setLibrarian(lib);
     	shift.setStartTime(start);
+		shiftRepository.save(shift);
     }
     
     
@@ -84,6 +80,7 @@ public class ShiftService {
     	//shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
     	shift.setShiftID(id);
+		shiftRepository.save(shift);
     	//shift.setLibrarian(librarians);
     	return shift;
     	
@@ -116,6 +113,7 @@ public class ShiftService {
     	//shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
     	shift.setShiftID(id);
+		shiftRepository.save(shift);
     	//shift.setLibrarian(librarians);
     	return shift;
     }
