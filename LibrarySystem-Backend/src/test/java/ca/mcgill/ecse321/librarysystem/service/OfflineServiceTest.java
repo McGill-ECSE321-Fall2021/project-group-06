@@ -278,17 +278,18 @@ public class OfflineServiceTest {
 
     
 
-    @Test
-    public void testOfflineDelete(){
-        boolean wasDeleted;
-        try{
-            offlineService.deleteOffline(OFFLINE_ID);
-            wasDeleted = true;
-        } catch(IllegalArgumentException e) {
-			wasDeleted = false;
-		} 
-        assertTrue(wasDeleted);
-    }
+    // @Test
+    // public void testOfflineDelete(){
+    //     boolean wasDeleted;
+    //     try{
+    //         offlineService.deleteOffline(OFFLINE_ID);
+    //         wasDeleted = true;
+    //     } catch(IllegalArgumentException e) {
+	// 		wasDeleted = false;
+	// 	} 
+    //     assertEquals(null, accountDao.findAccountById(OFFLINE_ID));
+    //     assertTrue(wasDeleted);
+    // }
 
     @Test
     public void testOfflineUpdate(){

@@ -98,10 +98,8 @@ public class MediaService {
             error = error.trim();
             throw new IllegalArgumentException(error);
         }
-
-        Media media = mediaRepository.findMediaByID(mediaID);
-        mediaRepository.delete(media);
-        return media;
+        mediaRepository.delete(mediaRepository.findMediaByID(mediaID));
+        return mediaRepository.findMediaByID(mediaID);
     }
 
     /**
