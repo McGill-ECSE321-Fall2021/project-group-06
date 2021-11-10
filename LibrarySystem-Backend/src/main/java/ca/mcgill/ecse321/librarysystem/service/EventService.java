@@ -150,28 +150,6 @@ public class EventService {
         eventRepository.save(event);
         return event;
     }
-    @Transactional
-    public Event updateEventName(String name, String newName){
-
-        // Input validation
-        String error = "";
-
-        if (eventRepository.findEventByName(name) == null || name.trim().length() == 0){
-            error = error + "Event name not found";
-        }
-        if (eventRepository.findEventByName(newName) != null) {
-            error = error + "Event name already exists";
-        }
-        error = error.trim();
-        if (error.length() > 0) {
-            throw new IllegalArgumentException(error);
-        }
-
-        Event event = eventRepository.findEventByName(name);
-        event.setName(newName);
-        eventRepository.save(event);
-        return event;
-    }
 
     /**
      * @param name

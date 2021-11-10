@@ -287,7 +287,7 @@ public class OnlineServiceTest {
     public void testOfflineUpdate(){
         Online online = null;
         try{
-            online = onlineService.updateOnline(ONLINE_ID, ONLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2, "vaxei", "can", "fc flamewall");
+            online = onlineService.updateOnline(ONLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2, "vaxei", "can", "fc flamewall");
         } catch(IllegalArgumentException e) {
 			fail();
 		} 

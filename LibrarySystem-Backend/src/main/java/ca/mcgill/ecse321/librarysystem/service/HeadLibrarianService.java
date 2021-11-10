@@ -84,19 +84,19 @@ public class HeadLibrarianService {
      * @param aName
      * @param itemsChecked
      */
-    @Transactional
-    public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
-      if (librarianRepository.findLibrarianById(aId)==null) {
-        throw new IllegalArgumentException("Librarian does not exist");
-      }
-      if (librarianRepository.findLibrarianById(newID)!=null) {
-        throw new IllegalArgumentException("Librarian id already exists");
-      }
-    	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
-		  head.setId(newID);
-      librarianRepository.save(head);
-		  return head;
-    }
+    // @Transactional
+    // public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
+    //   if (librarianRepository.findLibrarianById(aId)==null) {
+    //     throw new IllegalArgumentException("Librarian does not exist");
+    //   }
+    //   if (librarianRepository.findLibrarianById(newID)!=null) {
+    //     throw new IllegalArgumentException("Librarian id already exists");
+    //   }
+    // 	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
+		//   head.setId(newID);
+    //   librarianRepository.save(head);
+		//   return head;
+    // }
     
     /**
      * Delete head librarian corresponding to the given parameter
@@ -197,15 +197,9 @@ public class HeadLibrarianService {
     return openingHour;
 	}
   @Transactional
-	public OpeningHour updateOpeningHour(int id, int newId, DayOfWeek newDayOfWeek, Time newStartTime, Time newEndTime){
+	public OpeningHour updateOpeningHour(int id, DayOfWeek newDayOfWeek, Time newStartTime, Time newEndTime){
     if (openingHourRepository.findOpeningHourById(id)==null) {
       throw new IllegalArgumentException("opening hour does not exist");
-    }
-    if (openingHourRepository.findOpeningHourById(newId)!=null && id != newId) {
-      throw new IllegalArgumentException("opening hour exists");
-    }
-    if (newId == 0) {
-      throw new IllegalArgumentException("opening hour id cannot be 0");
     }
     if (newDayOfWeek == null) {
       throw new IllegalArgumentException("day of week cannot be null");
@@ -250,15 +244,9 @@ public class HeadLibrarianService {
     return shift;
 	}
   @Transactional
-	public Shift updateShift(int shiftID, int newShiftID, DayOfWeek newDayOfWeek, Time newStartTime, Time newEndTime){
+	public Shift updateShift(int shiftID, DayOfWeek newDayOfWeek, Time newStartTime, Time newEndTime){
     if (shiftRepository.findShiftByShiftID(shiftID)==null) {
       throw new IllegalArgumentException("shift does not exist");
-    }
-    if (shiftRepository.findShiftByShiftID(newShiftID)!=null && shiftID != newShiftID) {
-      throw new IllegalArgumentException("shift exists");
-    }
-    if (newShiftID == 0) {
-      throw new IllegalArgumentException("shiftID cannot be 0");
     }
     if (newDayOfWeek == null) {
       throw new IllegalArgumentException("day of week cannot be null");
@@ -272,7 +260,6 @@ public class HeadLibrarianService {
     Shift shift = new Shift();
     shift.setDayOfWeek(newDayOfWeek);
     shift.setEndTime(newEndTime);
-    shift.setShiftID(newShiftID);
     shift.setStartTime(newStartTime);
     shiftRepository.save(shift);
     return shift;
