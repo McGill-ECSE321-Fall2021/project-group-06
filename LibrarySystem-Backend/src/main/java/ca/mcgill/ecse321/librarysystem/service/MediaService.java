@@ -6,11 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import ca.mcgill.ecse321.librarysystem.dao.AccountRepository;
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.models.Media;
-import ca.mcgill.ecse321.librarysystem.models.Account;
+import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 
 @Service
 public class MediaService {
@@ -28,7 +26,7 @@ public class MediaService {
      * @author Samuel
      */
     @Transactional
-    public Media getMediaByID(int mediaID){
+    public Media getMedia(int mediaID){
         
         // Input validation
         String error="";
@@ -78,7 +76,7 @@ public class MediaService {
      * @author Samuel
      */
     @Transactional
-    public List<Media> getAllMedia() {
+    public List<Media> getAllMedias() {
         Iterable<Media> medias = mediaRepository.findAll();
         return toList(medias);
     }
@@ -90,7 +88,7 @@ public class MediaService {
      * @author Samuel
      */
     @Transactional
-    public Media deleteMediaByID(int mediaID){
+    public Media deleteMedia(int mediaID){
 
         // Input validation
         String error = "";
@@ -146,6 +144,26 @@ public class MediaService {
         return toList(mediaList);
     }
 
+    @Transactional
+    public Media updateMedia(Item mediaType, int mediaID, int newMediaID){
+        if (mediaRepository.findMediaByID(mediaID) == null){
+            throw new IllegalArgumentException("Media ID does not exist");
+        }
+        if (mediaType == null){
+            throw new IllegalArgumentException("media type cannot be empty.");
+        }
+        if (mediaRepository.findMediaByID(newMediaID) != null) {
+            throw new IllegalArgumentException("Media ID already exists!");
+        }
+        if (newMediaID == 0) {
+            throw new IllegalArgumentException("Media ID cannot be 0");
+        }
+        Media media = mediaRepository.findMediaByID(mediaID);
+        media.setID(newMediaID);
+        media.setType(mediaType);
+        mediaRepository.save(media);
+        return media;
+    }
     // Helper method that converts Iterables to Lists
 
     private <T> List<T> toList(Iterable<T> iterable){
