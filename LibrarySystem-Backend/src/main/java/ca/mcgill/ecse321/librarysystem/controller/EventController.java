@@ -52,7 +52,7 @@ public class EventController {
      */
     @GetMapping(value = { "/events/{eventName}", "/events/{eventName}/" })
     public EventDto getEventByName(@PathVariable("eventName") String eventName) throws IllegalArgumentException {
-        return Conversion.convertToDto(eventService.getEventByName(eventName));
+        return Conversion.convertToDto(eventService.getEvent(eventName));
     }
 
     /**
@@ -110,7 +110,7 @@ public class EventController {
      */
     @DeleteMapping (value = {"/events/{eventName}", "/events/{eventName}/"})
     public EventDto deleteEventByName(@PathVariable("eventName") String eventName) throws IllegalArgumentException {
-        Event event = eventService.deleteEventByName(eventName);
+        Event event = eventService.deleteEvent(eventName);
         return Conversion.convertToDto(event);
     }
 
