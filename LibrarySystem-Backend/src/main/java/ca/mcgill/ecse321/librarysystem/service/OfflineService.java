@@ -147,6 +147,8 @@ public class OfflineService {
                 offline.getMedias().add(mediaRepository.findMediaByID(mediaId));
                 offline.setNumChecked(offline.getNumChecked()+1);
                 ((CheckOutItem)mediaRepository.findMediaByID(mediaId)).setIsCheckedOut(true);
+                accountRepository.save(offline);
+                mediaRepository.save(mediaRepository.findMediaByID(mediaId));
                 return mediaRepository.findMediaByID(mediaId);
             }
         }

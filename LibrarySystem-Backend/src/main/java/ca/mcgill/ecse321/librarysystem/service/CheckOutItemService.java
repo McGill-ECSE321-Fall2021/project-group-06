@@ -75,6 +75,7 @@ public class CheckOutItemService {
         mediaRepository.save(checkOutItem);
         return checkOutItem;
     }
+    @Transactional
     public Media updateCheckOutItem (int mediaID, int newMediaID, boolean newIsCheckedOut, boolean newIsReserved, int newBorrowingPeriod, Date newStartDate){
 
         // Input validation (methods from tutorial notes 2.6.1)

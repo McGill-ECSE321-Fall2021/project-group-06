@@ -70,7 +70,7 @@ public class OfflineServiceTest {
     private static final int OFFLINE_ITEMSCHECKED = 1;
 
     private static final int CHECKOUTITEM_ID = 6969;
-    private static final boolean CHECKOUTITEM_ISCHECKEDOUT = true;
+    private static final boolean CHECKOUTITEM_ISCHECKEDOUT = false;
     private static final boolean CHECKOUTITEM_ISRESERVED = false;
     private static final Item CHECKOUTITEM_ITEM = Item.Book;
     private static final String STRING_DATE = "2021-09-11";
@@ -88,6 +88,26 @@ public class OfflineServiceTest {
     @BeforeEach
     public void setMockOutput() {
 
+        lenient().when(mediaDao.findMediaByID(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+			if (invocation.getArgument(0).equals(CHECKOUTITEM_ID)) {
+
+                //Set<Media> medias = new HashSet<Media>();
+                CheckOutItem checkOutItem = new CheckOutItem();
+				checkOutItem.setID(CHECKOUTITEM_ID);
+                checkOutItem.setBorrowingPeriod(CHECKOUTITEM_BORROWINGPERIOD);
+                checkOutItem.setType(CHECKOUTITEM_ITEM);
+                checkOutItem.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
+                checkOutItem.setIsReserved(CHECKOUTITEM_ISRESERVED);
+                checkOutItem.setStartDate(CHECKOUTITEM_DATE);
+                //medias.add(checkOutItem);
+                //offline.setMedias(medias);
+
+                return checkOutItem;
+			} else {
+				return null;
+			}
+		});
+
         lenient().when(accountDao.findAccountById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(OFFLINE_ID)) {
 				Offline offline = new Offline();
@@ -100,7 +120,7 @@ public class OfflineServiceTest {
 
                 Set<Media> medias = new HashSet<Media>();
                 CheckOutItem checkOutItem = new CheckOutItem();
-				checkOutItem.setID(CHECKOUTITEM_ID);
+				checkOutItem.setID(234234);
                 checkOutItem.setBorrowingPeriod(CHECKOUTITEM_BORROWINGPERIOD);
                 checkOutItem.setType(CHECKOUTITEM_ITEM);
                 checkOutItem.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
@@ -234,33 +254,22 @@ public class OfflineServiceTest {
 
     @Test
     public void testOfflineCheckout(){
-        CheckOutItem coi = new CheckOutItem();
-        int id = 72769;
-        boolean isCheckedOut = false;
-        boolean isReserved = false;
-        Item item = Item.Book;
-        String STRING_DATE = "2021-08-15";
-        Date startDate = Date.valueOf(STRING_DATE);
-        int borrowingPeriod = 797;
+        Offline offline = offlineService.getOffline(OFFLINE_ID);
 
-        coi.setID(id);
-        coi.setBorrowingPeriod(borrowingPeriod);
-        coi.setIsCheckedOut(isCheckedOut);
-        coi.setIsReserved(isReserved);
-        coi.setType(item);
-        coi.setStartDate(startDate);
-        //CheckOutItem media = new CheckOutItem();
-        String error = "";
+
         try {
-            mediaDao.save(coi);
-            offlineService.checkoutAnItem(id, OFFLINE_ID);
+            //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            offlineService.checkoutAnItem(CHECKOUTITEM_ID, OFFLINE_ID);
+            offline = offlineService.getOffline(OFFLINE_ID);
         } catch(IllegalArgumentException e) {
-			error = e.getMessage();
+			//error = e.getMessage();
+            fail();
 		} 
         //assertEquals(5, 5);
-        //assertNotNull(accountDao.findAccountById(OFFLINE_ID));
-        //assertEquals(1, accountDao.findAccountById(OFFLINE_ID).getMedias().size());
-        assertEquals("This media Id is non-existent!", error);
+        //assertNotNull(media);
+        assertEquals(1, offline.getMedias().size());
+        assertEquals(1, offline.getNumChecked());
+        //assertEquals("This media Id is non-existent!", error);
 
     }
 
