@@ -52,7 +52,7 @@ public class OnlineService {
 
     @Transactional
     public Online createOnline(int aId, String aAddress, String aName, 
-    		AccountCategory accountCategory, boolean local, int itemsChecked) {
+    		AccountCategory accountCategory, boolean local, int itemsChecked, String username, String password, String email) {
     	if (aId==0) {
             throw new IllegalArgumentException("Online Account id cannot be 0.");
         }
@@ -68,6 +68,15 @@ public class OnlineService {
     	if (local==false) {
     		throw new IllegalArgumentException("Online Account must be a local");
     	}
+        if (username==null){
+            throw new IllegalArgumentException("Online Account must have a username");
+        }
+        if (password==null){
+            throw new IllegalArgumentException("Online Account must have a password");
+        }
+        if (email==null){
+            throw new IllegalArgumentException("Online Account must have an email");
+        }
     	Online online=new Online();
     	online.setId(aId);
     	online.setAddress(aAddress);
@@ -75,6 +84,9 @@ public class OnlineService {
     	online.setAccountCategory(accountCategory);
     	online.setIsLocal(local);
     	online.setNumChecked(itemsChecked);
+        online.setUsername(username);
+        online.setPassword(password);
+        online.setEmail(email);
 		return online;
     }
 
