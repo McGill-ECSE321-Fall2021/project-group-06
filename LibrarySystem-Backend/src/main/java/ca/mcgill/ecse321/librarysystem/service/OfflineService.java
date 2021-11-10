@@ -101,15 +101,9 @@ public class OfflineService {
      * @param itemsChecked
      */
     @Transactional
-    public Offline updateOffline(int aId, int newID, String aAddress, String aName, int itemsChecked) {
+    public Offline updateOffline(int aId, String aAddress, String aName, int itemsChecked) {
         if (accountRepository.findAccountById(aId) == null) {
             throw new IllegalArgumentException("Offline Account id does not exist.");
-        }
-        if (newID==0) {
-            throw new IllegalArgumentException("Offline Account new id cannot be 0.");
-        }
-        if (accountRepository.findAccountById(aId) != null && newID != aId) {
-            throw new IllegalArgumentException("Offline Account new id already exists.");
         }
         if (aAddress.length()==0){
             throw new IllegalArgumentException("address cannot be empty");
@@ -121,7 +115,6 @@ public class OfflineService {
             throw new IllegalArgumentException("items checked cannot be less than 0");
         }
     	Offline offline=(Offline) accountRepository.findAccountById(aId);
-        offline.setId(newID);
     	offline.setAddress(aAddress);
     	offline.setName(aName);
         offline.setNumChecked(itemsChecked);

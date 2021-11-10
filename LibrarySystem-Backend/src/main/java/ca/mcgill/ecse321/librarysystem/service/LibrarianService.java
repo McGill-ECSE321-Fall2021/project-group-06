@@ -76,23 +76,23 @@ public class LibrarianService {
 		librarianRepository.save(librarian);
 		return librarian;
 	}
-	@Transactional 
-	public Librarian updateLibrarian(int id, int newID) {
-		if (librarianRepository.findLibrarianById(id) == null){
-			throw new IllegalArgumentException("Librarian id does not exist");
-		}
-		if (librarianRepository.findLibrarianById(newID) != null && id != newID){
-			throw new IllegalArgumentException("Librarian id already exist");
-		}
-		if (newID == 0){
-			throw new IllegalArgumentException("Librarian id cannot be 0");
-		}
-		Librarian librarian = librarianRepository.findLibrarianById(id);
-		librarian.setId(newID);
-		librarianRepository.save(librarian);
-    	return librarian;
+	// @Transactional 
+	// public Librarian updateLibrarian(int id, int newID) {
+	// 	if (librarianRepository.findLibrarianById(id) == null){
+	// 		throw new IllegalArgumentException("Librarian id does not exist");
+	// 	}
+	// 	if (librarianRepository.findLibrarianById(newID) != null && id != newID){
+	// 		throw new IllegalArgumentException("Librarian id already exist");
+	// 	}
+	// 	if (newID == 0){
+	// 		throw new IllegalArgumentException("Librarian id cannot be 0");
+	// 	}
+	// 	Librarian librarian = librarianRepository.findLibrarianById(id);
+	// 	librarian.setId(newID);
+	// 	librarianRepository.save(librarian);
+    // 	return librarian;
   
-    }
+    // }
 	
 	@Transactional
 	public void deleteAllLibrarian() {

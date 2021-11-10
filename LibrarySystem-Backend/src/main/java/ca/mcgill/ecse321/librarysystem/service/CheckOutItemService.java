@@ -26,7 +26,7 @@ public class CheckOutItemService {
      */
 
     @Transactional
-    public Media createCheckOutItem (Item mediaType, int mediaID, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate){
+    public CheckOutItem createCheckOutItem (Item mediaType, int mediaID, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate){
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
@@ -39,7 +39,7 @@ public class CheckOutItemService {
         if (mediaType == null) {
             error = error + "Media type not found! (null)";
         }
-        if (borrowingPeriod <=0){
+        if (borrowingPeriod <0){
             error = error + "borrowingPeriod must be more that 0";
         }
         if (startDate == null){
@@ -76,7 +76,7 @@ public class CheckOutItemService {
         return checkOutItem;
     }
     @Transactional
-    public Media updateCheckOutItem (int mediaID, int newMediaID, boolean newIsCheckedOut, boolean newIsReserved, int newBorrowingPeriod, Date newStartDate){
+    public CheckOutItem updateCheckOutItem (int mediaID, Item newMediaType, boolean newIsCheckedOut, boolean newIsReserved, int newBorrowingPeriod, Date newStartDate){
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
@@ -86,20 +86,25 @@ public class CheckOutItemService {
         if(mediaRepository.findMediaByID(mediaID)==null){
             error = error + "Media Id does not exist";
         }
-        if(newMediaID == 0){
-            error = error + "Media Id cannot be 0";
+        if (newMediaType == null) {
+            error = error + "Media type not found! (null)";
         }
-        if(mediaRepository.findMediaByID(newMediaID)!=null && mediaID != newMediaID){
-            error = error + "Media Id already exists";
+        boolean isValidType = false;
+        for (Item item: Item.values()){
+
+            if (newMediaType.equals(item)) {
+                isValidType = true;
+                break;
+            }
         }
-        if (newBorrowingPeriod <=0){
+        if (!isValidType){
+            error = error + "Media type invalid!";
+        }
+        if (newBorrowingPeriod <0){
             error = error + "borrowingPeriod must be more that 0";
         }
         if (newStartDate == null){
             error = error + "startDate cannot be null";
-        }
-        if (mediaRepository.findMediaByID(mediaID) != null) {
-            error = error + "Media ID already exists!";
         }
         error = error.trim();
         if (error.length() > 0) {
@@ -107,7 +112,7 @@ public class CheckOutItemService {
         }
 
         CheckOutItem checkOutItem = (CheckOutItem)mediaRepository.findMediaByID(mediaID);
-        checkOutItem.setID(mediaID);
+        checkOutItem.setType(newMediaType);
         checkOutItem.setBorrowingPeriod(newBorrowingPeriod);
         checkOutItem.setIsCheckedOut(newIsCheckedOut);
         checkOutItem.setIsReserved(newIsReserved);

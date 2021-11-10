@@ -145,21 +145,14 @@ public class MediaService {
     }
 
     @Transactional
-    public Media updateMedia(Item mediaType, int mediaID, int newMediaID){
+    public Media updateMedia(Item mediaType, int mediaID){
         if (mediaRepository.findMediaByID(mediaID) == null){
             throw new IllegalArgumentException("Media ID does not exist");
         }
         if (mediaType == null){
             throw new IllegalArgumentException("media type cannot be empty.");
         }
-        if (mediaRepository.findMediaByID(newMediaID) != null && mediaID != newMediaID) {
-            throw new IllegalArgumentException("Media ID already exists!");
-        }
-        if (newMediaID == 0) {
-            throw new IllegalArgumentException("Media ID cannot be 0");
-        }
         Media media = mediaRepository.findMediaByID(mediaID);
-        media.setID(newMediaID);
         media.setType(mediaType);
         mediaRepository.save(media);
         return media;

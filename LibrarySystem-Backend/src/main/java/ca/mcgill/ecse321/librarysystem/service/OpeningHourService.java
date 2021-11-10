@@ -79,10 +79,7 @@ public class OpeningHourService {
         return true;
     }
     @Transactional
-    public OpeningHour updateOpeningHours(int id, int newId, DayOfWeek newDay, Time newStart, Time newEnd){
-        if (openingHourRepository.findOpeningHourById(newId) != null){
-            throw new IllegalArgumentException("Opening Hour new Id exists");
-        }
+    public OpeningHour updateOpeningHours(int id, DayOfWeek newDay, Time newStart, Time newEnd){
         if(openingHourRepository.findOpeningHourById(id) == null){
             throw new IllegalArgumentException("Opening Hour Id does not exist");
         }
@@ -99,7 +96,6 @@ public class OpeningHourService {
         openingHour.setDayOfWeek(newDay);
         openingHour.setStartTime(newStart);
         openingHour.setEndTime(newEnd);
-        openingHour.setId(newId);
         openingHourRepository.save(openingHour);
         return openingHour;
     }
