@@ -294,7 +294,7 @@ public class OfflineServiceTest {
     public void testOfflineUpdate(){
         Offline offline = null;
         try{
-            offline = offlineService.updateOffline(OFFLINE_ID, OFFLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2);
+            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2);
         } catch(IllegalArgumentException e) {
 			fail();
 		} 

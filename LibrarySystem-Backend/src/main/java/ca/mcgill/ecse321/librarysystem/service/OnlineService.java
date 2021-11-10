@@ -114,15 +114,9 @@ public class OnlineService {
      * @param itemsChecked
      */
     @Transactional
-    public Online updateOnline(int aId, int newID, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
+    public Online updateOnline(int aId, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
         if (accountRepository.findAccountById(aId) == null) {
             throw new IllegalArgumentException("Offline Account id does not exist.");
-        }
-        if (newID==0) {
-            throw new IllegalArgumentException("Offline Account new id cannot be 0.");
-        }
-        if (accountRepository.findAccountById(aId) != null && newID != aId) {
-            throw new IllegalArgumentException("Offline Account new id already exists.");
         }
         if (aAddress.length()==0){
             throw new IllegalArgumentException("address cannot be empty");

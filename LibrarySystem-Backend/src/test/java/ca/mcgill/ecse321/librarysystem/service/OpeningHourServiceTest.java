@@ -49,6 +49,8 @@ public class OpeningHourServiceTest {
     private static final Time START_TIME = java.sql.Time.valueOf(LocalTime.of(8,05));
     private static final Time END_TIME = java.sql.Time.valueOf(LocalTime.of(18,05));
 
+    private static final int ID_KEY_2 = 5;
+
     private static final int ID_KEY_N = 0;
     private static final int NON_ID_KEY_N = 0;
     private static final DayOfWeek DAY_OF_WEEK_N = null;
@@ -86,110 +88,127 @@ public class OpeningHourServiceTest {
 		//lenient().when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
     }
 
-    // @Test
-    // public void testCreateOpeningHour() {
+    @Test
+    public void testCreateOpeningHour() {
 
-    //     int id = 5;
-    //     DayOfWeek day = DayOfWeek.Friday;
-    //     Time start = java.sql.Time.valueOf(LocalTime.of(7,05));
-    //     Time end = java.sql.Time.valueOf(LocalTime.of(19,05));
-    //     OpeningHour oH = null;
-    //     try{
-    //         oH = openingHourService.createOpeningHour(id, day, start, end);
-    //     } catch (IllegalArgumentException e){
-    //         fail();
-    //     }
-    //     assertNotNull(oH);
-    //     assertEquals(id, oH.getId());
-    //     assertEquals(day, oH.getDayOfWeek());
-    //     assertEquals(start, oH.getStartTime());
-    //     assertEquals(end, oH.getEndTime());
-    // }
-    // @Test
-    // public void testCreateOpeningHourEmptyID(){
-    //     OpeningHour oH = null;
-    //     String error = null;
-    //     try{
-    //         oH = openingHourService.createOpeningHour(ID_KEY_N, DAY_OF_WEEK, START_TIME, END_TIME);
-    //     } catch (IllegalArgumentException e){
-    //         error = e.getMessage();
-    //     }
-    //     assertNull(oH);
-    //     assertEquals("Opening Hour Id cannot be 0", error);
-    // }
-    // @Test
-    // public void testCreateOpeningHourEmptyDay(){
-    //     OpeningHour oH = null;
-    //     String error = null;
-    //     try{
-    //         oH = openingHourService.createOpeningHour(ID_KEY, DAY_OF_WEEK_N, START_TIME, END_TIME);
-    //     } catch (IllegalArgumentException e){
-    //         error = e.getMessage();
-    //     }
-    //     assertNull(oH);
-    //     assertEquals("Opening Hour day cannot be empty", error);
-    // }
-    // @Test
-    // public void testCreateOpeningHourEmptyStartTime(){
-    //     OpeningHour oH = null;
-    //     String error = null;
-    //     try{
-    //         oH = openingHourService.createOpeningHour(ID_KEY, DAY_OF_WEEK, START_TIME_N, END_TIME);
-    //     } catch (IllegalArgumentException e){
-    //         error = e.getMessage();
-    //     }
-    //     assertNull(oH);
-    //     assertEquals("Opening Hour starting time cannot be empty", error);
-    // }
-    // @Test
-    // public void testCreateOpeningHourEmptyEndTime(){
-    //     OpeningHour oH = null;
-    //     String error = null;
-    //     try{
-    //         oH = openingHourService.createOpeningHour(ID_KEY, DAY_OF_WEEK, START_TIME, END_TIME_N);
-    //     } catch (IllegalArgumentException e){
-    //         error = e.getMessage();
-    //     }
-    //     assertNull(oH);
-    //     assertEquals("Opening Hour ending time cannot be empty", error);
-    // }
-    // @Test
-    // public void testGetOpeningHourIDis0(){
-    //     OpeningHour oH = null;
-    //     String error = null;
-    //     try{
-    //         oH = openingHourService.getOpeningHour(0);
-    //     } catch (IllegalArgumentException e){
-    //         error = e.getMessage();
-    //     }
-    //     assertNull(oH);
-    //     assertEquals("Opening Hour Id cannot be 0", error);
-    // }
-    // @Test
-    // public void testDeleteExistingOpeningHour(){
-    //     assertNotNull(openingHourService.getOpeningHour(ID_KEY));
-    //     assertTrue(openingHourService.deleteShift(ID_KEY));
-    // }
-    // @Test
-    // public void testDeleteNonExistingOpeningHour(){
-    //     assertNull(openingHourService.getOpeningHour(NON_ID_KEY));
-    // }
-    // @Test
-    // public void testUpdateOpeningHours(){
-    //     assertNotNull(openingHourService.getOpeningHour(ID_KEY));
-    //     OpeningHour oH = openingHourService.updateOpeningHours(ID_KEY, 69, DAY_OF_WEEK_U, START_TIME_U, END_TIME_U);
-    //     assertEquals(ID_KEY, oH.getId());
-    //     assertEquals(DAY_OF_WEEK_U, oH.getDayOfWeek());
-    //     assertEquals(START_TIME_U, oH.getStartTime());
-    //     assertEquals(END_TIME_U, oH.getEndTime());
+        int id = 5;
+        DayOfWeek day = DayOfWeek.Friday;
+        Time start = java.sql.Time.valueOf(LocalTime.of(7,05));
+        Time end = java.sql.Time.valueOf(LocalTime.of(19,05));
+        OpeningHour oH = null;
+        try{
+            oH = openingHourService.createOpeningHour(id, day, start, end);
+        } catch (IllegalArgumentException e){
+            fail();
+        }
+        assertNotNull(oH);
+        assertEquals(id, oH.getId());
+        assertEquals(day, oH.getDayOfWeek());
+        assertEquals(start, oH.getStartTime());
+        assertEquals(end, oH.getEndTime());
+    }
+    @Test
+    public void testCreateOpeningHourEmptyID(){
+        OpeningHour oH = null;
+        String error = null;
+        try{
+            oH = openingHourService.createOpeningHour(ID_KEY_N, DAY_OF_WEEK, START_TIME, END_TIME);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(oH);
+        assertEquals("Opening Hour Id cannot be 0", error);
+    }
+    @Test
+    public void testCreateOpeningHourEmptyDay(){
+        OpeningHour oH = null;
+        String error = null;
+        try{
+            oH = openingHourService.createOpeningHour(ID_KEY_2, DAY_OF_WEEK_N, START_TIME, END_TIME);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(oH);
+        assertEquals("Opening Hour day cannot be empty", error);
+    }
+    @Test
+    public void testCreateOpeningHourEmptyStartTime(){
+        OpeningHour oH = null;
+        String error = null;
+        try{
+            oH = openingHourService.createOpeningHour(ID_KEY_2, DAY_OF_WEEK, START_TIME_N, END_TIME);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(oH);
+        assertEquals("Opening Hour starting time cannot be empty", error);
+    }
+    @Test
+    public void testCreateOpeningHourEmptyEndTime(){
+        OpeningHour oH = null;
+        String error = null;
+        try{
+            oH = openingHourService.createOpeningHour(ID_KEY_2, DAY_OF_WEEK, START_TIME, END_TIME_N);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(oH);
+        assertEquals("Opening Hour ending time cannot be empty", error);
+    }
+    @Test
+    public void testGetOpeningHourIDis0(){
+        OpeningHour oH = null;
+        String error = null;
+        try{
+            oH = openingHourService.getOpeningHour(0);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(oH);
+        assertEquals("Opening Hour Id does not exist", error);
+    }
+    @Test
+    public void testDeleteExistingOpeningHour(){
+        assertNotNull(openingHourService.getOpeningHour(ID_KEY));
+        assertTrue(openingHourService.deleteShift(ID_KEY));
+    }
+    @Test
+    public void testDeleteNonExistingOpeningHour(){
+        OpeningHour oH = null;
+        Boolean oHDel = false;
+        String error = null;
+        try{
+            oHDel = openingHourService.deleteShift(NON_ID_KEY);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(oH);
+        assertEquals("Opening Hour Id does not exist", error);
+    }    
+    @Test
+    public void testUpdateOpeningHours(){
+        assertNotNull(openingHourService.getOpeningHour(ID_KEY));
+        OpeningHour oH = openingHourService.updateOpeningHours(ID_KEY,DAY_OF_WEEK_U, START_TIME_U, END_TIME_U);
+        assertEquals(ID_KEY, oH.getId());
+        assertEquals(DAY_OF_WEEK_U, oH.getDayOfWeek());
+        assertEquals(START_TIME_U, oH.getStartTime());
+        assertEquals(END_TIME_U, oH.getEndTime());
 
-    // }
-    // @Test
-    // public void testGetExistingOpeningHour(){
-    //     assertEquals(ID_KEY, openingHourService.getOpeningHour(ID_KEY).getId());
-    // }
-    // @Test
-    // public void testGetNonExistingOpeningHour(){
-    //     assertNull(openingHourService.getOpeningHour(NON_ID_KEY));
-    // }
+    }
+    @Test
+    public void testGetExistingOpeningHour(){
+        assertEquals(ID_KEY, openingHourService.getOpeningHour(ID_KEY).getId());
+    }
+    @Test
+    public void testGetNonExistingOpeningHour(){
+        OpeningHour oH = null;
+        String error = null;
+        try{
+            oH = openingHourService.getOpeningHour(NON_ID_KEY);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(oH);
+        assertEquals("Opening Hour Id does not exist", error);
+    }
 }

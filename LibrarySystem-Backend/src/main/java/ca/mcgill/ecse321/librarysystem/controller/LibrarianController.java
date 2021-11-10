@@ -60,11 +60,11 @@ public class LibrarianController {
 	 * @param itemsChecked
 	 * @return updated librarian Dto */
 	 
-	@PutMapping(value= {"/updateLibrarian/{id}/{addr}/{name}/{items}", "/updateLibrarian/{id}/{addr}/{name}/{items}/"})
-	public LibrarianDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
-		Librarian lib=librarianService.updateLibrarian(aId, newID);
-		return Conversion.convertToDto(lib);
-	}
+	// @PutMapping(value= {"/updateLibrarian/{id}/{addr}/{name}/{items}", "/updateLibrarian/{id}/{addr}/{name}/{items}/"})
+	// public LibrarianDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
+	// 	Librarian lib=librarianService.updateLibrarian(aId, newID);
+	// 	return Conversion.convertToDto(lib);
+	// }
 	
 	/**
 	 * Delete librarian of corresponding parameter

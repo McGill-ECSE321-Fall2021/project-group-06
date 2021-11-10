@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
-import ca.mcgill.ecse321.librarysystem.models.Media;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 import ca.mcgill.ecse321.librarysystem.models.NonCheckOutItem;
 
@@ -23,7 +22,7 @@ public class NonCheckOutItemService {
      * @author Samuel
      */
     @Transactional
-    public Media createNonCheckOutItem (Item mediaType, int mediaID){
+    public NonCheckOutItem createNonCheckOutItem (Item mediaType, int mediaID){
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
