@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +27,16 @@ public class OpeningHourController {
     @Autowired
     private OpeningHourService service;
 
+    /**
+     * @author Niels Mainville
+     * Create OpeningHours Dto with given parameters
+     * @param id
+     * @param DayOfWeek
+     * @param startTime
+     * @param endTime
+     * @throws Exception
+     * @return openingHour Dto
+     */
     @PostMapping(value = { "/openingHours", "/openingHours/"})
     public OpeningHourDto createOpeningHour(@RequestParam int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam Time startTime, @RequestParam Time endTime) throws Exception{
         // OpeningHour openingHour = null;
@@ -34,4 +47,14 @@ public class OpeningHourController {
             throw new Exception(e.getMessage());
         }        
     }
+    /**
+     * Find Opening Hour of given parsameter
+     * @param id
+     * @return openingHour Dto
+     */
+    @GetMapping(value= {"/openingHours/{id}", "/openingHours/{id}/"})
+	public OpeningHourDto getOpeningHourById(@PathVariable("id") int id) {
+		return Conversion.convertToDto(service.getOpeningHour(id));
+	}
+   
 }
