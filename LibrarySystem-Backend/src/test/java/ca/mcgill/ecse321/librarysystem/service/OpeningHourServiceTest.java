@@ -188,7 +188,7 @@ public class OpeningHourServiceTest {
     @Test
     public void testUpdateOpeningHours(){
         assertNotNull(openingHourService.getOpeningHour(ID_KEY));
-        OpeningHour oH = openingHourService.updateOpeningHours(ID_KEY, NON_ID_KEY_U, DAY_OF_WEEK_U, START_TIME_U, END_TIME_U);
+        OpeningHour oH = openingHourService.updateOpeningHours(ID_KEY,DAY_OF_WEEK_U, START_TIME_U, END_TIME_U);
         assertEquals(NON_ID_KEY_U, oH.getId());
         assertEquals(DAY_OF_WEEK_U, oH.getDayOfWeek());
         assertEquals(START_TIME_U, oH.getStartTime());
