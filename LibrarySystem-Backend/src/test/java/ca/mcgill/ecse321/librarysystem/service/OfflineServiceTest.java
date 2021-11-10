@@ -202,7 +202,7 @@ public class OfflineServiceTest {
         }
 
         assertNull(offline);
-        assertEquals(error, "This Id already exists");
+        assertEquals(error, "Offline Account id already exists.");
     }
 
     @Test
@@ -245,7 +245,7 @@ public class OfflineServiceTest {
     public void testOfflineUpdate(){
         Offline offline = null;
         try{
-            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2);
+            offline = offlineService.updateOffline(OFFLINE_ID, 565, "Ascension to Heaven HDDTHR" , "Merami", 2);
         } catch(IllegalArgumentException e) {
 			fail();
 		} 

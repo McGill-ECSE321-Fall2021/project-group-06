@@ -44,6 +44,9 @@ public class OpeningHourService {
         if (id == 0){
             throw new IllegalArgumentException("Opening Hour Id cannot be 0");
         }
+        if(openingHourRepository.findOpeningHourById(id) != null){
+            throw new IllegalArgumentException("Opening Hour Id already exists");
+        }
         if (DayOfWeek == null){
             throw new IllegalArgumentException("Opening Hour day cannot be empty");
         }
@@ -64,8 +67,8 @@ public class OpeningHourService {
 
     @Transactional
     public OpeningHour getOpeningHour(int id){
-        if (id == 0){
-            throw new IllegalArgumentException("Opening Hour Id cannot be 0");
+        if(openingHourRepository.findOpeningHourById(id) == null){
+            throw new IllegalArgumentException("Opening Hour Id does not exist");
         }
         return openingHourRepository.findOpeningHourById(id);
     }
@@ -76,12 +79,28 @@ public class OpeningHourService {
         return true;
     }
     @Transactional
-    public OpeningHour updateOpeningHours(int id, DayOfWeek day, Time start, Time end){
+    public OpeningHour updateOpeningHours(int id, int newId, DayOfWeek newDay, Time newStart, Time newEnd){
+        if (openingHourRepository.findOpeningHourById(newId) != null){
+            throw new IllegalArgumentException("Opening Hour new Id exists");
+        }
+        if(openingHourRepository.findOpeningHourById(id) == null){
+            throw new IllegalArgumentException("Opening Hour Id does not exist");
+        }
+        if (newDay == null){
+            throw new IllegalArgumentException("Opening Hour day cannot be empty");
+        }
+        if (newStart == null){
+            throw new IllegalArgumentException("Opening Hour starting time cannot be empty");
+        }
+        if (newEnd == null){
+            throw new IllegalArgumentException("Opening Hour ending time cannot be empty");
+        }
         OpeningHour openingHour = openingHourRepository.findOpeningHourById(id);
-        openingHour.setDayOfWeek(day);
-        openingHour.setStartTime(start);
-        openingHour.setEndTime(end);
-        openingHour.setId(id);
+        openingHour.setDayOfWeek(newDay);
+        openingHour.setStartTime(newStart);
+        openingHour.setEndTime(newEnd);
+        openingHour.setId(newId);
+        openingHourRepository.save(openingHour);
         return openingHour;
     }
 

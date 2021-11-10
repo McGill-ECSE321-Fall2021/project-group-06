@@ -51,6 +51,9 @@ public class OfflineService {
     	if (aId==0) {
             throw new IllegalArgumentException("Offline Account id cannot be 0.");
         }
+        if (accountRepository.findAccountById(aId) != null) {
+            throw new IllegalArgumentException("Offline Account id already exists.");
+        }
     	if (aAddress==null) {
     		throw new IllegalArgumentException("Offline Account must have an address.");
     	}
@@ -84,7 +87,9 @@ public class OfflineService {
      */
     @Transactional
     public Offline getOffline(int aId) {
-        
+        if (accountRepository.findAccountById(aId) == null) {
+            throw new IllegalArgumentException("Offline Account id does not exist.");
+        }
     	return (Offline) accountRepository.findAccountById(aId);
     }
 
@@ -96,8 +101,27 @@ public class OfflineService {
      * @param itemsChecked
      */
     @Transactional
-    public Offline updateOffline(int aId, String aAddress, String aName, int itemsChecked) {
+    public Offline updateOffline(int aId, int newID, String aAddress, String aName, int itemsChecked) {
+        if (accountRepository.findAccountById(aId) == null) {
+            throw new IllegalArgumentException("Offline Account id does not exist.");
+        }
+        if (newID==0) {
+            throw new IllegalArgumentException("Offline Account new id cannot be 0.");
+        }
+        if (accountRepository.findAccountById(aId) != null && newID != aId) {
+            throw new IllegalArgumentException("Offline Account new id already exists.");
+        }
+        if (aAddress.length()==0){
+            throw new IllegalArgumentException("address cannot be empty");
+        }
+        if(aName.length()==0){
+            throw new IllegalArgumentException("name cannot be empty");
+        }
+        if(itemsChecked < 0){
+            throw new IllegalArgumentException("items checked cannot be less than 0");
+        }
     	Offline offline=(Offline) accountRepository.findAccountById(aId);
+        offline.setId(newID);
     	offline.setAddress(aAddress);
     	offline.setName(aName);
         offline.setNumChecked(itemsChecked);
@@ -111,9 +135,10 @@ public class OfflineService {
      */
     @Transactional
     public Offline deleteOffline(int aId) {
+        if (accountRepository.findAccountById(aId) == null) {
+            throw new IllegalArgumentException("Offline Account id does not exist.");
+        }
     	Offline offline=(Offline) accountRepository.findAccountById(aId);
-    	//mediaRepository.deleteAll(mediaRepository.findByAccount(offline));
-    	//eventRepository.deleteAll(eventRepository.findByAccount(offline));
     	accountRepository.delete(offline);
 		return (Offline) accountRepository.findAccountById(aId);
     }

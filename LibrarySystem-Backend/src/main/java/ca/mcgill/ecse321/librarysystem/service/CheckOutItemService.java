@@ -89,7 +89,7 @@ public class CheckOutItemService {
         if(newMediaID == 0){
             error = error + "Media Id cannot be 0";
         }
-        if(mediaRepository.findMediaByID(newMediaID)!=null){
+        if(mediaRepository.findMediaByID(newMediaID)!=null && mediaID != newMediaID){
             error = error + "Media Id already exists";
         }
         if (newBorrowingPeriod <=0){

@@ -81,7 +81,7 @@ public class LibrarianService {
 		if (librarianRepository.findLibrarianById(id) == null){
 			throw new IllegalArgumentException("Librarian id does not exist");
 		}
-		if (librarianRepository.findLibrarianById(newID) != null){
+		if (librarianRepository.findLibrarianById(newID) != null && id != newID){
 			throw new IllegalArgumentException("Librarian id already exist");
 		}
 		if (newID == 0){
