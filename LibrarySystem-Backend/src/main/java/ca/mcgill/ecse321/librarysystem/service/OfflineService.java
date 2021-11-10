@@ -63,6 +63,9 @@ public class OfflineService {
     	if (local==false) {
     		throw new IllegalArgumentException("Offline Account must be a local");
     	}
+        if (accountRepository.findAccountById(aId)!=null) {
+            throw new IllegalArgumentException("This Id already exists");
+        }
     	Offline offline=new Offline();
     	offline.setId(aId);
     	offline.setAddress(aAddress);
