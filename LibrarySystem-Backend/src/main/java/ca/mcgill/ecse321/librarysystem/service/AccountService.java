@@ -16,7 +16,7 @@ import ca.mcgill.ecse321.librarysystem.models.Online;
 
 import java.sql.Date;
 import java.sql.Time;
-
+//author David Hu
 @Service
 public class AccountService {
 
@@ -66,6 +66,7 @@ public class AccountService {
         event.setEventEnd(start);
         event.setEventStart(end);
         event.setName(name);
+        accountRepository.findAccountById(id).getEvents().add(event);
         //event.setAccount(accountRepository.findAccountById(id));
         throw new IllegalArgumentException("System Error");
     }

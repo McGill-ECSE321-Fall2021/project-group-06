@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
@@ -27,25 +26,6 @@ public class ShiftController {
 	@Autowired
 	private ShiftService shiftService;
 	
-	
-	private ShiftDto convertToDto(Shift s) {
-		if (s==null) 
-			throw new IllegalArgumentException("Shift not found.");
-		ShiftDto shift = new ShiftDto();
-		
-		return shift;
-	}
-	
-	private List<ShiftDto> convertToDto(List<Shift> s){
-		if(s==null)
-			throw new IllegalArgumentException("Shifts not found");
-		List<ShiftDto> shifts = new ArrayList<>();
-		for (Shift shift : s) {
-			shifts.add(convertToDto(shift));
-		}
-		return shifts;
-	}
-	
 	/**
 	 * @author Isabella Hao
 	 * Create shift Dto with given parameters
@@ -58,7 +38,7 @@ public class ShiftController {
 	public ShiftDto createShift(@PathVariable("id") int id, @PathVariable("headLibrarian") HeadLibrarian head,
 			@PathVariable("librarians") Librarian libs, @PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("startTime") Time start, @PathVariable("endTime") Time end) {
 		Shift shift=shiftService.createShift(id, DayOfWeek, start, end);
-		return convertToDto(shift);
+		return Conversion.convertToDto(shift);
 	}
 	/**
 	 * Find shift of given parameter
@@ -67,7 +47,7 @@ public class ShiftController {
 	 
 	@GetMapping(value= {"/shift/{id}", "/shift/{id}/"})
 	public ShiftDto getShiftById(@PathVariable("id") int id) {
-		return convertToDto(shiftService.getShift(id));
+		return Conversion.convertToDto(shiftService.getShift(id));
 	}
 	
 	/**
@@ -85,7 +65,7 @@ public class ShiftController {
 			@PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("start") Time start,
 			 @PathVariable("end") Time end) {
 		Shift shift=shiftService.updateShift(aId, DayOfWeek, start, end);
-		return convertToDto(shift);
+		return Conversion.convertToDto(shift);
 	}
 	
 	/**
@@ -95,7 +75,7 @@ public class ShiftController {
 	 
 	@PutMapping(value= {"/deleteShift/{id}", "/deleteShift/{id}/"})
 	public ShiftDto deleteShift(int id) {
-		return convertToDto(shiftService.deleteShift(id));
+		return Conversion.convertToDto(shiftService.deleteShift(id));
 	}
 	
 	/**
@@ -117,7 +97,7 @@ public class ShiftController {
 	 
 	@GetMapping(value= {"/viewSchedule/{id}", "/viewSchedule/{id}/"})
 	public ShiftDto viewSchedule(@PathVariable("id") int id) {
-		return (ShiftDto) convertToDto(shiftService.viewSchedule(id));
+		return (ShiftDto) Conversion.convertToDto(shiftService.viewSchedule(id));
 	}
 	
 	/**
@@ -128,7 +108,7 @@ public class ShiftController {
 	public List<ShiftDto> getShifts(){
 		List<ShiftDto> shiftDto=new ArrayList<>();
 		for (Shift s : shiftService.getShifts()) {
-			shiftDto.add(convertToDto(s));
+			shiftDto.add(Conversion.convertToDto(s));
 		}
 		return shiftDto;
 	}

@@ -18,7 +18,7 @@ import ca.mcgill.ecse321.librarysystem.models.Offline;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//author David Hu
 @Service
 public class OfflineService {
     @Autowired
@@ -63,6 +63,9 @@ public class OfflineService {
     	if (local==false) {
     		throw new IllegalArgumentException("Offline Account must be a local");
     	}
+        if (accountRepository.findAccountById(aId)!=null) {
+            throw new IllegalArgumentException("This Id already exists");
+        }
     	Offline offline=new Offline();
     	offline.setId(aId);
     	offline.setAddress(aAddress);
