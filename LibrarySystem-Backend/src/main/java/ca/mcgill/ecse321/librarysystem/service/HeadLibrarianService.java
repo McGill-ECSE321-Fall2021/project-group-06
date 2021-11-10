@@ -49,22 +49,14 @@ public class HeadLibrarianService {
     @Transactional
     public HeadLibrarian createHeadLibrarian(int aId) {
     	if (aId==0) {
-            throw new IllegalArgumentException("Head Librarian id cannot be 0.");
-        }
-    	// if (aAddress==null) {
-    	// 	throw new IllegalArgumentException("Head Librarian must have an address.");
-    	// }
-    	// if (aName==null) {
-    	// 	throw new IllegalArgumentException("Head Librarian must have a name.");
-    	// }
-    	// if (accountCategory==AccountCategory.Online) {
-    	// 	throw new IllegalArgumentException("Head Librarian account must be of type offline.");
-    	// }
-    	// if (local==false) {
-    	// 	throw new IllegalArgumentException("Head Librarian must be a local");
-    	// }
+        throw new IllegalArgumentException("Head Librarian id cannot be 0.");
+      }
+      if (librarianRepository.findLibrarianById(aId)!=null) {
+        throw new IllegalArgumentException("Librarian id already exists");
+      }
     	HeadLibrarian head=new HeadLibrarian();
     	head.setId(aId);
+      librarianRepository.save(head);
 		return head;
     }
     /**
@@ -74,6 +66,9 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian getHeadLibrarian(int aId) {
+      if (librarianRepository.findLibrarianById(aId)==null) {
+        throw new IllegalArgumentException("Librarian id does not exist");
+      }
     	return (HeadLibrarian) librarianRepository.findLibrarianById(aId);
     }
     
@@ -86,9 +81,16 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian updateHeadLibrarianInfo(int aId, int newID) {
+      if (librarianRepository.findLibrarianById(aId)==null) {
+        throw new IllegalArgumentException("Librarian does not exist");
+      }
+      if (librarianRepository.findLibrarianById(newID)!=null) {
+        throw new IllegalArgumentException("Librarian id already exists");
+      }
     	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
-		head.setId(newID);
-		return head;
+		  head.setId(newID);
+      librarianRepository.save(head);
+		  return head;
     }
     
     /**
@@ -97,6 +99,9 @@ public class HeadLibrarianService {
      */
     @Transactional
     public HeadLibrarian deleteHeadLibrarian(int aId) {
+      if (librarianRepository.findLibrarianById(aId)==null) {
+        throw new IllegalArgumentException("Librarian does not exist");
+      }
     	HeadLibrarian head=(HeadLibrarian) librarianRepository.findLibrarianById(aId);
     	//shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) head));
     	librarianRepository.delete(head);
@@ -119,9 +124,13 @@ public class HeadLibrarianService {
     	if (aId==0) {
     		throw new IllegalArgumentException("Librarian id cannot be 0.");
     	}
+      if (librarianRepository.findLibrarianById(aId)!=null) {
+        throw new IllegalArgumentException("Librarian id exists");
+      }
     	Librarian librarian=new Librarian();
     	librarian.setId(aId);
-		return librarian;
+      librarianRepository.save(librarian);
+		  return librarian;
     }
     
     /**
@@ -133,6 +142,9 @@ public class HeadLibrarianService {
     	if (aId==0) {
     		throw new IllegalArgumentException("There is not an account with id 0.");
     	}
+      if (librarianRepository.findLibrarianById(aId)==null) {
+        throw new IllegalArgumentException("Librarian id does not exist");
+      }
 		Librarian firedLibr=librarianRepository.findLibrarianById(aId);
     	//shiftRepository.deleteAll(shiftRepository.findByLibrarian((Librarian) firedLibr));
     	librarianRepository.delete(firedLibr);
@@ -154,4 +166,7 @@ public class HeadLibrarianService {
 		}
 		return allHeadLibrarians;
 	}
+  //create opening hour
+  //create shift
+  //assigns shifts
 }

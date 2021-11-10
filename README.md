@@ -6,17 +6,34 @@ The goal of this project is to build a system via website and mobile Android app
 
 # Project Reports #
 
-[Wiki Homepage: Project Reports](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki)
+[Wiki Homepage](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki)
+
+[Sprint 1 Report: Requirements, Domain Model and Database Design](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki/Sprint-1:-Requirements,-Domain-Model,-and-Database-Design)
+
+[Sprint 2 Report: Backend Services, Behavior Modeling and Testing](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki/Sprint-2---Backend-Services,-Behavior-Modeling,-and-Testing)
 
 ## Sprint 1 ##
 
 ### Roles and efforts ###
 
-|Members         | Team Roles              | Ind. Efforts (hours) |
-|----------------|---------------          |--            |
-|Isabella Hao    |Participant              |10 |
-|David Hu        |Project Manager/Leader   |40 |
-|Samuel Lin      |Note-taker/Time-taker    |10 |
-|Joyce Liu       |Participant              |15 |
-|Niels Mainville |Facilitator              |20 |
-|Howard Yu       |Participant              |30 |
+|Members         | General Team Roles      | Tasks | Ind. Efforts (hours) |
+|----------------|-------------------------|-------|---|
+|David Hu        |Project Manager/Leader   |Project Repository Setup, Build System and CI Implementation, Persistence Layer and Testing  |40 |
+|Howard Yu       |Participant              |Project Repository Setup, Build System and CI Implementation, Persistence Layer and Testing  |30 |
+|Isabella Hao    |Participant              |Requirements Model, Project Report (use-case specification) |10 |
+|Joyce Liu       |Participant              |Domain Model, Requirements Model, Project Report (use-case specification) |15 |
+|Niels Mainville |Facilitator              |Domain Model, Persistence Layer and Testing   |20 |
+|Samuel Lin      |Note-taker/Time-taker    |Requirements Model, Project Report, GitHub documentation, Meeting minutes  |10 |
+
+## Sprint 2 ##
+
+### Roles and efforts ###
+
+|Members         | Tasks | Ind. Efforts (hours) |
+|----------------|------|----|
+|David Hu        |Backend Implementation, Persistence Layer modification, Domain Model changes, Unit & Integration Testing    |...|
+|Howard Yu       |Backend Implementation, Persistence Layer modification, Domain Model changes, Unit & Integration Testing   |...    |
+|Isabella Hao    |Backend Implementation and Unit Testing (Shift, Librarian), Software Quality Assurance Plan & Report   |...    |
+|Joyce Liu       |Backend Implementation and Unit Testing (Head-Librarian), Software Quality Assurance Plan & Report  |...    |
+|Niels Mainville |Backend Implementation and Unit Testing (OpeningHours), Software Quality Assurance Plan & Report  |...    |
+|Samuel Lin      |Backend implementation and Unit Testing (Event), Software Quality Assurance Plan & Report, GitHub documentation (Wiki + README.md), Meeting Minutes   |...    |
