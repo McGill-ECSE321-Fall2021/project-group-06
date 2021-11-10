@@ -170,11 +170,10 @@ public class OfflineService {
                 throw new IllegalArgumentException("This media Id corresponds to an item that you cannot check out!");
             } else if (mediaRepository.findMediaByID(mediaId) instanceof CheckOutItem){
                 offline = (Offline) accountRepository.findAccountById(id);
+                ((CheckOutItem)mediaRepository.findMediaByID(mediaId)).setIsCheckedOut(true);
                 offline.getMedias().add(mediaRepository.findMediaByID(mediaId));
                 offline.setNumChecked(offline.getNumChecked()+1);
                 //offline.setNumChecked(3);
-                
-                ((CheckOutItem)mediaRepository.findMediaByID(mediaId)).setIsCheckedOut(true);
                 accountRepository.save(offline);
                 mediaRepository.save(mediaRepository.findMediaByID(mediaId));
                 //throw new IllegalArgumentException("System Error");
