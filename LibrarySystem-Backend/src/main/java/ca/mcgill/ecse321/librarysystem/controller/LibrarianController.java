@@ -27,42 +27,6 @@ import ca.mcgill.ecse321.librarysystem.service.LibrarianService;
 public class LibrarianController {
 	@Autowired
 	private LibrarianService librarianService;
-	
-	
-	private LibrarianDto convertToDto(Librarian l) {
-		if (l==null) 
-			throw new IllegalArgumentException("Librarian not found.");
-		LibrarianDto librarian=new LibrarianDto();
-		
-		return librarian;
-	}
-	
-	private ShiftDto convertToDto(Shift s) {
-		if (s==null) 
-			throw new IllegalArgumentException("Shift not found.");
-		ShiftDto shift=new ShiftDto();
-		
-		return shift;
-	}
-	
-	private OfflineDto convertToDto(Offline o) {
-		if (o==null) 
-			throw new IllegalArgumentException("Offline account not found.");
-		OfflineDto account=new OfflineDto();
-		
-		return account;
-	}
-	
-	private List<ShiftDto> convertToDto(Set<Shift> s){
-		if(s==null)
-			throw new IllegalArgumentException("Shifts not found");
-		List<ShiftDto> shifts = new ArrayList<>();
-		for (Shift shift : s) {
-			shifts.add(convertToDto(shift));
-		}
-		return shifts;
-	}
-	
 	/**
 	 * @author Isabella Hao
 	 * Create librarian Dto with given parameters
@@ -74,7 +38,7 @@ public class LibrarianController {
 	@PostMapping(value= {"/createLibrarian/{id}/{addr}/{name}", "/createLibrarian/{id}/{addr}/{name}/"})
 	public LibrarianDto createLibrarian(@PathVariable("id") int id) {
 		Librarian librarian=librarianService.createLibrarian(id);
-		return convertToDto(librarian);
+		return Conversion.convertToDto(librarian);
 	}
 	
 	/**
@@ -84,7 +48,7 @@ public class LibrarianController {
 	 
 	@GetMapping(value= {"/librarian/{id}", "/librarian/{id}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("id") int id) {
-		return convertToDto(librarianService.getLibrarian(id));
+		return Conversion.convertToDto(librarianService.getLibrarian(id));
 	}
 	
 	/**
@@ -99,7 +63,7 @@ public class LibrarianController {
 	@PutMapping(value= {"/updateLibrarian/{id}/{addr}/{name}/{items}", "/updateLibrarian/{id}/{addr}/{name}/{items}/"})
 	public LibrarianDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
 		Librarian lib=librarianService.updateLibrarian(aId, newID);
-		return convertToDto(lib);
+		return Conversion.convertToDto(lib);
 	}
 	
 	/**
@@ -109,7 +73,7 @@ public class LibrarianController {
 	 
 	@PutMapping(value= {"/deleteLibrarian/{id}", "/deleteLibrarian/{id}/"})
 	public LibrarianDto deleteLibrarian(int id) {
-		return convertToDto(librarianService.deleteLibrarian(id));
+		return Conversion.convertToDto(librarianService.deleteLibrarian(id));
 	}
 	
 	/**
@@ -122,7 +86,7 @@ public class LibrarianController {
 	@PostMapping(value= {"/createOfflineAccount/{id}/{addr}/{name}", "/createOfflineAccount/{id}/{addr}/{name}/"})
 	public OfflineDto createOfflineAccount(@PathVariable("id") int id, @PathVariable("addr") String addr, 
 			@PathVariable("name") String name) {
-		return convertToDto(librarianService.createOfflineAccount(id, name, addr,AccountCategory.Offline, true, 0));
+		return Conversion.convertToDto(librarianService.createOfflineAccount(id, name, addr,AccountCategory.Offline, true, 0));
 	}
 	
 	/**
@@ -131,8 +95,13 @@ public class LibrarianController {
 	 * @return Shift Dto */
 	 
 	@GetMapping(value= {"/viewPersonalSchedule/{id}", "/viewPersonalSchedule/{id}/"})
-	public ShiftDto viewPersonalSchedule(@PathVariable("id") int id) {
-		return (ShiftDto) convertToDto(librarianService.viewPersonalShift(id));
+	public HashSet<ShiftDto> viewPersonalSchedule(@PathVariable("id") int id) {
+		HashSet<Shift> shifts = (HashSet)librarianService.viewPersonalShift(id);
+		HashSet<ShiftDto> shiftDto = new HashSet<ShiftDto>();
+		for(Shift shift: shifts){
+			shiftDto.add(Conversion.convertToDto(shift));
+		}
+		return shiftDto;
 	} 
 	
 	/**
@@ -143,7 +112,7 @@ public class LibrarianController {
 	public List<LibrarianDto> getLibrarians(){
 		List<LibrarianDto> librDtos=new ArrayList<>();
 		for (Librarian l : librarianService.getLibrarians()) {
-			librDtos.add(convertToDto(l));
+			librDtos.add(Conversion.convertToDto(l));
 		}
 		return librDtos;
 	} 
