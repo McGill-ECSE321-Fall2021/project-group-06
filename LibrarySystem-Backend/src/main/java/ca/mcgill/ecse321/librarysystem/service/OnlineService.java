@@ -51,6 +51,9 @@ public class OnlineService {
     	if (aId==0) {
             throw new IllegalArgumentException("Online Account id cannot be 0.");
         }
+        if (accountRepository.findAccountById(aId) != null) {
+            throw new IllegalArgumentException("Offline Account id already exists.");
+        }
     	if (aAddress==null) {
     		throw new IllegalArgumentException("Online Account must have an address.");
     	}
@@ -84,6 +87,7 @@ public class OnlineService {
         online.setUsername(username);
         online.setPassword(password);
         online.setEmail(email);
+        accountRepository.save(online);
 		return online;
     }
 
@@ -94,6 +98,9 @@ public class OnlineService {
      */
     @Transactional
     public Online getOnline(int id) {
+        if (accountRepository.findAccountById(id) == null) {
+            throw new IllegalArgumentException("Offline Account id does not exist.");
+        }
     	return (Online) accountRepository.findAccountById(id);
     }
 
@@ -105,8 +112,35 @@ public class OnlineService {
      * @param itemsChecked
      */
     @Transactional
-    public Online updateOnline(int aId, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
-    	Online online=(Online) accountRepository.findAccountById(aId);
+    public Online updateOnline(int aId, int newID, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
+        if (accountRepository.findAccountById(aId) == null) {
+            throw new IllegalArgumentException("Offline Account id does not exist.");
+        }
+        if (newID==0) {
+            throw new IllegalArgumentException("Offline Account new id cannot be 0.");
+        }
+        if (accountRepository.findAccountById(aId) != null && newID != aId) {
+            throw new IllegalArgumentException("Offline Account new id already exists.");
+        }
+        if (aAddress.length()==0){
+            throw new IllegalArgumentException("address cannot be empty");
+        }
+        if(aName.length()==0){
+            throw new IllegalArgumentException("name cannot be empty");
+        }
+        if(itemsChecked < 0){
+            throw new IllegalArgumentException("items checked cannot be less than 0");
+        }
+        if(!usernameIsValid(username)){
+            throw new IllegalArgumentException("username is not valid");
+        }
+        if(password.length() == 0){
+            throw new IllegalArgumentException("must have a password");
+        }
+        if(email.length() == 0){
+            throw new IllegalArgumentException("email must not be empty");
+        }
+        Online online=(Online) accountRepository.findAccountById(aId);
     	online.setAddress(aAddress);
     	online.setName(aName);
         online.setNumChecked(itemsChecked);
