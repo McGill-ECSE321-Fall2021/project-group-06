@@ -152,7 +152,7 @@ public class MediaService {
         if (mediaType == null){
             throw new IllegalArgumentException("media type cannot be empty.");
         }
-        if (mediaRepository.findMediaByID(newMediaID) != null) {
+        if (mediaRepository.findMediaByID(newMediaID) != null && mediaID != newMediaID) {
             throw new IllegalArgumentException("Media ID already exists!");
         }
         if (newMediaID == 0) {

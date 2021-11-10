@@ -126,7 +126,7 @@ public class OfflineServiceTest {
         }
 
         assertNull(offline);
-        assertEquals(error, "This Id already exists");
+        assertEquals(error, "Offline Account id already exists.");
     }
 
 }
