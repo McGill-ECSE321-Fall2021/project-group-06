@@ -179,7 +179,7 @@ public class EventService {
         }
 
         Event event = eventRepository.findEventByName(name);
-        event.setEventStart (eventStart);
+        event.setEventStart(eventStart);
         event.setEventEnd(eventEnd);
         eventRepository.save(event);
         return event;
