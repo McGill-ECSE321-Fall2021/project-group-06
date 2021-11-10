@@ -69,6 +69,9 @@ public class AccountService {
         if (account instanceof Offline){
             account = (Offline) accountRepository.findAccountById(id);
         }
+        if (account instanceof Online){
+            account = (Online) accountRepository.findAccountById(id);
+        }
         account.getEvents().add(event);
         accountRepository.save(account);
         eventRepository.save(event);
