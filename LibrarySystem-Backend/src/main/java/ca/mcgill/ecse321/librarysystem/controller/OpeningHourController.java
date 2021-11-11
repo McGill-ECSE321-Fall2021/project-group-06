@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,11 +38,10 @@ public class OpeningHourController {
      * @throws Exception
      * @return openingHour Dto
      */
-    @PostMapping(value = { "/openingHours", "/openingHours/"})
-    public OpeningHourDto createOpeningHour(@RequestParam int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam Time startTime, @RequestParam Time endTime) throws Exception{
-        // OpeningHour openingHour = null;
+    @PostMapping(value = { "/openingHours/{id}", "/openingHours/{id}/"})
+    public OpeningHourDto createOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam String startTime, @RequestParam String endTime) throws Exception{
         try{
-            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, startTime, endTime);
+            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, Conversion.convertStrToTime(startTime), Conversion.convertStrToTime(endTime));
             return Conversion.convertToDto(openingHour);
         } catch (IllegalArgumentException e) {
             throw new Exception(e.getMessage());
@@ -52,7 +52,7 @@ public class OpeningHourController {
      * @param id
      * @return openingHour Dto
      */
-    @GetMapping(value= {"/openingHours/{id}", "/openingHours/{id}/"})
+    @GetMapping(value= {"/getopeningHours/{id}", "/getopeningHours/{id}/"})
 	public OpeningHourDto getOpeningHourById(@PathVariable("id") int id) {
 		return Conversion.convertToDto(service.getOpeningHour(id));
 	}
@@ -64,19 +64,19 @@ public class OpeningHourController {
 	 * @param newEnd
 	 * @return updated Opening Hour Dto */
 	 
-	@PutMapping(value= {"/updateOpeningHour/{id}/{newDay}/{newStart}/{newEnd}/"})
-	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @PathVariable("newDay") DayOfWeek newDay, @PathVariable("newStart") Time newStart,
-			@PathVariable("newEnd") Time newEnd) {
-		OpeningHour oH=service.updateOpeningHours(aId, newDay, newStart, newEnd);
+	@PutMapping(value= {"/updateOpeningHour/{id}"})
+	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @RequestParam DayOfWeek newDay, @RequestParam String newStart,
+			@RequestParam String newEnd) {
+		OpeningHour oH=service.updateOpeningHours(aId, newDay, Conversion.convertStrToTime(newStart), Conversion.convertStrToTime(newEnd));
 		return Conversion.convertToDto(oH);
 	}
     /**
 	 * Delete Opening Hour of corresponding parameter
 	 * @param id
-	 * @return deleted Opening Hour Dto */
+	 */
 	 
-	// @PutMapping(value= {"/deleteOpeningHour/{id}", "/deleteOpeningHour/{id}/"})
-	// public OpeningHourDto deleteOpeningHour(int id) {
-	// 	// return Conversion.convertToDto(service.deleteOpeningHour(id)
-	// }
+    @DeleteMapping(value = {"/deleteOpeningHour/{id}"})
+    public void deleteOpeningHour(@PathVariable("id") int id){
+        service.deleteOpeningHour(id);
+    }
 }
