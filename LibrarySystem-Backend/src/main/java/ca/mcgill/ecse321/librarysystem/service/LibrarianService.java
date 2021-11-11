@@ -45,40 +45,23 @@ public class LibrarianService {
 	 * Create Offline Account
 	 * */
 	 
-    @Transactional
-    public Offline createOffline(int aId, String aAddress, String aName, 
-    		AccountCategory accountCategory, boolean local, int itemsChecked) {
-    	if (aId==0) {
-            throw new IllegalArgumentException("Offline Account id cannot be 0.");
-        }
-        if (accountRepository.findAccountById(aId) != null) {
-            throw new IllegalArgumentException("Offline Account id already exists.");
-        }
-    	if (aAddress==null) {
-    		throw new IllegalArgumentException("Offline Account must have an address.");
-    	}
-    	if (aName==null) {
-    		throw new IllegalArgumentException("Offline Account must have a name.");
-    	}
-        if (accountCategory==null){
-            throw new IllegalArgumentException("account must have a type");
-        }
-    	if (accountCategory==AccountCategory.Online) {
-    		throw new IllegalArgumentException("Offline account must be of type offline.");
-    	}
-    	if (local==false) {
-    		throw new IllegalArgumentException("Offline Account must be a local");
-    	}
-    	Offline offline=new Offline();
-    	offline.setId(aId);
-    	offline.setAddress(aAddress);
-    	offline.setName(aName);
-    	offline.setAccountCategory(accountCategory);
-    	offline.setIsLocal(local);
-    	offline.setNumChecked(itemsChecked);
-        accountRepository.save(offline);
-		return offline;
-    }
+	@Transactional
+    public Offline createOfflineAccount(int id, String name,
+    		String address, AccountCategory accountCategory, 
+    		boolean local, int itemsChecked) {
+		//Librarian librarian = (Librarian) accountRepository.findAccountById(id);
+		//if(librarian == null)
+		//	throw new IllegalArgumentException("Authorization Denied.");
+		Offline account = new Offline();
+		account.setAccountCategory(accountCategory);
+		account.setAddress(address);
+		account.setId(id);
+		account.setIsLocal(local);
+		account.setNumChecked(itemsChecked);
+		account.setName(name);
+		accountRepository.save(account);
+		return account;
+	}
 	
 	@Transactional
 	public Librarian createLibrarian(int id) {
