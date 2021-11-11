@@ -18,7 +18,9 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -86,12 +88,11 @@ public class HeadLibrarianServiceTest {
 			else return null;
 		});
 		lenient().when(librRepo.findAll()).thenAnswer((InvocationOnMock invocation) -> {
-			if (invocation.getArgument(0).equals(HEAD_ID_KEY)) {
-				HeadLibrarian head=new HeadLibrarian();
-				head.setId(HEAD_ID_KEY);
-				return head;
-			}
-			else return null;
+			HeadLibrarian head=new HeadLibrarian();
+			head.setId(HEAD_ID_KEY);
+			List<HeadLibrarian> headLibrarians=new ArrayList<>();
+			headLibrarians.add(head);
+			return headLibrarians;
 		});
 		lenient().when(opRepo.findOpeningHourById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(OH_ID)) {
@@ -184,6 +185,32 @@ public class HeadLibrarianServiceTest {
 	}
 	
 	@Test
+	public void testDeleteHeadLibrSuccessfully() {
+		HeadLibrarian h=null;
+		try {
+			h=headService.deleteHeadLibrarian(HEAD_ID_KEY);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+		HeadLibrarian savedH=headService.getHeadLibrarian(HEAD_ID_KEY);
+		assertNotNull(h);
+		assertEquals(savedH.getId(), h.getId());
+	}
+	
+	@Test
+	public void testDeleteNonExistingHeadLibr() {
+		String error=null;
+		HeadLibrarian h=null;
+		try {
+			h=headService.deleteHeadLibrarian(HEAD_NON_EXIST_KEY);
+		} catch (IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(h);
+		assertTrue(error.contains("Librarian does not exist"));
+	}
+	
+	@Test
 	public void testHireLibrSuccessfully() {
 		int id=3;
 		Librarian l=null;
@@ -220,6 +247,41 @@ public class HeadLibrarianServiceTest {
 		}
 		assertNull(l);
 		assertTrue(error.contains("Librarian id exists"));
+	}
+	
+	@Test
+	public void testFireLibrSuccessfully() {
+		Librarian l=null;
+		try {
+			l=headService.fireLibrarian(LIBR_ID);
+		} catch (IllegalArgumentException e) {
+			fail();
+		}
+		Librarian savedL=librService.getLibrarian(LIBR_ID);
+		assertNotNull(l);
+		assertEquals(savedL.getId(), l.getId());
+	}
+	
+	@Test
+	public void testDeleteNonExistingLibr() {
+		String error=null;
+		Librarian l=null;
+		try {
+			l=headService.fireLibrarian(LIBR_NON_EXIST_KEY);
+		} catch (IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertNull(l);
+		assertTrue(error.contains("Librarian id does not exist"));
+	}
+	
+	@Test
+	public void testGetAllHeadLibrarians() {
+		List<HeadLibrarian> allHeads=new ArrayList<>();
+		allHeads=headService.getHeadLibrarians();
+		HeadLibrarian head=allHeads.get(0);
+		assertNotNull(head);
+		assertEquals(HEAD_ID_KEY, head.getId());
 	}
 	
 	@Test
