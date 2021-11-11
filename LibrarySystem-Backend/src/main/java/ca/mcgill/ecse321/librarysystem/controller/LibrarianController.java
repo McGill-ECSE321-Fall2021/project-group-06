@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class LibrarianController {
 	 * @param addr
 	 * @param name
 	 * @return librarian Dto
-	 * @author Howard Yu */
+	 * @author Howard Yu, David Hu */
 	 
 	@PostMapping(value= {"/createLibrarian/{id}", "/createLibrarian/{id}/"})
 	public LibrarianDto createLibrarian(@PathVariable("id") int id) {
@@ -36,7 +37,7 @@ public class LibrarianController {
 	 * Find librarian of given parameter
 	 * @param id
 	 * @return librarian Dto 
-	 * @author Howard Yu*/
+	 * @author Howard Yu, David Hu*/
 	 
 	@GetMapping(value= {"/librarians/{id}", "/librarians/{id}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("id") int id) {
@@ -59,7 +60,7 @@ public class LibrarianController {
 	 * @param addr
 	 * @param name
 	 * @return offline Dto
-	 * @author Howard Yu */
+	 * @author Howard Yu*/
 	 
 	@PostMapping(value= {"/createOfflineAccount/{id}/{addr}/{name}", "/createOfflineAccount/{id}/{addr}/{name}/"})
 	public OfflineDto createOfflineAccount(@PathVariable("id") int id, @PathVariable("addr") String addr, 
@@ -71,11 +72,11 @@ public class LibrarianController {
 	 *  View personal schedule
 	 * @param id
 	 * @return Shift Dto
-	 * @author Howard Yu */
+	 * @author Howard Yu*/
 	 
 	@GetMapping(value= {"/viewPersonalSchedule/{id}", "/viewPersonalSchedule/{id}/"})
 	public HashSet<ShiftDto> viewPersonalSchedule(@PathVariable("id") int id) {
-		HashSet<Shift> shifts = (HashSet)librarianService.viewPersonalShift(id);
+		Set<Shift> shifts = librarianService.viewPersonalShift(id);
 		HashSet<ShiftDto> shiftDto = new HashSet<ShiftDto>();
 		for(Shift shift: shifts){
 			shiftDto.add(Conversion.convertToDto(shift));
