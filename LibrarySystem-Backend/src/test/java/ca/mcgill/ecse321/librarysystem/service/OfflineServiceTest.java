@@ -461,13 +461,13 @@ public class OfflineServiceTest {
     @Test
     public void testOfflineCheckout(){
         Offline offline = null;
-        CheckOutItem mediaTest = new CheckOutItem();
+        //CheckOutItem mediaTest = new CheckOutItem();
         try {
             
             offline = offlineService.checkoutAnItem(CHECKOUTITEM_ID, OFFLINE_ID);
             for(Media media : offline.getMedias()){
                 if (media.getID()==CHECKOUTITEM_ID){
-                    mediaTest = (CheckOutItem) media;
+                    //mediaTest = (CheckOutItem) media;
                 }
             }
         

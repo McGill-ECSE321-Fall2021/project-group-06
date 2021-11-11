@@ -9,10 +9,7 @@ import ca.mcgill.ecse321.librarysystem.dao.EventRepository;
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
-import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
 import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
-import ca.mcgill.ecse321.librarysystem.models.Account;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
@@ -21,9 +18,7 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 //Joyce Liu
 @Service
@@ -317,12 +312,12 @@ public class HeadLibrarianService {
 		if(shiftRepository.findShiftByShiftID(shiftID)==null){
 			throw new IllegalArgumentException("shift does not exist");
 		}
-		Librarian l=new Librarian();
+		Librarian l=librarianRepository.findLibrarianById(id);
 		l.setId(id);
-		if (librarianRepository.findLibrarianById(id).getShift()==null) {
-			Set<Shift> shifts=new HashSet<Shift>();
-			l.setShift(shifts);
-		}
+		// if (librarianRepository.findLibrarianById(id).getShift()==null) {
+		// 	Set<Shift> shifts=new HashSet<Shift>();
+		// 	l.setShift(shifts);
+		// }
 		l.getShift().add(shiftRepository.findShiftByShiftID(shiftID));
 		librarianRepository.save(l);
 		return l;

@@ -170,10 +170,10 @@ public class OpeningHourServiceTest {
     @Test
     public void testDeleteNonExistingOpeningHour(){
         OpeningHour oH = null;
-        Boolean oHDel = false;
+        //Boolean oHDel = false;
         String error = null;
         try{
-            oHDel = openingHourService.deleteOpeningHour(NON_ID_KEY);
+            openingHourService.deleteOpeningHour(NON_ID_KEY);
         } catch (IllegalArgumentException e){
             error = e.getMessage();
         }

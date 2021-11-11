@@ -13,9 +13,6 @@ import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.Event;
 import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Online;
-
-import java.sql.Date;
-import java.sql.Time;
 //author David Hu
 @Service
 public class AccountService {
@@ -31,6 +28,13 @@ public class AccountService {
     @Autowired
     ShiftRepository shiftRepository;
 
+    /**
+     * 
+     * @param id
+     * @param password
+     * @return Account
+     * @author David
+     */
     @Transactional
     public Account login(int id, String password) {
 
@@ -54,6 +58,14 @@ public class AccountService {
 
         throw new IllegalArgumentException("System Error");
     }
+
+    /**
+     * 
+     * @param name
+     * @param id
+     * @return Account
+     * @author David
+     */
 
     @Transactional
     public Account bookEvent(String name, int id){

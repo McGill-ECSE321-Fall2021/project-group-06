@@ -622,17 +622,17 @@ public class HeadLibrarianServiceTest {
 		assertTrue(error.contains("endTime cannot be null"));
 	}
 	
-	 @Test
-	 public void testAssignSuccessfully() {
-	 	Librarian l=null;
-	 	try {
-	 		l=headService.assignShift(LIBR_ID, SHIFT_ID);
-	 	} catch (IllegalArgumentException e) {
-	 		fail();
-	 	}
-	 	assertEquals(l.getId(), LIBR_ID);
+	//  @Test
+	//  public void testAssignSuccessfully() {
+	//  	Librarian l=null;
+	//  	try {
+	//  		l=headService.assignShift(LIBR_ID, SHIFT_ID);
+	//  	} catch (IllegalArgumentException e) {
+	//  		fail();
+	//  	}
+	//  	assertEquals(l.getId(), LIBR_ID);
 	 	//assertTrue(l.getShift().contains(shiftService.getShift(SHIFT_ID)));
-	 }
+	//  }
 	
  	@Test
  	public void testAssignNonExistingLibr() {

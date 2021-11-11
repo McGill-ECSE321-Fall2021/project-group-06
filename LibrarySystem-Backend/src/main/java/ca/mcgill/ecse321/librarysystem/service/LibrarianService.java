@@ -5,13 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
-import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
