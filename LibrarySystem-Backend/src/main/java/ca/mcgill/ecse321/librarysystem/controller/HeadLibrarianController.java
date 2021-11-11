@@ -179,7 +179,7 @@ public class HeadLibrarianController {
 	  * @param newEndTime
 	  * @return updated shift Dto
 	  */
-	 @PutMapping(value= {"/updateShift/{id}", "/updateShift/{id}/"})
+	 @PutMapping(value= {"/headupdateShift/{id}", "/headupdateShift/{id}/"})
 	 public ShiftDto updateShift(@PathVariable("id") int shiftID, @RequestParam DayOfWeek newDayOfWeek, 
 			 @RequestParam String newStartTime, 
 			 @RequestParam String newEndTime) {

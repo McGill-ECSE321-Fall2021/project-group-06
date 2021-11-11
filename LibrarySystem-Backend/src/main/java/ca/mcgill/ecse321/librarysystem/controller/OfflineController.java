@@ -54,6 +54,17 @@ public class OfflineController {
         return (Conversion.convertToDto(offline));
     }
 
+    @GetMapping(value = { "/getOffline/{id}", "/getOffline/{id}/" })
+    public OfflineDto getOfflineById(@PathVariable("id") int id) throws IllegalArgumentException {
+        return Conversion.convertToDto(offlineService.getOffline(id));
+    }
+
+    @PutMapping(value = {"/add_media_offline/{id}"})
+    public OfflineDto addMediaOnline(@PathVariable("id") int id, @RequestParam int mediaId){
+        Offline offline = offlineService.checkoutAnItem(mediaId, id);
+        return (Conversion.convertToDto(offline));
+    }
+
     @PutMapping(value = {"/edit_offline/{id}"})
     public OfflineDto updateOffline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam int numChecked){
         Offline offline = offlineService.updateOffline(id, address, name, numChecked);

@@ -109,9 +109,9 @@ public class ShiftService {
     @Transactional
     public List<Shift> getShifts(){
     	Iterable<Shift> shifts= shiftRepository.findAll();
-		if (((List<Shift>) shifts).size() == 0){
-			throw new IllegalArgumentException("Shift list cannot be empty");
-		}
+		// if (((List<Shift>) shifts).size() == 0){
+		// 	throw new IllegalArgumentException("Shift list cannot be empty");
+		// }
     	return toList(shifts);
     	
     }
@@ -150,7 +150,7 @@ public class ShiftService {
     	shift.setEndTime(end);
     	//shift.setHeadLibrarian(head);
     	shift.setStartTime(start);
-    	shift.setShiftID(id);
+    	//shift.setShiftID(id);
 		shiftRepository.save(shift);
     	//shift.setLibrarian(librarians);
     	return shift;

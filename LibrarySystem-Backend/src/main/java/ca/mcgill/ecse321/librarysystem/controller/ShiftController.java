@@ -65,7 +65,7 @@ public class ShiftController {
 	 * @return updated shift  Dto */
 	 
 	@PutMapping(value= {"/updateShift/{id}"})
-	public ShiftDto updateLibrarian(@PathVariable("id") int aId,
+	public ShiftDto updateShift(@PathVariable("id") int aId,
 	@RequestParam DayOfWeek DayOfWeek, @RequestParam String start,
 	@RequestParam String end) {
 		Time startTime = Time.valueOf(start);
@@ -80,7 +80,7 @@ public class ShiftController {
 	 * @return deleted shift Dto */
 	 
 	@DeleteMapping(value= {"/deleteShift/{id}"})
-	public void deleteShift(int id) {
+	public void deleteShift(@PathVariable("id") int id) {
 		shiftService.deleteShift(id);
 	}
 	
