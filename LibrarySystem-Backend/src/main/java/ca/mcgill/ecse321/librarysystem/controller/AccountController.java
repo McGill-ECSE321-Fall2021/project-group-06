@@ -46,7 +46,10 @@ public class AccountController {
 		if (account instanceof Offline){
 			return Conversion.convertToDto((Offline) account);
 		} else if (account instanceof Online){
-			return Conversion.convertToDto((Online) account);
+			if(((Online) account).getPassword().equals(password)){
+				return Conversion.convertToDto((Online) account);
+			}
+			return null;
 		} else {
 			return null;
 		}

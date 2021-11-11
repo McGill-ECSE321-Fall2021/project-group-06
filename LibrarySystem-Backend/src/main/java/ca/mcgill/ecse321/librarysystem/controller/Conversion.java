@@ -83,21 +83,27 @@ public class Conversion {
     public static OnlineDto convertToDto(Online online){
         if(online==null) throw new IllegalArgumentException("Customer not found.");
         HashSet<EventDto> events = new HashSet<EventDto>();
-        HashSet<Event> modelEvents = (HashSet)online.getEvents();
-        for(Event event: modelEvents){
-            events.add(convertToDto(event));
+        Set<Event> modelEvents = online.getEvents();
+        if(modelEvents != null){
+            for(Event event: modelEvents){
+                events.add(convertToDto(event));
+            }
         }
+        
 
         HashSet<MediaDto> medias = new HashSet<MediaDto>();
-        HashSet<Media> modelMedias = (HashSet)online.getMedias();
-        for(Media media: modelMedias){
-            if(media instanceof CheckOutItem){
-                medias.add(convertToDto((CheckOutItem)media));
-            }
-            if(media instanceof NonCheckOutItem){
-                medias.add(convertToDto((NonCheckOutItem)media));
+        Set<Media> modelMedias = online.getMedias();
+        if(modelMedias != null){
+            for(Media media: modelMedias){
+                if(media instanceof CheckOutItem){
+                    medias.add(convertToDto((CheckOutItem)media));
+                }
+                if(media instanceof NonCheckOutItem){
+                    medias.add(convertToDto((NonCheckOutItem)media));
+                }
             }
         }
+        
         return new OnlineDto(online.getId(), online.getAddress(), online.getName(), online.getAccountCategory(), online.getIsLocal(), online.getNumChecked(), events, medias, online.getUsername(), online.getPassword(), online.getEmail());
     }
 

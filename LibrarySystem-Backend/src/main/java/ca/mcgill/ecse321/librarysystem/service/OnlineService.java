@@ -115,6 +115,7 @@ public class OnlineService {
      */
     @Transactional
     public Online updateOnline(int aId, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
+        usernameIsValid(username);
         if (accountRepository.findAccountById(aId) == null) {
             throw new IllegalArgumentException("Offline Account id does not exist.");
         }
@@ -143,7 +144,7 @@ public class OnlineService {
         online.setUsername(username);
         online.setPassword(password);
         online.setEmail(email);
-        usernameIsValid(username);
+        
         accountRepository.save(online);
 		return online;
     }
