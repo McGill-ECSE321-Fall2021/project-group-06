@@ -481,6 +481,37 @@ public class EventServiceTest {
     }
 
     @Test
+    public void testDeleteEventNameEmpty(){
+        
+        String eventName = "";
+        String error = "";
+
+        try{
+            eventService.deleteEvent(eventName);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertEquals(error, "Event name cannot be empty!");
+    }
+
+    @Test
+    public void testDeleteEventNameNotFound(){
+        
+        String eventName = "Random Event";
+        String error = "";
+
+        try{
+            eventService.deleteEvent(eventName);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertEquals(error, "Event name not found");
+    }
+
+
+    @Test
     public void testDeleteAllEvents(){
 
         boolean areDeleted = true;
