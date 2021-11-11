@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,12 +41,10 @@ public class OpeningHourController {
      * @throws Exception
      * @return openingHour Dto
      */
-    @PostMapping(value = { "/openingHours", "/openingHours/"})
-    public OpeningHourDto createOpeningHour(@RequestParam int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam String start, @RequestParam String end) throws Exception{
-        Time startTime = Time.valueOf(start);
-		Time endTime = Time.valueOf(end);
+    @PostMapping(value = { "/openingHours/{id}", "/openingHours/{id}/"})
+    public OpeningHourDto createOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam String startTime, @RequestParam String endTime) throws Exception{
         try{
-            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, startTime, endTime);
+            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, Conversion.convertStrToTime(startTime), Conversion.convertStrToTime(endTime));
             return Conversion.convertToDto(openingHour);
         } catch (IllegalArgumentException e) {
             throw new Exception(e.getMessage());
@@ -57,7 +56,7 @@ public class OpeningHourController {
      * @return openingHour Dto
      * @author Howard Yu
      */
-    @GetMapping(value= {"/openingHours/{id}", "/openingHours/{id}/"})
+    @GetMapping(value= {"/getopeningHours/{id}", "/getopeningHours/{id}/"})
 	public OpeningHourDto getOpeningHourById(@PathVariable("id") int id) {
 		return Conversion.convertToDto(service.getOpeningHour(id));
 	}
@@ -85,10 +84,10 @@ public class OpeningHourController {
     /**
 	 * Delete Opening Hour of corresponding parameter
 	 * @param id
-	 * @return deleted Opening Hour Dto */
+	 */
 	 
-	@PutMapping(value= {"/deleteOpeningHour/{id}", "/deleteOpeningHour/{id}/"})
-	public void deleteOpeningHour(int id) {
-		service.deleteOpeningHour(id);
-	}
+    @DeleteMapping(value = {"/deleteOpeningHour/{id}"})
+    public void deleteOpeningHour(@PathVariable("id") int id){
+        service.deleteOpeningHour(id);
+    }
 }
