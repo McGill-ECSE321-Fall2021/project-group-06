@@ -55,7 +55,7 @@ public class Conversion {
 	}
     
     public static OfflineDto convertToDto(Offline offline){
-        if(offline==null) throw new IllegalArgumentException("Customer not found.");
+        if(offline==null) throw new IllegalArgumentException("Account not found.");
         
         HashSet<EventDto> events = new HashSet<EventDto>();
         Set<Event> modelEvents = offline.getEvents();

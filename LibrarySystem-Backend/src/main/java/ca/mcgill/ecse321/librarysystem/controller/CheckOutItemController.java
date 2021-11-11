@@ -8,6 +8,7 @@ import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,18 +37,15 @@ public class CheckOutItemController {
             return Conversion.convertToDto(checkOutItem);
     }
 
-    @GetMapping(value = { "/checkOutItems/{id}", "/checkOutItems/{id}" })
+    @GetMapping(value = { "/checkOutItems/{id}", "/checkOutItems/{id}/" })
     public CheckOutItemDto getCheckOutItemsById(@PathVariable("id") int mediaID) throws IllegalArgumentException {
         return Conversion.convertToDto(checkOutItemService.getCheckOutItemByID(mediaID));
     }
 
-    @GetMapping(value = { "/checkOutItems/", "/checkOutItems/" })
-    public List<CheckOutItemDto> getAllEvents() {
-        List<CheckOutItemDto> checkOutItemDtos = new ArrayList<>();
-        for (CheckOutItem checkOutItem : checkOutItemService.getAllCheckOutItems()) {
-            checkOutItemDtos.add(Conversion.convertToDto(checkOutItem));
-        }
-        return checkOutItemDtos;
+    @GetMapping(value = { "/checkOutItems", "/checkOutItems/" })
+    public List<CheckOutItemDto> getAllCheckOutItems() {
+        return checkOutItemService.getAllCheckOutItems().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
+
     }
     @PutMapping(value = { "/edit_checkOutItems/{id}"})
     public CheckOutItemDto updateCheckOutItem(@PathVariable("id") int mediaID, @RequestParam Item newMediaType, @RequestParam boolean newIsCheckedOut,
