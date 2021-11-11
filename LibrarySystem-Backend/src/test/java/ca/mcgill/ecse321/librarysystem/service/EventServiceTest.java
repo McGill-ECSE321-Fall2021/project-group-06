@@ -156,6 +156,33 @@ public class EventServiceTest {
     }
 
     @Test
+    public void testCreateEventDateEmpty(){
+
+        String eventName = "Programming tutorial";
+
+        Date eventDate = null;
+
+        String eventStartString = "14:00:00";                           
+        String eventEndString = "15:00:00";
+        Time eventStart = Time.valueOf(eventStartString);
+        Time eventEnd = Time.valueOf(eventEndString);
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event date cannot be empty!");
+    }
+
+    @Test
     public void testCreateEventEmpty(){
         String eventName = " "; // Empty string or spaces will trigger the error still (because of .trim())
 
@@ -180,6 +207,60 @@ public class EventServiceTest {
         // Check result of Event
         assertNull(event);
         assertEquals(error, "Event name cannot be empty!");
+    }
+
+    @Test
+    public void testCreateEventStartTimeEmpty(){
+
+        String eventName = "Programming tutorial";
+
+        LocalDate localDate = LocalDate.of(2021, Month.NOVEMBER, 20); 
+        Date eventDate = Date.valueOf(localDate);
+                             
+        String eventEndString = "12:00:00";
+        Time eventStart = null;
+        Time eventEnd = Time.valueOf(eventEndString);
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event start time cannot be empty!");
+    }
+
+    @Test
+    public void testCreateEventEndTimeEmpty(){
+
+        String eventName = "Programming tutorial";
+
+        LocalDate localDate = LocalDate.of(2021, Month.NOVEMBER, 20); 
+        Date eventDate = Date.valueOf(localDate);
+                             
+        String eventStartString = "12:00:00";
+        Time eventEnd = null;
+        Time eventStart = Time.valueOf(eventStartString);
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event end time cannot be empty!");
     }
 
     // @Test
@@ -249,6 +330,49 @@ public class EventServiceTest {
     }
 
     @Test
+    public void testUpdateEventDateEmpty(){
+
+        String eventName = EVENT_NAME; 
+        Date eventDate = null;
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.updateEventDate(eventName, eventDate);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event date cannot be empty!");
+    }
+
+    @Test
+    public void testUpdateEventDateNameEmpty(){
+
+        String eventName = "";
+        LocalDate localDate = LocalDate.of(2021, Month.APRIL, 1); 
+        Date eventDate = Date.valueOf(localDate);
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.updateEventDate(eventName, eventDate);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event name not found");
+    }
+
+    @Test
     public void testUpdateEventTime(){
         String eventName = EVENT_NAME;
         Date eventDate = EVENT_DATE;
@@ -272,6 +396,73 @@ public class EventServiceTest {
         assertEquals(eventDate, event.getDate());
         assertEquals(eventStart, event.getEventStart());
         assertEquals(eventEnd, event.getEventEnd());
+    }
+
+    @Test
+    public void testUpdateEventTimeNameEmpty(){
+        String eventName = "";
+        String eventStartString = "9:00:00";                              // Event times are also changed
+        String eventEndString = "10:00:00";
+        Time eventStart = Time.valueOf(eventStartString);
+        Time eventEnd = Time.valueOf(eventEndString);
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.updateEventTime(eventName, eventStart, eventEnd);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event name not found");
+    }
+
+    @Test
+    public void testUpdateEventTimeStartTimeEmpty(){
+        String eventName = EVENT_NAME;
+        String eventEndString = "10:00:00";
+        Time eventStart = null;
+        Time eventEnd = Time.valueOf(eventEndString);
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.updateEventTime(eventName, eventStart, eventEnd);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event start time cannot be empty");
+    }
+
+    @Test
+    public void testUpdateEventTimeEndTimeEmpty(){
+        String eventName = EVENT_NAME;
+        String eventStartString = "9:00:00";
+        Time eventEnd = null;
+        Time eventStart = Time.valueOf(eventStartString);
+
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.updateEventTime(eventName, eventStart, eventEnd);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        // Check result of Event
+        assertNull(event);
+        assertEquals(error, "Event end time cannot be empty");
     }
 
     @Test
@@ -320,6 +511,23 @@ public class EventServiceTest {
         assertEquals(EVENT_DATE, event.getDate());
         assertEquals(EVENT_STARTTIME, event.getEventStart());
         assertEquals(EVENT_ENDTIME, event.getEventEnd());
+    }
+
+    @Test
+    public void testGetEventByNameEmpty(){
+
+        String eventName = "";
+        Event event = null;
+        String error = "";
+
+        try{
+            event = eventService.getEvent(eventName);
+        }
+        catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+        assertNull(event);
+        assertEquals(error, "Event name cannot be empty!");
     }
 
     @Test
