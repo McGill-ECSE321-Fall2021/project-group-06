@@ -16,12 +16,6 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Account
 {
-  //The Account class is an abstract class that englobes Librarian, HeadLibrarian, Online and Offline users.
-  //Since most of the users will have somewhat similar attributes, we decided to generalize
-  //The methods for each are not yet written, nor shown in the UML class diagram.
-  //However, they will be very different for each of the subclasses.
-
-  //Enum to quickly identify which type of account it is. This is not necessary
   public enum AccountCategory { Online, Offline }
 
   //All the Private Attributes to Account, ID is the primary key

@@ -1,5 +1,4 @@
 package ca.mcgill.ecse321.librarysystem.models;
-import java.util.*;
 
 import javax.persistence.Entity;
 
