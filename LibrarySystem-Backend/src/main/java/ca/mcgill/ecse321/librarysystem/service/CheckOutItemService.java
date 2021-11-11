@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.models.Media;
 import ca.mcgill.ecse321.librarysystem.models.NonCheckOutItem;
-import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 

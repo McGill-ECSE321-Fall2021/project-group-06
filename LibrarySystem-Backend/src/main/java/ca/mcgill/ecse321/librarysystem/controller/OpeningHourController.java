@@ -1,23 +1,11 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 
-import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
@@ -51,7 +39,7 @@ public class OpeningHourController {
         }        
     }
     /**
-     * Find Opening Hour of given parsameter
+     * Find Opening Hour with id
      * @param id
      * @return openingHour Dto
      * @author Howard Yu
@@ -60,7 +48,11 @@ public class OpeningHourController {
 	public OpeningHourDto getOpeningHourById(@PathVariable("id") int id) {
 		return Conversion.convertToDto(service.getOpeningHour(id));
 	}
-
+    /**
+     * Find all OpeningHour
+     * @return openingHour Dto
+     * @author Howard Yu
+     */
     @GetMapping(value= {"/openingHours/", "/openingHours/"})
 	public List<OpeningHourDto> getAllOpeningHours() {
         return service.getAllOpeningHours().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
@@ -71,7 +63,8 @@ public class OpeningHourController {
 	 * @param newDay
 	 * @param newStart
 	 * @param newEnd
-	 * @return updated Opening Hour Dto */
+	 * @return updated Opening Hour Dto 
+     * @author Howard Yu*/
 	 
 	@PutMapping(value= {"/updateOpeningHour/{id}"})
 	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @RequestParam DayOfWeek newDay, @RequestParam String newStart,
@@ -82,8 +75,9 @@ public class OpeningHourController {
 		return Conversion.convertToDto(oH);
 	}
     /**
-	 * Delete Opening Hour of corresponding parameter
+	 * Delete Opening Hour with id
 	 * @param id
+     * @author Howard Yu
 	 */
 	 
     @DeleteMapping(value = {"/deleteOpeningHour/{id}"})

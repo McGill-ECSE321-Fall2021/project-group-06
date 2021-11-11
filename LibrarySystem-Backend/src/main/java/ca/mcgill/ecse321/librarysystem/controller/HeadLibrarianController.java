@@ -5,22 +5,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
-import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
-import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
-import ca.mcgill.ecse321.librarysystem.models.Librarian;
-import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
+import ca.mcgill.ecse321.librarysystem.dto.*;
+import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 import ca.mcgill.ecse321.librarysystem.service.HeadLibrarianService;
 @CrossOrigin(origins="*")
@@ -33,8 +21,6 @@ public class HeadLibrarianController {
 	 /**
 	  * Create head librarian Dto with given parameters
 	  * @param id
-	  * @param addr
-	  * @param name
 	  * @return head librarian Dto
 	  *@author Howard Yu
 	  */
@@ -57,20 +43,6 @@ public class HeadLibrarianController {
 	 public List<HeadLibrarianDto> getAllHeadLibrarians() {
 		return headService.getHeadLibrarians().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	 }
-//	 /**
-//	  * Update head librarian address, name, and items checked out
-//	  * If not changing something, pass old value
-//	  * @param aId
-//	  * @param aAddress
-//	  * @param aName
-//	  * @param itemsChecked
-//	  * @return updated head librarian Dto
-//	  */
-//	 @PutMapping(value= {"/updateHeadlibrarian/{id}/{addr}/{name}/{items}", "/updateHeadlibrarian/{id}/{addr}/{name}/{items}/"})
-//	 public HeadLibrarianDto updateHeadLibrarianInfo(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
-//	 	HeadLibrarian head=headService.updateHeadLibrarianInfo(aId, newID);
-//	 	return convertToDto(head);
-//	 }
 	
 	 /**
 	  * Delete head librarian of corresponding parameter
@@ -86,8 +58,6 @@ public class HeadLibrarianController {
 	 /**
 	  * Hire i.e. create librarian
 	  * @param id
-	  * @param addr
-	  * @param name
 	  * @return librarian Dto
 	  *@author Howard Yu
 	  */
@@ -204,10 +174,5 @@ public class HeadLibrarianController {
 	 public LibrarianDto assignShift(@PathVariable(name="id") int id, @RequestParam int shiftID) {
 		 Librarian lib = headService.assignShift(id, shiftID);
 		 return (Conversion.convertToDto(lib));
-		//  Set<ShiftDto> allShiftsDto=new HashSet<ShiftDto>();
-		//  for (Shift s : allAssignedShifts) {
-		// 	 allShiftsDto.add(Conversion.convertToDto(s));
-		//  }
-		//  return allShiftsDto;
 	 }
 }
