@@ -3,13 +3,16 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
@@ -34,10 +37,12 @@ public class ShiftController {
 	 * @param name
 	 * @return librarian Dto  */
 	 
-	@PostMapping(value= {"/createShift/{id}/{addr}/{name}", "/createShift/{id}/{addr}/{name}/"})
-	public ShiftDto createShift(@PathVariable("id") int id, @PathVariable("headLibrarian") HeadLibrarian head,
-			@PathVariable("librarians") Librarian libs, @PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("startTime") Time start, @PathVariable("endTime") Time end) {
-		Shift shift=shiftService.createShift(id, DayOfWeek, start, end);
+	@PostMapping(value= {"/createShift/{id}", "/createShift/{id}/"})
+	public ShiftDto createShift(@PathVariable("id") int id, @RequestParam HeadLibrarian head,
+	 @RequestParam DayOfWeek DayOfWeek, @RequestParam String start, @RequestParam String end) {
+		Time startTime = Time.valueOf(start);
+		Time endTime = Time.valueOf(end);
+		Shift shift=shiftService.createShift(id, DayOfWeek, startTime, endTime);
 		return Conversion.convertToDto(shift);
 	}
 	/**
@@ -60,11 +65,13 @@ public class ShiftController {
 	 * @param end
 	 * @return updated shift  Dto */
 	 
-	@PutMapping(value= {"/updateShift/{id}/{head}/{librarians}/{date}/{start}/{end}/", "/updateHeadlibrarian/{id}/{head}/{librarians}/{date}/{start}/{end}/"})
-	public ShiftDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("head") HeadLibrarian head, @PathVariable("librarians") Librarian librarians,
-			@PathVariable("date") DayOfWeek DayOfWeek, @PathVariable("start") Time start,
-			 @PathVariable("end") Time end) {
-		Shift shift=shiftService.updateShift(aId, DayOfWeek, start, end);
+	@PutMapping(value= {"/updateShift/{id}"})
+	public ShiftDto updateLibrarian(@PathVariable("id") int aId, @RequestParam HeadLibrarian head, @RequestParam Librarian librarians,
+	@RequestParam DayOfWeek DayOfWeek, @RequestParam String start,
+	@RequestParam String end) {
+		Time startTime = Time.valueOf(start);
+		Time endTime = Time.valueOf(end);
+		Shift shift=shiftService.updateShift(aId, DayOfWeek, startTime, endTime);
 		return Conversion.convertToDto(shift);
 	}
 	
@@ -73,9 +80,9 @@ public class ShiftController {
 	 * @param id
 	 * @return deleted shift Dto */
 	 
-	@PutMapping(value= {"/deleteShift/{id}", "/deleteShift/{id}/"})
-	public ShiftDto deleteShift(int id) {
-		return Conversion.convertToDto(shiftService.deleteShift(id));
+	@DeleteMapping(value= {"/deleteShift/{id}"})
+	public void deleteShift(int id) {
+		shiftService.deleteShift(id);
 	}
 	
 	/**
@@ -106,11 +113,7 @@ public class ShiftController {
 	 
 	@GetMapping(value= {"/getShifts", "/getShifts/"})
 	public List<ShiftDto> getShifts(){
-		List<ShiftDto> shiftDto=new ArrayList<>();
-		for (Shift s : shiftService.getShifts()) {
-			shiftDto.add(Conversion.convertToDto(s));
-		}
-		return shiftDto;
+		return shiftService.getShifts().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	}
 	
 }

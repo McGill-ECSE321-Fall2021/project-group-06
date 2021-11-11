@@ -53,7 +53,6 @@ public class AccountService {
         //Detaching HL and L from account because a figure of authority told us to do it.
 
         throw new IllegalArgumentException("System Error");
-
     }
 
     @Transactional

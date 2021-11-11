@@ -98,10 +98,8 @@ public class MediaService {
             error = error.trim();
             throw new IllegalArgumentException(error);
         }
-
-        Media media = mediaRepository.findMediaByID(mediaID);
-        mediaRepository.delete(media);
-        return media;
+        mediaRepository.delete(mediaRepository.findMediaByID(mediaID));
+        return mediaRepository.findMediaByID(mediaID);
     }
 
     /**
@@ -142,20 +140,6 @@ public class MediaService {
         Iterable<Media> mediaList = mediaRepository.findAll();
         mediaRepository.deleteAll();
         return toList(mediaList);
-    }
-
-    @Transactional
-    public Media updateMedia(Item mediaType, int mediaID){
-        if (mediaRepository.findMediaByID(mediaID) == null){
-            throw new IllegalArgumentException("Media ID does not exist");
-        }
-        if (mediaType == null){
-            throw new IllegalArgumentException("media type cannot be empty.");
-        }
-        Media media = mediaRepository.findMediaByID(mediaID);
-        media.setType(mediaType);
-        mediaRepository.save(media);
-        return media;
     }
     // Helper method that converts Iterables to Lists
 

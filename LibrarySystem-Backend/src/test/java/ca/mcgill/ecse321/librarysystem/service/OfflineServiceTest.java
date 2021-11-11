@@ -255,6 +255,136 @@ public class OfflineServiceTest {
     }
 
     @Test
+    public void testCreateOfflineInvalidId(){
+        assertEquals(0, offlineService.getAllOfflines().size());
+
+        int id = 0;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "RyuK";
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Offline offline = null;
+        String error = "";
+        try {
+            offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(offline);
+        assertEquals(error, "Offline Account id cannot be 0.");
+    }
+
+    @Test
+    public void testCreateOfflineInvalidAddress(){
+        assertEquals(0, offlineService.getAllOfflines().size());
+
+        int id = 726;
+        String address = null;
+        String name = "RyuK";
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Offline offline = null;
+        String error = "";
+        try {
+            offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(offline);
+        assertEquals(error, "Offline Account must have an address.");
+    }
+
+    @Test
+    public void testCreateOfflineInvalidName(){
+        assertEquals(0, offlineService.getAllOfflines().size());
+
+        int id = 726;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = null;
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Offline offline = null;
+        String error = "";
+        try {
+            offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(offline);
+        assertEquals(error, "Offline Account must have a name.");
+    }
+    
+    @Test
+    public void testCreateOfflineEmptyAccountCategory(){
+        assertEquals(0, offlineService.getAllOfflines().size());
+
+        int id = 98;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "spy";
+        AccountCategory accountCategory = null;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Offline offline = null;
+        String error = "";
+        try {
+            offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(offline);
+        assertEquals(error, "account must have a type");
+    }
+
+    @Test
+    public void testCreateOfflineInvalidAccountCategory(){
+        assertEquals(0, offlineService.getAllOfflines().size());
+
+        int id = 726;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "spy";
+        AccountCategory accountCategory = AccountCategory.Online;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Offline offline = null;
+        String error = "";
+        try {
+            offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(offline);
+        assertEquals(error, "Offline account must be of type offline.");
+    }
+    @Test
+    public void testCreateOfflineInvalidIsLocal(){
+        assertEquals(0, offlineService.getAllOfflines().size());
+
+        int id = 726;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "spy";
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = false;
+        int numChecked = 4;
+        Offline offline = null;
+        String error = "";
+        try {
+            offline = offlineService.createOffline(id, address, name, accountCategory, isLocal, numChecked);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(offline);
+        assertEquals(error, "Offline Account must be a local");
+    }
+    @Test
     public void testOfflineLogin(){
         Offline offline = null;
         try{
@@ -263,6 +393,19 @@ public class OfflineServiceTest {
 			fail();
 		} 
         assertNotNull(offline);
+    }
+
+    @Test
+    public void testOfflineLoginWrongID(){
+        Offline offline = null;
+        String error = null;
+        try{
+            offline = (Offline) accountService.login(0, "wtv");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(offline);
+        assertEquals(error, "Invalid Id");
     }
 
     @Test
@@ -275,20 +418,32 @@ public class OfflineServiceTest {
 		} 
         assertNotNull(offline);
     }
-
+    @Test
+    public void testOfflineGetInvalidID(){
+        Offline offline = null;
+        String error = null;
+        try{
+            offline = offlineService.getOffline(0);
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(offline);
+        assertEquals(error, "Offline Account id does not exist.");
+    }
     
 
-    @Test
-    public void testOfflineDelete(){
-        boolean wasDeleted;
-        try{
-            offlineService.deleteOffline(OFFLINE_ID);
-            wasDeleted = true;
-        } catch(IllegalArgumentException e) {
-			wasDeleted = false;
-		} 
-        assertTrue(wasDeleted);
-    }
+    // @Test
+    // public void testOfflineDelete(){
+    //     boolean wasDeleted;
+    //     try{
+    //         offlineService.deleteOffline(OFFLINE_ID);
+    //         wasDeleted = true;
+    //     } catch(IllegalArgumentException e) {
+	// 		wasDeleted = false;
+	// 	} 
+    //     assertEquals(null, accountDao.findAccountById(OFFLINE_ID));
+    //     assertTrue(wasDeleted);
+    // }
 
     @Test
     public void testOfflineUpdate(){
@@ -303,6 +458,57 @@ public class OfflineServiceTest {
         assertEquals(2, offline.getNumChecked());
     }
 
+    @Test
+    public void testOfflineUpdateInvalidID(){
+        Offline offline = null;
+        String error = null;
+        try{
+            offline = offlineService.updateOffline(0, "Ascension to Heaven HDDTHR" , "Merami", 2);
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(offline);
+        assertEquals(error, "Offline Account id does not exist.");
+    }
+
+    @Test
+    public void testOfflineUpdateInvalidAddress(){
+        Offline offline = null;
+        String error = null;
+        try{
+            offline = offlineService.updateOffline(OFFLINE_ID, null, "Merami", 2);
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(offline);
+        assertEquals(error, "address cannot be empty");
+    }
+
+    @Test
+    public void testOfflineUpdateInvalidName(){
+        Offline offline = null;
+        String error = null;
+        try{
+            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , null, 2);
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(offline);
+        assertEquals(error, "name cannot be empty");
+    }
+
+    @Test
+    public void testOfflineUpdateInvalidItemsChecked(){
+        Offline offline = null;
+        String error = null;
+        try{
+            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "something", -12323);
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(offline);
+        assertEquals(error, "items checked cannot be less than 0");
+    }
     @Test
     public void testOfflineCheckout(){
         Offline offline = null;

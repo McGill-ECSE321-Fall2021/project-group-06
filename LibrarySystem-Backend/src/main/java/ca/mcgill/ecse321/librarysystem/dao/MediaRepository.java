@@ -12,6 +12,4 @@ public interface MediaRepository extends CrudRepository<Media, Integer> {
     //Primary Key for Media
 	Media findMediaByID(int ID);
 
-   
-
 }

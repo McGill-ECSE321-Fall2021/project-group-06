@@ -245,7 +245,200 @@ public class OnlineServiceTest {
         assertNull(online);
         assertEquals(error, "Online Account id already exists.");
     }
+    @Test
+    public void testCreateOnlineInvalidId(){
+        assertEquals(0, onlineService.getAllOnlines().size());
 
+        int id = 0;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "RyuK";
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Online online = null;
+        String username = "Atomizer";
+        String password = "Scottish Cyclops";
+        String email = "Crazed@Gunman.tf2";
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online Account id cannot be 0.");
+    }
+    @Test
+    public void testCreateOnlineInvalidAddress(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+
+        int id = 34234;
+        String address = null;
+        String name = "RyuK";
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Online online = null;
+        String username = "Atomizer";
+        String password = "Scottish Cyclops";
+        String email = "Crazed@Gunman.tf2";
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online Account must have an address.");
+    }
+
+    @Test
+    public void testCreateOnlineInvalidName(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+
+        int id = 234234;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = null;
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Online online = null;
+        String username = "Atomizer";
+        String password = "Scottish Cyclops";
+        String email = "Crazed@Gunman.tf2";
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online Account must have a name.");
+    }
+    @Test
+    public void testCreateOnlineInvalidAccountCategory(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+
+        int id = 234234;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "LazyPurple";
+        AccountCategory accountCategory = AccountCategory.Offline;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Online online = null;
+        String username = "Atomizer";
+        String password = "Scottish Cyclops";
+        String email = "Crazed@Gunman.tf2";
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online account must be of type online.");
+    }
+    @Test
+    public void testCreateOnlineInvalidlocal(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+
+        int id = 234234;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "LazyPurple";
+        AccountCategory accountCategory = AccountCategory.Online;
+        boolean isLocal = false;
+        int numChecked = 4;
+        Online online = null;
+        String username = "Atomizer";
+        String password = "Scottish Cyclops";
+        String email = "Crazed@Gunman.tf2";
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online Account must be a local");
+    }
+    @Test
+    public void testCreateOnlineInvalidUsername(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+
+        int id = 234234;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "LazyPurple";
+        AccountCategory accountCategory = AccountCategory.Online;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Online online = null;
+        String username = null;
+        String password = "Scottish Cyclops";
+        String email = "Crazed@Gunman.tf2";
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online Account must have a username");
+    }
+    
+    @Test
+    public void testCreateOnlineInvalidPassword(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+
+        int id = 234234;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "LazyPurple";
+        AccountCategory accountCategory = AccountCategory.Online;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Online online = null;
+        String username = "DemoKnight";
+        String password = null;
+        String email = "Crazed@Gunman.tf2";
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online Account must have a password");
+    }
+    @Test
+    public void testCreateOnlineInvalidEmail(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+
+        int id = 234234;
+        String address = "Badeu C-TYPEDTHRFL street";
+        String name = "LazyPurple";
+        AccountCategory accountCategory = AccountCategory.Online;
+        boolean isLocal = true;
+        int numChecked = 4;
+        Online online = null;
+        String username = "bushwacka";
+        String password = "the jarate";
+        String email = null;
+        String error = "";
+        try {
+            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+        } catch (IllegalArgumentException e){
+            error = e.getMessage();
+        }
+
+        assertNull(online);
+        assertEquals(error, "Online Account must have an email");
+    }
     @Test
     public void testOnlineLogin(){
         Online online = null;
@@ -256,7 +449,30 @@ public class OnlineServiceTest {
 		} 
         assertNotNull(online);
     }
-
+    @Test
+    public void testOnlineLoginInvalidID(){
+        Online online = null;
+        String error = null;
+        try{
+            online = (Online) accountService.login(0, ONLINE_PASSWORD);
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "Invalid Id");
+    }
+    @Test
+    public void testOnlineLoginInvalidPassword(){
+        Online online = null;
+        String error = null;
+        try{
+            online = (Online) accountService.login(0, "source filmmaker kekw");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+        assertNull(online);
+        assertEquals(error, "Invalid Id");
+    }
     @Test
     public void testGetOnline(){
         assertEquals(0, onlineService.getAllOnlines().size());
@@ -272,19 +488,33 @@ public class OnlineServiceTest {
     }	
 
     @Test
-    public void testOnlineDelete(){
-        boolean wasDeleted;
-        try{
-            onlineService.deleteOnline(ONLINE_ID);
-            wasDeleted = true;
-        } catch(IllegalArgumentException e) {
-			wasDeleted = false;
-		} 
-        assertTrue(wasDeleted);
-    }
+    public void testGetOnlineInvalidId(){
+        assertEquals(0, onlineService.getAllOnlines().size());
+        Online online = null;
+        String error = null;
+        try {
+         online = onlineService.getOnline(0);
+        }catch(IllegalArgumentException e) {
+            error = e.getMessage();
+        }
+        assertNull(online);
+        assertEquals(error, "Offline Account id does not exist.");
+    }	
+
+    // @Test
+    // public void testOnlineDelete(){
+    //     boolean wasDeleted;
+    //     try{
+    //         onlineService.deleteOnline(ONLINE_ID);
+    //         wasDeleted = true;
+    //     } catch(IllegalArgumentException e) {
+	// 		wasDeleted = false;
+	// 	} 
+    //     assertTrue(wasDeleted);
+    // }
 
     @Test
-    public void testOfflineUpdate(){
+    public void testOnlineUpdate(){
         Online online = null;
         try{
             online = onlineService.updateOnline(ONLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2, "vaxei", "can", "fc flamewall");
@@ -298,7 +528,90 @@ public class OnlineServiceTest {
         assertEquals("can", online.getPassword());
         assertEquals("fc flamewall", online.getEmail());
     }
-
+    @Test
+    public void testOnlineUpdateInvalidID(){
+        Online online = null;
+        String error = null;
+        try{
+            online = onlineService.updateOnline(0, "Ascension to Heaven HDDTHR" , "Merami", 2, "vaxei", "can", "fc flamewall");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "Offline Account id does not exist.");
+    }
+    @Test
+    public void testOnlineUpdateInvalidAddress(){
+        Online online = null;
+        String error = null;
+        try{
+            online = onlineService.updateOnline(ONLINE_ID, "", "Merami", 2, "vaxei", "can", "fc flamewall");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "address cannot be empty");
+    }
+    @Test
+    public void testOnlineUpdateInvalidName(){
+        Online online = null;
+        String error = null;
+        try{
+            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "", 2, "vaxei", "can", "fc flamewall");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "name cannot be empty");
+    }
+    @Test
+    public void testOnlineUpdateInvalidItemsChecked(){
+        Online online = null;
+        String error = null;
+        try{
+            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", -23421, "vaxei", "can", "fc flamewall");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "items checked cannot be less than 0");
+    }
+    @Test
+    public void testOnlineUpdateInvalidUsername(){
+        Online online = null;
+        String error = null;
+        try{
+            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "", "can", "fc flamewall");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "username is not valid");
+    }
+    @Test
+    public void testOnlineUpdateInvalidPassword(){
+        Online online = null;
+        String error = null;
+        try{
+            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "Vsauced", "", "fc flamewall");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "must have a password");
+    }
+    @Test
+    public void testOnlineUpdateInvalidEmail(){
+        Online online = null;
+        String error = null;
+        try{
+            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "Vsauced", "Sandvich", "");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(online);
+        assertEquals(error, "email must not be empty");
+    }
     @Test
     public void testOnlineCheckout(){
         Online online = null;
@@ -329,7 +642,7 @@ public class OnlineServiceTest {
     }
 
     @Test
-    public void testOfflineReturn(){
+    public void testOnlineReturn(){
         Online online = null;
 
         //CheckOutItem mediaTest = new CheckOutItem();
@@ -353,7 +666,7 @@ public class OnlineServiceTest {
     }
 
     @Test
-    public void testOnlineReseerve(){
+    public void testOnlineReserve(){
         CheckOutItem mediaTest = null;
         String error = "";
         try{

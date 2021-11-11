@@ -54,25 +54,25 @@ public class OnlineService {
         if (accountRepository.findAccountById(aId) != null) {
             throw new IllegalArgumentException("Online Account id already exists.");
         }
-    	if (aAddress==null) {
+    	if (aAddress==null || aAddress.length()==0) {
     		throw new IllegalArgumentException("Online Account must have an address.");
     	}
-    	if (aName==null) {
+    	if (aName==null || aName.length() == 0) {
     		throw new IllegalArgumentException("Online Account must have a name.");
     	}
-    	if (accountCategory==AccountCategory.Offline) {
+    	if (accountCategory==AccountCategory.Offline || accountCategory == null) {
     		throw new IllegalArgumentException("Online account must be of type online.");
     	}
     	if (local==false) {
     		throw new IllegalArgumentException("Online Account must be a local");
     	}
-        if (username==null){
+        if (username==null || username.length()==0){
             throw new IllegalArgumentException("Online Account must have a username");
         }
-        if (password==null){
+        if (password==null || password.length()==0){
             throw new IllegalArgumentException("Online Account must have a password");
         }
-        if (email==null){
+        if (email==null || email.length()==0){
             throw new IllegalArgumentException("Online Account must have an email");
         }
 
@@ -115,25 +115,26 @@ public class OnlineService {
      */
     @Transactional
     public Online updateOnline(int aId, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
+        usernameIsValid(username);
         if (accountRepository.findAccountById(aId) == null) {
             throw new IllegalArgumentException("Offline Account id does not exist.");
         }
-        if (aAddress.length()==0){
+        if (aAddress.length()==0 || aAddress == null){
             throw new IllegalArgumentException("address cannot be empty");
         }
-        if(aName.length()==0){
+        if(aName.length()==0 || aName == null){
             throw new IllegalArgumentException("name cannot be empty");
         }
         if(itemsChecked < 0){
             throw new IllegalArgumentException("items checked cannot be less than 0");
         }
-        if(!usernameIsValid(username)){
+        if(!usernameIsValid(username) || username.length()==0){
             throw new IllegalArgumentException("username is not valid");
         }
-        if(password.length() == 0){
+        if(password.length() == 0 || password == null){
             throw new IllegalArgumentException("must have a password");
         }
-        if(email.length() == 0){
+        if(email.length() == 0 || password == null){
             throw new IllegalArgumentException("email must not be empty");
         }
         Online online=(Online) accountRepository.findAccountById(aId);
@@ -143,7 +144,7 @@ public class OnlineService {
         online.setUsername(username);
         online.setPassword(password);
         online.setEmail(email);
-        usernameIsValid(username);
+        
         accountRepository.save(online);
 		return online;
     }

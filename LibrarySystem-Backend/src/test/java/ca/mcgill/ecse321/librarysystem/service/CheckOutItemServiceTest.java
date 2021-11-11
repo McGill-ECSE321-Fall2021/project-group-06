@@ -25,6 +25,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
+import ca.mcgill.ecse321.librarysystem.dto.CheckOutItemDto;
 import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Event;
 import ca.mcgill.ecse321.librarysystem.models.Media;
@@ -66,29 +67,6 @@ public class CheckOutItemServiceTest {
     private static final int BORROWING_PERIOD = 123;
     private static final boolean IS_CHECKEDOUT = false;
     private static final boolean IS_RESERVED = false;
-
-
-    private static final String OFFLINE_ADDRESS = "727 bluezenithhdhr street";
-    private static final String OFFLINE_NAME = "WhiteCat";
-    private static final AccountCategory OFFLINE_ACCOUNTCATEGORY = AccountCategory.Offline;
-    private static final boolean OFFLINE_ISLOCAL = true;
-    private static final int OFFLINE_ITEMSCHECKED = 1;
-
-    private static final int CHECKOUTITEM_ID = 6969;
-    private static final int CHECKOUTITEM_ID2 = 69696;
-    private static final boolean CHECKOUTITEM_ISCHECKEDOUT = false;
-    private static final boolean CHECKOUTITEM_ISRESERVED = false;
-    private static final Item CHECKOUTITEM_ITEM = Item.Book;
-    private static final String STRING_DATE = "2021-09-11";
-    private static final Date CHECKOUTITEM_DATE = Date.valueOf(STRING_DATE);
-    private static final int CHECKOUTITEM_BORROWINGPERIOD = 797;
-
-    private static final Date EVENT_DATE = Date.valueOf(STRING_DATE);
-    private static final String EVENT_START_STRING = "10:00:00";
-    private static final String EVENT_END_STRING = "18:00:00";
-    private static final Time EVENT_STARTTIME = Time.valueOf(EVENT_START_STRING);
-    private static final Time EVENT_ENDTIME = Time.valueOf(EVENT_END_STRING);
-    private static final String EVENT_NAME = "MREKK DOES NOT DESERVE #1";
 
     
     @BeforeEach
@@ -141,6 +119,119 @@ public class CheckOutItemServiceTest {
         assertEquals(borrowingPeriod, checkOutItem.getBorrowingPeriod());
         assertEquals(startDate, checkOutItem.getStartDate());
 	}
+    @Test
+	public void testCreateCheckOutItemEmptyID() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        
+        CheckOutItem checkOutItem = null;
+        Item mediaType = Item.Book;
+        int mediaID = 0;
+        boolean isCheckedOut = false;
+        boolean isReserved = false;
+        int borrowingPeriod = 0;
+        String error = null;
+        Date startDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(checkOutItem);
+        assertTrue(error.contains("Media Id cannot be 0"));
+	}
+
+    @Test
+	public void testCreateCheckOutItemNegativeBorrowingPeriod() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        
+        CheckOutItem checkOutItem = null;
+        Item mediaType = Item.Book;
+        int mediaID = 123123123;
+        boolean isCheckedOut = false;
+        boolean isReserved = false;
+        int borrowingPeriod = -11;
+        String error = null;
+        Date startDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(checkOutItem);
+		assertEquals("borrowingPeriod must be more that 0", error);
+        assertTrue(error.contains("borrowingPeriod must be more that 0"));
+	}
+
+    @Test
+	public void testCreateCheckOutItemEmptyType() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        
+        CheckOutItem checkOutItem = null;
+        Item mediaType = null;
+        int mediaID = 123123123;
+        boolean isCheckedOut = false;
+        boolean isReserved = false;
+        int borrowingPeriod = 0;
+        String error = null;
+        Date startDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(checkOutItem);
+        assertTrue(error.contains("Media type invalid!"));
+	}
+    @Test
+	public void testCreateCheckOutItemExistingCheckOutItem() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        
+        CheckOutItem checkOutItem = null;
+        Item mediaType = Item.Book;
+        int mediaID = MEDIA_ID;
+        boolean isCheckedOut = false;
+        boolean isReserved = false;
+        int borrowingPeriod = 0;
+        String error = null;
+        Date startDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+
+		assertNull(checkOutItem);
+		assertTrue(error.contains("Media Id already exists"));
+	}
+    @Test
+	public void testCreateCheckOutItemInvalidStartDate() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        
+        CheckOutItem checkOutItem = null;
+        Item mediaType = Item.Book;
+        int mediaID = MEDIA_ID;
+        boolean isCheckedOut = false;
+        boolean isReserved = false;
+        int borrowingPeriod = 0;
+        String error = null;
+        Date startDate = null;
+		try {
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+		assertTrue(error.contains("startDate cannot be null"));
+	}
+
 
     @Test
     public void testUpdateCheckOutItem(){
@@ -169,4 +260,102 @@ public class CheckOutItemServiceTest {
         assertEquals(newStartDate, checkOutItem.getStartDate());
         //assertEquals(5, 6);
     }
+    @Test
+	public void testupdateCheckOutItemInvalidMedia() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        String error = null;
+        CheckOutItem checkOutItem = null;
+        Item newMediaType = Item.Movie;
+        int mediaID = 0;
+        boolean newIsCheckedOut = false;
+        boolean newIsReserved = false;
+        int newBorrowingPeriod = 69;
+        Date newStartDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+		assertTrue(error.contains("Media Id does not exist"));
+	}
+    @Test
+	public void testupdateCheckOutItemInvalidMediaType() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        String error = null;
+        CheckOutItem checkOutItem = null;
+        Item newMediaType = Item.Archive;
+        int mediaID = MEDIA_ID;
+        boolean newIsCheckedOut = false;
+        boolean newIsReserved = false;
+        int newBorrowingPeriod = 69;
+        Date newStartDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+		assertTrue(error.contains("Media type invalid!"));
+	}
+    @Test
+	public void testupdateCheckOutItemInvalidBorrowingPeriod() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        String error = null;
+        CheckOutItem checkOutItem = null;
+        Item newMediaType = Item.Book;
+        int mediaID = MEDIA_ID;
+        boolean newIsCheckedOut = false;
+        boolean newIsReserved = false;
+        int newBorrowingPeriod = -12;
+        Date newStartDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+		assertTrue(error.contains("borrowingPeriod must be more that 0"));
+	}
+    @Test
+	public void testupdateCheckOutItemInvalidStartDate() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        String error = null;
+        CheckOutItem checkOutItem = null;
+        Item newMediaType = Item.Book;
+        int mediaID = MEDIA_ID;
+        boolean newIsCheckedOut = false;
+        boolean newIsReserved = false;
+        int newBorrowingPeriod = 23;
+        Date newStartDate = null;
+		try {
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+		assertTrue(error.contains("startDate cannot be null"));
+	}
+    // @Test
+    // public void testGetExistingCheckOutItem(){
+    //     assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());
+    // }
+    // @Test
+	// public void testGetNonExistingCheckOutItem() {
+	// 	assertEquals(0, mediaService.getAllMedias().size());
+    //     String error = null;
+    //     int mediaID = 434324;
+    //     CheckOutItem checkOutItem = null;
+	// 	try {
+    //         checkOutItem = (CheckOutItem)mediaService.getMedia(mediaID);
+	// 	}catch(IllegalArgumentException e) {
+	// 		error = e.getMessage();
+	// 	}
+	// 	assertNull(checkOutItem);
+	// 	assertTrue(error.contains("Media ID cannot be found!"));
+	// }
 }

@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +44,16 @@ public class ShiftService {
 	//  * Same as update Shift
 	//  * commented out
 	 
-    @Transactional
-    public void EditAssignedSchedules(int shiftId, DayOfWeek DayOfWeek, Time start, Time end){
-    	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
-    	shift.setDayOfWeek(DayOfWeek);
-    	shift.setEndTime(end);
-    	//shift.setHeadLibrarian(hd);
-    	//shift.setLibrarian(lib);
-    	shift.setStartTime(start);
-		shiftRepository.save(shift);
-    }
+    // @Transactional
+    // public void EditAssignedSchedules(int shiftId, DayOfWeek DayOfWeek, Time start, Time end){
+    // 	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
+    // 	shift.setDayOfWeek(DayOfWeek);
+    // 	shift.setEndTime(end);
+    // 	//shift.setHeadLibrarian(hd);
+    // 	//shift.setLibrarian(lib);
+    // 	shift.setStartTime(start);
+	// 	shiftRepository.save(shift);
+    // }
     
     
     /**
@@ -62,18 +63,37 @@ public class ShiftService {
 	 
     @Transactional
     public Shift viewSchedule(int shiftID){
-    	Shift shift = shiftRepository.findShiftByShiftID(shiftID); 
-    	return shift;
+		if (shiftRepository.findShiftByShiftID(shiftID) == null){
+			throw new IllegalArgumentException("Shift Id does not exist");
+		}
+		return shiftRepository.findShiftByShiftID(shiftID);
     }
     
     @Transactional
     public Shift getShift(int id) {
-    	Shift shift = shiftRepository.findShiftByShiftID(id);
-    	return shift;
+		if (shiftRepository.findShiftByShiftID(id) == null){
+			throw new IllegalArgumentException("Shift Id does not exist");
+		}
+		return shiftRepository.findShiftByShiftID(id);
     }
     
     @Transactional
     public Shift createShift(int id, DayOfWeek DayOfWeek, Time start, Time end) {
+		if (id == 0){
+            throw new IllegalArgumentException("Shift Id cannot be 0");
+        }
+        if(shiftRepository.findShiftByShiftID(id) != null){
+            throw new IllegalArgumentException("Shift Id already exists");
+        }
+        if (DayOfWeek == null){
+            throw new IllegalArgumentException("Shift day cannot be empty");
+        }
+        if (start == null){
+            throw new IllegalArgumentException("Shift starting time cannot be empty");
+        }
+        if (end == null){
+            throw new IllegalArgumentException("Shift ending time cannot be empty");
+        }
     	Shift shift = new Shift();
     	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
@@ -88,14 +108,20 @@ public class ShiftService {
     
     @Transactional
     public List<Shift> getShifts(){
-    	List<Shift> shifts=(List<Shift>) shiftRepository.findAll();
-    	return shifts;
+    	Iterable<Shift> shifts= shiftRepository.findAll();
+		if (((List<Shift>) shifts).size() == 0){
+			throw new IllegalArgumentException("Shift list cannot be empty");
+		}
+    	return toList(shifts);
     	
     }
     
     @Transactional
     public Shift deleteShift(int id) {
     	Shift shift =shiftRepository.findShiftByShiftID(id);
+		if (shift == null){
+			throw new IllegalArgumentException("Shift Id does not exist");
+		}
     	shiftRepository.delete(shift);
     	return shift;
     }
@@ -107,6 +133,18 @@ public class ShiftService {
     
     @Transactional
     public Shift updateShift(int id, DayOfWeek DayOfWeek, Time start, Time end) {
+		if (id == 0){
+            throw new IllegalArgumentException("Shift Id cannot be 0");
+        }
+        if (DayOfWeek == null){
+            throw new IllegalArgumentException("Shift day cannot be empty");
+        }
+        if (start == null){
+            throw new IllegalArgumentException("Shift starting time cannot be empty");
+        }
+        if (end == null){
+            throw new IllegalArgumentException("Shift ending time cannot be empty");
+        }
     	Shift shift =shiftRepository.findShiftByShiftID(id);
     	shift.setDayOfWeek(DayOfWeek);
     	shift.setEndTime(end);
@@ -118,5 +156,11 @@ public class ShiftService {
     	return shift;
     }
     
-   
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
+	}
 }
