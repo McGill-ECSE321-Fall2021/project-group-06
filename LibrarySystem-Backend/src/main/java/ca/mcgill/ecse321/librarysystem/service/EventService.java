@@ -56,7 +56,8 @@ public class EventService {
         if (eventRepository.findEventByName(name) != null){
             error = error + "Event name already exists!";
         }
-        // if (eventStart.isbefore(openingHourRepository.findOpeningHourByDay(date.toLocalDate().getDayOfWeek()))){
+        //TODO
+        // if (eventStart.isbefore(openingHourRepository.findOpeningHourById(???).getStartTime())){
         //     error = error + "Event start time is before opening hour!";
         // }
 

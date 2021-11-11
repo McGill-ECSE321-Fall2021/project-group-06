@@ -12,6 +12,7 @@ import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.sql.Time;
+// import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -20,6 +21,7 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.aspectj.apache.bcel.classfile.Module.Open;
 import org.assertj.core.internal.bytebuddy.asm.Advice.Local;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -34,6 +36,7 @@ import ca.mcgill.ecse321.librarysystem.dao.*;
 import ca.mcgill.ecse321.librarysystem.models.Event;
 import ca.mcgill.ecse321.librarysystem.models.Account;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 import net.minidev.asm.ConvertDate;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 
@@ -66,6 +69,12 @@ public class EventServiceTest {
     private static final String OFFLINE_NAME = "Bob Stones";
     private static final AccountCategory OFFLINE_ACCOUNTCATEGORY = AccountCategory.Offline;
 
+    // Opening Hours constants
+    private static final int OH_ID = 6;
+    private static final DayOfWeek DAY_OF_WEEK = DayOfWeek.Friday;
+    private static final Time OH_START_TIME = Time.valueOf("8:00");
+    private static final Time OH_END_TIME = Time.valueOf("18:00");
+
     @BeforeEach
     public void setMockOutput(){
 
@@ -78,6 +87,22 @@ public class EventServiceTest {
                 event.setEventStart(EVENT_STARTTIME);
                 event.setName(EVENT_NAME);
                 return event;
+            } 
+            
+            else {
+                return null;
+            }
+        });
+
+        lenient().when(openingHourDao.findOpeningHourById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
+            if (invocation.getArgument(0).equals(OH_ID)) {
+
+                OpeningHour openingHour = new OpeningHour();
+                openingHour.setId(OH_ID);
+                openingHour.setDayOfWeek(DAY_OF_WEEK);
+                openingHour.setStartTime(OH_START_TIME);
+                openingHour.setEndTime(OH_END_TIME);
+                return openingHour;
             } 
             
             else {
@@ -99,130 +124,130 @@ public class EventServiceTest {
     So that you can catch multiple error
     */
 
-    @Test
-    public void testCreateEvent(){
-        assertEquals(0, eventService.getAllEventsByName().size());
+    // @Test
+    // public void testCreateEvent(){
+    //     assertEquals(0, eventService.getAllEventsByName().size());
 
-        String eventName = "Gardening Tutorial";
+    //     String eventName = "Gardening Tutorial";
 
-        LocalDate localDate = LocalDate.of(2021, Month.DECEMBER, 14);
-        Date eventDate = Date.valueOf(localDate);
+    //     LocalDate localDate = LocalDate.of(2021, Month.DECEMBER, 14);
+    //     Date eventDate = Date.valueOf(localDate);
 
-        String eventStartString = "12:00";
-        String eventEndString = "15:00";
-        Time eventStart = Time.valueOf(eventStartString);
-        Time eventEnd = Time.valueOf(eventEndString);
+    //     String eventStartString = "12:00";
+    //     String eventEndString = "15:00";
+    //     Time eventStart = Time.valueOf(eventStartString);
+    //     Time eventEnd = Time.valueOf(eventEndString);
 
-        Event event = null;
+    //     Event event = null;
 
-        try{
-            event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
-        }
-        catch (IllegalArgumentException e){
-            // Use fail() since an event object couldn't even be created
-            fail("Event could not be created: event is null");
-        }
+    //     try{
+    //         event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
+    //     }
+    //     catch (IllegalArgumentException e){
+    //         // Use fail() since an event object couldn't even be created
+    //         fail("Event could not be created: event is null");
+    //     }
 
-        // Check result of Event
-        assertNotNull(event);
-        assertEquals(eventName, event.getName());
-        assertEquals(eventDate, event.getDate());
-        assertEquals(eventStart, event.getEventStart());
-        assertEquals(eventEnd, event.getEventEnd());
-    }
+    //     // Check result of Event
+    //     assertNotNull(event);
+    //     assertEquals(eventName, event.getName());
+    //     assertEquals(eventDate, event.getDate());
+    //     assertEquals(eventStart, event.getEventStart());
+    //     assertEquals(eventEnd, event.getEventEnd());
+    // }
 
-    @Test
-    public void testCreateEventNameTaken(){
+    // @Test
+    // public void testCreateEventNameTaken(){
 
-        String eventName1 = "Chess Tourney";
-        String eventName2 = "Chess Tourney";   // Same eventName strings, everything else different
+    //     String eventName1 = "Chess Tourney";
+    //     String eventName2 = "Chess Tourney";   // Same eventName strings, everything else different
 
-        LocalDate localDate1 = LocalDate.of(2021, Month.DECEMBER, 15);   // Date is changed from previous test
-        Date eventDate1 = Date.valueOf(localDate1);
-        LocalDate localDate2 = LocalDate.of(2021, Month.DECEMBER, 17);   // Date is changed also
-        Date eventDate2 = Date.valueOf(localDate2);
+    //     LocalDate localDate1 = LocalDate.of(2021, Month.DECEMBER, 15);   // Date is changed from previous test
+    //     Date eventDate1 = Date.valueOf(localDate1);
+    //     LocalDate localDate2 = LocalDate.of(2021, Month.DECEMBER, 17);   // Date is changed also
+    //     Date eventDate2 = Date.valueOf(localDate2);
 
-        String eventStartString1 = "10:00";                              // Event times are also changed
-        String eventEndString1 = "11:00";
-        Time eventStart1 = Time.valueOf(eventStartString1);
-        Time eventEnd1 = Time.valueOf(eventEndString1);
-        String eventStartString2 = "15:00";                              // Event times are also changed
-        String eventEndString2 = "16:00";
-        Time eventStart2 = Time.valueOf(eventStartString2);
-        Time eventEnd2 = Time.valueOf(eventEndString2);
+    //     String eventStartString1 = "10:00";                              // Event times are also changed
+    //     String eventEndString1 = "11:00";
+    //     Time eventStart1 = Time.valueOf(eventStartString1);
+    //     Time eventEnd1 = Time.valueOf(eventEndString1);
+    //     String eventStartString2 = "15:00";                              // Event times are also changed
+    //     String eventEndString2 = "16:00";
+    //     Time eventStart2 = Time.valueOf(eventStartString2);
+    //     Time eventEnd2 = Time.valueOf(eventEndString2);
 
-        Event event1 = null;
-        Event event2 = null;
-        String error = "";
+    //     Event event1 = null;
+    //     Event event2 = null;
+    //     String error = "";
 
-        try{
-            event1 = eventService.createEvent(eventName1, eventDate1, eventStart1, eventEnd1);
-            event2 = eventService.createEvent(eventName2, eventDate2, eventStart2, eventEnd2);
-        }
-        catch (IllegalArgumentException e){
-            error = e.getMessage();
-        }
+    //     try{
+    //         event1 = eventService.createEvent(eventName1, eventDate1, eventStart1, eventEnd1);
+    //         event2 = eventService.createEvent(eventName2, eventDate2, eventStart2, eventEnd2);
+    //     }
+    //     catch (IllegalArgumentException e){
+    //         error = e.getMessage();
+    //     }
 
-        // Check result of Event
-        assertNotNull(event1);
-        assertNull(event2);
-        assertEquals(error, "Event name already exists!");
-    }
+    //     // Check result of Event
+    //     assertNotNull(event1);
+    //     assertNull(event2);
+    //     assertEquals(error, "Event name already exists!");
+    // }
 
-    @Test
-    public void testCreateEventEndTimeBeforeStartTime(){
+    // @Test
+    // public void testCreateEventEndTimeBeforeStartTime(){
 
-        String eventName = "Programming tutorial";
+    //     String eventName = "Programming tutorial";
 
-        LocalDate localDate = LocalDate.of(2021, Month.NOVEMBER, 20); 
-        Date eventDate = Date.valueOf(localDate);
+    //     LocalDate localDate = LocalDate.of(2021, Month.NOVEMBER, 20); 
+    //     Date eventDate = Date.valueOf(localDate);
 
-        String eventStartString = "13:00";                              // EventStart is after EventEnd
-        String eventEndString = "12:00";
-        Time eventStart = Time.valueOf(eventStartString);
-        Time eventEnd = Time.valueOf(eventEndString);
+    //     String eventStartString = "13:00";                              // EventStart is after EventEnd
+    //     String eventEndString = "12:00";
+    //     Time eventStart = Time.valueOf(eventStartString);
+    //     Time eventEnd = Time.valueOf(eventEndString);
 
-        Event event = null;
-        String error = "";
+    //     Event event = null;
+    //     String error = "";
 
-        try{
-            event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
-        }
-        catch (IllegalArgumentException e){
-            error = e.getMessage();
-        }
+    //     try{
+    //         event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
+    //     }
+    //     catch (IllegalArgumentException e){
+    //         error = e.getMessage();
+    //     }
 
-        // Check result of Event
-        assertNull(event);
-        assertEquals(error, "Event end time cannot be before event start time!");
-    }
+    //     // Check result of Event
+    //     assertNull(event);
+    //     assertEquals(error, "Event end time cannot be before event start time!");
+    // }
 
-    @Test
-    public void testCreateEventEmpty(){
-        String eventName = " "; // Empty string or spaces will trigger the error still (because of .trim())
+    // @Test
+    // public void testCreateEventEmpty(){
+    //     String eventName = " "; // Empty string or spaces will trigger the error still (because of .trim())
 
-        LocalDate localDate = LocalDate.of(2021, Month.NOVEMBER, 31); 
-        Date eventDate = Date.valueOf(localDate);
+    //     LocalDate localDate = LocalDate.of(2021, Month.NOVEMBER, 31); 
+    //     Date eventDate = Date.valueOf(localDate);
 
-        String eventStartString = "11:00";                       
-        String eventEndString = "13:00";
-        Time eventStart = Time.valueOf(eventStartString);
-        Time eventEnd = Time.valueOf(eventEndString);
+    //     String eventStartString = "11:00";                       
+    //     String eventEndString = "13:00";
+    //     Time eventStart = Time.valueOf(eventStartString);
+    //     Time eventEnd = Time.valueOf(eventEndString);
 
-        Event event = null;
-        String error = "";
+    //     Event event = null;
+    //     String error = "";
 
-        try{
-            event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
-        }
-        catch (IllegalArgumentException e){
-            error = e.getMessage();
-        }
+    //     try{
+    //         event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
+    //     }
+    //     catch (IllegalArgumentException e){
+    //         error = e.getMessage();
+    //     }
 
-        // Check result of Event
-        assertNull(event);
-        assertEquals(error, "Event name cannot be empty!");
-    }
+    //     // Check result of Event
+    //     assertNull(event);
+    //     assertEquals(error, "Event name cannot be empty!");
+    // }
 
     // @Test
     // public void testCreateEventTimeNotInOpeningHrs(){
@@ -237,12 +262,23 @@ public class EventServiceTest {
     //     Time eventEnd = Time.valueOf(eventEndString);
 
     //     // Add Opening Hours here
+    //     int id = OH_ID;
+    //     OpeningHour openingHour = openingHourDao.findOpeningHourById(OH_ID);
+
+    //     // int id = 13;
+    //     // DayOfWeek dayOfWeek = DayOfWeek.Monday;
+    //     // String openHourString = "8:00";
+    //     // String closeHourString = "18:00";
+    //     // Time openHour = Time.valueOf(openHourString);
+    //     // Time closeHour = Time.valueOf(closeHourString);
+    //     // OpeningHour openingHour = openingHourService.createOpeningHour(id, dayOfWeek, openHour, closeHour);
 
     //     Event event = null;
     //     String error = "";
 
     //     try{
     //         event = eventService.createEvent(eventName, eventDate, eventStart, eventEnd);
+    //         // ... now what (openingHour wtf does it do)
     //     }
     //     catch (IllegalArgumentException e){
     //         error = e.getMessage();
@@ -253,33 +289,33 @@ public class EventServiceTest {
     //     assertEquals(error, "Event start time is before opening hour!");        
     // }
     
-    @Test
-    public void testUpdateEventDate(){
+    // @Test
+    // public void testUpdateEventDate(){
         
-    }
+    // }
 
-    @Test
-    public void testUpdateEventTime(){
+    // @Test
+    // public void testUpdateEventTime(){
 
-    }
+    // }
 
-    @Test
-    public void testDeleteEvent(){
+    // @Test
+    // public void testDeleteEvent(){
 
-    }
+    // }
 
-    @Test
-    public void testDeleteAllEvents(){
+    // @Test
+    // public void testDeleteAllEvents(){
 
-    }
+    // }
 
-    @Test
-    public void testGetEventByName(){
+    // @Test
+    // public void testGetEventByName(){
 
-    }
+    // }
 
-    @Test
-    public void testGetAllEvents(){
+    // @Test
+    // public void testGetAllEvents(){
 
-    }
+    // }
 }
