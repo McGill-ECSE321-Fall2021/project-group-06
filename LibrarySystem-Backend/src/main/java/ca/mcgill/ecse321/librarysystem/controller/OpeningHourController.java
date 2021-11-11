@@ -2,6 +2,8 @@ package ca.mcgill.ecse321.librarysystem.controller;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,8 +40,9 @@ public class OpeningHourController {
      * @return openingHour Dto
      */
     @PostMapping(value = { "/openingHours", "/openingHours/"})
-    public OpeningHourDto createOpeningHour(@RequestParam int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam Time startTime, @RequestParam Time endTime) throws Exception{
-        // OpeningHour openingHour = null;
+    public OpeningHourDto createOpeningHour(@RequestParam int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam String start, @RequestParam String end) throws Exception{
+        Time startTime = Time.valueOf(start);
+		Time endTime = Time.valueOf(end);
         try{
             OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, startTime, endTime);
             return Conversion.convertToDto(openingHour);
@@ -51,10 +54,20 @@ public class OpeningHourController {
      * Find Opening Hour of given parsameter
      * @param id
      * @return openingHour Dto
+     * @author Howard Yu
      */
     @GetMapping(value= {"/openingHours/{id}", "/openingHours/{id}/"})
 	public OpeningHourDto getOpeningHourById(@PathVariable("id") int id) {
 		return Conversion.convertToDto(service.getOpeningHour(id));
+	}
+
+    @GetMapping(value= {"/openingHours/", "/openingHours/"})
+	public List<OpeningHourDto> getAllOpeningHours() {
+        List<OpeningHourDto> openingHourDtos = new ArrayList<>();
+        for (OpeningHour openingHour : service.getAllOpeningHours()) {
+            openingHourDtos.add(Conversion.convertToDto(openingHour));
+        }
+        return openingHourDtos;
 	}
      /**
 	 * Update Opening Hour
@@ -64,10 +77,12 @@ public class OpeningHourController {
 	 * @param newEnd
 	 * @return updated Opening Hour Dto */
 	 
-	@PutMapping(value= {"/updateOpeningHour/{id}/{newDay}/{newStart}/{newEnd}/"})
-	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @PathVariable("newDay") DayOfWeek newDay, @PathVariable("newStart") Time newStart,
-			@PathVariable("newEnd") Time newEnd) {
-		OpeningHour oH=service.updateOpeningHours(aId, newDay, newStart, newEnd);
+	@PutMapping(value= {"/updateOpeningHour/{id}"})
+	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @RequestParam DayOfWeek newDay, @RequestParam String newStart,
+    @RequestParam String newEnd) {
+        Time startTime = Time.valueOf(newStart);
+		Time endTime = Time.valueOf(newEnd);
+		OpeningHour oH=service.updateOpeningHours(aId, newDay, startTime, endTime);
 		return Conversion.convertToDto(oH);
 	}
     /**
@@ -75,8 +90,8 @@ public class OpeningHourController {
 	 * @param id
 	 * @return deleted Opening Hour Dto */
 	 
-	// @PutMapping(value= {"/deleteOpeningHour/{id}", "/deleteOpeningHour/{id}/"})
-	// public OpeningHourDto deleteOpeningHour(int id) {
-	// 	// return Conversion.convertToDto(service.deleteOpeningHour(id)
-	// }
+	@PutMapping(value= {"/deleteOpeningHour/{id}", "/deleteOpeningHour/{id}/"})
+	public void deleteOpeningHour(int id) {
+		service.deleteOpeningHour(id);
+	}
 }

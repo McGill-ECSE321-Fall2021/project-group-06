@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.librarysystem.service;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.aspectj.apache.bcel.classfile.Module.Open;
@@ -65,12 +66,26 @@ public class OpeningHourService {
         return openingHour;
     }
 
+    //@Author Howard Yu
+    @Transactional
+    public List<OpeningHour> getAllOpeningHours(){
+
+        Iterable<OpeningHour> openingHours = openingHourRepository.findAll();
+        return toList(openingHours);
+    }
     @Transactional
     public OpeningHour getOpeningHour(int id){
-        if(openingHourRepository.findOpeningHourById(id) == null){
-            throw new IllegalArgumentException("Opening Hour Id does not exist");
+        String error="";
+
+        if (openingHourRepository.findOpeningHourById(id) == null) {
+            error = error + "OpeningHour cannot be found!";
         }
-        return openingHourRepository.findOpeningHourById(id);
+        error = error.trim();
+        if (error.length() > 0) {
+            throw new IllegalArgumentException(error);
+        }
+        OpeningHour openingHour = (OpeningHour) openingHourRepository.findOpeningHourById(id);
+        return openingHour;
     }
     @Transactional
     public boolean deleteOpeningHour(int id){
@@ -110,5 +125,13 @@ public class OpeningHourService {
     //     }
     //     return openingHourRepository.findByHeadLibrarian(headLibrarianName);
     // }
-
+    //helper method
+    //@author Howard Yu
+    private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
+	}
 }

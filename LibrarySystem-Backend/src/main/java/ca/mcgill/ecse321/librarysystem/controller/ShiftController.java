@@ -38,8 +38,10 @@ public class ShiftController {
 	 
 	@PostMapping(value= {"/createShift/{id}", "/createShift/{id}/"})
 	public ShiftDto createShift(@PathVariable("id") int id, @RequestParam HeadLibrarian head,
-			@RequestParam Librarian libs, @RequestParam DayOfWeek DayOfWeek, @RequestParam Time start, @RequestParam Time end) {
-		Shift shift=shiftService.createShift(id, DayOfWeek, start, end);
+	 @RequestParam DayOfWeek DayOfWeek, @RequestParam String start, @RequestParam String end) {
+		Time startTime = Time.valueOf(start);
+		Time endTime = Time.valueOf(end);
+		Shift shift=shiftService.createShift(id, DayOfWeek, startTime, endTime);
 		return Conversion.convertToDto(shift);
 	}
 	/**
@@ -64,9 +66,11 @@ public class ShiftController {
 	 
 	@PutMapping(value= {"/updateShift/{id}"})
 	public ShiftDto updateLibrarian(@PathVariable("id") int aId, @RequestParam HeadLibrarian head, @RequestParam Librarian librarians,
-	@RequestParam DayOfWeek DayOfWeek, @RequestParam Time start,
-	@RequestParam Time end) {
-		Shift shift=shiftService.updateShift(aId, DayOfWeek, start, end);
+	@RequestParam DayOfWeek DayOfWeek, @RequestParam String start,
+	@RequestParam String end) {
+		Time startTime = Time.valueOf(start);
+		Time endTime = Time.valueOf(end);
+		Shift shift=shiftService.updateShift(aId, DayOfWeek, startTime, endTime);
 		return Conversion.convertToDto(shift);
 	}
 	
@@ -76,8 +80,8 @@ public class ShiftController {
 	 * @return deleted shift Dto */
 	 
 	@DeleteMapping(value= {"/deleteShift/{id}"})
-	public ShiftDto deleteShift(int id) {
-		return Conversion.convertToDto(shiftService.deleteShift(id));
+	public void deleteShift(int id) {
+		shiftService.deleteShift(id);
 	}
 	
 	/**
