@@ -23,7 +23,9 @@ import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.service.OpeningHourService;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
-
+/**
+ * @author Niels Mainville
+ */
 @CrossOrigin(origins = "*")
 @RestController
 public class OpeningHourController {

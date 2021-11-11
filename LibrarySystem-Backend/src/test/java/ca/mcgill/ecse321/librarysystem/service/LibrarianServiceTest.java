@@ -45,7 +45,9 @@ import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
-
+/**
+ * Author: Niels Mainville
+ */
 @ExtendWith(MockitoExtension.class)
 public class LibrarianServiceTest {
     @Mock

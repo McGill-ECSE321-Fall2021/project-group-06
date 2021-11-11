@@ -37,7 +37,9 @@ import org.yaml.snakeyaml.events.Event.ID;
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
-
+/**
+ * Author Niels Mainville
+ */
 @ExtendWith(MockitoExtension.class)
 public class ShiftServiceTest {
     @Mock
