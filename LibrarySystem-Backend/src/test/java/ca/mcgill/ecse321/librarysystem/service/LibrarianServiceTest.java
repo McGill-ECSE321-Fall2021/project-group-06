@@ -161,6 +161,8 @@ public class LibrarianServiceTest {
 		assertNull(lib);
 		assertEquals("Librarian id cannot be 0.", error);
 	}
+	
+	@Test
 	public void testCreateLibrarianExistingID(){
 		Librarian lib = null;
 		String error = null;
