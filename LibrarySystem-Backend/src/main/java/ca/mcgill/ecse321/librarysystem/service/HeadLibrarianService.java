@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+//Joyce Liu
 @Service
 public class HeadLibrarianService {
 
@@ -295,6 +296,7 @@ public class HeadLibrarianService {
 			throw new IllegalArgumentException("endTime cannot be null");
 		}
 		Shift shift = new Shift();
+		shift.setShiftID(shiftID);
 		shift.setDayOfWeek(newDayOfWeek);
 		shift.setEndTime(newEndTime);
 		shift.setStartTime(newStartTime);
@@ -306,7 +308,7 @@ public class HeadLibrarianService {
 	 * Assign the corresponding shift to the corresponding librarian
 	 * @param id
 	 * @param shiftID
-	 * @return all the shifts of that librarian
+	 * @return the librarian
 	 */
 	public Librarian assignShift(int id, int shiftID){
 		if(librarianRepository.findLibrarianById(id)==null){
@@ -315,18 +317,14 @@ public class HeadLibrarianService {
 		if(shiftRepository.findShiftByShiftID(shiftID)==null){
 			throw new IllegalArgumentException("shift does not exist");
 		}
-		// if (librarianRepository.findLibrarianById(id).getShift()==null) {
-		// 	Set<Shift> shifts=new HashSet<Shift>();
-		// 	Shift theShift=shiftRepository.findShiftByShiftID(shiftID);
-		// 	shifts.add(theShift);
-		// 	librarianRepository.findLibrarianById(id).setShift(shifts);
-		// }
-		// else {
-		// 	librarianRepository.findLibrarianById(id).getShift().add(shiftRepository.findShiftByShiftID(shiftID));
-		// }
-		Librarian lib = librarianRepository.findLibrarianById(id);
-		lib.getShift().add(shiftRepository.findShiftByShiftID(shiftID));
-		librarianRepository.save(lib);
-		return lib;
+		Librarian l=new Librarian();
+		l.setId(id);
+		if (librarianRepository.findLibrarianById(id).getShift()==null) {
+			Set<Shift> shifts=new HashSet<Shift>();
+			l.setShift(shifts);
+		}
+		l.getShift().add(shiftRepository.findShiftByShiftID(shiftID));
+		librarianRepository.save(l);
+		return l;
 	}
 }

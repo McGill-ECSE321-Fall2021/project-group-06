@@ -20,6 +20,7 @@ import ca.mcgill.ecse321.librarysystem.dao.*;
 import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
+//Joyce Liu
 @ExtendWith(MockitoExtension.class)
 public class HeadLibrarianServiceTest {
 
@@ -161,6 +162,7 @@ public class HeadLibrarianServiceTest {
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
+		assertNull(h);
 		assertTrue(error.contains("Librarian id does not exist"));
 	}
 	
@@ -543,7 +545,7 @@ public class HeadLibrarianServiceTest {
 	
 	@Test
 	public void testUpdateShiftSuccessfully() {
-		assertNotNull(opService.getOpeningHour(OH_ID));
+		assertNotNull(shiftService.getShift(SHIFT_ID));
 		DayOfWeek day=DayOfWeek.Thursday;
 		Time startTime=Time.valueOf("08:00:00");
 		Time endTime=Time.valueOf("13:00:00");
@@ -553,6 +555,7 @@ public class HeadLibrarianServiceTest {
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
+		assertEquals(SHIFT_ID, oh.getShiftID());
 		assertEquals(day, oh.getDayOfWeek());
 		assertEquals(startTime, oh.getStartTime());
 		assertEquals(endTime, oh.getEndTime());
@@ -619,43 +622,42 @@ public class HeadLibrarianServiceTest {
 		assertTrue(error.contains("endTime cannot be null"));
 	}
 	
-	// @Test
-	// public void testAssignSuccessfully() {
-	// 	Librarian l=null;
-	// 	Shift s=null;
-	// 	Set<Shift> allS=null;
-	// 	try {
-	// 		l=librService.getLibrarian(LIBR_ID);
-	// 		s=shiftService.getShift(SHIFT_ID);
-	// 		allS=headService.assignShift(LIBR_ID, SHIFT_ID);
-	// 	} catch (IllegalArgumentException e) {
-	// 		fail();
-	// 	}
-	// 	assertEquals(allS, librRepo.findLibrarianById(LIBR_ID).getShift());
-	// }
+	 @Test
+	 public void testAssignSuccessfully() {
+	 	Librarian l=null;
+	 	try {
+	 		l=headService.assignShift(LIBR_ID, SHIFT_ID);
+	 	} catch (IllegalArgumentException e) {
+	 		fail();
+	 	}
+	 	assertEquals(l.getId(), LIBR_ID);
+	 	//assertTrue(l.getShift().contains(shiftService.getShift(SHIFT_ID)));
+	 }
 	
-// 	@Test
-// 	public void testAssignNonExistingLibr() {
-// 		String error=null;
-// 		Set<Shift> s=null;
-// 		try {
-// 			s=headService.assignShift(LIBR_NON_EXIST_KEY, SHIFT_ID);
-// 		} catch (IllegalArgumentException e) {
-// 			error=e.getMessage();
-// 		}
-// 		assertTrue(error.contains("librarian does not exist"));
-// 	}
+ 	@Test
+ 	public void testAssignNonExistingLibr() {
+ 		String error=null;
+ 		Librarian l=null;
+ 		try {
+ 			l=headService.assignShift(LIBR_NON_EXIST_KEY, SHIFT_ID);
+ 		} catch (IllegalArgumentException e) {
+ 			error=e.getMessage();
+ 		}
+ 		assertNull(l);
+ 		assertTrue(error.contains("librarian does not exist"));
+ 	}
 	
-// 	@Test
-// 	public void testAssignNonExistingShift() {
-// 		String error=null;
-// 		Set<Shift> s=null;
-// 		try {
-// 			s=headService.assignShift(LIBR_ID, SHIFT_NON_EXIST_ID);
-// 		} catch (IllegalArgumentException e) {
-// 			error=e.getMessage();
-// 		}
-// 		assertTrue(error.contains("shift does not exist"));
-// 	}
+ 	@Test
+ 	public void testAssignNonExistingShift() {
+ 		String error=null;
+ 		Librarian l=null;
+ 		try {
+ 			l=headService.assignShift(LIBR_ID, SHIFT_NON_EXIST_ID);
+ 		} catch (IllegalArgumentException e) {
+ 			error=e.getMessage();
+ 		}
+ 		assertNull(l);
+ 		assertTrue(error.contains("shift does not exist"));
+ 	}
 
 }
