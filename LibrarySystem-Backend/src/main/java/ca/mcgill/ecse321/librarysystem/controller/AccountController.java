@@ -54,4 +54,23 @@ public class AccountController {
 			return null;
 		}
 	}
+
+	@PutMapping(value= {"/assignEvent/{id}", "/assignEvent/{id}/"})
+	 public AccountDto assignEvent(@PathVariable(name="id") int id, @RequestParam String name) {
+		 Account acc = accountService.bookEvent(name, id);
+		 //return (Conversion.convertToDto(lib));
+		if (acc instanceof Offline){
+			return Conversion.convertToDto((Offline) acc);
+		} else if (acc instanceof Online){
+			
+			return Conversion.convertToDto((Online) acc);
+		} else {
+			return null;
+		}
+		//  Set<ShiftDto> allShiftsDto=new HashSet<ShiftDto>();
+		//  for (Shift s : allAssignedShifts) {
+		// 	 allShiftsDto.add(Conversion.convertToDto(s));
+		//  }
+		//  return allShiftsDto;
+	 }
 }

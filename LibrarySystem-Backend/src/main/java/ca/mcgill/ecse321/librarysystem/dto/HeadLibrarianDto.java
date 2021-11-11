@@ -10,8 +10,8 @@ public class HeadLibrarianDto extends LibrarianDto {
 	public HeadLibrarianDto() {
 	}
     //we don't need another constructor I don't think so)
-	public HeadLibrarianDto(HashSet<OpeningHourDto> openingHours, HashSet<ShiftDto> shifts) {
-        super(shifts);
+	public HeadLibrarianDto(int id, HashSet<OpeningHourDto> openingHours, HashSet<ShiftDto> shifts) {
+        super(id, shifts);
         this.openingHours = openingHours;
 	}
 

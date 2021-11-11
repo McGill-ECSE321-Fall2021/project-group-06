@@ -195,13 +195,14 @@ public class HeadLibrarianController {
 	  * @param shiftID
 	  * @return all assigned shifts Dto of the librarian
 	  */
-	 @PostMapping(value= {"/assignShift/{id}", "/assignShift/{id}/"})
-	 public Set<ShiftDto> assignShift(@PathVariable(name="id") int id, @RequestParam int shiftID) {
-		 Set<Shift> allAssignedShifts=headService.assignShift(id, shiftID);
-		 Set<ShiftDto> allShiftsDto=new HashSet<ShiftDto>();
-		 for (Shift s : allAssignedShifts) {
-			 allShiftsDto.add(Conversion.convertToDto(s));
-		 }
-		 return allShiftsDto;
+	 @PutMapping(value= {"/assignShift/{id}", "/assignShift/{id}/"})
+	 public LibrarianDto assignShift(@PathVariable(name="id") int id, @RequestParam int shiftID) {
+		 Librarian lib = headService.assignShift(id, shiftID);
+		 return (Conversion.convertToDto(lib));
+		//  Set<ShiftDto> allShiftsDto=new HashSet<ShiftDto>();
+		//  for (Shift s : allAssignedShifts) {
+		// 	 allShiftsDto.add(Conversion.convertToDto(s));
+		//  }
+		//  return allShiftsDto;
 	 }
 }

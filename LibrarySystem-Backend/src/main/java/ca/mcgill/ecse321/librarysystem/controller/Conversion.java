@@ -24,26 +24,34 @@ public class Conversion {
     public static LibrarianDto convertToDto(Librarian librarian){
         if(librarian == null) throw new IllegalArgumentException("libarian not found.");
         HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
-        HashSet<Shift> modelShifts = (HashSet)librarian.getShift();
-        for(Shift shift: modelShifts){
-            shifts.add(convertToDto(shift));
+        Set<Shift> modelShifts = librarian.getShift();
+        if (modelShifts!=null){
+            for(Shift shift: modelShifts){
+                shifts.add(convertToDto(shift));
+            }
         }
-        return new LibrarianDto(shifts);
+        
+        return new LibrarianDto(librarian.getId(), shifts);
     }
 
     public static HeadLibrarianDto convertToDto(HeadLibrarian headLibrarian){
         if(headLibrarian == null) throw new IllegalArgumentException("headLibarian not found.");
         HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
-        HashSet<Shift> modelShifts = (HashSet)headLibrarian.getShift();
-        for(Shift shift: modelShifts){
-            shifts.add(convertToDto(shift));
+        Set<Shift> modelShifts = headLibrarian.getShift();
+        if (modelShifts!=null){
+            for(Shift shift: modelShifts){
+                shifts.add(convertToDto(shift));
+            }
         }
         HashSet<OpeningHourDto> openingHours = new HashSet<OpeningHourDto>();
-        HashSet<OpeningHour> modelOpeningHours = (HashSet)headLibrarian.getOpeningHour();
-        for(OpeningHour openingHour: modelOpeningHours){
-            openingHours.add(convertToDto(openingHour));
+        Set<OpeningHour> modelOpeningHours = headLibrarian.getOpeningHour();
+        if (modelOpeningHours!= null){
+            for(OpeningHour openingHour: modelOpeningHours){
+                openingHours.add(convertToDto(openingHour));
+            }
         }
-        return new HeadLibrarianDto(openingHours, shifts);
+        
+        return new HeadLibrarianDto(headLibrarian.getId(), openingHours, shifts);
     }
     
     public static CheckOutItemDto convertToDto(CheckOutItem checkOutItem) {
