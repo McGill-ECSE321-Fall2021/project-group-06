@@ -39,9 +39,9 @@ public class OpeningHourController {
      * @return openingHour Dto
      */
     @PostMapping(value = { "/openingHours/{id}", "/openingHours/{id}/"})
-    public OpeningHourDto createOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam Time startTime, @RequestParam Time endTime) throws Exception{
+    public OpeningHourDto createOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam String startTime, @RequestParam String endTime) throws Exception{
         try{
-            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, startTime, endTime);
+            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, Conversion.convertStrToTime(startTime), Conversion.convertStrToTime(endTime));
             return Conversion.convertToDto(openingHour);
         } catch (IllegalArgumentException e) {
             throw new Exception(e.getMessage());
@@ -65,9 +65,9 @@ public class OpeningHourController {
 	 * @return updated Opening Hour Dto */
 	 
 	@PutMapping(value= {"/updateOpeningHour/{id}"})
-	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @RequestParam("newDay") DayOfWeek newDay, @RequestParam("newStart") Time newStart,
-			@RequestParam("newEnd") Time newEnd) {
-		OpeningHour oH=service.updateOpeningHours(aId, newDay, newStart, newEnd);
+	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @RequestParam DayOfWeek newDay, @RequestParam String newStart,
+			@RequestParam String newEnd) {
+		OpeningHour oH=service.updateOpeningHours(aId, newDay, Conversion.convertStrToTime(newStart), Conversion.convertStrToTime(newEnd));
 		return Conversion.convertToDto(oH);
 	}
     /**
