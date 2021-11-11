@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.EventRepository;
-import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.models.Event;
+//import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 
 @Service
 public class EventService {
@@ -21,8 +21,8 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    @Autowired
-    private OpeningHourRepository openingHourRepository;
+    // @Autowired
+    // private OpeningHourRepository openingHourRepository;
 
     /**
      * @param name
