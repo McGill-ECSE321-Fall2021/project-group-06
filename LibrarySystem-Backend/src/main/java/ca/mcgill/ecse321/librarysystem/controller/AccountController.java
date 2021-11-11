@@ -1,37 +1,12 @@
 package ca.mcgill.ecse321.librarysystem.controller;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import ca.mcgill.ecse321.librarysystem.dto.AccountDto;
-import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
-import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
 import ca.mcgill.ecse321.librarysystem.models.Account;
-import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
-import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Online;
-import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.service.AccountService;
-import ca.mcgill.ecse321.librarysystem.service.HeadLibrarianService;
-import ca.mcgill.ecse321.librarysystem.service.OpeningHourService;
-import ca.mcgill.ecse321.librarysystem.service.ShiftService;
-
 //author David Hu
 @CrossOrigin(origins="*")
 @RestController
@@ -58,7 +33,6 @@ public class AccountController {
 	@PutMapping(value= {"/assignEvent/{id}", "/assignEvent/{id}/"})
 	 public AccountDto assignEvent(@PathVariable(name="id") int id, @RequestParam String name) {
 		 Account acc = accountService.bookEvent(name, id);
-		 //return (Conversion.convertToDto(lib));
 		if (acc instanceof Offline){
 			return Conversion.convertToDto((Offline) acc);
 		} else if (acc instanceof Online){
@@ -67,10 +41,5 @@ public class AccountController {
 		} else {
 			return null;
 		}
-		//  Set<ShiftDto> allShiftsDto=new HashSet<ShiftDto>();
-		//  for (Shift s : allAssignedShifts) {
-		// 	 allShiftsDto.add(Conversion.convertToDto(s));
-		//  }
-		//  return allShiftsDto;
 	 }
 }
