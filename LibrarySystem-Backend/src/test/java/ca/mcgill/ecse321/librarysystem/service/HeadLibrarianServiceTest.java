@@ -591,5 +591,29 @@ public class HeadLibrarianServiceTest {
 		}
 		assertEquals(allS, librRepo.findLibrarianById(LIBR_ID).getShift());
 	}
+	
+	@Test
+	public void testAssignNonExistingLibr() {
+		String error=null;
+		Set<Shift> s=null;
+		try {
+			s=headService.assignShift(LIBR_NON_EXIST_KEY, SHIFT_ID);
+		} catch (IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertTrue(error.contains("librarian does not exist"));
+	}
+	
+	@Test
+	public void testAssignNonExistingShift() {
+		String error=null;
+		Set<Shift> s=null;
+		try {
+			s=headService.assignShift(LIBR_ID, SHIFT_NON_EXIST_ID);
+		} catch (IllegalArgumentException e) {
+			error=e.getMessage();
+		}
+		assertTrue(error.contains("shift does not exist"));
+	}
 
 }
