@@ -46,9 +46,28 @@ public class LibrarianService {
 	 * */
 	 
 	@Transactional
-    public Offline createOfflineAccount(int id, String name,
-    		String address, AccountCategory accountCategory, 
-    		boolean local, int itemsChecked) {
+    public Offline createOfflineAccount(int id, String name, String address, AccountCategory accountCategory, boolean local, int itemsChecked) {
+		if (id==0) {
+            throw new IllegalArgumentException("Offline Account id cannot be 0.");
+        }
+        if (accountRepository.findAccountById(id) != null) {
+            throw new IllegalArgumentException("Offline Account id already exists.");
+        }
+    	if (address==null) {
+    		throw new IllegalArgumentException("Offline Account must have an address.");
+    	}
+    	if (name==null) {
+    		throw new IllegalArgumentException("Offline Account must have a name.");
+    	}
+        if (accountCategory==null){
+            throw new IllegalArgumentException("account must have a type");
+        }
+    	if (accountCategory==AccountCategory.Online) {
+    		throw new IllegalArgumentException("Offline account must be of type offline.");
+    	}
+    	if (local==false) {
+    		throw new IllegalArgumentException("Offline Account must be a local");
+    	}
 		//Librarian librarian = (Librarian) accountRepository.findAccountById(id);
 		//if(librarian == null)
 		//	throw new IllegalArgumentException("Authorization Denied.");
