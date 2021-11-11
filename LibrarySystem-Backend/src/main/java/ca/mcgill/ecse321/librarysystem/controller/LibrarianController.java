@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
@@ -35,7 +37,7 @@ public class LibrarianController {
 	 * @param name
 	 * @return librarian Dto */
 	 
-	@PostMapping(value= {"/createLibrarian/{id}/{addr}/{name}", "/createLibrarian/{id}/{addr}/{name}/"})
+	@PostMapping(value= {"/createLibrarian/{id}", "/createLibrarian/{id}/"})
 	public LibrarianDto createLibrarian(@PathVariable("id") int id) {
 		Librarian librarian=librarianService.createLibrarian(id);
 		return Conversion.convertToDto(librarian);
@@ -46,7 +48,7 @@ public class LibrarianController {
 	 * @param id
 	 * @return librarian Dto */
 	 
-	@GetMapping(value= {"/librarian/{id}", "/librarian/{id}/"})
+	@GetMapping(value= {"/librarians/{id}", "/librarians/{id}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("id") int id) {
 		return Conversion.convertToDto(librarianService.getLibrarian(id));
 	}
@@ -108,13 +110,9 @@ public class LibrarianController {
 	 * Find all librarians
 	 * @return list of librarians Dto */
 	 
-	@GetMapping(value= {"/getLibrarians", "/getLibrarians/"})
+	@GetMapping(value= {"/librarians", "/librarians/"})
 	public List<LibrarianDto> getLibrarians(){
-		List<LibrarianDto> librDtos=new ArrayList<>();
-		for (Librarian l : librarianService.getAllLibrarians()) {
-			librDtos.add(Conversion.convertToDto(l));
-		}
-		return librDtos;
+		return librarianService.getAllLibrarians().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	} 
 	
 }
