@@ -7,16 +7,8 @@ public class OpeningHourDto {
     private DayOfWeek dayOfWeek;
     private Time startTime;
     private Time endTime;
-    //private Set<Date> holiday;
-    //The Holiday class is one that should have been written down, but since it is not specified, it will be written later on.
-  
-    //OpeningHours Associations
-    //private HeadLibrarianDto headLibrarian;
-    
 	public OpeningHourDto() {
 	}
-
-    //this class needs to have a headLibrarian, so we will have to include it
     public OpeningHourDto(int id) {
         this(id, DayOfWeek.Monday, Time.valueOf("00:00:00"), Time.valueOf("23:59:59"));
     }

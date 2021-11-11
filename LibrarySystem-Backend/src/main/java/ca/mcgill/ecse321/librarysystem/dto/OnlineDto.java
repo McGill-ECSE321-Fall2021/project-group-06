@@ -1,11 +1,9 @@
 package ca.mcgill.ecse321.librarysystem.dto;
-
-import java.sql.Date;
-import java.sql.Time;
 import java.util.HashSet;
-
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
-
+/**
+* @author Howard
+*/
 public class OnlineDto extends AccountDto{
 
     private String username;

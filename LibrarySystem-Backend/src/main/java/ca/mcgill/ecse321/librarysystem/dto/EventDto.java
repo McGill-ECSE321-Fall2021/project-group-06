@@ -2,7 +2,9 @@ package ca.mcgill.ecse321.librarysystem.dto;
 
 import java.sql.Date;
 import java.sql.Time;
-
+/**
+* @author Howard
+*/
 public class EventDto {
 
 	private String name;
