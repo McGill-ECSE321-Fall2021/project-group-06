@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,11 +64,7 @@ public class OpeningHourController {
 
     @GetMapping(value= {"/openingHours/", "/openingHours/"})
 	public List<OpeningHourDto> getAllOpeningHours() {
-        List<OpeningHourDto> openingHourDtos = new ArrayList<>();
-        for (OpeningHour openingHour : service.getAllOpeningHours()) {
-            openingHourDtos.add(Conversion.convertToDto(openingHour));
-        }
-        return openingHourDtos;
+        return service.getAllOpeningHours().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	}
      /**
 	 * Update Opening Hour

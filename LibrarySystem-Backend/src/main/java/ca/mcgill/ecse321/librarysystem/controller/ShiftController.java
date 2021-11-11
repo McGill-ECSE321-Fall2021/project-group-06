@@ -3,6 +3,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -112,11 +113,7 @@ public class ShiftController {
 	 
 	@GetMapping(value= {"/getShifts", "/getShifts/"})
 	public List<ShiftDto> getShifts(){
-		List<ShiftDto> shiftDto=new ArrayList<>();
-		for (Shift s : shiftService.getShifts()) {
-			shiftDto.add(Conversion.convertToDto(s));
-		}
-		return shiftDto;
+		return shiftService.getShifts().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	}
 	
 }

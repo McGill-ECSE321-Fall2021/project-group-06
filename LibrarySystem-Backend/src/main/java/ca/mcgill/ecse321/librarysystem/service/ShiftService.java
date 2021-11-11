@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,12 +107,12 @@ public class ShiftService {
     }
     
     @Transactional
-    public Iterable<Shift> getShifts(){
+    public List<Shift> getShifts(){
     	Iterable<Shift> shifts= shiftRepository.findAll();
 		if (((List<Shift>) shifts).size() == 0){
 			throw new IllegalArgumentException("Shift list cannot be empty");
 		}
-    	return shifts;
+    	return toList(shifts);
     	
     }
     
@@ -155,5 +156,11 @@ public class ShiftService {
     	return shift;
     }
     
-   
+	private <T> List<T> toList(Iterable<T> iterable){
+		List<T> resultList = new ArrayList<T>();
+		for (T t : iterable) {
+			resultList.add(t);
+		}
+		return resultList;
+	}
 }
