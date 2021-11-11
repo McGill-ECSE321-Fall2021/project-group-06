@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.librarysystem.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -16,13 +17,12 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import org.aspectj.apache.bcel.classfile.Module.Open;
-import org.assertj.core.internal.bytebuddy.asm.Advice.Local;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,10 +34,7 @@ import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
 import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Account;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
-import net.minidev.asm.ConvertDate;
 import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 
 @ExtendWith(MockitoExtension.class)
@@ -64,10 +61,12 @@ public class EventServiceTest {
     private static final Time EVENT_ENDTIME = Time.valueOf("15:00:00");
     private static final String EVENT_NAME = "Group Reading"; 
 
-    // Account constants
-    private static final int OFFLINE_ID = 240;
-    private static final String OFFLINE_NAME = "Bob Stones";
-    private static final AccountCategory OFFLINE_ACCOUNTCATEGORY = AccountCategory.Offline;
+    // Second event for [...]All methods
+    // private static final String STRING_DATE_2 = "2021-12-06";
+    // private static final Date EVENT_DATE_2 = Date.valueOf(STRING_DATE_2);
+    // private static final Time EVENT_STARTTIME_2 = Time.valueOf(LocalTime.parse("16:00:00"));
+    // private static final Time EVENT_ENDTIME_2 = Time.valueOf("17:00:00");
+    // private static final String EVENT_NAME_2 = "Cooking Lessons"; 
 
     // Opening Hours constants
     private static final int OH_ID = 6;
@@ -86,6 +85,7 @@ public class EventServiceTest {
                 event.setEventEnd(EVENT_ENDTIME);
                 event.setEventStart(EVENT_STARTTIME);
                 event.setName(EVENT_NAME);
+
                 return event;
             } 
             
@@ -279,33 +279,130 @@ public class EventServiceTest {
     //     assertEquals(error, "Event start time is before opening hour!");        
     // }
     
-    // @Test
-    // public void testUpdateEventDate(){
+    @Test
+    public void testUpdateEventDate(){
+
+        String eventName = EVENT_NAME;
+        LocalDate localDate = LocalDate.of(2021, Month.APRIL, 1); 
+        Date eventDate = Date.valueOf(localDate);
+        Time eventStart = EVENT_STARTTIME;
+        Time eventEnd = EVENT_ENDTIME;
+
+        Event event = null;
+
+        try{
+            event = eventService.updateEventDate(eventName, eventDate);
+        }
+        catch (IllegalArgumentException e){
+            fail("Event date could not be updated");
+        }
+
+        // Check result of Event
+        assertNotNull(event);
+        assertEquals(eventName, event.getName());
+        assertEquals(eventDate, event.getDate());
+        assertEquals(eventStart, event.getEventStart());
+        assertEquals(eventEnd, event.getEventEnd());
+    }
+
+    @Test
+    public void testUpdateEventTime(){
+        String eventName = EVENT_NAME;
+        Date eventDate = EVENT_DATE;
+        String eventStartString = "9:00:00";                              // Event times are also changed
+        String eventEndString = "10:00:00";
+        Time eventStart = Time.valueOf(eventStartString);
+        Time eventEnd = Time.valueOf(eventEndString);
+
+        Event event = null;
+
+        try{
+            event = eventService.updateEventTime(eventName, eventStart, eventEnd);
+        }
+        catch (IllegalArgumentException e){
+            fail("Event startTime and endTime couldn't be updated");
+        }
+
+        // Check result of Event
+        assertNotNull(event);
+        assertEquals(eventName, event.getName());
+        assertEquals(eventDate, event.getDate());
+        assertEquals(eventStart, event.getEventStart());
+        assertEquals(eventEnd, event.getEventEnd());
+    }
+
+    @Test
+    public void testDeleteEvent(){
         
-    // }
+        String eventName = EVENT_NAME;
+        boolean isDeleted = true;
 
-    // @Test
-    // public void testUpdateEventTime(){
+        try{
+            eventService.deleteEvent(eventName);
+        }
+        catch (IllegalArgumentException e){
+            fail("Event could not be deleted");
+        }
+        assertTrue(isDeleted);
+    }
 
-    // }
+    @Test
+    public void testDeleteAllEvents(){
 
-    // @Test
-    // public void testDeleteEvent(){
+        boolean areDeleted = true;
 
-    // }
+        try{
+            eventService.deleteAllEvents(); // Both of the 2 events
+        }
+        catch (IllegalArgumentException e){
+            fail("Not all events could be deleted");
+        }
+        assertTrue(areDeleted);
+    }
 
-    // @Test
-    // public void testDeleteAllEvents(){
+    @Test
+    public void testGetEventByName(){
+        
+        String eventName = EVENT_NAME;
+        Event event = null;
 
-    // }
+        try{
+            event = eventService.getEvent(eventName);
+        }
+        catch (IllegalArgumentException e){
+            fail("Event could not be found");
+        }
+        assertNotNull(event);
+        assertEquals(EVENT_NAME, event.getName());
+        assertEquals(EVENT_DATE, event.getDate());
+        assertEquals(EVENT_STARTTIME, event.getEventStart());
+        assertEquals(EVENT_ENDTIME, event.getEventEnd());
+    }
 
-    // @Test
-    // public void testGetEventByName(){
+    @Test
+    public void testGetAllEvents(){
 
-    // }
+        List<Event> eventList = new ArrayList<>();
 
-    // @Test
-    // public void testGetAllEvents(){
+        try{
+            for (Event event : eventService.getAllEventsByName()){
+                eventList.add(event);
+            }
+        }
+        catch (IllegalArgumentException e){
+            fail("Not all events could be retrieved");
+        }
+        assertNotNull(eventList);
+        // assertNotEquals(eventList.size(), 0);
+        // assertEquals(eventList.size(), 2);
+        // assertEquals(EVENT_NAME, eventList.get(0).getName());
+        // assertEquals(EVENT_DATE, eventList.get(0).getDate());
+        // assertEquals(EVENT_STARTTIME, eventList.get(0).getEventStart());
+        // assertEquals(EVENT_ENDTIME, eventList.get(0).getEventEnd());
 
-    // }
+        // assertEquals(EVENT_NAME_2, eventList.get(1).getName());
+        // assertEquals(EVENT_DATE_2, eventList.get(1).getDate());
+        // assertEquals(EVENT_STARTTIME_2, eventList.get(1).getEventStart());
+        // assertEquals(EVENT_ENDTIME_2, eventList.get(1).getEventEnd());
+    }
 }
