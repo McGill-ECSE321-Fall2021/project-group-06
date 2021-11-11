@@ -36,7 +36,8 @@ public class LibrarianController {
 	 * @param id
 	 * @param addr
 	 * @param name
-	 * @return librarian Dto */
+	 * @return librarian Dto
+	 * @author Howard Yu */
 	 
 	@PostMapping(value= {"/createLibrarian/{id}", "/createLibrarian/{id}/"})
 	public LibrarianDto createLibrarian(@PathVariable("id") int id) {
@@ -47,7 +48,8 @@ public class LibrarianController {
 	/**
 	 * Find librarian of given parameter
 	 * @param id
-	 * @return librarian Dto */
+	 * @return librarian Dto 
+	 * @author Howard Yu*/
 	 
 	@GetMapping(value= {"/librarians/{id}", "/librarians/{id}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("id") int id) {
@@ -61,7 +63,8 @@ public class LibrarianController {
 	 * @param aAddress
 	 * @param aName
 	 * @param itemsChecked
-	 * @return updated librarian Dto */
+	 * @return updated librarian Dto
+	 * @author Howard Yu */
 	 
 	// @PutMapping(value= {"/updateLibrarian/{id}/{addr}/{name}/{items}", "/updateLibrarian/{id}/{addr}/{name}/{items}/"})
 	// public LibrarianDto updateLibrarian(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
@@ -72,7 +75,8 @@ public class LibrarianController {
 	/**
 	 * Delete librarian of corresponding parameter
 	 * @param id
-	 * @return deleted librarian Dto */
+	 * @return deleted librarian Dto 
+	 * @author Howard Yu*/
 	 
 	@DeleteMapping(value= {"/deleteLibrarian/{id}", "/deleteLibrarian/{id}/"})
 	public LibrarianDto deleteLibrarian(@PathVariable("id") int id) {
@@ -84,7 +88,8 @@ public class LibrarianController {
 	 * @param id
 	 * @param addr
 	 * @param name
-	 * @return offline Dto */
+	 * @return offline Dto
+	 * @author Howard Yu */
 	 
 	@PostMapping(value= {"/createOfflineAccount/{id}/{addr}/{name}", "/createOfflineAccount/{id}/{addr}/{name}/"})
 	public OfflineDto createOfflineAccount(@PathVariable("id") int id, @PathVariable("addr") String addr, 
@@ -95,7 +100,8 @@ public class LibrarianController {
 	/**
 	 *  View personal schedule
 	 * @param id
-	 * @return Shift Dto */
+	 * @return Shift Dto
+	 * @author Howard Yu */
 	 
 	@GetMapping(value= {"/viewPersonalSchedule/{id}", "/viewPersonalSchedule/{id}/"})
 	public HashSet<ShiftDto> viewPersonalSchedule(@PathVariable("id") int id) {
@@ -109,7 +115,8 @@ public class LibrarianController {
 	
 	/**
 	 * Find all librarians
-	 * @return list of librarians Dto */
+	 * @return list of librarians Dto
+	 * @author Howard Yu */
 	 
 	@GetMapping(value= {"/librarians", "/librarians/"})
 	public List<LibrarianDto> getLibrarians(){

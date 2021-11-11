@@ -3,7 +3,6 @@ package ca.mcgill.ecse321.librarysystem.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -12,9 +11,6 @@ import static org.mockito.Mockito.lenient;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,13 +24,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
-import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
-import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Media;
-import ca.mcgill.ecse321.librarysystem.models.Offline;
+import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
-//author David Hu
+           /**
+     * unit test for CheckOutItemService class
+     * @author Howard Yu, David
+     */
 @ExtendWith(MockitoExtension.class)
 public class OfflineServiceTest {
     @Mock
@@ -55,9 +51,6 @@ public class OfflineServiceTest {
 
     @InjectMocks
     private AccountService accountService;
-
-    @InjectMocks
-    private MediaService mediaService;
 
     @InjectMocks
     private CheckOutItemService checkOutItemService;
@@ -92,15 +85,11 @@ public class OfflineServiceTest {
         lenient().when(eventDao.findEventByName(anyString())).thenAnswer((InvocationOnMock invocation) -> {
             if (invocation.getArgument(0).equals(EVENT_NAME)) {
 
-                //Set<Media> medias = new HashSet<Media>();
                 Event event = new Event();
                 event.setDate(EVENT_DATE);
                 event.setEventEnd(EVENT_ENDTIME);
                 event.setEventStart(EVENT_STARTTIME);
                 event.setName(EVENT_NAME);
-                
-                //medias.add(checkOutItem);
-                //offline.setMedias(medias);
 
                 return event;
             } else {
@@ -111,7 +100,6 @@ public class OfflineServiceTest {
         lenient().when(mediaDao.findMediaByID(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(CHECKOUTITEM_ID)) {
 
-                //Set<Media> medias = new HashSet<Media>();
                 CheckOutItem checkOutItem1 = new CheckOutItem();
 				checkOutItem1.setID(CHECKOUTITEM_ID);
                 checkOutItem1.setBorrowingPeriod(CHECKOUTITEM_BORROWINGPERIOD);
@@ -119,13 +107,11 @@ public class OfflineServiceTest {
                 checkOutItem1.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
                 checkOutItem1.setIsReserved(CHECKOUTITEM_ISRESERVED);
                 checkOutItem1.setStartDate(CHECKOUTITEM_DATE);
-                //medias.add(checkOutItem);
-                //offline.setMedias(medias);
 
                 return checkOutItem1;
 			} if (invocation.getArgument(0).equals(CHECKOUTITEM_ID2)) {
 
-                //Set<Media> medias = new HashSet<Media>();
+
                 CheckOutItem checkOutItem = new CheckOutItem();
 				checkOutItem.setID(CHECKOUTITEM_ID2);
                 checkOutItem.setBorrowingPeriod(CHECKOUTITEM_BORROWINGPERIOD);
@@ -133,34 +119,11 @@ public class OfflineServiceTest {
                 checkOutItem.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
                 checkOutItem.setIsReserved(CHECKOUTITEM_ISRESERVED);
                 checkOutItem.setStartDate(CHECKOUTITEM_DATE);
-                //medias.add(checkOutItem);
-                //offline.setMedias(medias);
-
                 return checkOutItem;
 			} else {
 				return null;
 			}
 		});
-
-        // lenient().when(mediaDao.findMediaByID(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
-		// 	if (invocation.getArgument(0).equals(CHECKOUTITEM_ID2)) {
-
-        //         //Set<Media> medias = new HashSet<Media>();
-        //         CheckOutItem checkOutItem = new CheckOutItem();
-		// 		checkOutItem.setID(CHECKOUTITEM_ID2);
-        //         checkOutItem.setBorrowingPeriod(CHECKOUTITEM_BORROWINGPERIOD);
-        //         checkOutItem.setType(CHECKOUTITEM_ITEM);
-        //         checkOutItem.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
-        //         checkOutItem.setIsReserved(CHECKOUTITEM_ISRESERVED);
-        //         checkOutItem.setStartDate(CHECKOUTITEM_DATE);
-        //         //medias.add(checkOutItem);
-        //         //offline.setMedias(medias);
-
-        //         return checkOutItem;
-		// 	} else {
-		// 		return null;
-		// 	}
-		// });
 
         lenient().when(accountDao.findAccountById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(OFFLINE_ID)) {
@@ -200,8 +163,8 @@ public class OfflineServiceTest {
 			return invocation.getArgument(0);
 		};
 		lenient().when(accountDao.save(any(Offline.class))).thenAnswer(returnParameterAsAnswer);
-		//lenient().when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
-		//lenient().when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
+        lenient().when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
+        lenient().when(mediaDao.save(any(Media.class))).thenAnswer(returnParameterAsAnswer);
     }
     
     @Test
@@ -430,20 +393,6 @@ public class OfflineServiceTest {
         assertNull(offline);
         assertEquals(error, "Offline Account id does not exist.");
     }
-    
-
-    // @Test
-    // public void testOfflineDelete(){
-    //     boolean wasDeleted;
-    //     try{
-    //         offlineService.deleteOffline(OFFLINE_ID);
-    //         wasDeleted = true;
-    //     } catch(IllegalArgumentException e) {
-	// 		wasDeleted = false;
-	// 	} 
-    //     assertEquals(null, accountDao.findAccountById(OFFLINE_ID));
-    //     assertTrue(wasDeleted);
-    // }
 
     @Test
     public void testOfflineUpdate(){
@@ -512,99 +461,66 @@ public class OfflineServiceTest {
     @Test
     public void testOfflineCheckout(){
         Offline offline = null;
-
         CheckOutItem mediaTest = new CheckOutItem();
         try {
-            //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            
             offline = offlineService.checkoutAnItem(CHECKOUTITEM_ID, OFFLINE_ID);
             for(Media media : offline.getMedias()){
                 if (media.getID()==CHECKOUTITEM_ID){
                     mediaTest = (CheckOutItem) media;
                 }
             }
-            //offline = offlineService.getOffline(OFFLINE_ID);
+        
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
+			
             fail();
 		} 
-        //assertEquals(5, 5);
-        //assertNotNull(bruh);
         assertEquals(2, offline.getMedias().size());
         assertEquals(2, offline.getNumChecked());
-        //assertEquals(true, mediaTest.getIsCheckedOut());
-        //assertEquals("This media Id is non-existent!", error);
 
     }
 
     @Test
     public void testOfflineReturn(){
         Offline offline = null;
-
-        //CheckOutItem mediaTest = new CheckOutItem();
-        String error = "";
         try {
-            //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
-            //offline = offlineService.checkoutAnItem(CHECKOUTITEM_ID2, OFFLINE_ID);
-
-            offline = offlineService.returnAnItem(CHECKOUTITEM_ID2, OFFLINE_ID);
-            
-            //offline = offlineService.getOffline(OFFLINE_ID);
+            offline = offlineService.returnAnItem(CHECKOUTITEM_ID2, OFFLINE_ID);       
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
-        //assertEquals(5, 5);
-        //assertNotNull(bruh);
-        //assertEquals("This account does not exist!", error);
         assertEquals(0, offline.getMedias().size());
         assertEquals(0, offline.getNumChecked());
     }
 
     @Test
-    public void testOfflineReseerve(){
+    public void testOfflineReserve(){
         CheckOutItem mediaTest = null;
-        String error = "";
         try{
             mediaTest = (CheckOutItem) offlineService.reserveAnItem(CHECKOUTITEM_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
         assertEquals(true, ((CheckOutItem) mediaTest).getIsReserved());
-        //assertEquals("This medi]", error);
     }
     @Test
     public void testOfflineCheck(){
         CheckOutItem mediaTest = null;
-        String error = "";
         try{
             mediaTest = (CheckOutItem) offlineService.checkAnItem(CHECKOUTITEM_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
         assertEquals(true, ((CheckOutItem) mediaTest).getIsCheckedOut());
-        //assertEquals("This medi]", error);
     }
 
     @Test
     public void testOfflineBookEvent(){
         Offline offline = null;
-
-        //CheckOutItem mediaTest = new CheckOutItem();
         try {
-            //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
             offline = (Offline) accountService.bookEvent(EVENT_NAME, OFFLINE_ID);
-            //offline = offlineService.getOffline(OFFLINE_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
-        //assertEquals(5, 5);
-        //assertNotNull(bruh);
         assertEquals(1, offline.getEvents().size());
-        //assertEquals(2, offline.getNumChecked());
-        //assertEquals(true, mediaTest.getIsCheckedOut());
-        //assertEquals("This media Id is non-existent!", error);
     }
 }
