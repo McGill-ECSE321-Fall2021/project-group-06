@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,18 +28,14 @@ public class NonCheckOutItemController {
             return Conversion.convertToDto(nonCheckOutItem);
     }
 
-    @GetMapping(value = { "/nonCheckOutItems/{id}", "/nonCheckOutItems/{id}" })
+    @GetMapping(value = { "/nonCheckOutItems/{id}", "/nonCheckOutItems/{id}/" })
     public NonCheckOutItemDto getNonCheckOutItemsById(@PathVariable("id") int mediaID) throws IllegalArgumentException {
         return Conversion.convertToDto(nonCheckOutItemService.getNonCheckOutItemByID(mediaID));
     }
 
-    @GetMapping(value = { "/nonCheckOutItems/", "/nonCheckOutItems/" })
-    public List<NonCheckOutItemDto> getAllEvents() {
-        List<NonCheckOutItemDto> nonCheckOutItemDtos = new ArrayList<>();
-        for (NonCheckOutItem nonCheckOutItem : nonCheckOutItemService.getAllNonCheckOutItems()) {
-            nonCheckOutItemDtos.add(Conversion.convertToDto(nonCheckOutItem));
-        }
-        return nonCheckOutItemDtos;
+    @GetMapping(value = { "/nonCheckOutItems", "/nonCheckOutItems/" })
+    public List<NonCheckOutItemDto> getAllNonCheckOutItems() {
+        return nonCheckOutItemService.getAllNonCheckOutItems().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
     }
     @PutMapping(value = { "/edit_nonCheckOutItems/{id}"})
     public NonCheckOutItemDto updateNonCheckOutItem(@PathVariable("id") int mediaID, @RequestParam Item newMediaType)
