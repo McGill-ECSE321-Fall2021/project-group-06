@@ -1,6 +1,8 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.models.Media;
+import ca.mcgill.ecse321.librarysystem.models.NonCheckOutItem;
+import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 
@@ -99,5 +103,45 @@ public class CheckOutItemService {
         mediaRepository.save(checkOutItem);
         return checkOutItem;
     }
+    @Transactional
+    public CheckOutItem getCheckOutItemByID(int mediaID){
+        
+        // Input validation
+        String error="";
 
+        if (mediaRepository.findMediaByID(mediaID) == null) {
+            error = error + "Media ID cannot be found!";
+        }
+        if (mediaRepository.findMediaByID(mediaID) instanceof NonCheckOutItem) {
+            error = error + "This is a NonCheckOutItem";
+        }
+        error = error.trim();
+        if (error.length() > 0) {
+            throw new IllegalArgumentException(error);
+        }
+
+        CheckOutItem media = (CheckOutItem) mediaRepository.findMediaByID(mediaID);
+        return media;
+    }
+
+    @Transactional
+    public Set<CheckOutItem> getAllCheckOutItems(){
+        HashSet<CheckOutItem> checkOutItems = new HashSet<CheckOutItem>();
+        for(Media media: mediaRepository.findAll()){
+            if(media instanceof CheckOutItem){
+                checkOutItems.add((CheckOutItem)media);
+            }
+        }
+        return checkOutItems;
+    }
+
+    @Transactional
+    public CheckOutItem deleteCheckOutItem(int id) {
+        if(mediaRepository.findById(id) == null){
+            throw new IllegalArgumentException("CheckOutItem does not exist");
+        }
+        CheckOutItem checkOutItem = (CheckOutItem) mediaRepository.findMediaByID(id);        
+        mediaRepository.delete(checkOutItem);
+        return checkOutItem;
+    }
 }

@@ -50,7 +50,7 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @GetMapping(value = { "/events/{eventName}", "/events/{eventName}/" })
+    @GetMapping(value = { "/events/{eventName}", "/events/{eventName}" })
     public EventDto getEventByName(@PathVariable("eventName") String eventName) throws IllegalArgumentException {
         return Conversion.convertToDto(eventService.getEvent(eventName));
     }
