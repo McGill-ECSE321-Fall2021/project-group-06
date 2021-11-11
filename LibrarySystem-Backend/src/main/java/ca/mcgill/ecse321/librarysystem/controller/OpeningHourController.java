@@ -2,6 +2,9 @@ package ca.mcgill.ecse321.librarysystem.controller;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -51,10 +54,16 @@ public class OpeningHourController {
      * Find Opening Hour of given parsameter
      * @param id
      * @return openingHour Dto
+     * @author Howard Yu
      */
     @GetMapping(value= {"/getopeningHours/{id}", "/getopeningHours/{id}/"})
 	public OpeningHourDto getOpeningHourById(@PathVariable("id") int id) {
 		return Conversion.convertToDto(service.getOpeningHour(id));
+	}
+
+    @GetMapping(value= {"/openingHours/", "/openingHours/"})
+	public List<OpeningHourDto> getAllOpeningHours() {
+        return service.getAllOpeningHours().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	}
      /**
 	 * Update Opening Hour
@@ -66,8 +75,10 @@ public class OpeningHourController {
 	 
 	@PutMapping(value= {"/updateOpeningHour/{id}"})
 	public OpeningHourDto updateOpeningHour(@PathVariable("id") int aId, @RequestParam DayOfWeek newDay, @RequestParam String newStart,
-			@RequestParam String newEnd) {
-		OpeningHour oH=service.updateOpeningHours(aId, newDay, Conversion.convertStrToTime(newStart), Conversion.convertStrToTime(newEnd));
+    @RequestParam String newEnd) {
+        Time startTime = Time.valueOf(newStart);
+		Time endTime = Time.valueOf(newEnd);
+		OpeningHour oH=service.updateOpeningHours(aId, newDay, startTime, endTime);
 		return Conversion.convertToDto(oH);
 	}
     /**

@@ -177,7 +177,7 @@ public class OpeningHourServiceTest {
             error = e.getMessage();
         }
         assertNull(oH);
-        assertEquals("Opening Hour Id does not exist", error);
+        assertEquals("OpeningHour cannot be found!", error);
     }
     @Test
     public void testDeleteExistingOpeningHour(){
@@ -271,6 +271,6 @@ public class OpeningHourServiceTest {
             error = e.getMessage();
         }
         assertNull(oH);
-        assertEquals("Opening Hour Id does not exist", error);
+        assertEquals("OpeningHour cannot be found!", error);
     }
 }
