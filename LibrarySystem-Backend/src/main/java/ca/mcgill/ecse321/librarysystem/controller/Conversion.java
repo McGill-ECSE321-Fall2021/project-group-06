@@ -1,4 +1,6 @@
 package ca.mcgill.ecse321.librarysystem.controller;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -128,5 +130,12 @@ public class Conversion {
         }
         
         return eventDtoList;
+    }
+    public static Time convertStrToTime(String t){
+        String[] num = t.split(":");
+        int hour = Integer.parseInt(num[0]);
+        int minutes = Integer.parseInt(num[1]);
+        Time time = java.sql.Time.valueOf(LocalTime.of(hour,minutes));
+        return time;
     }
 }
