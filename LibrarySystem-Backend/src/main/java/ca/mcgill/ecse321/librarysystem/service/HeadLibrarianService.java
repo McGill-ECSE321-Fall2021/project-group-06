@@ -165,9 +165,9 @@ public class HeadLibrarianService {
 	public List<HeadLibrarian> getHeadLibrarians(){
 		List<Librarian> allLibrarians=(List<Librarian>) librarianRepository.findAll();
 		List<HeadLibrarian> allHeadLibrarians=new ArrayList<>();
-		for (Librarian a : allHeadLibrarians) {
+		for (Librarian a : allLibrarians) {
 			if (a instanceof HeadLibrarian){
-				allLibrarians.add((HeadLibrarian) a);
+				allHeadLibrarians.add((HeadLibrarian) a);
 			}
 		}
 		return allHeadLibrarians;
