@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,7 +43,7 @@ public class HeadLibrarianController {
 	  * @param name
 	  * @return head librarian Dto
 	  */
-	 @PostMapping(value= {"/headlibrarian", "/headlibrarian/"})
+	 @PostMapping(value= {"/create_headlibrarian", "/create_headlibrarian/"})
 	 public HeadLibrarianDto createHeadLibrarian(@RequestParam(name="id") int id) {
 	 	HeadLibrarian head=headService.createHeadLibrarian(id);
 	 	return Conversion.convertToDto(head);
@@ -52,11 +53,14 @@ public class HeadLibrarianController {
 	  * @param id
 	  * @return head librarian Dto
 	  */
-	 @GetMapping(value= {"/headlibrarian/{id}", "/headlibrarian/{id}/"})
+	 @GetMapping(value= {"/headlibrarians/{id}", "/headlibrarians/{id}/"})
 	 public HeadLibrarianDto getHeadLibrarianById(@PathVariable("id") int id) {
 	 	return Conversion.convertToDto(headService.getHeadLibrarian(id));
 	 }
-	
+	 @GetMapping(value= {"/headlibrarians", "/headlibrarians/"})
+	 public List<HeadLibrarianDto> getAllHeadLibrarians() {
+		return headService.getHeadLibrarians().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
+	 }
 //	 /**
 //	  * Update head librarian address, name, and items checked out
 //	  * If not changing something, pass old value
@@ -89,8 +93,8 @@ public class HeadLibrarianController {
 	  * @param name
 	  * @return librarian Dto
 	  */
-	 @PostMapping(value= {"/hireLibrarian", "/hireLibrarian/"})
-	 public LibrarianDto hireLibrarian(@RequestParam(name="id") int id) {
+	 @PostMapping(value= {"/hireLibrarian/{id}", "/hireLibrarian/{id}/"})
+	 public LibrarianDto hireLibrarian(@PathVariable(name="id") int id) {
 	 	return Conversion.convertToDto(headService.hireLibrarian(id));
 	 }
 	
@@ -110,11 +114,7 @@ public class HeadLibrarianController {
 	  */
 	 @GetMapping(value= {"/headLibrarians", "/headLibrarians/"})
 	 public List<HeadLibrarianDto> getHeadLibrarians(){
-	 	List<HeadLibrarianDto> librDtos=new ArrayList<>();
-	 	for (HeadLibrarian l : headService.getHeadLibrarians()) {
-	 		librDtos.add(Conversion.convertToDto(l));
-	 	}
-	 	return librDtos;
+		 return headService.getHeadLibrarians().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	 }
 	 
 	 /**
@@ -125,11 +125,13 @@ public class HeadLibrarianController {
 	  * @param endTime
 	  * @return opening hour Dto
 	  */
-	 @PostMapping(value= {"/openingHour", "/openingHour/"})
-	 public OpeningHourDto createOpeningHour(@RequestParam(name="id") int id, @RequestParam(name="dayOfWeek") DayOfWeek dayOfWeek, 
-			 @RequestParam(name="start") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time startTime, 
-			 @RequestParam(name="end") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time endTime) {
-		 OpeningHour opHr=headService.createOpeningHour(id, dayOfWeek, startTime, endTime);
+	 @PostMapping(value= {"/create_openingHour/{id}", "/create_openingHour/{id}/"})
+	 public OpeningHourDto createOpeningHour(@PathVariable(name="id") int id, @RequestParam DayOfWeek dayOfWeek, 
+			 @RequestParam String startTime, 
+			 @RequestParam String endTime) {
+				Time start = Time.valueOf(startTime);
+				Time end = Time.valueOf(endTime);
+		 OpeningHour opHr=headService.createOpeningHour(id, dayOfWeek, start, end);
 		return Conversion.convertToDto(opHr);
 	 }
 	 
@@ -141,11 +143,13 @@ public class HeadLibrarianController {
 	  * @param newEndTime
 	  * @return updated opening hour Dto
 	  */
-	 @PutMapping(value= {"/openingHour/{id}", "openingHour/{id}/"})
-	 public OpeningHourDto updateOpeningHour(@PathVariable("id") int id, @RequestParam(name="newDay") DayOfWeek newDayOfWeek, 
-			 @RequestParam(name="newStart") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time newStartTime, 
-			 @RequestParam(name="newEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time newEndTime) {
-		 OpeningHour updatedHrs=headService.updateOpeningHour(id, newDayOfWeek, newStartTime, newEndTime);
+	 @PutMapping(value= {"/update_openingHour/{id}", "update_openingHour/{id}/"})
+	 public OpeningHourDto updateOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek newDayOfWeek, 
+			 @RequestParam String newStartTime, 
+			 @RequestParam String newEndTime) {
+				Time start = Time.valueOf(newStartTime);
+				Time end = Time.valueOf(newEndTime);
+		 OpeningHour updatedHrs=headService.updateOpeningHour(id, newDayOfWeek, start, end);
 		 return Conversion.convertToDto(updatedHrs);
 	 }
 	 
@@ -157,11 +161,13 @@ public class HeadLibrarianController {
 	  * @param endTime
 	  * @return shift Dto
 	  */
-	 @PostMapping(value= {"/shift", "/shift/"})
-	 public ShiftDto createShift(@RequestParam(name="id") int shiftID, @RequestParam(name="day") DayOfWeek dayOfWeek, 
-			 @RequestParam(name="start") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time startTime, 
-			 @RequestParam(name="end") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time endTime) {
-		 Shift s=headService.createShift(shiftID, dayOfWeek, startTime, endTime);
+	 @PostMapping(value= {"/create_shift/{id}", "/create_shift/{id}/"})
+	 public ShiftDto createShift(@PathVariable("id") int shiftID, @RequestParam DayOfWeek dayOfWeek, 
+			 @RequestParam  String startTime, 
+			 @RequestParam String endTime) {
+				Time start = Time.valueOf(startTime);
+				Time end = Time.valueOf(endTime);
+		 Shift s=headService.createShift(shiftID, dayOfWeek, start, end);
 		 return Conversion.convertToDto(s);
 	 }
 	 
@@ -174,10 +180,12 @@ public class HeadLibrarianController {
 	  * @return updated shift Dto
 	  */
 	 @PutMapping(value= {"/updateShift/{id}", "/updateShift/{id}/"})
-	 public ShiftDto updateShift(@PathVariable("id") int shiftID, @RequestParam(name="newDay") DayOfWeek newDayOfWeek, 
-			 @RequestParam(name="newStart") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time newStartTime, 
-			 @RequestParam(name="newEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") Time newEndTime) {
-		 Shift updShift=headService.updateShift(shiftID, newDayOfWeek, newStartTime, newEndTime);
+	 public ShiftDto updateShift(@PathVariable("id") int shiftID, @RequestParam DayOfWeek newDayOfWeek, 
+			 @RequestParam String newStartTime, 
+			 @RequestParam String newEndTime) {
+				Time start = Time.valueOf(newStartTime);
+				Time end = Time.valueOf(newEndTime);
+		 Shift updShift=headService.updateShift(shiftID, newDayOfWeek, start, end);
 		 return Conversion.convertToDto(updShift);
 	 }
 	 
@@ -187,8 +195,8 @@ public class HeadLibrarianController {
 	  * @param shiftID
 	  * @return all assigned shifts Dto of the librarian
 	  */
-	 @PostMapping(value= {"/assignShift", "/assignShift/"})
-	 public Set<ShiftDto> assignShift(@RequestParam(name="librId") int id, @RequestParam(name="shiftId") int shiftID) {
+	 @PostMapping(value= {"/assignShift/{id}", "/assignShift/{id}/"})
+	 public Set<ShiftDto> assignShift(@PathVariable(name="id") int id, @RequestParam int shiftID) {
 		 Set<Shift> allAssignedShifts=headService.assignShift(id, shiftID);
 		 Set<ShiftDto> allShiftsDto=new HashSet<ShiftDto>();
 		 for (Shift s : allAssignedShifts) {
