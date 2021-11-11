@@ -84,8 +84,6 @@ public class OpeningHourServiceTest {
 			return invocation.getArgument(0);
 		};
 		lenient().when(openingHourDao.save(any(OpeningHour.class))).thenAnswer(returnParameterAsAnswer);
-		//lenient().when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
-		//lenient().when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
     }
     //Test Create Opening Hour
     @Test
