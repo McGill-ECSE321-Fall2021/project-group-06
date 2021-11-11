@@ -578,12 +578,12 @@ public class OnlineServiceTest {
     public void testOnlineCheckout(){
         Online online = null;
 
-        CheckOutItem mediaTest = new CheckOutItem();
+        //CheckOutItem mediaTest = new CheckOutItem();
         try {
             online = onlineService.checkoutAnItem(CHECKOUTITEM_ID, ONLINE_ID);
             for(Media media : online.getMedias()){
                 if (media.getID()==CHECKOUTITEM_ID){
-                    mediaTest = (CheckOutItem) media;
+                    //mediaTest = (CheckOutItem) media;
                 }
             }
         } catch(IllegalArgumentException e) {
@@ -596,7 +596,7 @@ public class OnlineServiceTest {
     @Test
     public void testOnlineReturn(){
         Online online = null;
-        String error = "";
+        //String error = "";
         try {
             online = onlineService.returnAnItem(CHECKOUTITEM_ID2, ONLINE_ID);
         } catch(IllegalArgumentException e) {
@@ -609,7 +609,7 @@ public class OnlineServiceTest {
     @Test
     public void testOnlineReserve(){
         CheckOutItem mediaTest = null;
-        String error = "";
+        //String error = "";
         try{
             mediaTest = (CheckOutItem) onlineService.reserveAnItem(CHECKOUTITEM_ID);
         } catch(IllegalArgumentException e) {
@@ -621,7 +621,7 @@ public class OnlineServiceTest {
     @Test
     public void testOnlineCheck(){
         CheckOutItem mediaTest = null;
-        String error = "";
+        //String error = "";
         try{
             mediaTest = (CheckOutItem) onlineService.checkAnItem(CHECKOUTITEM_ID);
         } catch(IllegalArgumentException e) {

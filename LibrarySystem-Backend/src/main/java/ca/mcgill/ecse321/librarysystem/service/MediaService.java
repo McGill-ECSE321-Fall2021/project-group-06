@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.models.Media;
-import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 
 @Service
 public class MediaService {
