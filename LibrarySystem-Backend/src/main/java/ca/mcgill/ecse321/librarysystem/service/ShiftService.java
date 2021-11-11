@@ -43,16 +43,16 @@ public class ShiftService {
 	//  * Same as update Shift
 	//  * commented out
 	 
-    @Transactional
-    public void EditAssignedSchedules(int shiftId, DayOfWeek DayOfWeek, Time start, Time end){
-    	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
-    	shift.setDayOfWeek(DayOfWeek);
-    	shift.setEndTime(end);
-    	//shift.setHeadLibrarian(hd);
-    	//shift.setLibrarian(lib);
-    	shift.setStartTime(start);
-		shiftRepository.save(shift);
-    }
+    // @Transactional
+    // public void EditAssignedSchedules(int shiftId, DayOfWeek DayOfWeek, Time start, Time end){
+    // 	Shift shift = shiftRepository.findShiftByShiftID(shiftId);
+    // 	shift.setDayOfWeek(DayOfWeek);
+    // 	shift.setEndTime(end);
+    // 	//shift.setHeadLibrarian(hd);
+    // 	//shift.setLibrarian(lib);
+    // 	shift.setStartTime(start);
+	// 	shiftRepository.save(shift);
+    // }
     
     
     /**
