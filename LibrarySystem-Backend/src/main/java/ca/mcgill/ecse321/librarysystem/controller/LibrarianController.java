@@ -75,7 +75,7 @@ public class LibrarianController {
 	 * @return deleted librarian Dto */
 	 
 	@DeleteMapping(value= {"/deleteLibrarian/{id}", "/deleteLibrarian/{id}/"})
-	public LibrarianDto deleteLibrarian(int id) {
+	public LibrarianDto deleteLibrarian(@PathVariable("id") int id) {
 		return Conversion.convertToDto(librarianService.deleteLibrarian(id));
 	}
 	

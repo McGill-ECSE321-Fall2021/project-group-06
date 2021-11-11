@@ -308,22 +308,25 @@ public class HeadLibrarianService {
 	 * @param shiftID
 	 * @return all the shifts of that librarian
 	 */
-	public Set<Shift> assignShift(int id, int shiftID){
+	public Librarian assignShift(int id, int shiftID){
 		if(librarianRepository.findLibrarianById(id)==null){
 			throw new IllegalArgumentException("librarian does not exist");
 		}
 		if(shiftRepository.findShiftByShiftID(shiftID)==null){
 			throw new IllegalArgumentException("shift does not exist");
 		}
-		if (librarianRepository.findLibrarianById(id).getShift()==null) {
-			Set<Shift> shifts=new HashSet<Shift>();
-			Shift theShift=shiftRepository.findShiftByShiftID(shiftID);
-			shifts.add(theShift);
-			librarianRepository.findLibrarianById(id).setShift(shifts);
-		}
-		else {
-			librarianRepository.findLibrarianById(id).getShift().add(shiftRepository.findShiftByShiftID(shiftID));
-		}
-		return librarianRepository.findLibrarianById(id).getShift();
+		// if (librarianRepository.findLibrarianById(id).getShift()==null) {
+		// 	Set<Shift> shifts=new HashSet<Shift>();
+		// 	Shift theShift=shiftRepository.findShiftByShiftID(shiftID);
+		// 	shifts.add(theShift);
+		// 	librarianRepository.findLibrarianById(id).setShift(shifts);
+		// }
+		// else {
+		// 	librarianRepository.findLibrarianById(id).getShift().add(shiftRepository.findShiftByShiftID(shiftID));
+		// }
+		Librarian lib = librarianRepository.findLibrarianById(id);
+		lib.getShift().add(shiftRepository.findShiftByShiftID(shiftID));
+		librarianRepository.save(lib);
+		return lib;
 	}
 }

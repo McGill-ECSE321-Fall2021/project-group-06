@@ -10,7 +10,8 @@ public class LibrarianDto {
 	}
 	//we don't need another constructor I don't think so
 
-	public LibrarianDto( HashSet<ShiftDto> shifts) {
+	public LibrarianDto( int id, HashSet<ShiftDto> shifts) {
+        this.id = id;
         this.shifts = shifts;
 	}
 
