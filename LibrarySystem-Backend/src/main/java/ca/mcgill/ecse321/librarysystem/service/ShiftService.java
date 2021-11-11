@@ -106,9 +106,9 @@ public class ShiftService {
     }
     
     @Transactional
-    public List<Shift> getShifts(){
-    	List<Shift> shifts=(List<Shift>) shiftRepository.findAll();
-		if (shifts.isEmpty()){
+    public Iterable<Shift> getShifts(){
+    	Iterable<Shift> shifts= shiftRepository.findAll();
+		if (((List<Shift>) shifts).size() == 0){
 			throw new IllegalArgumentException("Shift list cannot be empty");
 		}
     	return shifts;
