@@ -1,11 +1,16 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.MediaRepository;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
+import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
+import ca.mcgill.ecse321.librarysystem.models.Media;
 import ca.mcgill.ecse321.librarysystem.models.NonCheckOutItem;
 
 @Service
@@ -72,6 +77,47 @@ public class NonCheckOutItemService {
         nonCheckOutItem.setType(newMediaType);
         nonCheckOutItem.setID(mediaID);
         mediaRepository.save(nonCheckOutItem);
+        return nonCheckOutItem;
+    }
+    @Transactional
+    public NonCheckOutItem getNonCheckOutItemByID(int mediaID){
+        
+        // Input validation
+        String error="";
+
+        if (mediaRepository.findMediaByID(mediaID) == null) {
+            error = error + "Media ID cannot be found!";
+        }
+        if (mediaRepository.findMediaByID(mediaID) instanceof CheckOutItem) {
+            error = error + "This is a CheckOutItem";
+        }
+        error = error.trim();
+        if (error.length() > 0) {
+            throw new IllegalArgumentException(error);
+        }
+
+        NonCheckOutItem media = (NonCheckOutItem) mediaRepository.findMediaByID(mediaID);
+        return media;
+    }
+
+    @Transactional
+    public Set<NonCheckOutItem> getAllNonCheckOutItems(){
+        HashSet<NonCheckOutItem> nonCheckOutItems = new HashSet<NonCheckOutItem>();
+        for(Media media: mediaRepository.findAll()){
+            if(media instanceof CheckOutItem){
+                nonCheckOutItems.add((NonCheckOutItem)media);
+            }
+        }
+        return nonCheckOutItems;
+    }
+
+    @Transactional
+    public NonCheckOutItem deleteNonCheckOutItem(int id) {
+        if(mediaRepository.findById(id) == null){
+            throw new IllegalArgumentException("NonCheckOutItem does not exist");
+        }
+        NonCheckOutItem nonCheckOutItem = (NonCheckOutItem) mediaRepository.findMediaByID(id);        
+        mediaRepository.delete(nonCheckOutItem);
         return nonCheckOutItem;
     }
 }

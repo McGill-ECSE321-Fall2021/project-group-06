@@ -340,22 +340,22 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
 		assertTrue(error.contains("startDate cannot be null"));
 	}
-    @Test
-    public void testGetExistingCheckOutItem(){
-        assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());
-    }
-    @Test
-	public void testGetNonExistingCheckOutItem() {
-		assertEquals(0, mediaService.getAllMedias().size());
-        String error = null;
-        int mediaID = 434324;
-        CheckOutItem checkOutItem = null;
-		try {
-            checkOutItem = (CheckOutItem)mediaService.getMedia(mediaID);
-		}catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		}
-		assertNull(checkOutItem);
-		assertTrue(error.contains("Media ID cannot be found!"));
-	}
+    // @Test
+    // public void testGetExistingCheckOutItem(){
+    //     assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());
+    // }
+    // @Test
+	// public void testGetNonExistingCheckOutItem() {
+	// 	assertEquals(0, mediaService.getAllMedias().size());
+    //     String error = null;
+    //     int mediaID = 434324;
+    //     CheckOutItem checkOutItem = null;
+	// 	try {
+    //         checkOutItem = (CheckOutItem)mediaService.getMedia(mediaID);
+	// 	}catch(IllegalArgumentException e) {
+	// 		error = e.getMessage();
+	// 	}
+	// 	assertNull(checkOutItem);
+	// 	assertTrue(error.contains("Media ID cannot be found!"));
+	// }
 }
