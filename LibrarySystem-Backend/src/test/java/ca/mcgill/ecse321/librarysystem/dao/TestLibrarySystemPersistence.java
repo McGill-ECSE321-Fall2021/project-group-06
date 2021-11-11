@@ -95,26 +95,13 @@ public class TestLibrarySystemPersistence {
 		acc.setName(name);
 		acc.setNumChecked(numChecked);
 
-		// Set<Event> events = new HashSet<Event>();
-		// Event e = new Event();
-		// String ename = "BTSConcert";
-		// // int eventId = 7;
-		// e.setName(ename);
-		// events.add(e);
-
 		Media media = new NonCheckOutItem();
 		media.setType(Media.Item.Book);
 		int mediaId = 7;
 		media.setID(mediaId);
-		//media.setAccount(acc);
 
 		Set<Media> medias = new HashSet<Media>();
        	medias.add(media);
-		// mediaRepository.save(media);
-
-
-		// acc.setEvents(events);
-		// acc.setMedias(medias);
 
 
 		accountRepository.save(acc);
@@ -128,12 +115,6 @@ public class TestLibrarySystemPersistence {
 		assertEquals(local, acc.getIsLocal());
 		assertEquals(name, acc.getName());
 		assertEquals(numChecked, acc.getNumChecked());
-		// assertEquals(events, acc.getEvents());
-		// Set<Media> mtest = acc.getMedias();
-		// int mtestsize = mtest.size();
-		// int mediasize = ((Set<Media>) media).size();
-		// assertEquals(mediasize, mtestsize);
-		// assertEquals(medias, acc.getMedias());
 		
 	}
 	
@@ -244,8 +225,6 @@ public class TestLibrarySystemPersistence {
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 		
 		shift.setShiftID(id);
-		//shift.setHeadLibrarian(headLibrarian);
-		//shift.setLibrarian(lib);
 		shift.setDayOfWeek(dayOfWeek);
 		shift.setStartTime(startTime);
 		shift.setEndTime(endTime);
@@ -255,7 +234,6 @@ public class TestLibrarySystemPersistence {
 		
 		shift = shiftRepository.findShiftByShiftID(id);
 		assertEquals(dayOfWeek,shift.getDayOfWeek());
-		//assertEquals(id1, shift.getHeadLibrarian().getId());
 		assertEquals(startTime, shift.getStartTime());
 		assertEquals(endTime, shift.getEndTime());
 		assertEquals(id, shift.getShiftID());
@@ -274,7 +252,6 @@ public class TestLibrarySystemPersistence {
 		Time startTime = java.sql.Time.valueOf(LocalTime.of(8,05));
 		Time endTime = java.sql.Time.valueOf(LocalTime.of(18,05));
 		OpeningHour oh = new OpeningHour();
-		//oh.setHeadLibrarian((HeadLibrarian)lib);
 		oh.setId(id);
 		oh.setDayOfWeek(dayOfWeek);
 		oh.setStartTime(startTime);
@@ -283,7 +260,6 @@ public class TestLibrarySystemPersistence {
 		oh = null;
 		oh = openingHourRepository.findOpeningHourById(id);
 		assertNotNull(oh);
-		//assertEquals(lib.getId(),oh.getHeadLibrarian().getId());
 		assertEquals(id, oh.getId());
 		assertEquals(dayOfWeek, oh.getDayOfWeek());
 		assertEquals(startTime, oh.getStartTime());

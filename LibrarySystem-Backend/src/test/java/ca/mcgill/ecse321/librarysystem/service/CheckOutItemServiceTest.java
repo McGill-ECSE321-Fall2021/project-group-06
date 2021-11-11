@@ -1,19 +1,11 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 
 import java.sql.Date;
-import java.sql.Time;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,36 +17,19 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
-import ca.mcgill.ecse321.librarysystem.dto.CheckOutItemDto;
 import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
-import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Media;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
-import ca.mcgill.ecse321.librarysystem.models.Offline;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
-import ca.mcgill.ecse321.librarysystem.models.Media.Item;
-//author David Hu
+
+           /**
+     * unit test for CheckOutItemService class
+     * @author Howard Yu
+     */
+
 @ExtendWith(MockitoExtension.class)
 public class CheckOutItemServiceTest {
-    @Mock
-    private AccountRepository accountDao;
-    @Mock
-    private EventRepository eventDao;
-    @Mock
-    private LibrarianRepository librarianDao;
     @Mock 
     private MediaRepository mediaDao;
-    @Mock 
-    private OpeningHourRepository openingHourDao; 
-    @Mock 
-    private ShiftRepository shiftDao;
-
-    @InjectMocks
-    private OfflineService offlineService;
-
-    @InjectMocks
-    private AccountService accountService;
-
+    
     @InjectMocks
     private MediaService mediaService;
 
@@ -68,7 +43,6 @@ public class CheckOutItemServiceTest {
     private static final boolean IS_CHECKEDOUT = false;
     private static final boolean IS_RESERVED = false;
 
-    
     @BeforeEach
     public void setMockOutput() {
             lenient().when(mediaDao.findMediaByID(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
@@ -92,7 +66,6 @@ public class CheckOutItemServiceTest {
 		};
 		lenient().when(mediaDao.save(any(CheckOutItem.class))).thenAnswer(returnParameterAsAnswer);
     }
-    
     @Test
 	public void testCreateCheckOutItem() {
 		assertEquals(0, mediaService.getAllMedias().size());
@@ -340,22 +313,22 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
 		assertTrue(error.contains("startDate cannot be null"));
 	}
-    // @Test
-    // public void testGetExistingCheckOutItem(){
-    //     assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());
-    // }
-    // @Test
-	// public void testGetNonExistingCheckOutItem() {
-	// 	assertEquals(0, mediaService.getAllMedias().size());
-    //     String error = null;
-    //     int mediaID = 434324;
-    //     CheckOutItem checkOutItem = null;
-	// 	try {
-    //         checkOutItem = (CheckOutItem)mediaService.getMedia(mediaID);
-	// 	}catch(IllegalArgumentException e) {
-	// 		error = e.getMessage();
-	// 	}
-	// 	assertNull(checkOutItem);
-	// 	assertTrue(error.contains("Media ID cannot be found!"));
-	// }
+    @Test
+    public void testGetExistingCheckOutItem(){
+        assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());
+    }
+    @Test
+	public void testGetNonExistingCheckOutItem() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        String error = null;
+        int mediaID = 434324;
+        CheckOutItem checkOutItem = null;
+		try {
+            checkOutItem = (CheckOutItem)mediaService.getMedia(mediaID);
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+		assertTrue(error.contains("Media ID cannot be found!"));
+	}
 }

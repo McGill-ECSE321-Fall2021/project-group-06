@@ -1,34 +1,16 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import ca.mcgill.ecse321.librarysystem.dto.HeadLibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dto.LibrarianDto;
-import ca.mcgill.ecse321.librarysystem.dto.OpeningHourDto;
-import ca.mcgill.ecse321.librarysystem.dto.ShiftDto;
-import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
-import ca.mcgill.ecse321.librarysystem.models.Librarian;
-import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
+import ca.mcgill.ecse321.librarysystem.dto.*;
+import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 import ca.mcgill.ecse321.librarysystem.service.HeadLibrarianService;
-import ca.mcgill.ecse321.librarysystem.service.OpeningHourService;
-
 @CrossOrigin(origins="*")
 @RestController
 public class HeadLibrarianController {
@@ -39,9 +21,8 @@ public class HeadLibrarianController {
 	 /**
 	  * Create head librarian Dto with given parameters
 	  * @param id
-	  * @param addr
-	  * @param name
 	  * @return head librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/create_headlibrarian", "/create_headlibrarian/"})
 	 public HeadLibrarianDto createHeadLibrarian(@RequestParam(name="id") int id) {
@@ -52,6 +33,7 @@ public class HeadLibrarianController {
 	  * Find head librarian of given parameter
 	  * @param id
 	  * @return head librarian Dto
+	  *@author Howard Yu
 	  */
 	 @GetMapping(value= {"/headlibrarians/{id}", "/headlibrarians/{id}/"})
 	 public HeadLibrarianDto getHeadLibrarianById(@PathVariable("id") int id) {
@@ -61,25 +43,12 @@ public class HeadLibrarianController {
 	 public List<HeadLibrarianDto> getAllHeadLibrarians() {
 		return headService.getHeadLibrarians().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	 }
-//	 /**
-//	  * Update head librarian address, name, and items checked out
-//	  * If not changing something, pass old value
-//	  * @param aId
-//	  * @param aAddress
-//	  * @param aName
-//	  * @param itemsChecked
-//	  * @return updated head librarian Dto
-//	  */
-//	 @PutMapping(value= {"/updateHeadlibrarian/{id}/{addr}/{name}/{items}", "/updateHeadlibrarian/{id}/{addr}/{name}/{items}/"})
-//	 public HeadLibrarianDto updateHeadLibrarianInfo(@PathVariable("id") int aId, @PathVariable("newID") int newID) {
-//	 	HeadLibrarian head=headService.updateHeadLibrarianInfo(aId, newID);
-//	 	return convertToDto(head);
-//	 }
 	
 	 /**
 	  * Delete head librarian of corresponding parameter
 	  * @param id
 	  * @return deleted head librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/deleteHeadlibrarian/{id}", "/deleteHeadlibrarian/{id}/"})
 	 public HeadLibrarianDto deleteHeadLibrarian(@PathVariable("id") int id) {
@@ -89,9 +58,8 @@ public class HeadLibrarianController {
 	 /**
 	  * Hire i.e. create librarian
 	  * @param id
-	  * @param addr
-	  * @param name
 	  * @return librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/hireLibrarian/{id}", "/hireLibrarian/{id}/"})
 	 public LibrarianDto hireLibrarian(@PathVariable(name="id") int id) {
@@ -102,6 +70,7 @@ public class HeadLibrarianController {
 	  * Fire i.e. delete librarian of corresponding parameter
 	  * @param id
 	  * @return deleted librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/fireLibrarian/{id}", "/fireLibrarian/{id}/"})
 	 public LibrarianDto fireLibrarian(@PathVariable("id") int id) {
@@ -111,6 +80,7 @@ public class HeadLibrarianController {
 	 /**
 	  * Find all librarians
 	  * @return list of librarians Dto
+	  *@author Howard Yu
 	  */
 	 @GetMapping(value= {"/headLibrarians", "/headLibrarians/"})
 	 public List<HeadLibrarianDto> getHeadLibrarians(){
@@ -124,6 +94,7 @@ public class HeadLibrarianController {
 	  * @param startTime
 	  * @param endTime
 	  * @return opening hour Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/create_openingHour/{id}", "/create_openingHour/{id}/"})
 	 public OpeningHourDto createOpeningHour(@PathVariable(name="id") int id, @RequestParam DayOfWeek dayOfWeek, 
@@ -142,6 +113,7 @@ public class HeadLibrarianController {
 	  * @param newStartTime
 	  * @param newEndTime
 	  * @return updated opening hour Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/update_openingHour/{id}", "update_openingHour/{id}/"})
 	 public OpeningHourDto updateOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek newDayOfWeek, 
@@ -160,6 +132,7 @@ public class HeadLibrarianController {
 	  * @param startTime
 	  * @param endTime
 	  * @return shift Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/create_shift/{id}", "/create_shift/{id}/"})
 	 public ShiftDto createShift(@PathVariable("id") int shiftID, @RequestParam DayOfWeek dayOfWeek, 
@@ -178,6 +151,7 @@ public class HeadLibrarianController {
 	  * @param newStartTime
 	  * @param newEndTime
 	  * @return updated shift Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/headupdateShift/{id}", "/headupdateShift/{id}/"})
 	 public ShiftDto updateShift(@PathVariable("id") int shiftID, @RequestParam DayOfWeek newDayOfWeek, 
@@ -194,15 +168,11 @@ public class HeadLibrarianController {
 	  * @param id
 	  * @param shiftID
 	  * @return all assigned shifts Dto of the librarian
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/assignShift/{id}", "/assignShift/{id}/"})
 	 public LibrarianDto assignShift(@PathVariable(name="id") int id, @RequestParam int shiftID) {
 		 Librarian lib = headService.assignShift(id, shiftID);
 		 return (Conversion.convertToDto(lib));
-		//  Set<ShiftDto> allShiftsDto=new HashSet<ShiftDto>();
-		//  for (Shift s : allAssignedShifts) {
-		// 	 allShiftsDto.add(Conversion.convertToDto(s));
-		//  }
-		//  return allShiftsDto;
 	 }
 }

@@ -11,16 +11,37 @@ import ca.mcgill.ecse321.librarysystem.models.*;
 
 public class Conversion {
 
+        /**
+     * converts openingHour to OpeningHourDto
+     * @param openingHour
+     * @return openingHourDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static OpeningHourDto convertToDto(OpeningHour openingHour){
         if(openingHour == null) throw new IllegalArgumentException("Opening Hour not found.");
         return new OpeningHourDto(openingHour.getId(), openingHour.getDayOfWeek(), openingHour.getStartTime(), openingHour.getEndTime());
     }
 
+            /**
+     * converts shift to shiftDto
+     * @param shift
+     * @return shiftDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static ShiftDto convertToDto(Shift shift){
         if(shift == null) throw new IllegalArgumentException("Shift not found.");
         return new ShiftDto(shift.getShiftID(),shift.getDayOfWeek(),shift.getStartTime(),shift.getEndTime());
     }
 
+        /**
+     * converts librarian to librarianDto
+     * @param librarian
+     * @return librarianDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static LibrarianDto convertToDto(Librarian librarian){
         if(librarian == null) throw new IllegalArgumentException("libarian not found.");
         HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
@@ -33,7 +54,13 @@ public class Conversion {
         
         return new LibrarianDto(librarian.getId(), shifts);
     }
-
+        /**
+     * converts headlLibrarian to headLibrarianDto
+     * @param headLibrarian
+     * @return headLibrarianDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static HeadLibrarianDto convertToDto(HeadLibrarian headLibrarian){
         if(headLibrarian == null) throw new IllegalArgumentException("headLibarian not found.");
         HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
@@ -53,7 +80,13 @@ public class Conversion {
         
         return new HeadLibrarianDto(headLibrarian.getId(), openingHours, shifts);
     }
-    
+            /**
+     * converts CheckOutItem to CheckOutItemDto
+     * @param checkOutItem
+     * @return checkOutItemDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static CheckOutItemDto convertToDto(CheckOutItem checkOutItem) {
 		if(checkOutItem==null) throw new IllegalArgumentException("Checkout item not found.");
 		return new CheckOutItemDto(checkOutItem.getID(),checkOutItem.getIsCheckedOut(),checkOutItem.getIsReserved(), checkOutItem.getBorrowingPeriod(), checkOutItem.getStartDate());
@@ -63,7 +96,13 @@ public class Conversion {
 		if(nonCheckOutItem==null) throw new IllegalArgumentException("NonCheckout item not found.");
         return new NonCheckOutItemDto(nonCheckOutItem.getType(), nonCheckOutItem.getID());
 	}
-    
+            /**
+     * converts offline to offlineDto
+     * @param offline
+     * @return offlineDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static OfflineDto convertToDto(Offline offline){
         if(offline==null) throw new IllegalArgumentException("Account not found.");
         
@@ -89,7 +128,13 @@ public class Conversion {
         
         return new OfflineDto(offline.getId(), offline.getAddress(), offline.getName(), offline.getAccountCategory(), offline.getIsLocal(), offline.getNumChecked(), events, medias);
     }
-    
+            /**
+     * converts online to onlineDto
+     * @param online
+     * @return onlineDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static OnlineDto convertToDto(Online online){
         if(online==null) throw new IllegalArgumentException("Customer not found.");
         HashSet<EventDto> events = new HashSet<EventDto>();
@@ -99,8 +144,6 @@ public class Conversion {
                 events.add(convertToDto(event));
             }
         }
-        
-
         HashSet<MediaDto> medias = new HashSet<MediaDto>();
         Set<Media> modelMedias = online.getMedias();
         if(modelMedias != null){
@@ -113,10 +156,17 @@ public class Conversion {
                 }
             }
         }
-        
         return new OnlineDto(online.getId(), online.getAddress(), online.getName(), online.getAccountCategory(), online.getIsLocal(), online.getNumChecked(), events, medias, online.getUsername(), online.getPassword(), online.getEmail());
     }
 
+
+           /**
+     * converts event to EventDto
+     * @param event
+     * @return eventDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
     public static EventDto convertToDto(Event event) {
         if (event == null) {
             throw new IllegalArgumentException("Event not found");
@@ -139,6 +189,7 @@ public class Conversion {
         
         return eventDtoList;
     }
+    //helper method
     public static Time convertStrToTime(String t){
         String[] num = t.split(":");
         int hour = Integer.parseInt(num[0]);

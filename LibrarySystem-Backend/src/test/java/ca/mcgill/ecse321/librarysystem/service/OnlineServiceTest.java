@@ -1,20 +1,11 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,13 +19,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
-import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
-import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Media;
-import ca.mcgill.ecse321.librarysystem.models.Online;
+import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
-//author David Hu
+           /**
+     * unit test for CheckOutItemService class
+     * @author Howard Yu, David
+     */
 @ExtendWith(MockitoExtension.class)
 public class OnlineServiceTest {
     @Mock
@@ -93,17 +84,11 @@ public class OnlineServiceTest {
 
         lenient().when(eventDao.findEventByName(anyString())).thenAnswer((InvocationOnMock invocation) -> {
             if (invocation.getArgument(0).equals(EVENT_NAME)) {
-
-                //Set<Media> medias = new HashSet<Media>();
                 Event event = new Event();
                 event.setDate(EVENT_DATE);
                 event.setEventEnd(EVENT_ENDTIME);
                 event.setEventStart(EVENT_STARTTIME);
                 event.setName(EVENT_NAME);
-                
-                //medias.add(checkOutItem);
-                //offline.setMedias(medias);
-
                 return event;
             } else {
                 return null;
@@ -121,13 +106,8 @@ public class OnlineServiceTest {
                 checkOutItem1.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
                 checkOutItem1.setIsReserved(CHECKOUTITEM_ISRESERVED);
                 checkOutItem1.setStartDate(CHECKOUTITEM_DATE);
-                //medias.add(checkOutItem);
-                //offline.setMedias(medias);
-
                 return checkOutItem1;
 			} if (invocation.getArgument(0).equals(CHECKOUTITEM_ID2)) {
-
-                //Set<Media> medias = new HashSet<Media>();
                 CheckOutItem checkOutItem = new CheckOutItem();
 				checkOutItem.setID(CHECKOUTITEM_ID2);
                 checkOutItem.setBorrowingPeriod(CHECKOUTITEM_BORROWINGPERIOD);
@@ -135,9 +115,6 @@ public class OnlineServiceTest {
                 checkOutItem.setIsCheckedOut(CHECKOUTITEM_ISCHECKEDOUT);
                 checkOutItem.setIsReserved(CHECKOUTITEM_ISRESERVED);
                 checkOutItem.setStartDate(CHECKOUTITEM_DATE);
-                //medias.add(checkOutItem);
-                //offline.setMedias(medias);
-
                 return checkOutItem;
 			} else {
 				return null;
@@ -178,13 +155,10 @@ public class OnlineServiceTest {
 			}
 		});
 
-        // Whenever anything is saved, just return the parameter object
 		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
 			return invocation.getArgument(0);
 		};
 		lenient().when(accountDao.save(any(Online.class))).thenAnswer(returnParameterAsAnswer);
-		//lenient().when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
-		//lenient().when(registrationDao.save(any(Registration.class))).thenAnswer(returnParameterAsAnswer);
     }
 
     @Test
@@ -501,18 +475,6 @@ public class OnlineServiceTest {
         assertEquals(error, "Offline Account id does not exist.");
     }	
 
-    // @Test
-    // public void testOnlineDelete(){
-    //     boolean wasDeleted;
-    //     try{
-    //         onlineService.deleteOnline(ONLINE_ID);
-    //         wasDeleted = true;
-    //     } catch(IllegalArgumentException e) {
-	// 		wasDeleted = false;
-	// 	} 
-    //     assertTrue(wasDeleted);
-    // }
-
     @Test
     public void testOnlineUpdate(){
         Online online = null;
@@ -618,49 +580,28 @@ public class OnlineServiceTest {
 
         CheckOutItem mediaTest = new CheckOutItem();
         try {
-            //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
             online = onlineService.checkoutAnItem(CHECKOUTITEM_ID, ONLINE_ID);
             for(Media media : online.getMedias()){
                 if (media.getID()==CHECKOUTITEM_ID){
                     mediaTest = (CheckOutItem) media;
                 }
             }
-            //offline = offlineService.getOffline(OFFLINE_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
-        //assertEquals(5, 5);
-        //assertNotNull(bruh);
         assertEquals(2, online.getMedias().size());
         assertEquals(2, online.getNumChecked());
-        //assertEquals(true, mediaTest.getIsCheckedOut());
-        //assertEquals("This media Id is non-existent!", error);
-
-        
-
     }
 
     @Test
     public void testOnlineReturn(){
         Online online = null;
-
-        //CheckOutItem mediaTest = new CheckOutItem();
         String error = "";
         try {
-            //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
-            //offline = offlineService.checkoutAnItem(CHECKOUTITEM_ID2, OFFLINE_ID);
-
             online = onlineService.returnAnItem(CHECKOUTITEM_ID2, ONLINE_ID);
-            
-            //offline = offlineService.getOffline(OFFLINE_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
-        //assertEquals(5, 5);
-        //assertNotNull(bruh);
-        //assertEquals("This account does not exist!", error);
         assertEquals(0, online.getMedias().size());
         assertEquals(0, online.getNumChecked());
     }
@@ -672,11 +613,9 @@ public class OnlineServiceTest {
         try{
             mediaTest = (CheckOutItem) onlineService.reserveAnItem(CHECKOUTITEM_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
         assertEquals(true, ((CheckOutItem) mediaTest).getIsReserved());
-        //assertEquals("This medi]", error);
     }
 
     @Test
@@ -686,31 +625,19 @@ public class OnlineServiceTest {
         try{
             mediaTest = (CheckOutItem) onlineService.checkAnItem(CHECKOUTITEM_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
         assertEquals(true, ((CheckOutItem) mediaTest).getIsCheckedOut());
-        //assertEquals("This medi]", error);
     }
 
     @Test
     public void testOnlineBookEvent(){
         Online online = null;
-
-        //CheckOutItem mediaTest = new CheckOutItem();
         try {
-            //media = checkOutItemService.createCheckOutItem(item, id, isCheckedOut, isReserved, borrowingPeriod, startDate);
             online = (Online) accountService.bookEvent(EVENT_NAME, ONLINE_ID);
-            //offline = offlineService.getOffline(OFFLINE_ID);
         } catch(IllegalArgumentException e) {
-			//error = e.getMessage();
             fail();
 		} 
-        //assertEquals(5, 5);
-        //assertNotNull(bruh);
         assertEquals(1, online.getEvents().size());
-        //assertEquals(2, offline.getNumChecked());
-        //assertEquals(true, mediaTest.getIsCheckedOut());
-        //assertEquals("This media Id is non-existent!", error);
     }
 }

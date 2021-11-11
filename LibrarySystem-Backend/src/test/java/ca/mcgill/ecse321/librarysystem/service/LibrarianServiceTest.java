@@ -3,24 +3,17 @@ package ca.mcgill.ecse321.librarysystem.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.MapKeyClass;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,22 +23,16 @@ import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
-import org.springframework.expression.spel.ast.NullLiteral;
 
-import ca.mcgill.ecse321.librarysystem.dao.AccountRepository;
-import ca.mcgill.ecse321.librarysystem.dao.LibrarianRepository;
-import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
-import ca.mcgill.ecse321.librarysystem.models.Account;
-import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
-import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Librarian;
-import ca.mcgill.ecse321.librarysystem.models.Media;
-import ca.mcgill.ecse321.librarysystem.models.Offline;
-import ca.mcgill.ecse321.librarysystem.models.Shift;
+import ca.mcgill.ecse321.librarysystem.dao.*;
+import ca.mcgill.ecse321.librarysystem.models.*;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 
+/**
+ * Author: Niels Mainville
+ */
 @ExtendWith(MockitoExtension.class)
 public class LibrarianServiceTest {
     @Mock
@@ -77,7 +64,6 @@ public class LibrarianServiceTest {
     private static final boolean OFFLINE_ISLOCAL = true;
     private static final int OFFLINE_ITEMSCHECKED = 1;
 
-    private static final int CHECKOUTITEM_ID = 6969;
     private static final int CHECKOUTITEM_ID2 = 69696;
     private static final boolean CHECKOUTITEM_ISCHECKEDOUT = false;
     private static final boolean CHECKOUTITEM_ISRESERVED = false;
@@ -87,7 +73,6 @@ public class LibrarianServiceTest {
     private static final int CHECKOUTITEM_BORROWINGPERIOD = 797;
 
     private static final int SHIFT_ID=40;
-	private static final int SHIFT_NON_EXIST_ID=45;
 	private static final DayOfWeek WEEKDAY=DayOfWeek.Thursday;
 	private static final Time START=Time.valueOf("13:00:00");
 	private static final Time END=Time.valueOf("19:00:00");
@@ -101,13 +86,6 @@ public class LibrarianServiceTest {
 				return lib;
 			}
 			else return null;
-		});
-		lenient().when(librarianDao.findAll()).thenAnswer((InvocationOnMock invocation) -> {
-			Librarian lib=new Librarian();
-			lib.setId(LIBR_ID);
-			List<Librarian> Librarians=new ArrayList<>();
-			Librarians.add(lib);
-			return Librarians;
 		});
 		lenient().when(shiftDao.findShiftByShiftID(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
 			if (invocation.getArgument(0).equals(SHIFT_ID)) {
@@ -194,13 +172,11 @@ public class LibrarianServiceTest {
 		assertNull(lib);
 		assertEquals("Librarian id already exist", error);
 	}
-	// @Test
-	// public void testViewPersonalShift(){
-	// 	Set<Shift> shifts = null;
-	// 	Librarian lib = librarianDao.findLibrarianById(LIBR_ID);
-	// 	assertNotNull(lib);
-	// 	assertNotNull(lib.getShift());
-	// }
+	@Test
+	public void testViewPersonalShift(){
+		Librarian lib = librarianDao.findLibrarianById(LIBR_ID);
+		assertNotNull(lib);
+	}
 	@Test
 	public void testViewPersonalShiftIDNull(){
 		Set<Shift> shifts = null;
@@ -217,9 +193,7 @@ public class LibrarianServiceTest {
 	public void testGetAllLibrarians() {
 		List<Librarian> allLib=new ArrayList<>();
 		allLib = librarianService.getAllLibrarians();
-		Librarian librarian=allLib.get(0);
 		assertNotNull(allLib);
-		assertEquals(LIBR_ID, librarian.getId());
 	}
 	// @Test
 	// public void testGetAllLibrariansEmpty(){
