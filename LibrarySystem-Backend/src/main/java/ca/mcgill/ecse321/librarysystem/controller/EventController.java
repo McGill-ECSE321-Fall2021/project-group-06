@@ -1,13 +1,19 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,12 +40,15 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @PostMapping (value = { "/events/{eventName}", "/events/{eventName}/" })
-    public EventDto createEvent(@PathVariable("eventName") String eventName, @RequestParam Date eventDate,
-                                @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventStart,
-                                @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventEnd)
+    @PostMapping (value = { "/create_event/{eventName}", "/create_event/{eventName}/" })
+    public EventDto createEvent(@PathVariable("eventName") String eventName, @RequestParam String eventDate,
+                                @RequestParam String eventStart,
+                                @RequestParam String eventEnd)
             throws IllegalArgumentException {
-        Event event = eventService.createEvent(eventName, eventDate, Time.valueOf(eventStart), Time.valueOf(eventEnd));
+        Date date = Date.valueOf(eventDate);
+        Time start = Time.valueOf(eventStart);
+        Time end = Time.valueOf(eventEnd);
+        Event event = eventService.createEvent(eventName, date, start, end);
         return Conversion.convertToDto(event);
     }
 
@@ -62,11 +71,7 @@ public class EventController {
      */
     @GetMapping (value = { "/events", "/events/" })
     public List<EventDto> getAllEvents() {
-        List<EventDto> eventDtos = new ArrayList<>();
-        for (Event event : eventService.getAllEventsByName()) {
-            eventDtos.add(Conversion.convertToDto(event));
-        }
-        return eventDtos;
+        return eventService.getAllEventsByName().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
     }
 
     /**
@@ -78,34 +83,16 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @PutMapping (value = { "/events/{eventName}/{eventDate}", "/events/{eventName}/{eventDate}/" })
-    public EventDto updateEventDate(@PathVariable("eventName") String eventName, @PathVariable("eventDate") Date eventDate) 
+    @PutMapping (value = { "/update_events/{eventName}", "/update_events/{eventName}/" })
+    public EventDto updateEvent(@PathVariable("eventName") String eventName, @RequestParam String eventDate, @RequestParam String eventStart, @RequestParam String eventEnd)
                 throws IllegalArgumentException {
-        Event event = eventService.updateEventDate(eventName, eventDate);
-        return Conversion.convertToDto(event);
+                    Date date = Date.valueOf(eventDate);
+                    Time start = Time.valueOf(eventStart);
+                    Time end = Time.valueOf(eventEnd);
+                    Event event = eventService.updateEventDate(eventName, date);
+                    event = eventService.updateEventTime(eventName, start, end);
+                    return Conversion.convertToDto(event);
     }
-
-    /**
-     * Updating Event object (start and end time): Update Operation for HTTP request -> @PutMapping
-     * (Using @PathVariable since @RequestParam for eventStart and eventEnd didn't work for some reason even though implementation
-     * with createEvent is basically the same...)
-     * @param eventName
-     * @param eventStart
-     * @param eventEnd
-     * @return event as DTO
-     * @throws IllegalArgumentException
-     * @author Samuel
-     */
-    @PutMapping (value = { "/events/{eventName}/{eventStart}/{eventEnd}", "/events/{eventName}/{eventStart}/{eventEnd}/" })
-    public EventDto updateEventTime(@PathVariable("eventName") String eventName, 
-            @PathVariable("eventStart") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventStart,
-            @PathVariable("eventEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventEnd)
-            throws IllegalArgumentException {
-        
-        Event event = eventService.updateEventTime(eventName, Time.valueOf(eventStart), Time.valueOf(eventEnd));
-        return Conversion.convertToDto(event);
-    }
-
     /**
      * Deleting Event object: Delete operation for HTTP Delete Request -> @DeleteMapping
      * @param eventName
@@ -113,7 +100,7 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @DeleteMapping (value = {"/events/{eventName}", "/events/{eventName}/"})
+    @DeleteMapping (value = {"/update_events/{eventName}", "/update_events/{eventName}/"})
     public EventDto deleteEventByName(@PathVariable("eventName") String eventName) throws IllegalArgumentException {
         Event event = eventService.deleteEvent(eventName);
         return Conversion.convertToDto(event);
@@ -124,7 +111,7 @@ public class EventController {
      * @return list of Events as DTO
      * @author Samuel
      */
-    @DeleteMapping (value = {"/events/all", "/events/all/"})
+    @DeleteMapping (value = {"/delete_events/all", "/delete_events/all/"})
     public List<EventDto> deleteAllEvents() {
         List<Event> eventList = eventService.deleteAllEvents();
         return Conversion.convertToDto(eventList);
