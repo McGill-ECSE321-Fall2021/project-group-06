@@ -34,7 +34,9 @@ public class OpeningHourController {
     @PostMapping(value = { "/openingHours/{id}", "/openingHours/{id}/"})
     public OpeningHourDto createOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek DayOfWeek, @RequestParam String startTime, @RequestParam String endTime) throws Exception{
         try{
-            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, Conversion.convertStrToTime(startTime), Conversion.convertStrToTime(endTime));
+            Time start = Time.valueOf(startTime);
+            Time end = Time.valueOf(endTime);
+            OpeningHour openingHour= service.createOpeningHour(id, DayOfWeek, start, end);
             return Conversion.convertToDto(openingHour);
         } catch (IllegalArgumentException e) {
             throw new Exception(e.getMessage());
@@ -55,7 +57,7 @@ public class OpeningHourController {
      * @return openingHour Dto
      * @author Howard Yu
      */
-    @GetMapping(value= {"/openingHours/", "/openingHours/"})
+    @GetMapping(value= {"/openingHours", "/openingHours/"})
 	public List<OpeningHourDto> getAllOpeningHours() {
         return service.getAllOpeningHours().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
 	}
