@@ -7,13 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
-
-import java.sql.Date;
-import java.sql.Time;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,36 +19,17 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
-import ca.mcgill.ecse321.librarysystem.dto.CheckOutItemDto;
 import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
-import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Media;
 import ca.mcgill.ecse321.librarysystem.models.NonCheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Media.Item;
-import ca.mcgill.ecse321.librarysystem.models.Offline;
-import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
-import ca.mcgill.ecse321.librarysystem.models.Media.Item;
-
+           /**
+     * unit test for NonCheckOutItemService class
+     * @author Howard Yu
+     */
 @ExtendWith(MockitoExtension.class)
 public class NonCheckOutItemServiceTest {
-    @Mock
-    private AccountRepository accountDao;
-    @Mock
-    private EventRepository eventDao;
-    @Mock
-    private LibrarianRepository librarianDao;
     @Mock 
     private MediaRepository mediaDao;
-    @Mock 
-    private OpeningHourRepository openingHourDao; 
-    @Mock 
-    private ShiftRepository shiftDao;
-
-    @InjectMocks
-    private OfflineService offlineService;
-
-    @InjectMocks
-    private AccountService accountService;
 
     @InjectMocks
     private MediaService mediaService;
@@ -78,7 +53,6 @@ public class NonCheckOutItemServiceTest {
                 return null;
             }
         });
-        // Whenever anything is saved, just return the parameter object
 		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
 			return invocation.getArgument(0);
 		};

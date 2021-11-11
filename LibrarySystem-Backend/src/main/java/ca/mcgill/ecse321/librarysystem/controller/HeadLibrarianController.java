@@ -1,14 +1,10 @@
 package ca.mcgill.ecse321.librarysystem.controller;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,8 +23,6 @@ import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
 import ca.mcgill.ecse321.librarysystem.service.HeadLibrarianService;
-import ca.mcgill.ecse321.librarysystem.service.OpeningHourService;
-
 @CrossOrigin(origins="*")
 @RestController
 public class HeadLibrarianController {
@@ -42,6 +36,7 @@ public class HeadLibrarianController {
 	  * @param addr
 	  * @param name
 	  * @return head librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/create_headlibrarian", "/create_headlibrarian/"})
 	 public HeadLibrarianDto createHeadLibrarian(@RequestParam(name="id") int id) {
@@ -52,6 +47,7 @@ public class HeadLibrarianController {
 	  * Find head librarian of given parameter
 	  * @param id
 	  * @return head librarian Dto
+	  *@author Howard Yu
 	  */
 	 @GetMapping(value= {"/headlibrarians/{id}", "/headlibrarians/{id}/"})
 	 public HeadLibrarianDto getHeadLibrarianById(@PathVariable("id") int id) {
@@ -80,6 +76,7 @@ public class HeadLibrarianController {
 	  * Delete head librarian of corresponding parameter
 	  * @param id
 	  * @return deleted head librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/deleteHeadlibrarian/{id}", "/deleteHeadlibrarian/{id}/"})
 	 public HeadLibrarianDto deleteHeadLibrarian(@PathVariable("id") int id) {
@@ -92,6 +89,7 @@ public class HeadLibrarianController {
 	  * @param addr
 	  * @param name
 	  * @return librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/hireLibrarian/{id}", "/hireLibrarian/{id}/"})
 	 public LibrarianDto hireLibrarian(@PathVariable(name="id") int id) {
@@ -102,6 +100,7 @@ public class HeadLibrarianController {
 	  * Fire i.e. delete librarian of corresponding parameter
 	  * @param id
 	  * @return deleted librarian Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/fireLibrarian/{id}", "/fireLibrarian/{id}/"})
 	 public LibrarianDto fireLibrarian(@PathVariable("id") int id) {
@@ -111,6 +110,7 @@ public class HeadLibrarianController {
 	 /**
 	  * Find all librarians
 	  * @return list of librarians Dto
+	  *@author Howard Yu
 	  */
 	 @GetMapping(value= {"/headLibrarians", "/headLibrarians/"})
 	 public List<HeadLibrarianDto> getHeadLibrarians(){
@@ -124,6 +124,7 @@ public class HeadLibrarianController {
 	  * @param startTime
 	  * @param endTime
 	  * @return opening hour Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/create_openingHour/{id}", "/create_openingHour/{id}/"})
 	 public OpeningHourDto createOpeningHour(@PathVariable(name="id") int id, @RequestParam DayOfWeek dayOfWeek, 
@@ -142,6 +143,7 @@ public class HeadLibrarianController {
 	  * @param newStartTime
 	  * @param newEndTime
 	  * @return updated opening hour Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/update_openingHour/{id}", "update_openingHour/{id}/"})
 	 public OpeningHourDto updateOpeningHour(@PathVariable("id") int id, @RequestParam DayOfWeek newDayOfWeek, 
@@ -160,6 +162,7 @@ public class HeadLibrarianController {
 	  * @param startTime
 	  * @param endTime
 	  * @return shift Dto
+	  *@author Howard Yu
 	  */
 	 @PostMapping(value= {"/create_shift/{id}", "/create_shift/{id}/"})
 	 public ShiftDto createShift(@PathVariable("id") int shiftID, @RequestParam DayOfWeek dayOfWeek, 
@@ -178,6 +181,7 @@ public class HeadLibrarianController {
 	  * @param newStartTime
 	  * @param newEndTime
 	  * @return updated shift Dto
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/headupdateShift/{id}", "/headupdateShift/{id}/"})
 	 public ShiftDto updateShift(@PathVariable("id") int shiftID, @RequestParam DayOfWeek newDayOfWeek, 
@@ -194,6 +198,7 @@ public class HeadLibrarianController {
 	  * @param id
 	  * @param shiftID
 	  * @return all assigned shifts Dto of the librarian
+	  *@author Howard Yu
 	  */
 	 @PutMapping(value= {"/assignShift/{id}", "/assignShift/{id}/"})
 	 public LibrarianDto assignShift(@PathVariable(name="id") int id, @RequestParam int shiftID) {

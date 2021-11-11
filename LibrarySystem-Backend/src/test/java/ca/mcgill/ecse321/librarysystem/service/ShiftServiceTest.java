@@ -3,37 +3,21 @@ package ca.mcgill.ecse321.librarysystem.service;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
 
-import java.sql.Date;
+
 import java.sql.Time;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Optional;
-import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.invocation.InvocationOnMock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
-import org.mockito.stubbing.OngoingStubbing;
-import org.springframework.test.context.TestPropertySource;
-import org.yaml.snakeyaml.events.Event.ID;
-
 import ca.mcgill.ecse321.librarysystem.dao.ShiftRepository;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
@@ -46,20 +30,16 @@ public class ShiftServiceTest {
     private ShiftService shiftService;
 
     private static final int ID = 10;
-    private static final int NON_ID = 20;
     private static final DayOfWeek DAY_OF_WEEK = DayOfWeek.Monday;
     private static final Time START_TIME = java.sql.Time.valueOf(LocalTime.of(8,05));
     private static final Time END_TIME = java.sql.Time.valueOf(LocalTime.of(18,05));
     private static final int ID_KEY_2 = 5;
 
     private static final int ID_KEY_N = 0;
-    private static final int NON_ID_KEY_N = 0;
     private static final DayOfWeek DAY_OF_WEEK_N = null;
     private static final Time START_TIME_N = null;
     private static final Time END_TIME_N = null;
 
-    private static final int ID_KEY_U = 15;
-    private static final int NON_ID_KEY_U = 25;
     private static final DayOfWeek DAY_OF_WEEK_U = DayOfWeek.Tuesday;
     private static final Time START_TIME_U = java.sql.Time.valueOf(LocalTime.of(9,05));
     private static final Time END_TIME_U = java.sql.Time.valueOf(LocalTime.of(19,05));

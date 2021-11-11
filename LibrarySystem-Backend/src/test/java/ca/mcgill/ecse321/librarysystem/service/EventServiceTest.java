@@ -1,27 +1,16 @@
 package ca.mcgill.ecse321.librarysystem.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.when;
 
 import java.sql.Date;
 import java.sql.Time;
-// import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,26 +22,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
-import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Shift.DayOfWeek;
-import ca.mcgill.ecse321.librarysystem.models.OpeningHour;
+import ca.mcgill.ecse321.librarysystem.models.*;
 
 @ExtendWith(MockitoExtension.class)
 public class EventServiceTest {
     
     @Mock
-    private AccountRepository accountDao;
-    @Mock
     private EventRepository eventDao;
-    @Mock 
-    private OpeningHourRepository openingHourDao; 
 
     @InjectMocks
-    private AccountService accountService;
-    @InjectMocks
     private EventService eventService;
-    @InjectMocks
-    private OpeningHourService openingHourService;
 
     // Event constants (for setMockOutput() )
     private static final String STRING_DATE = "2021-12-05";
@@ -60,19 +39,6 @@ public class EventServiceTest {
     private static final Time EVENT_STARTTIME = Time.valueOf(LocalTime.parse("13:00:00"));
     private static final Time EVENT_ENDTIME = Time.valueOf("15:00:00");
     private static final String EVENT_NAME = "Group Reading"; 
-
-    // Second event for [...]All methods
-    // private static final String STRING_DATE_2 = "2021-12-06";
-    // private static final Date EVENT_DATE_2 = Date.valueOf(STRING_DATE_2);
-    // private static final Time EVENT_STARTTIME_2 = Time.valueOf(LocalTime.parse("16:00:00"));
-    // private static final Time EVENT_ENDTIME_2 = Time.valueOf("17:00:00");
-    // private static final String EVENT_NAME_2 = "Cooking Lessons"; 
-
-    // Opening Hours constants
-    private static final int OH_ID = 6;
-    private static final DayOfWeek DAY_OF_WEEK = DayOfWeek.Friday;
-    private static final Time OH_START_TIME = Time.valueOf("8:00:00");
-    private static final Time OH_END_TIME = Time.valueOf("18:00:00");
 
     @BeforeEach
     public void setMockOutput(){
@@ -94,35 +60,12 @@ public class EventServiceTest {
             }
         });
 
-        lenient().when(openingHourDao.findOpeningHourById(anyInt())).thenAnswer((InvocationOnMock invocation) -> {
-            if (invocation.getArgument(0).equals(OH_ID)) {
-
-                OpeningHour openingHour = new OpeningHour();
-                openingHour.setId(OH_ID);
-                openingHour.setDayOfWeek(DAY_OF_WEEK);
-                openingHour.setStartTime(OH_START_TIME);
-                openingHour.setEndTime(OH_END_TIME);
-                return openingHour;
-            } 
-            
-            else {
-                return null;
-            }
-        });
-
         // Return parameter object when any event object is saved
 		Answer<?> returnParameterAsAnswer = (InvocationOnMock invocation) -> {
 			return invocation.getArgument(0);
 		};
 		lenient().when(eventDao.save(any(Event.class))).thenAnswer(returnParameterAsAnswer);
     }
-
-    /*
-    When testing the edge cases write ur assertEquals as assertTrue like this:
-        assertEquals("borrowingPeriod must be more that 0", error);
-        assertTrue(error.contains("borrowingPeriod must be more that 0"));
-    So that you can catch multiple error
-    */
 
     @Test
     public void testCreateEvent(){
@@ -393,16 +336,5 @@ public class EventServiceTest {
             fail("Not all events could be retrieved");
         }
         assertNotNull(eventList);
-        // assertNotEquals(eventList.size(), 0);
-        // assertEquals(eventList.size(), 2);
-        // assertEquals(EVENT_NAME, eventList.get(0).getName());
-        // assertEquals(EVENT_DATE, eventList.get(0).getDate());
-        // assertEquals(EVENT_STARTTIME, eventList.get(0).getEventStart());
-        // assertEquals(EVENT_ENDTIME, eventList.get(0).getEventEnd());
-
-        // assertEquals(EVENT_NAME_2, eventList.get(1).getName());
-        // assertEquals(EVENT_DATE_2, eventList.get(1).getDate());
-        // assertEquals(EVENT_STARTTIME_2, eventList.get(1).getEventStart());
-        // assertEquals(EVENT_ENDTIME_2, eventList.get(1).getEventEnd());
     }
 }
