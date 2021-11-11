@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -34,11 +36,13 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @PostMapping (value = { "/events/{eventName}", "/events/{eventName}/" })
-    public EventDto createEvent(@PathVariable("eventName") String eventName, @RequestParam Date eventDate,
-                                @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventStart,
-                                @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventEnd)
-            throws IllegalArgumentException {
+    @PostMapping (value = { "/events/{eventName}/createEvent", "/events/{eventName}/createEvent/" })
+    public EventDto createEvent(@PathVariable("eventName") String eventName, @RequestParam String eventDateString,
+                                @RequestParam String eventStartString, @RequestParam String eventEndString) throws IllegalArgumentException {
+        
+        Date eventDate = Date.valueOf(eventDateString);
+        LocalTime eventStart = LocalTime.parse(eventStartString, DateTimeFormatter.ofPattern("HH:mm"));
+        LocalTime eventEnd = LocalTime.parse(eventEndString, DateTimeFormatter.ofPattern("HH:mm"));
         Event event = eventService.createEvent(eventName, eventDate, Time.valueOf(eventStart), Time.valueOf(eventEnd));
         return Conversion.convertToDto(event);
     }
@@ -50,7 +54,7 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @GetMapping(value = { "/events/{eventName}", "/events/{eventName}" })
+    @GetMapping(value = { "/events/{eventName}/getEvent", "/events/{eventName}/getEvent/" })
     public EventDto getEventByName(@PathVariable("eventName") String eventName) throws IllegalArgumentException {
         return Conversion.convertToDto(eventService.getEvent(eventName));
     }
@@ -60,7 +64,7 @@ public class EventController {
      * @return list of Events as DTOs
      * @author Samuel
      */
-    @GetMapping (value = { "/events", "/events/" })
+    @GetMapping (value = { "/events/getAllEvents", "/events/getAllEvents/" })
     public List<EventDto> getAllEvents() {
         List<EventDto> eventDtos = new ArrayList<>();
         for (Event event : eventService.getAllEventsByName()) {
@@ -71,16 +75,17 @@ public class EventController {
 
     /**
      * Updating Event object (date): Update Operation for HTTP request -> @PutMapping
-     * (Using @PathVariable for consistency with updateEventTime)
      * @param eventName
      * @param eventDate
      * @return event as DTO
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @PutMapping (value = { "/events/{eventName}/{eventDate}", "/events/{eventName}/{eventDate}/" })
-    public EventDto updateEventDate(@PathVariable("eventName") String eventName, @PathVariable("eventDate") Date eventDate) 
+    @PutMapping (value = { "/events/{eventName}/updateDate", "/events/{eventName}/updateDate/" })
+    public EventDto updateEventDate(@PathVariable("eventName") String eventName, @RequestParam String eventDateString) 
                 throws IllegalArgumentException {
+        
+        Date eventDate = Date.valueOf(eventDateString);
         Event event = eventService.updateEventDate(eventName, eventDate);
         return Conversion.convertToDto(event);
     }
@@ -96,12 +101,13 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @PutMapping (value = { "/events/{eventName}/{eventStart}/{eventEnd}", "/events/{eventName}/{eventStart}/{eventEnd}/" })
+    @PutMapping (value = { "/events/{eventName}/updateTime", "/events/{eventName}/updateTime/" })
     public EventDto updateEventTime(@PathVariable("eventName") String eventName, 
-            @PathVariable("eventStart") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventStart,
-            @PathVariable("eventEnd") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME, pattern = "HH:mm") LocalTime eventEnd)
+            @RequestParam String eventStartString, @RequestParam String eventEndString)
             throws IllegalArgumentException {
         
+        LocalTime eventStart = LocalTime.parse(eventStartString, DateTimeFormatter.ofPattern("HH:mm"));
+        LocalTime eventEnd = LocalTime.parse(eventEndString, DateTimeFormatter.ofPattern("HH:mm"));
         Event event = eventService.updateEventTime(eventName, Time.valueOf(eventStart), Time.valueOf(eventEnd));
         return Conversion.convertToDto(event);
     }
@@ -113,7 +119,7 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @DeleteMapping (value = {"/events/{eventName}", "/events/{eventName}/"})
+    @DeleteMapping (value = {"/events/{eventName}/delete", "/events/{eventName}/delete/"})
     public EventDto deleteEventByName(@PathVariable("eventName") String eventName) throws IllegalArgumentException {
         Event event = eventService.deleteEvent(eventName);
         return Conversion.convertToDto(event);
@@ -124,7 +130,7 @@ public class EventController {
      * @return list of Events as DTO
      * @author Samuel
      */
-    @DeleteMapping (value = {"/events/all", "/events/all/"})
+    @DeleteMapping (value = {"/events/deleteAll", "/events/deleteAll/"})
     public List<EventDto> deleteAllEvents() {
         List<Event> eventList = eventService.deleteAllEvents();
         return Conversion.convertToDto(eventList);
