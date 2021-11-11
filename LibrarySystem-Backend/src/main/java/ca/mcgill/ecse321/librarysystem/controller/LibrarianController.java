@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,7 +74,7 @@ public class LibrarianController {
 	 * @param id
 	 * @return deleted librarian Dto */
 	 
-	@PutMapping(value= {"/deleteLibrarian/{id}", "/deleteLibrarian/{id}/"})
+	@DeleteMapping(value= {"/deleteLibrarian/{id}", "/deleteLibrarian/{id}/"})
 	public LibrarianDto deleteLibrarian(int id) {
 		return Conversion.convertToDto(librarianService.deleteLibrarian(id));
 	}

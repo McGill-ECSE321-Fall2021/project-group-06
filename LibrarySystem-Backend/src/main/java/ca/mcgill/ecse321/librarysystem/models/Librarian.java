@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Id;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Librarian
 {
 	private int id;
