@@ -104,7 +104,7 @@ public class NonCheckOutItemService {
     public Set<NonCheckOutItem> getAllNonCheckOutItems(){
         HashSet<NonCheckOutItem> nonCheckOutItems = new HashSet<NonCheckOutItem>();
         for(Media media: mediaRepository.findAll()){
-            if(media instanceof CheckOutItem){
+            if(media instanceof NonCheckOutItem){
                 nonCheckOutItems.add((NonCheckOutItem)media);
             }
         }
