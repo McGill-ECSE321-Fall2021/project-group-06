@@ -73,6 +73,11 @@ public class OpeningHourService {
         Iterable<OpeningHour> openingHours = openingHourRepository.findAll();
         return toList(openingHours);
     }
+    /**
+     * @author Niels Mainville
+     * @param id
+     * @return
+     */
     @Transactional
     public OpeningHour getOpeningHour(int id){
         String error="";
@@ -87,6 +92,11 @@ public class OpeningHourService {
         OpeningHour openingHour = (OpeningHour) openingHourRepository.findOpeningHourById(id);
         return openingHour;
     }
+    /**
+     * @Author Niels Mainville
+     * @param id
+     * @return
+     */
     @Transactional
     public boolean deleteOpeningHour(int id){
         OpeningHour openingHour = openingHourRepository.findOpeningHourById(id);
@@ -96,6 +106,14 @@ public class OpeningHourService {
         openingHourRepository.delete(openingHour);
         return true;
     }
+    /**
+     * @author Niels Mainville
+     * @param id
+     * @param newDay
+     * @param newStart
+     * @param newEnd
+     * @return
+     */
     @Transactional
     public OpeningHour updateOpeningHours(int id, DayOfWeek newDay, Time newStart, Time newEnd){
         if(openingHourRepository.findOpeningHourById(id) == null){
@@ -117,7 +135,12 @@ public class OpeningHourService {
         openingHourRepository.save(openingHour);
         return openingHour;
     }
-
+    /**
+     * @Author Niels Mainville
+     * @param <T>
+     * @param iterable
+     * @return
+     */
     // @Transactional
     // public List<OpeningHour> getOpeningHourList(HeadLibrarian headLibrarianName){
     //     if (headLibrarianName == null){
