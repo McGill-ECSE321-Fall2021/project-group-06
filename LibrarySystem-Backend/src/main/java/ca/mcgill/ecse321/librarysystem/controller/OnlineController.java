@@ -66,6 +66,12 @@ public class OnlineController {
         return (Conversion.convertToDto(online));
     }
 
+    @PutMapping(value = {"/return_media_online/{id}"})
+    public OnlineDto returnMediaOnline(@PathVariable("id") int id, @RequestParam int mediaId){
+        Online online = onlineService.returnAnItem(mediaId, id);
+        return (Conversion.convertToDto(online));
+    }
+
     @GetMapping(value = { "/getOnline/{id}", "/getOnline/{id}/" })
     public OnlineDto getOfflineById(@PathVariable("id") int id) throws IllegalArgumentException {
         return Conversion.convertToDto(onlineService.getOnline(id));

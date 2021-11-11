@@ -65,6 +65,12 @@ public class OfflineController {
         return (Conversion.convertToDto(offline));
     }
 
+    @PutMapping(value = {"/return_media_offline/{id}"})
+    public OfflineDto returnMediaOnline(@PathVariable("id") int id, @RequestParam int mediaId){
+        Offline offline = offlineService.returnAnItem(mediaId, id);
+        return (Conversion.convertToDto(offline));
+    }
+
     @PutMapping(value = {"/edit_offline/{id}"})
     public OfflineDto updateOffline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam int numChecked){
         Offline offline = offlineService.updateOffline(id, address, name, numChecked);
