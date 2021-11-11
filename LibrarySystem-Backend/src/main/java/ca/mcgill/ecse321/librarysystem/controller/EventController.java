@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -59,7 +61,7 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @GetMapping(value = { "/events/{eventName}", "/events/{eventName}" })
+    @GetMapping(value = { "/events/{eventName}/getEvent", "/events/{eventName}/getEvent/" })
     public EventDto getEventByName(@PathVariable("eventName") String eventName) throws IllegalArgumentException {
         return Conversion.convertToDto(eventService.getEvent(eventName));
     }
@@ -69,14 +71,13 @@ public class EventController {
      * @return list of Events as DTOs
      * @author Samuel
      */
-    @GetMapping (value = { "/events", "/events/" })
+    @GetMapping (value = { "/events/getAllEvents", "/events/getAllEvents/" })
     public List<EventDto> getAllEvents() {
         return eventService.getAllEventsByName().stream().map(p -> Conversion.convertToDto(p)).collect(Collectors.toList());
     }
 
     /**
      * Updating Event object (date): Update Operation for HTTP request -> @PutMapping
-     * (Using @PathVariable for consistency with updateEventTime)
      * @param eventName
      * @param eventDate
      * @return event as DTO

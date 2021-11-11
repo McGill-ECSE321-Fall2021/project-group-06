@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ca.mcgill.ecse321.librarysystem.dao.AccountRepository;
 import ca.mcgill.ecse321.librarysystem.dao.EventRepository;
+import ca.mcgill.ecse321.librarysystem.dao.OpeningHourRepository;
 import ca.mcgill.ecse321.librarysystem.models.Event;
-import ca.mcgill.ecse321.librarysystem.models.Account;
 
 @Service
 public class EventService {
@@ -21,6 +20,9 @@ public class EventService {
     // private AccountRepository accountRepository;
     @Autowired
     private EventRepository eventRepository;
+
+    @Autowired
+    private OpeningHourRepository openingHourRepository;
 
     /**
      * @param name
@@ -37,20 +39,28 @@ public class EventService {
         String error ="";
 
         if (name == null || name.trim().length() == 0) {
-            error = error + "Event name cannot be empty! ";
+            error = error + "Event name cannot be empty!";
         }
         if (date == null) {
-            error = error + "Event date cannot be empty! ";
+            error = error + "Event date cannot be empty!";
         }
         if (eventStart == null) {
-            error = error + "Event start time cannot be empty! ";
+            error = error + "Event start time cannot be empty!";
         }
         if (eventEnd == null) {
-            error = error + "Event end time cannot be empty! ";
+            error = error + "Event end time cannot be empty!";
         }
         if (eventEnd != null && eventStart != null && eventEnd.before(eventStart)) {
             error = error + "Event end time cannot be before event start time!";
         }
+        if (eventRepository.findEventByName(name) != null){
+            error = error + "Event name already exists!";
+        }
+        //TODO
+        // if (eventStart.isbefore(openingHourRepository.findOpeningHourById(???).getStartTime())){
+        //     error = error + "Event start time is before opening hour!";
+        // }
+
         error = error.trim();
         if (error.length() > 0) {
             throw new IllegalArgumentException(error);
@@ -76,7 +86,7 @@ public class EventService {
         // Input validation
         String error = "";
         if (name == null || name.trim().length() == 0) {
-            error = error + "Event name cannot be empty! ";
+            error = error + "Event name cannot be empty!";
             throw new IllegalArgumentException(error);
         }
 
@@ -138,7 +148,7 @@ public class EventService {
             error = error + "Event name not found";
         }
         if (date == null) {
-            error = error + "Event date cannot be empty! ";
+            error = error + "Event date cannot be empty!";
         }
         error = error.trim();
         if (error.length() > 0) {
