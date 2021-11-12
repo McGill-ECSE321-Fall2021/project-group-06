@@ -42,9 +42,9 @@ The goal of this project is to build a system via website and mobile Android app
 
 |Members         | Tasks | Ind. Efforts (hours) |
 |----------------|------|----|
-|David Hu        |Backend Implementation, Persistence Layer modification, Domain Model changes, Unit & Integration Testing    |...|
-|Howard Yu       |Backend Implementation, Persistence Layer modification, Domain Model changes, Unit & Integration Testing   |...    |
-|Isabella Hao    |Backend Implementation and Unit Testing (Shift, Librarian), Software Quality Assurance Plan & Report   |...    |
-|Joyce Liu       |Backend Implementation and Unit Testing (Head-Librarian), Software Quality Assurance Plan & Report  |...    |
-|Niels Mainville |Backend Implementation and Unit Testing (OpeningHours), Software Quality Assurance Plan & Report  |...    |
+|David Hu        |Backend Implementation and Unit Testing, Persistence Layer modification, Domain Model changes, Integration Testing, Integration Testing Documentation |60|
+|Howard Yu       |Backend Implementation and Unit Testing, Persistence Layer modification, Domain Model changes, ntegration Testing  |60    |
+|Isabella Hao    |Backend Implementation and Unit Testing (Shift, Librarian), Meeting Minutes   |10    |
+|Joyce Liu       |Backend Implementation and Unit Testing (Head-Librarian), Software Quality Assurance Plan & Report, GitHub documentation  |20    |
+|Niels Mainville |Backend Implementation and Unit Testing (OpeningHours, Shift, Librarian)  |35    |
 |Samuel Lin      |Backend implementation and Unit Testing (Event), Software Quality Assurance Plan & Report, GitHub documentation (Wiki + README.md), Meeting Minutes   |25  |
