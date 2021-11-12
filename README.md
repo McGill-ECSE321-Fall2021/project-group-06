@@ -47,4 +47,4 @@ The goal of this project is to build a system via website and mobile Android app
 |Isabella Hao    |Backend Implementation and Unit Testing (Shift, Librarian), Meeting Minutes   |10    |
 |Joyce Liu       |Backend Implementation and Unit Testing (Head-Librarian), Software Quality Assurance Plan & Report, GitHub documentation  |20    |
 |Niels Mainville |Backend Implementation and Unit Testing (OpeningHours, Shift, Librarian)  |35    |
-|Samuel Lin      |Backend implementation and Unit Testing (Event), Software Quality Assurance Plan & Report, GitHub documentation (Wiki + README.md), Meeting Minutes   |25  |
+|Samuel Lin      |Backend implementation and Unit Testing (Event), Software Quality Assurance Plan & Report, GitHub documentation (Wiki + README.md), Meeting Minutes   |30  |
