@@ -21,7 +21,27 @@ public class LibrarianService {
 	 ShiftRepository shiftRepository;
 	 @Autowired
 	 AccountRepository accountRepository;
-	
+	 
+	 /**
+	  * Librarian login with given parameters
+	  * @param id
+	  * @param pwd
+	  * @return the librarian
+	  */
+	 @Transactional
+	 public Librarian login(int id, String pwd) {
+		 if (librarianRepository.findLibrarianById(id)==null) {
+			 throw new IllegalArgumentException("Invalid Id");
+		 }
+		 /*if (!(librarianRepository.findLibrarianById(id) instanceof Librarian)) {
+			 throw new IllegalArgumentException("Please login through the appropriate place");
+		 }*/
+		 if (librarianRepository.findLibrarianById(id).getPassword().equals(pwd)) {
+			 return librarianRepository.findLibrarianById(id);
+		 }
+		 else throw new IllegalArgumentException("Incorrect password");
+	 }
+	 
 	/**
 	 * @author Isabella Hao
 	 * View Personal Shift

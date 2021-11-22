@@ -6,6 +6,7 @@ import java.util.*;
 */
 public class LibrarianDto {
     private int id;
+    private String password;
     private Set<ShiftDto> shifts;
     
 	public LibrarianDto() {
@@ -22,6 +23,10 @@ public class LibrarianDto {
 
     public int getId(){
         return this.id;
+    }
+    
+    public String getPassword() {
+        return password;
     }
 
 }

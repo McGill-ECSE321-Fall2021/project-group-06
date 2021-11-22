@@ -19,6 +19,22 @@ import ca.mcgill.ecse321.librarysystem.service.LibrarianService;
 public class LibrarianController {
 	@Autowired
 	private LibrarianService librarianService;
+	
+	/**
+	 * Librarian Dto login with given parameters
+	 * @param id
+	 * @param pwd
+	 * @return librarian Dto
+	 */
+	@GetMapping(value= {"/librLogin", "/librLogin/"})
+	public LibrarianDto login(@RequestParam int id, @RequestParam String pwd) {
+		Librarian l=null;
+		l=librarianService.login(id, pwd);
+		if (l instanceof Librarian) {
+			return Conversion.convertToDto(l);
+		}
+		else return null;
+	}
 	/**
 	 * Create librarian Dto with given parameters
 	 * @param id

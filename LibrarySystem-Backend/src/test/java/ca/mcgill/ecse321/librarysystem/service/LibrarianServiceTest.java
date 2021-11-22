@@ -52,6 +52,8 @@ public class LibrarianServiceTest {
 
     private static final int LIBR_ID=15;
 	private static final int LIBR_NON_EXIST_KEY=20;
+	
+	private static final String LIBR_PWD="bleH";
 
 	private static final int LIBR_ID_2 =5;
 
@@ -83,6 +85,7 @@ public class LibrarianServiceTest {
 			if (invocation.getArgument(0).equals(LIBR_ID)) {
 				Librarian lib=new Librarian();
 				lib.setId(LIBR_ID);
+				lib.setPassword(LIBR_PWD);
 				return lib;
 			}
 			else return null;
@@ -137,6 +140,45 @@ public class LibrarianServiceTest {
 		lenient().when(shiftDao.save(any(Shift.class))).thenAnswer(returnParameterAsAnswer);
 		lenient().when(accountDao.save(any(Offline.class))).thenAnswer(returnParameterAsAnswer);
 	}
+    
+    @Test
+    public void testLibrLogin() {
+    	Librarian l=null;
+    	try {
+    		l=librarianService.login(LIBR_ID, LIBR_PWD);
+    	}
+    	catch (IllegalArgumentException e) {
+    		fail();
+    	}
+    	assertNotNull(l);
+    }
+    
+    @Test
+    public void testLibrLoginInvalidID(){
+        Librarian l = null;
+        String error = null;
+        try{
+            l = librarianService.login(LIBR_ID_N, LIBR_PWD);
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		} 
+        assertNull(l);
+        assertEquals(error, "Invalid Id");
+    }
+    
+    @Test
+    public void testLibrLoginInvalidPassword(){
+        Librarian l = null;
+        String error = null;
+        try{
+            l = librarianService.login(LIBR_ID, "ah");
+        } catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+        assertNull(l);
+        assertEquals(error, "Incorrect password");
+    }
+    
 	@Test
 	public void testCreateLibrarian(){
 		Librarian lib = null;

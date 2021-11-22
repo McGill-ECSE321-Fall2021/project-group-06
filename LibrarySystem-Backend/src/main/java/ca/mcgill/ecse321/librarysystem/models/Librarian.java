@@ -11,6 +11,7 @@ import javax.persistence.Id;
 public class Librarian
 {
 	private int id;
+	private String password;
 	//The Librarian class will have shifts and some methods we will write later.
 	//Since it is an account, it inherits the ID as primary key.
   	private Set<Shift> shift; 
@@ -18,10 +19,22 @@ public class Librarian
 	public void setId(int id){
 		this.id = id;
 	}
+	public boolean setPassword(String aPassword) {
+		boolean wasSet = false;
+		password = aPassword;
+		wasSet = true;
+		return wasSet;
+	}
+	
 	@Id
 	public int getId(){
 		return this.id;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
 	//Each shift will have multiple librarians, just as each librarian will have multiple shifts
 	@OneToMany(cascade={CascadeType.ALL})
 	public Set<Shift> getShift()
