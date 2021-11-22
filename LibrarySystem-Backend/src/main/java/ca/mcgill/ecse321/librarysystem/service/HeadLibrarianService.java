@@ -49,15 +49,19 @@ public class HeadLibrarianService {
 	 */
 
 	@Transactional
-	public HeadLibrarian createHeadLibrarian(int aId) {
+	public HeadLibrarian createHeadLibrarian(int aId, String password) {
 		if (aId==0) {
 			throw new IllegalArgumentException("Head Librarian id cannot be 0.");
 		}
 		if (librarianRepository.findLibrarianById(aId)!=null) {
 			throw new IllegalArgumentException("Librarian id already exists");
 		}
+		if (password==null) {
+			throw new IllegalArgumentException("Password cannot be 0.");
+		}
 		HeadLibrarian head=new HeadLibrarian();
 		head.setId(aId);
+		head.setPassword(password);
 		librarianRepository.save(head);
 		return head;
 	}
@@ -121,16 +125,20 @@ public class HeadLibrarianService {
 	 * @return
 	 */
 	@Transactional
-	public Librarian hireLibrarian(int aId) {
+	public Librarian hireLibrarian(int aId, String password) {
 		//i.e. createLibrarian
 		if (aId==0) {
 			throw new IllegalArgumentException("Librarian id cannot be 0.");
+		}
+		if (password==null) {
+			throw new IllegalArgumentException("Password cannot be 0.");
 		}
 		if (librarianRepository.findLibrarianById(aId)!=null) {
 			throw new IllegalArgumentException("Librarian id exists");
 		}
 		Librarian librarian=new Librarian();
 		librarian.setId(aId);
+		librarian.setPassword(password);
 		librarianRepository.save(librarian);
 		return librarian;
 	}
