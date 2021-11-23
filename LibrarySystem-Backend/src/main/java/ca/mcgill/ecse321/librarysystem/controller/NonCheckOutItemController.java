@@ -27,9 +27,9 @@ public class NonCheckOutItemController {
      * @author Howard Yu
      */
     @PostMapping (value = { "/create_nonCheckOutItems/{id}", "/create_nonCheckOutItems/{id}/" })
-    public NonCheckOutItemDto createCheckOutItemDto(@PathVariable("id") int mediaID, @RequestParam Item mediaType)
+    public NonCheckOutItemDto createNonCheckOutItemDto(@PathVariable("id") int mediaID, @RequestParam Item mediaType, @RequestParam String name)
         throws IllegalArgumentException {
-            NonCheckOutItem nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID);
+            NonCheckOutItem nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID, name);
             return Conversion.convertToDto(nonCheckOutItem);
     }
     /**

@@ -67,7 +67,7 @@ public class NonCheckOutItemServiceTest {
         Item mediaType = Item.Archive;
         int mediaID = 123123123;
 		try {
-            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID);
+            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID, "example");
 
 		}catch(IllegalArgumentException e) {
 			fail();
@@ -86,7 +86,7 @@ public class NonCheckOutItemServiceTest {
         Item mediaType = Item.Book;
         int mediaID = 123123123;
 		try {
-            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID);
+            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID, "example");
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -104,7 +104,7 @@ public class NonCheckOutItemServiceTest {
         Item mediaType = Item.Archive;
         int mediaID = 0;
 		try {
-            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID);
+            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID, "example");
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -122,7 +122,7 @@ public class NonCheckOutItemServiceTest {
         Item mediaType = Item.Archive;
         int mediaID = MEDIA_ID;
 		try {
-            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID);
+            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID, "example");
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
