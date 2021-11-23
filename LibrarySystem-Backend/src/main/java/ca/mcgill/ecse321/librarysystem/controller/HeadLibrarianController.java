@@ -61,8 +61,8 @@ public class HeadLibrarianController {
 	  * @return librarian Dto
 	  *@author Howard Yu
 	  */
-	 @PostMapping(value= {"/hireLibrarian", "/hireLibrarian/"})
-	 public LibrarianDto hireLibrarian(@RequestParam int id, @RequestParam String pwd) {
+	 @PostMapping(value= {"/hireLibrarian/{id}", "/hireLibrarian/{id}/"})
+	 public LibrarianDto hireLibrarian(@PathVariable("id") int id, @RequestParam String pwd) {
 	 	return Conversion.convertToDto(headService.hireLibrarian(id, pwd));
 	 }
 	
@@ -72,7 +72,7 @@ public class HeadLibrarianController {
 	  * @return deleted librarian Dto
 	  *@author Howard Yu
 	  */
-	 @PutMapping(value= {"/fireLibrarian/{id}", "/fireLibrarian/{id}/"})
+	 @DeleteMapping(value= {"/fireLibrarian/{id}", "/fireLibrarian/{id}/"})
 	 public LibrarianDto fireLibrarian(@PathVariable("id") int id) {
 	 	return Conversion.convertToDto(headService.fireLibrarian(id));
 	 }
