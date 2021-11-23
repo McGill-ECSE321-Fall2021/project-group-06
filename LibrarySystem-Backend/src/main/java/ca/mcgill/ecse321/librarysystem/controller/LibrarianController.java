@@ -35,6 +35,21 @@ public class LibrarianController {
 		}
 		else return null;
 	}
+
+	/**
+	 * Update Librarian password
+	 * @param id
+	 * @param password
+	 * @return librarian dto
+	 * @author Samuel Lin
+	 */
+	
+	@PostMapping(value= {"/updatePassword/{id}", "/updatePassword/{id}/"})
+	public LibrarianDto updateLibrarianPassword (@PathVariable("id") int id, @RequestParam String password){
+		Librarian librarian = librarianService.setPassword(id, password);
+		return Conversion.convertToDto(librarian);
+	}
+
 	/**
 	 * Create librarian Dto with given parameters
 	 * @param id

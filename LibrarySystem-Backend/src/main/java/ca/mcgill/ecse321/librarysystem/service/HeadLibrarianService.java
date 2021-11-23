@@ -65,6 +65,23 @@ public class HeadLibrarianService {
 		librarianRepository.save(head);
 		return head;
 	}
+
+	/**
+	 * Update the password of head librarian
+	 * @param id
+	 * @param password
+	 * @return headlibrarian
+	 */
+	@Transactional
+	public HeadLibrarian updatePassword(int id, String password) {
+		if (librarianRepository.findLibrarianById(id) == null){
+			throw new IllegalArgumentException("Librarian id does not exist");
+		}
+		Librarian headLibrarian = librarianRepository.findLibrarianById(id);
+		headLibrarian.setPassword(password);
+		return (HeadLibrarian)headLibrarian;
+	}
+
 	/**
 	 * Find head librarian with given parameter
 	 * @param aId
