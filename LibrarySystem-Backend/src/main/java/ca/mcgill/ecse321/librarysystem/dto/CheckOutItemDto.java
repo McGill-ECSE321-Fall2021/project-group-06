@@ -20,8 +20,16 @@ public class CheckOutItemDto extends MediaDto {
         this.isReserved = false;
 
     }
-	public CheckOutItemDto(int mediaID, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate) {
-        super(Item.Book, mediaID);
+	public CheckOutItemDto(int mediaID, String name, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate) {
+        super(Item.Book, name ,mediaID);
+        this.isCheckedOut = isCheckedOut;
+        this.isReserved = isReserved;
+        this.borrowingPeriod = borrowingPeriod;
+        this.startDate = startDate;
+	}
+
+    public CheckOutItemDto(int mediaID,Item mediaType,String name, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate) {
+        super(mediaType, name, mediaID);
         this.isCheckedOut = isCheckedOut;
         this.isReserved = isReserved;
         this.borrowingPeriod = borrowingPeriod;

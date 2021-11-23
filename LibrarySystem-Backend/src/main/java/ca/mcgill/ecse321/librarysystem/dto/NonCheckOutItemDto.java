@@ -8,8 +8,8 @@ public class NonCheckOutItemDto extends MediaDto {
 	public NonCheckOutItemDto(){
 
 	}
-	public NonCheckOutItemDto(Item mediaType, int mediaID){
-		super(mediaType,mediaID);
+	public NonCheckOutItemDto(Item mediaType, String name, int mediaID){
+		super(mediaType,name,mediaID);
 	}
 
 }

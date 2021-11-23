@@ -27,7 +27,7 @@ public class NonCheckOutItemService {
      * @author Samuel
      */
     @Transactional
-    public NonCheckOutItem createNonCheckOutItem (Item mediaType, int mediaID){
+    public NonCheckOutItem createNonCheckOutItem (Item mediaType, int mediaID, String name){
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
@@ -49,6 +49,7 @@ public class NonCheckOutItemService {
         NonCheckOutItem nonCheckOutItem = new NonCheckOutItem();
         nonCheckOutItem.setType(mediaType);
         nonCheckOutItem.setID(mediaID);
+        nonCheckOutItem.setName(name);
         mediaRepository.save(nonCheckOutItem);
         return nonCheckOutItem;
     }

@@ -78,7 +78,7 @@ public class CheckOutItemServiceTest {
         int borrowingPeriod = 0;
         Date startDate = Date.valueOf("2021-09-11");
 		try {
-            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, "example", isCheckedOut, isReserved, borrowingPeriod, startDate);
 
 		}catch(IllegalArgumentException e) {
 			fail();
@@ -105,7 +105,7 @@ public class CheckOutItemServiceTest {
         String error = null;
         Date startDate = Date.valueOf("2021-09-11");
 		try {
-            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, "example", isCheckedOut, isReserved, borrowingPeriod, startDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -128,7 +128,7 @@ public class CheckOutItemServiceTest {
         String error = null;
         Date startDate = Date.valueOf("2021-09-11");
 		try {
-            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, "example", isCheckedOut, isReserved, borrowingPeriod, startDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -152,7 +152,7 @@ public class CheckOutItemServiceTest {
         String error = null;
         Date startDate = Date.valueOf("2021-09-11");
 		try {
-            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, "example", isCheckedOut, isReserved, borrowingPeriod, startDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -174,7 +174,7 @@ public class CheckOutItemServiceTest {
         String error = null;
         Date startDate = Date.valueOf("2021-09-11");
 		try {
-            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, "example", isCheckedOut, isReserved, borrowingPeriod, startDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -196,7 +196,7 @@ public class CheckOutItemServiceTest {
         String error = null;
         Date startDate = null;
 		try {
-            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, "example", isCheckedOut, isReserved, borrowingPeriod, startDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();

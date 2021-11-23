@@ -32,10 +32,10 @@ public class CheckOutItemController {
      * @author Howard Yu
      */
     @PostMapping (value = { "/create_checkOutItems/{id}", "/create_checkOutItems/{id}/" })
-    public CheckOutItemDto createCheckOutItemDto(@PathVariable("id") int mediaID, @RequestParam Item mediaType, @RequestParam boolean isCheckedOut, @RequestParam boolean isReserved, @RequestParam int borrowingPeriod, @RequestParam String startDateString)
+    public CheckOutItemDto createCheckOutItemDto(@PathVariable("id") int mediaID, @RequestParam Item mediaType, @RequestParam String name,@RequestParam boolean isCheckedOut, @RequestParam boolean isReserved, @RequestParam int borrowingPeriod, @RequestParam String startDateString)
         throws IllegalArgumentException {
             Date startDate = Date.valueOf(startDateString);
-            CheckOutItem checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, isCheckedOut, isReserved, borrowingPeriod, startDate);
+            CheckOutItem checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, name, isCheckedOut, isReserved, borrowingPeriod, startDate);
             return Conversion.convertToDto(checkOutItem);
     }
     /**

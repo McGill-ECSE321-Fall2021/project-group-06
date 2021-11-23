@@ -16,6 +16,7 @@ public enum Item { Book, Movie, Music, Newspaper, Archive }
   //Media Attributes
   private Item mediaType;
   private int mediaID;
+  private String name;
   //NEEDS DATE OF CHECKOUT, HOWARD!
 
   //Media Associations
@@ -34,6 +35,14 @@ public enum Item { Book, Movie, Music, Newspaper, Archive }
 	{
 		this.mediaType = aMediaType;
 	}
+
+  public void setName(String name){
+    this.name = name;
+  }
+
+  public String getName(){
+    return this.name;
+  }
 
   //Media uses ID as primary key. It is the only one that is unique.
   @Id

@@ -89,12 +89,12 @@ public class Conversion {
      */
     public static CheckOutItemDto convertToDto(CheckOutItem checkOutItem) {
 		if(checkOutItem==null) throw new IllegalArgumentException("Checkout item not found.");
-		return new CheckOutItemDto(checkOutItem.getID(),checkOutItem.getIsCheckedOut(),checkOutItem.getIsReserved(), checkOutItem.getBorrowingPeriod(), checkOutItem.getStartDate());
+		return new CheckOutItemDto(checkOutItem.getID(),checkOutItem.getType(),checkOutItem.getName(),checkOutItem.getIsCheckedOut(),checkOutItem.getIsReserved(), checkOutItem.getBorrowingPeriod(), checkOutItem.getStartDate());
 	}
 
     public static NonCheckOutItemDto convertToDto(NonCheckOutItem nonCheckOutItem) {
 		if(nonCheckOutItem==null) throw new IllegalArgumentException("NonCheckout item not found.");
-        return new NonCheckOutItemDto(nonCheckOutItem.getType(), nonCheckOutItem.getID());
+        return new NonCheckOutItemDto(nonCheckOutItem.getType(), nonCheckOutItem.getName(),nonCheckOutItem.getID());
 	}
             /**
      * converts offline to offlineDto
