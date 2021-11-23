@@ -19,18 +19,14 @@ public class Librarian
 	public void setId(int id){
 		this.id = id;
 	}
-	public boolean setPassword(String aPassword) {
-		boolean wasSet = false;
-		password = aPassword;
-		wasSet = true;
-		return wasSet;
-	}
-	
 	@Id
 	public int getId(){
 		return this.id;
 	}
-	
+
+	public void setPassword(String aPassword) {
+		this.password = aPassword;
+	}
 	public String getPassword() {
 		return password;
 	}

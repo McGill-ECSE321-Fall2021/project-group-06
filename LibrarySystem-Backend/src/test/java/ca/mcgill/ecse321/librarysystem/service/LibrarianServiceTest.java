@@ -183,7 +183,7 @@ public class LibrarianServiceTest {
 	public void testCreateLibrarian(){
 		Librarian lib = null;
 		try{
-			lib = librarianService.createLibrarian(LIBR_ID_2);
+			lib = librarianService.createLibrarian(LIBR_ID_2, "example");
 		} catch (IllegalArgumentException e){
 			fail();
 		}
@@ -196,7 +196,7 @@ public class LibrarianServiceTest {
 		Librarian lib = null;
 		String error = null;
 		try{
-			lib = librarianService.createLibrarian(id);
+			lib = librarianService.createLibrarian(id, "example");
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}
@@ -209,7 +209,7 @@ public class LibrarianServiceTest {
 		Librarian lib = null;
 		String error = null;
 		try{
-			lib = librarianService.createLibrarian(LIBR_ID);
+			lib = librarianService.createLibrarian(LIBR_ID, "example");
 		} catch (IllegalArgumentException e){
 			error = e.getMessage();
 		}

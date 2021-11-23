@@ -57,6 +57,16 @@ public class LibrarianService {
 
 		return shifts;
 	}
+
+	@Transactional
+	public Librarian setPassword(int id, String password) {
+		if (librarianRepository.findLibrarianById(id) == null){
+			throw new IllegalArgumentException("Librarian id does not exist");
+		}
+		Librarian lib = librarianRepository.findLibrarianById(id);
+		lib.setPassword(password);
+		return lib;
+	}
     
     /**
 	 * @author Isabella Hao
@@ -101,7 +111,7 @@ public class LibrarianService {
 	}
 	
 	@Transactional
-	public Librarian createLibrarian(int id) {
+	public Librarian createLibrarian(int id, String password) {
 		if (id==0) {
             throw new IllegalArgumentException("Librarian id cannot be 0.");
         }
@@ -110,6 +120,7 @@ public class LibrarianService {
 		}
 		Librarian librarian = new Librarian();
 		librarian.setId(id);
+		librarian.setPassword(password);
 		librarianRepository.save(librarian);
 		return librarian;
 	}

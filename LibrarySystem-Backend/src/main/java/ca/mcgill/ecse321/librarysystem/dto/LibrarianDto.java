@@ -12,8 +12,9 @@ public class LibrarianDto {
 	public LibrarianDto() {
     }
 
-	public LibrarianDto( int id, HashSet<ShiftDto> shifts) {
+	public LibrarianDto( int id, String password, HashSet<ShiftDto> shifts) {
         this.id = id;
+        this.password = password;
         this.shifts = shifts;
 	}
 

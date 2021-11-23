@@ -38,14 +38,14 @@ public class LibrarianController {
 	/**
 	 * Create librarian Dto with given parameters
 	 * @param id
-	 * @param addr
-	 * @param name
+	 * @param password
 	 * @return librarian Dto
 	 * @author Howard Yu, David Hu */
 	 
 	@PostMapping(value= {"/createLibrarian/{id}", "/createLibrarian/{id}/"})
-	public LibrarianDto createLibrarian(@PathVariable("id") int id) {
-		Librarian librarian=librarianService.createLibrarian(id);
+	public LibrarianDto createLibrarian(@PathVariable("id") int id, @RequestParam String password) {
+		Librarian librarian=librarianService.createLibrarian(id, password);
+		//librarianService.setPassword(id, password);
 		return Conversion.convertToDto(librarian);
 	}
 	

@@ -9,8 +9,8 @@ public class HeadLibrarianDto extends LibrarianDto {
     private Set<OpeningHourDto> openingHours;
 	public HeadLibrarianDto() {
 	}
-	public HeadLibrarianDto(int id, HashSet<OpeningHourDto> openingHours, HashSet<ShiftDto> shifts) {
-        super(id, shifts);
+	public HeadLibrarianDto(int id, String password, HashSet<OpeningHourDto> openingHours, HashSet<ShiftDto> shifts) {
+        super(id, password, shifts);
         this.openingHours = openingHours;
 	}
 

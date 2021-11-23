@@ -52,7 +52,7 @@ public class Conversion {
             }
         }
         
-        return new LibrarianDto(librarian.getId(), shifts);
+        return new LibrarianDto(librarian.getId(), librarian.getPassword(), shifts);
     }
         /**
      * converts headlLibrarian to headLibrarianDto
@@ -78,7 +78,7 @@ public class Conversion {
             }
         }
         
-        return new HeadLibrarianDto(headLibrarian.getId(), openingHours, shifts);
+        return new HeadLibrarianDto(headLibrarian.getId(), headLibrarian.getPassword(), openingHours, shifts);
     }
             /**
      * converts CheckOutItem to CheckOutItemDto
