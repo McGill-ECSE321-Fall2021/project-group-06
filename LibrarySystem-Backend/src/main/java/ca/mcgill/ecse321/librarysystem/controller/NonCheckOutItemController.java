@@ -59,13 +59,14 @@ public class NonCheckOutItemController {
      * update nonCheckOutItemDto
      * @param mediaID
      * @param newMediaType
+     * @param newMediaName
      * @return nonCheckOutItemDto
      * @author Howard Yu
      */
     @PutMapping(value = { "/edit_nonCheckOutItems/{id}"})
-    public NonCheckOutItemDto updateNonCheckOutItem(@PathVariable("id") int mediaID, @RequestParam Item newMediaType)
+    public NonCheckOutItemDto updateNonCheckOutItem(@PathVariable("id") int mediaID, @RequestParam Item newMediaType, @RequestParam String newMediaName)
             throws IllegalArgumentException {
-                NonCheckOutItem nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(newMediaType, mediaID);
+                NonCheckOutItem nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(newMediaType, mediaID, newMediaName);
                 return Conversion.convertToDto(nonCheckOutItem);
     }
 

@@ -42,6 +42,7 @@ public class CheckOutItemServiceTest {
     private static final int BORROWING_PERIOD = 123;
     private static final boolean IS_CHECKEDOUT = false;
     private static final boolean IS_RESERVED = false;
+    private static final String MEDIA_NAME = "Gain";
 
     @BeforeEach
     public void setMockOutput() {
@@ -50,6 +51,7 @@ public class CheckOutItemServiceTest {
                 CheckOutItem media = new CheckOutItem();
                 media.setStartDate(START_DATE);
                 media.setType(MEDIA_TYPE);
+                media.setName(MEDIA_NAME);
                 media.setBorrowingPeriod(BORROWING_PERIOD);
                 media.setID(MEDIA_ID);
                 media.setIsCheckedOut(IS_CHECKEDOUT);
@@ -205,6 +207,26 @@ public class CheckOutItemServiceTest {
 		assertTrue(error.contains("startDate cannot be null"));
 	}
 
+    @Test
+    public void testCreateCheckOutItemEmptyName(){
+        CheckOutItem checkOutItem = null;
+        Item mediaType = Item.Book;
+        int mediaID = MEDIA_ID;
+        boolean isCheckedOut = false;
+        boolean isReserved = false;
+        int borrowingPeriod = 0;
+        String error = null;
+        Date startDate = Date.valueOf("2021-09-11");
+		try {
+            checkOutItem = checkOutItemService.createCheckOutItem(mediaType, mediaID, "", isCheckedOut, isReserved, borrowingPeriod, startDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+        assertTrue(error.contains("Media name cannot be empty!"));
+    }
+
 
     @Test
     public void testUpdateCheckOutItem(){
@@ -217,8 +239,9 @@ public class CheckOutItemServiceTest {
         boolean newIsReserved = false;
         int newBorrowingPeriod = 69;
         Date newStartDate = Date.valueOf("2021-09-11");
+        String newName = "slain";
 		try {
-            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newName, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
 
 		}catch(IllegalArgumentException e) {
 			fail();
@@ -231,6 +254,7 @@ public class CheckOutItemServiceTest {
         assertEquals(newIsReserved, checkOutItem.getIsReserved());
         assertEquals(newBorrowingPeriod, checkOutItem.getBorrowingPeriod());
         assertEquals(newStartDate, checkOutItem.getStartDate());
+        assertEquals(newName, checkOutItem.getName());
         //assertEquals(5, 6);
     }
     @Test
@@ -244,8 +268,9 @@ public class CheckOutItemServiceTest {
         boolean newIsReserved = false;
         int newBorrowingPeriod = 69;
         Date newStartDate = Date.valueOf("2021-09-11");
+        String newName = "slain";
 		try {
-            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newName, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -264,8 +289,9 @@ public class CheckOutItemServiceTest {
         boolean newIsReserved = false;
         int newBorrowingPeriod = 69;
         Date newStartDate = Date.valueOf("2021-09-11");
+        String newName = "slain";
 		try {
-            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newName, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -284,8 +310,9 @@ public class CheckOutItemServiceTest {
         boolean newIsReserved = false;
         int newBorrowingPeriod = -12;
         Date newStartDate = Date.valueOf("2021-09-11");
+        String newName = "more pain";
 		try {
-            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newName, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -304,8 +331,9 @@ public class CheckOutItemServiceTest {
         boolean newIsReserved = false;
         int newBorrowingPeriod = 23;
         Date newStartDate = null;
+        String newName = "more pain";
 		try {
-            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newName, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -313,6 +341,28 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
 		assertTrue(error.contains("startDate cannot be null"));
 	}
+
+    @Test
+    public void testUpdateCheckOutItemEmptyName(){
+        CheckOutItem checkOutItem = null;
+        Item newMediaType = Item.Book;
+        int mediaID = MEDIA_ID;
+        boolean newIsCheckedOut = false;
+        boolean newIsReserved = false;
+        int newBorrowingPeriod = 13;
+        String error = null;
+        Date newStartDate = Date.valueOf("2021-09-12");
+        String newName = "";
+		try {
+            checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newName, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		assertNull(checkOutItem);
+        assertTrue(error.contains("Media name cannot be empty!"));
+    }
+
     @Test
     public void testGetExistingCheckOutItem(){
         assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());
