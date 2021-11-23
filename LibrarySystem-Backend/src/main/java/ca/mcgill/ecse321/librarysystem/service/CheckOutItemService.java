@@ -29,7 +29,7 @@ public class CheckOutItemService {
      */
 
     @Transactional
-    public CheckOutItem createCheckOutItem (Item mediaType, int mediaID, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate){
+    public CheckOutItem createCheckOutItem (Item mediaType, int mediaID, String name, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate){
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
@@ -64,6 +64,7 @@ public class CheckOutItemService {
         checkOutItem.setIsCheckedOut(isCheckedOut);
         checkOutItem.setIsReserved(isReserved);
         checkOutItem.setStartDate(startDate);
+        checkOutItem.setName(name);
         mediaRepository.save(checkOutItem);
         return checkOutItem;
     }

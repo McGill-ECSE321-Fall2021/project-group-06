@@ -8,6 +8,7 @@ public abstract class MediaDto {
 
     private Item mediaType;
     private int mediaID;
+    private String name;
 	public MediaDto() {
 	}
 
@@ -16,9 +17,10 @@ public abstract class MediaDto {
         this.mediaType = Item.Book;
     }
 
-	public MediaDto(Item mediaType, int mediaID) {
+	public MediaDto(Item mediaType, String name, int mediaID) {
         this.mediaType = mediaType;
         this.mediaID = mediaID;
+        this.name = name;
 	}
 
     public Item getMediaType() {
@@ -27,6 +29,10 @@ public abstract class MediaDto {
 
     public int getMediaID() {
         return mediaID;
+    }
+
+    public String getMediaName(){
+        return name;
     }
 
     
