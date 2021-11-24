@@ -26,8 +26,8 @@ public class LibrarianController {
 	 * @param pwd
 	 * @return librarian Dto
 	 */
-	@GetMapping(value= {"/librLogin", "/librLogin/"})
-	public LibrarianDto login(@RequestParam int id, @RequestParam String pwd) {
+	@GetMapping(value= {"/librLogin/{id}", "/librLogin/{id}/"})
+	public LibrarianDto login(@PathVariable("id") int id, @RequestParam String pwd) {
 		Librarian l=null;
 		l=librarianService.login(id, pwd);
 		if (l instanceof Librarian) {

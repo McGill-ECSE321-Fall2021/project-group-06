@@ -23,37 +23,33 @@ export default {
   name: 'Login',
   data () {
     return {
-      Account: '',
-			id: '',
-      type: '',
-      // name: '',
-			// password: '',
-			errorLogin: '',
-			response: []
+        Account: '',
+	    id: '',
+        type: '',
+        // name: '',
+		// password: '',
+		errorLogin: '',
+		response: []
     }
   },
   
   methods: {
 
     switchLogin(){
-      window.location.href = "#/LibrarianLogin"
+      window.location.href = "#/Login"
       location.reload()
     },
     login: function (username, password) {
-      AXIOS.get('/login/'.concat(username), {
+      AXIOS.get('/librLogin/'.concat(username), {
         params: {
-          password: password
+          pwd: password
         }
       })
           .then(response => {
           // JSON responses are automatically parsed.
             this.Account = response.data
-            if(this.Account.accountCategory == "Online"){
-              window.location.href = "#/Online"
-              location.reload()
-            } else if (this.Account.accountCategory == "Offline") {
-              this.type = "vagina"
-            }
+            window.location.href = "#/Librarian"
+            location.reload()
             //this.id = '727'
           })
           .catch(e => {

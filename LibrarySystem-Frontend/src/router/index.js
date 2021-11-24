@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Online from '@/components/Online'
+import LibrarianLogin from '@/components/LibrarianLogin'
+import Librarian from '@/components/Librarian'
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +23,17 @@ export default new Router({
       path: '/Online',
       name: 'Online',
       component: Online
+    },
+    {
+      path: '/LibrarianLogin',
+      name: 'LibrarianLogin',
+      component: LibrarianLogin
+    },
+
+    {
+      path: '/Librarian',
+      name: 'Librarian',
+      component: Librarian
     }
   ]
 })
