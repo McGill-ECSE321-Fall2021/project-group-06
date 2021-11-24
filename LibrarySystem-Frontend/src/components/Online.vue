@@ -94,7 +94,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!reserveMediaID" @click="VARIABLE_TO_CHANGE(reserveMediaID)"> reserve media </button>
+          <button v-bind:disabled="!reserveMediaID" @click="reserveItem(reserveMediaID)"> reserve media </button>
         </td>
       </tr>
     </table>
@@ -171,7 +171,7 @@
     </p>
   </div>
 </template>
-<script>
+<script src="./js/BookEvent.js">
 </script>
 <style>
   #Online {

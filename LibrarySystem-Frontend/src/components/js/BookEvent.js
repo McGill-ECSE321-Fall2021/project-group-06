@@ -59,7 +59,7 @@ export default {
           })
     },
     reserveItem: function (mediaID){
-      AXIOS.put('/assignEvent/'.concat(mediaID), {}, {
+      AXIOS.put('/reserve_media_online/'.concat(mediaID), {}, {
       })
           .then(response => {
             
