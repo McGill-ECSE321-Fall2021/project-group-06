@@ -3,35 +3,27 @@
   <div id="login">
     <h2>Persons</h2>
       <table>
-        <!-- <tr v-for="person in persons" :key="person.name" >
-            <td>{{ person.name }}</td>
-            <td>
-              <ul>
-                <li v-for="event in person.events" :key="event.name">
-                  {{event.name}}
-                </li>
-              </ul>
-            </td>
-        </tr> -->
-    <table>
-<tr>
-    <td>
-        <input v-model="username" placeholder="Username">
-    </td>
-    <td>
-        <input type="text" v-model="password" placeholder="Password">
-    </td>
-</tr>
-<tr>
-  <p>Message is: {{ username }}</p>
-  <p>Message is: {{ password }}</p>
-    <button v-bind:disabled="!username || !password" @click="login(username, password)">Login </button>
-</tr>
-</table>
-    </table>
-    <p>
-      <span v-if="!username" style="color:red">YOU FUCKING RETARD</span>
-    </p>
+        <tr v="Account">
+          <td>{{ type }}</td>
+        </tr>
+    
+      <tr>
+          <td>
+              <input type="text" v-model="id" placeholder="Username">
+          </td>
+          <td>
+              <input type="text" v-model="password" placeholder="Password">
+          </td>
+      </tr>
+      <tr>
+        <p>User is: {{ id }}</p>
+        <p>PW is: {{ password }}</p>
+          <button v-bind:disabled="!id" @click="login(id, password)">Login </button>
+      </tr>
+      </table>
+      <p>
+        <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
+      </p>
   </div>
   
 </template>
