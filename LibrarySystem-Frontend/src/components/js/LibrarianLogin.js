@@ -52,8 +52,14 @@ export default {
           .then(response => {
           // JSON responses are automatically parsed.
             this.Account = response.data
-            window.location.href = "#/Librarian"
-            location.reload()
+            if(this.Account.hl){
+                window.location.href = "#/HeadLibrarian"
+                location.reload()
+            } else {
+                window.location.href = "#/Librarian"
+                location.reload()
+            }
+            
             //this.id = '727'
           })
           .catch(e => {

@@ -6,6 +6,7 @@ import Online from '@/components/Online'
 import LibrarianLogin from '@/components/LibrarianLogin'
 import Librarian from '@/components/Librarian'
 import OpeningHours from '@/components/OpeningHours'
+import HeadLibrarian from '@/components/HeadLibrarian'
 Vue.use(Router)
 
 export default new Router({
@@ -40,6 +41,11 @@ export default new Router({
       path: '/OpeningHours',
       name: 'OpeningHours',
       component: OpeningHours
+    },
+    {
+      path: '/HeadLibrarian',
+      name: 'HeadLibrarian',
+      component: HeadLibrarian
     }
   ]
 })
