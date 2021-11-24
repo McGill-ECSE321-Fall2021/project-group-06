@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import ca.mcgill.ecse321.librarysystem.dto.MediaDto;
 import ca.mcgill.ecse321.librarysystem.dto.OnlineDto;
+import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Online;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.service.OnlineService;
@@ -91,6 +93,12 @@ public class OnlineController {
     public OnlineDto returnMediaOnline(@PathVariable("id") int id, @RequestParam int mediaId){
         Online online = onlineService.returnAnItem(mediaId, id);
         return (Conversion.convertToDto(online));
+    }
+
+    @PutMapping(value = {"/reserve_media_online/{id}"})
+    public MediaDto reserveMediaOnline(@PathVariable("id") int id, @RequestParam int mediaId){
+        CheckOutItem media = (CheckOutItem) onlineService.reserveAnItem(mediaId);
+        return (Conversion.convertToDto(media));
     }
         /**
      * 

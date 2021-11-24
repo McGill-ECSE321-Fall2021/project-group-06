@@ -30,7 +30,7 @@
     </p>
   </div>
 </template>
-<script src="./js/BookEvent.js">
+<script>
 </script>
 <style>
   #Online {

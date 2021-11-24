@@ -51,6 +51,16 @@ export default {
           .catch(e => {
             this.errorEvent = e
           })
+    },
+    reserveItem: function (mediaID){
+      AXIOS.put('/assignEvent/'.concat(mediaID), {}, {
+      })
+          .then(response => {
+            
+          })
+          .catch(e => {
+            this.errorEvent = e
+          })
     }
   }
 

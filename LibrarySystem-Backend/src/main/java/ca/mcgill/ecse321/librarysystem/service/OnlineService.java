@@ -243,6 +243,9 @@ public class OnlineService {
         if(mediaRepository.findMediaByID(mediaId) == null){
             throw new IllegalArgumentException("This media Id is non-existent!");
         }
+        if (mediaRepository.findMediaByID(mediaId) instanceof NonCheckOutItem){
+            throw new IllegalArgumentException("This media Id corresponds to an item that you cannot reserve!");
+        }
         CheckOutItem mediaTest = (CheckOutItem) mediaRepository.findMediaByID(mediaId);
         if(mediaTest.getIsReserved()){
             throw new IllegalArgumentException("This media is already reserved!");
