@@ -29,7 +29,8 @@ export default {
       // name: '',
 			// password: '',
 			errorLogin: '',
-			response: []
+			response: [],
+      //massageForChild: "my dick fell off"
     }
   },
   

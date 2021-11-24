@@ -3,6 +3,7 @@ import Router from 'vue-router'
 //import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Online from '@/components/Online'
+import Offline from '@/components/Offline'
 import LibrarianLogin from '@/components/LibrarianLogin'
 import Librarian from '@/components/Librarian'
 import OpeningHours from '@/components/OpeningHours'
@@ -25,6 +26,11 @@ export default new Router({
       path: '/Online',
       name: 'Online',
       component: Online
+    },
+    {
+      path: '/Offline',
+      name: 'Offline',
+      component: Offline
     },
     {
       path: '/LibrarianLogin',
