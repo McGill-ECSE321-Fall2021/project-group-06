@@ -11,19 +11,15 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
-
-function OpeningHourDto (name, date, start, end) {
-    this.name = name
-    this.eventDate = date
-    this.startTime = start
-    this.endTime = end
-  }
   export default {
     name: 'openingHour',
     data () {
       return {
         openingHours: [],
-        newOH: '',
+        id: '',
+        DayOfWeek: '',
+        startTime: '',
+        endTime: '',
         errorOH: '',
         response: []
       }
@@ -40,18 +36,26 @@ function OpeningHourDto (name, date, start, end) {
     
     },
     methods: {
-        createOH: function (oHName) {
-            AXIOS.post('/openingHours/'.concat(oHName), {}, {})
+        createOH: function (id,DayOfWeek,startTime,endTime) {
+            AXIOS.post('/openingHours/'.concat(id), {}, {
+              params: {
+                id: id,
+                DayOfWeek: DayOfWeek,
+                startTime: startTime,
+                endTime: endTime,
+              }
+            })
             .then(response => {
             // JSON responses are automatically parsed.
+
+            //@niels i think this whole thing could just be empty cause you are getting all of OpeningHours in ur created function above
+            //not 100% sure, just keep it like this
               this.openingHours.push(response.data)
               this.errorOH = ''
               this.newOH = ''
             })
             .catch(e => {
-              var errorMsg = e.response.data.message
-              console.log(errorMsg)
-              this.errorOH = errorMsg
+              this.errorOH = e
             })
         }
     }
