@@ -2,9 +2,7 @@
 
   <div id="Offline">
     <h2>
-        <Login :massage="massageForChild">
-            poop: {{massage}}
-        </Login>
+      <Offline :massage="massageForChild"> </Offline>
     </h2>
       <table>
       </table>
@@ -17,7 +15,7 @@
 <script>
 export default {
     name: "Offline",
-    props: ["massage"]
+    props: { massageForChild: String }
 };
 </script>
 <style>

@@ -2,11 +2,11 @@
 
   <div id="Online">
      <table>
-         ​<tr v-for-key="event in events">
+         ​<tr v-for="event in events" :key="event.name">
      ​       <td>{{ event.name }}</td>
-             ​<td>{{ event.eventDate }}</td>
+            <td>{{ event.eventDate }}</td>
             ​<td>{{ event.eventStart }}</td>
-     ​        <td>{{ event.eventEnd }}</td>
+     ​       <td>{{ event.eventEnd }}</td>
           ​</tr>
         <tr v="account">
           <!-- <td  v-for="event in account.events" :key="event.name">
