@@ -22,6 +22,7 @@ export default {
         online: '',
         events: [],
         bookedEvents: [],
+        medias: [],
         id: window.localStorage.getItem('id'),
         name: '',
 		    errorEvent: '',
