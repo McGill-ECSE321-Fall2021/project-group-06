@@ -26,7 +26,7 @@ public class HeadLibrarianController {
 	  */
 	 @PostMapping(value= {"/create_headlibrarian", "/create_headlibrarian/"})
 	 public HeadLibrarianDto createHeadLibrarian(@RequestParam(name="id") int id, @RequestParam String pwd) {
-	 	HeadLibrarian head=headService.createHeadLibrarian(id, pwd);
+	 	HeadLibrarian head=headService.createHeadLibrarian(id, true, pwd);
 	 	return Conversion.convertToDto(head);
 	 }
 	 /**
@@ -63,7 +63,7 @@ public class HeadLibrarianController {
 	  */
 	 @PostMapping(value= {"/hireLibrarian/{id}", "/hireLibrarian/{id}/"})
 	 public LibrarianDto hireLibrarian(@PathVariable("id") int id, @RequestParam String pwd) {
-	 	return Conversion.convertToDto(headService.hireLibrarian(id, pwd));
+	 	return Conversion.convertToDto(headService.hireLibrarian(id, false, pwd));
 	 }
 	
 	 /**
