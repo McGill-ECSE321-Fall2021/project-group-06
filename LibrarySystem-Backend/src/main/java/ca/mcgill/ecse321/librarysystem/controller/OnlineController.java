@@ -64,8 +64,8 @@ public class OnlineController {
      * @author Howard Yu, David
      */
     @PutMapping(value = {"/edit_online/{id}"})
-    public OnlineDto updateOnline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam int numChecked, @RequestParam String username, @RequestParam String password, @RequestParam String email){
-        Online online = onlineService.updateOnline(id, address, name, numChecked, username, password, email);
+    public OnlineDto updateOnline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam String password){
+        Online online = onlineService.updateOnline(id, address, name, password);
         return (Conversion.convertToDto(online));
     }
         /**

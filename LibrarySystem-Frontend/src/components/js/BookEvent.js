@@ -68,6 +68,16 @@ export default {
           .catch(e => {
             this.errorEvent = e
           })
+    },
+    updateInfo: function (name, password, address){
+      AXIOS.put('/reserve_media_online/'.concat(mediaID), {}, {
+      })
+          .then(response => {
+            
+          })
+          .catch(e => {
+            this.errorEvent = e
+          })
     }
   }
 
