@@ -44,8 +44,8 @@ export default {
       window.location.href = "#/OpeningHours"
       location.reload()
     },
-    login: function (username, password) {
-      AXIOS.get('/login/'.concat(username), {
+    login: function (id, password) {
+      AXIOS.get('/login/'.concat(id), {
         params: {
           password: password
         }
@@ -54,6 +54,7 @@ export default {
           // JSON responses are automatically parsed.
             this.Account = response.data
             if(this.Account.accountCategory == "Online"){
+              window.sessionStorage.setItem('id', this.id)
               window.location.href = "#/Online"
               location.reload()
             } else if (this.Account.accountCategory == "Offline") {
