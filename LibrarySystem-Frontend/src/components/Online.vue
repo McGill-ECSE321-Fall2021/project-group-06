@@ -10,13 +10,13 @@
             {{ event.endTime }}
             </td>
           ​</tr>
-        <tr v="account">
+        <tr>
           <td  v-for="event in bookedEvents" :key="event.name">
             {{event.name}}
           </td>
           
         <td >
-          <p>{{ id }} </p>
+          {{ window.localStorage.getItem('id') }}
               <input type="text" v-model="name" placeholder="Name">
               <button v-bind:disabled="!name" @click="bookEvent(id, name)"> BookEvent </button>
         </td>

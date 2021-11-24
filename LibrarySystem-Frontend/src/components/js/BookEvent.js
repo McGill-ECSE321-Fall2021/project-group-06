@@ -16,7 +16,7 @@ export default {
         account: '',
         events: [],
         bookedEvents: [],
-        id: window.localStorage.getItem('username'),
+        id: '',
         name: '',
 		    errorEvent: '',
       	response: []
@@ -26,6 +26,7 @@ export default {
     AXIOS.get('/events/getAllEvents')
     .then(response => {
       this.events = response.data
+      this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
       this.errorEvent = e
