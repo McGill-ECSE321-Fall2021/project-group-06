@@ -16,7 +16,7 @@ export default {
         account: '',
         events: [],
         bookedEvents: [],
-        id: '',
+        id: window.localStorage.getItem('username'),
         name: '',
 		    errorEvent: '',
       	response: []

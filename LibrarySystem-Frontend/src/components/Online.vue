@@ -15,10 +15,10 @@
             {{event.name}}
           </td>
           
-        <td>
-              <input type="text" v-model="id" placeholder="Id">
+        <td >
+          <p>{{ id }} </p>
               <input type="text" v-model="name" placeholder="Name">
-              <button v-bind:disabled="!id || !name" @click="bookEvent(id, name)"> BookEvent </button>
+              <button v-bind:disabled="!name" @click="bookEvent(id, name)"> BookEvent </button>
         </td>
         </tr>
     </table>
