@@ -26,6 +26,7 @@ export default {
     AXIOS.get('/events/getAllEvents')
     .then(response => {
       this.events = response.data
+      this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
       this.errorEvent = e
