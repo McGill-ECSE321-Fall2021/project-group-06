@@ -117,55 +117,20 @@
         </td>
       </tr>
     </table>
-     <!-- <table>
-      <tr v="Account">
-          <td>{{ id }}</td>
-      </tr>
-         ​<tr v-for="event in events" :key="event.name">
-            <td>
-            {{ event.name }}
-            {{ event.eventDate }}
-            {{ event.eventStart }}
-            {{ event.endTime }}
-            </td>
-          ​</tr>
-        <tr>
-          <td  v-for="event in bookedEvents" :key="event.name">
-            {{event.name}}
-          </td>
+    <div id="scrollBox">
+      <table border=1 frame=hsides rules=rows style="width:100%">
+        <tr v-for="media in medias" :key="media.name">
+          {{ media.name }}
         </tr>
-        <td >
-          <input type="text" v-model="name" placeholder="Name">
-          <button v-bind:disabled="!name" @click="bookEvent(name)"> BookEvent </button>
-        </td>
-        <td>
-          <input type="text" v-model="mediaID" placeholder="media ID">
-          <button v-bind:disabled="!mediaID" @click="findMedia(mediaID)"> mediaID </button>
-        </td>
-        <td>
-          we need:
-          online information
-          update online information
-          delete Account
-          return media
-          reserve media
-          check media
-          get media
-          checkout media
-
-          book event
-
-        </td>
-        <td>
-          <tr v="media">
-            <td>
-              {{ media.mediaID }}
-              {{ media.mediaType }}
-              {{ media.name }}
-            </td>
-          </tr>
-        </td>
-    </table> -->
+      </table>
+    </div>
+    <div id="scrollBox">
+      <table border=1 frame=hsides rules=rows style="width:100%">
+        <tr v-for="event in events" :key="event.name">
+          {{ event.name }}
+        </tr>
+      </table>
+    </div>
     <p>
       <span v-if="errorEvent" style="color:red">Error: {{errorEvent}} </span>
     </p>
@@ -175,7 +140,7 @@
 </script>
 <style>
   #Online {
-    min-height: 400px;
+    min-height: 800px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     background: #f2ece8;
@@ -185,4 +150,11 @@
     text-align:center;
     float: left;
   }
+#scrollBox {
+  border: 1px solid black;
+  width: 300px;
+  height: 200px;
+  overflow: scroll;
+  float: left;
+}
 </style>
