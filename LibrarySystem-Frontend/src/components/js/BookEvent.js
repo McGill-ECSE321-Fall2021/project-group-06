@@ -70,7 +70,12 @@ export default {
           })
     },
     updateInfo: function (name, password, address){
-      AXIOS.put('/reserve_media_online/'.concat(mediaID), {}, {
+      AXIOS.put('/edit_online/'.concat(localStorage.getItem('id')), {}, {
+        params: {
+          address: address,
+          name: name,
+          password: password
+        }
       })
           .then(response => {
             
