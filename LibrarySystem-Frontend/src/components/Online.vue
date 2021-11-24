@@ -11,22 +11,22 @@
       </tr>
       <tr>
         <td>
-          VARIABLE_TO_CHANGE ONLINE ID
+          {{ Account.id }}
         </td>
       </tr>
       <tr>
         <td>
-          VARIABLE_TO_CHANGE ONLINE NAME
+          {{ Account.name }}
         </td>
       </tr>
       <tr>
         <td>
-          VARIABLE_TO_CHANGE ONLINE ISLOCAL
+          {{ Account.isLocal }}
         </td>
       </tr>
       <tr>
         <td>
-          VARIABLE_TO_CHANGE ONLINE NUMCHECKED
+          {{ Account.numChecked }}
         </td>
       </tr>
       <tr>
@@ -46,7 +46,7 @@
       </tr>
       <tr>
         <td>
-          VARIABLE_TO_CHANGE ONLINE ADDRESS
+          {{ Account.address }}
         </td>
       </tr>
     </table>
