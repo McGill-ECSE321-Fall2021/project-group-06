@@ -42,25 +42,7 @@ public class Conversion {
      * @throws IllegalArgumentException
      * @author Howard Yu
      */
-    public static LibrarianDto convertToDto(Librarian librarian){
-        if(librarian == null) throw new IllegalArgumentException("libarian not found.");
-        HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
-        Set<Shift> modelShifts = librarian.getShift();
-        if (modelShifts!=null){
-            for(Shift shift: modelShifts){
-                shifts.add(convertToDto(shift));
-            }
-        }
-        
-        return new LibrarianDto(librarian.getId(), librarian.getPassword(), shifts);
-    }
-        /**
-     * converts headlLibrarian to headLibrarianDto
-     * @param headLibrarian
-     * @return headLibrarianDto
-     * @throws IllegalArgumentException
-     * @author Howard Yu
-     */
+
     public static HeadLibrarianDto convertToDto(HeadLibrarian headLibrarian){
         if(headLibrarian == null) throw new IllegalArgumentException("headLibarian not found.");
         HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
@@ -80,6 +62,26 @@ public class Conversion {
         
         return new HeadLibrarianDto(headLibrarian.getId(), headLibrarian.getPassword(), openingHours, shifts);
     }
+    public static LibrarianDto convertToDto(Librarian librarian){
+        if(librarian == null) throw new IllegalArgumentException("libarian not found.");
+        HashSet<ShiftDto> shifts = new HashSet<ShiftDto>();
+        Set<Shift> modelShifts = librarian.getShift();
+        if (modelShifts!=null){
+            for(Shift shift: modelShifts){
+                shifts.add(convertToDto(shift));
+            }
+        }
+        
+        return new LibrarianDto(librarian.getId(), librarian.getIsHeadLibrarian(), librarian.getPassword(), shifts);
+    }
+        /**
+     * converts headlLibrarian to headLibrarianDto
+     * @param headLibrarian
+     * @return headLibrarianDto
+     * @throws IllegalArgumentException
+     * @author Howard Yu
+     */
+    
             /**
      * converts CheckOutItem to CheckOutItemDto
      * @param checkOutItem

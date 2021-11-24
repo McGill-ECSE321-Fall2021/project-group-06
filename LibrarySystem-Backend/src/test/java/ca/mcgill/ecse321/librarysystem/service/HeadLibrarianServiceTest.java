@@ -118,7 +118,7 @@ public class HeadLibrarianServiceTest {
 		int id=1;
 		HeadLibrarian h=null;
 		try {
-			h=headService.createHeadLibrarian(id, "something");
+			h=headService.createHeadLibrarian(id, true, "something");
 		} catch (IllegalArgumentException e) {
 			fail();
 		}
@@ -131,7 +131,7 @@ public class HeadLibrarianServiceTest {
 		int id=0;
 		HeadLibrarian h=null;
 		try {
-			h=headService.createHeadLibrarian(id, "something");
+			h=headService.createHeadLibrarian(id, true, "something");
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -144,7 +144,7 @@ public class HeadLibrarianServiceTest {
 		String error=null;
 		HeadLibrarian h=null;
 		try {
-			h=headService.createHeadLibrarian(HEAD_ID_KEY, HEAD_PASSWORD_KEY);
+			h=headService.createHeadLibrarian(HEAD_ID_KEY, true, HEAD_PASSWORD_KEY);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -201,7 +201,7 @@ public class HeadLibrarianServiceTest {
 		int id=3;
 		Librarian l=null;
 		try {
-			l=headService.hireLibrarian(id, "bleh");
+			l=headService.hireLibrarian(id, false, "bleh");
 		} catch (IllegalArgumentException e){
 			fail();
 		}
@@ -214,7 +214,7 @@ public class HeadLibrarianServiceTest {
 		int id=0;
 		Librarian l=null;
 		try {
-			l=headService.hireLibrarian(id, "bleh");
+			l=headService.hireLibrarian(id, false, "bleh");
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
@@ -227,7 +227,7 @@ public class HeadLibrarianServiceTest {
 		String error=null;
 		Librarian l=null;
 		try {
-			l=headService.hireLibrarian(LIBR_ID, LIBR_PASSWORD_KEY);
+			l=headService.hireLibrarian(LIBR_ID, false, LIBR_PASSWORD_KEY);
 		} catch (IllegalArgumentException e) {
 			error=e.getMessage();
 		}
