@@ -41,6 +41,9 @@ public class NonCheckOutItemService {
         if (mediaRepository.findMediaByID(mediaID) != null || mediaID == 0) {
             error = error + "Media ID invalid!";
         }
+        if (name.trim().length() == 0){
+            error = error + "Media name cannot be empty!";
+        }
         error = error.trim();
         if (error.length() > 0) {
             throw new IllegalArgumentException(error);
@@ -55,7 +58,7 @@ public class NonCheckOutItemService {
     }
 
     @Transactional
-    public NonCheckOutItem updateNonCheckOutItem (Item newMediaType, int mediaID){
+    public NonCheckOutItem updateNonCheckOutItem (Item newMediaType, int mediaID, String name){
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
@@ -66,9 +69,15 @@ public class NonCheckOutItemService {
         if (!isValidType){
             error = error + "Media type invalid!";
         }
+
         if (mediaRepository.findMediaByID(mediaID) == null) {
             error = error + "Media does not exist";
         }
+
+        if (name.trim().length() == 0){
+            error = error + "Media name cannot be empty!";
+        }
+
         error = error.trim();
         if (error.length() > 0) {
             throw new IllegalArgumentException(error);
@@ -77,9 +86,11 @@ public class NonCheckOutItemService {
         NonCheckOutItem nonCheckOutItem = new NonCheckOutItem();
         nonCheckOutItem.setType(newMediaType);
         nonCheckOutItem.setID(mediaID);
+        nonCheckOutItem.setName(name);
         mediaRepository.save(nonCheckOutItem);
         return nonCheckOutItem;
     }
+
     @Transactional
     public NonCheckOutItem getNonCheckOutItemByID(int mediaID){
         

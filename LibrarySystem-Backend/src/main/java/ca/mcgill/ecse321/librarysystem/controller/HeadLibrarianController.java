@@ -29,6 +29,21 @@ public class HeadLibrarianController {
 	 	HeadLibrarian head=headService.createHeadLibrarian(id, true, pwd);
 	 	return Conversion.convertToDto(head);
 	 }
+
+	/**
+	 * Update Head-Librarian password
+	 * @param id
+	 * @param password
+	 * @return head librarian dto
+	 * @author Samuel Lin
+	 */
+	
+	@PostMapping(value= {"/headLibrarian_UpdatePassword/{id}", "/headLibrarian_UpdatePassword/{id}/"})
+	public HeadLibrarianDto updateHeadLibrarianPassword (@PathVariable("id") int id, @RequestParam String password){
+		HeadLibrarian headLibrarian = headService.updatePassword(id, password);
+		return Conversion.convertToDto(headLibrarian);
+	}
+
 	 /**
 	  * Find head librarian of given parameter
 	  * @param id

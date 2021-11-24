@@ -52,6 +52,9 @@ public class CheckOutItemService {
         if (!isValidType){
             error = error + "Media type invalid!";
         }
+        if (name.trim().length() == 0){
+            error = error + "Media name cannot be empty!";
+        }
         error = error.trim();
         if (error.length() > 0) {
             throw new IllegalArgumentException(error);
@@ -69,7 +72,7 @@ public class CheckOutItemService {
         return checkOutItem;
     }
     @Transactional
-    public CheckOutItem updateCheckOutItem (int mediaID, Item newMediaType, boolean newIsCheckedOut, boolean newIsReserved, int newBorrowingPeriod, Date newStartDate){
+    public CheckOutItem updateCheckOutItem (int mediaID, Item newMediaType, String newName, boolean newIsCheckedOut, boolean newIsReserved, int newBorrowingPeriod, Date newStartDate){
 
         // Input validation (methods from tutorial notes 2.6.1)
         String error ="";
@@ -89,6 +92,9 @@ public class CheckOutItemService {
         if (newStartDate == null){
             error = error + "startDate cannot be null";
         }
+        if (newName.trim().length() == 0){
+            error = error + "Media name cannot be empty!";
+        }
         error = error.trim();
         if (error.length() > 0) {
             throw new IllegalArgumentException(error);
@@ -97,6 +103,7 @@ public class CheckOutItemService {
         CheckOutItem checkOutItem = (CheckOutItem)mediaRepository.findMediaByID(mediaID);
         checkOutItem.setType(newMediaType);
         checkOutItem.setBorrowingPeriod(newBorrowingPeriod);
+        checkOutItem.setName(newName);
         checkOutItem.setIsCheckedOut(newIsCheckedOut);
         checkOutItem.setIsReserved(newIsReserved);
         checkOutItem.setStartDate(newStartDate);
