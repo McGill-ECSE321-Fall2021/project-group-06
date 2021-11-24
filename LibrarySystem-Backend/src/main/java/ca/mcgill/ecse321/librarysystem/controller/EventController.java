@@ -36,7 +36,7 @@ public class EventController {
      * @throws IllegalArgumentException
      * @author Samuel
      */
-    @PostMapping (value = { "/create_event/{eventName}", "/create_event/{eventName}/" })
+    @PostMapping(value = { "/create_event/{eventName}", "/create_event/{eventName}/" })
     public EventDto createEvent(@PathVariable("eventName") String eventName, @RequestParam String eventDate,
                                 @RequestParam String eventStart,
                                 @RequestParam String eventEnd)
