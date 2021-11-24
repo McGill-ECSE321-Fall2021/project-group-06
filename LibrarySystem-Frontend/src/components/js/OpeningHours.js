@@ -16,6 +16,11 @@ var AXIOS = axios.create({
     data () {
       return {
         openingHours: [],
+        Monday: '',
+        Tuesday: '',
+        Wednesday: '',
+        Thursday: '',
+        Friday: '',
         id: '',
         DayOfWeek: '',
         startTime: '',
@@ -29,6 +34,31 @@ var AXIOS = axios.create({
         .then(response => {
           // JSON responses are automatically parsed.
           this.openingHours = response.data
+          for (let x in response.data){
+            if(response.data[x].dayOfWeek == "Monday"){
+              this.Monday = response.data[x];
+            }
+          }
+          for (let x in response.data){
+            if(response.data[x].dayOfWeek == "Tuesday"){
+              this.Tuesday = response.data[x];
+            }
+          }
+          for (let x in response.data){
+            if(response.data[x].dayOfWeek == "Wednesday"){
+              this.Wednesday = response.data[x];
+            }
+          }
+          for (let x in response.data){
+            if(response.data[x].dayOfWeek == "Thursday"){
+              this.Thursday = response.data[x];
+            }
+          }
+          for (let x in response.data){
+            if(response.data[x].dayOfWeek == "Friday"){
+              this.Friday = response.data[x];
+            }
+          }
         })
         .catch(e => {
           this.errorOH = e
