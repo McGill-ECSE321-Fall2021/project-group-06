@@ -18,6 +18,7 @@
       <tr>
           <button v-bind:disabled="!id" @click="login(id, password)">Login </button>
           <button v-bind:disabled="false" @click="switchLogin()">I'm an User!</button>
+          <button v-bind:disabled="false" @click="switchToOH()">View Opening Hours</button>
       </tr>
       </table>
       <p>

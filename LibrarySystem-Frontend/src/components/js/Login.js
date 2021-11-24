@@ -39,6 +39,10 @@ export default {
       window.location.href = "#/LibrarianLogin"
       location.reload()
     },
+    switchToOH(){
+      window.location.href = "#/OpeningHours"
+      location.reload()
+    },
     login: function (username, password) {
       AXIOS.get('/login/'.concat(username), {
         params: {
