@@ -25,6 +25,9 @@ export default {
     return {
       Account: '',
 			id: '',
+      password: '',
+      newId: '',
+      newPassword: '',
       type: '',
       // name: '',
 			// password: '',
