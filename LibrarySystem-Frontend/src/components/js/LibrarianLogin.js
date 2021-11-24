@@ -36,9 +36,13 @@ export default {
   methods: {
 
     switchLogin(){
-      window.location.href = "#/Login"
+      window.location.href = "#/"
       location.reload()
     },
+    switchToOH(){
+        window.location.href = "#/OpeningHours"
+        location.reload()
+      },
     login: function (username, password) {
       AXIOS.get('/librLogin/'.concat(username), {
         params: {

@@ -1,21 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+//import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Online from '@/components/Online'
 import LibrarianLogin from '@/components/LibrarianLogin'
 import Librarian from '@/components/Librarian'
+import OpeningHours from '@/components/OpeningHours'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'Hello',
+    //   component: Hello
+    // },
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
-    },
-    {
-      path: '/Login',
       name: 'Login',
       component: Login
     },
@@ -34,6 +35,11 @@ export default new Router({
       path: '/Librarian',
       name: 'Librarian',
       component: Librarian
+    },
+    {
+      path: '/OpeningHours',
+      name: 'OpeningHours',
+      component: OpeningHours
     }
   ]
 })
