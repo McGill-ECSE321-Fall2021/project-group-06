@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Offline from "@/components/Offline.vue"
 var config = require('../../../config')
 
 // var backendConfigurer = function(){
@@ -29,8 +30,12 @@ export default {
       // name: '',
 			// password: '',
 			errorLogin: '',
-			response: []
+			response: [],
+      massageForChild: "my dick fell off"
     }
+  },
+  components: {
+    Offline
   },
   
   methods: {
