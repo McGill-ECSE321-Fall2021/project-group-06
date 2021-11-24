@@ -15,6 +15,7 @@ public class Librarian
 	//The Librarian class will have shifts and some methods we will write later.
 	//Since it is an account, it inherits the ID as primary key.
   	private Set<Shift> shift; 
+	private boolean isHeadLibrarian;
 
 	public void setId(int id){
 		this.id = id;
@@ -29,6 +30,13 @@ public class Librarian
 	}
 	public String getPassword() {
 		return password;
+	}
+
+	public void setIsHeadLibrarian(boolean isHL) {
+		this.isHeadLibrarian = isHL;
+	}
+	public boolean getIsHeadLibrarian() {
+		return this.isHeadLibrarian;
 	}
 	
 	//Each shift will have multiple librarians, just as each librarian will have multiple shifts

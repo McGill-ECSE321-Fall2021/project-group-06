@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import ca.mcgill.ecse321.librarysystem.dto.*;
+import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
@@ -30,10 +31,12 @@ public class LibrarianController {
 	public LibrarianDto login(@PathVariable("id") int id, @RequestParam String pwd) {
 		Librarian l=null;
 		l=librarianService.login(id, pwd);
-		if (l instanceof Librarian) {
+		if (l instanceof HeadLibrarian) {
+			return Conversion.convertToDto(l);
+		} else {
 			return Conversion.convertToDto(l);
 		}
-		else return null;
+		
 	}
 	/**
 	 * Create librarian Dto with given parameters
@@ -57,6 +60,9 @@ public class LibrarianController {
 	 
 	@GetMapping(value= {"/librarians/{id}", "/librarians/{id}/"})
 	public LibrarianDto getLibrarianById(@PathVariable("id") int id) {
+		if (librarianService.getLibrarian(id) instanceof HeadLibrarian){
+			return Conversion.convertToDto(librarianService.getLibrarian(id));
+		}
 		return Conversion.convertToDto(librarianService.getLibrarian(id));
 	}
 	
