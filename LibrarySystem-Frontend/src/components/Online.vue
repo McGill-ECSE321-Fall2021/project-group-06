@@ -75,7 +75,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!onlineName || !onlinePassword || !onlineAddress" @click="VARIABLE_TO_CHANGE(onlineName,onlinePassword,onlineAddress)"> update personal information </button>
+          <button v-bind:disabled="!onlineName || !onlinePassword || !onlineAddress" @click="updateInfo(onlineName,onlinePassword,onlineAddress)"> update personal information </button>
         </td>
       </tr>
     </table>
@@ -94,7 +94,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!reserveMediaID" @click="VARIABLE_TO_CHANGE(reserveMediaID)"> reserve media </button>
+          <button v-bind:disabled="!reserveMediaID" @click="reserveItem(reserveMediaID)"> reserve media </button>
         </td>
       </tr>
     </table>

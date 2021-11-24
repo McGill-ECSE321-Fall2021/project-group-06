@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import ca.mcgill.ecse321.librarysystem.dto.MediaDto;
 import ca.mcgill.ecse321.librarysystem.dto.OnlineDto;
+import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Online;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
 import ca.mcgill.ecse321.librarysystem.service.OnlineService;
@@ -62,8 +64,8 @@ public class OnlineController {
      * @author Howard Yu, David
      */
     @PutMapping(value = {"/edit_online/{id}"})
-    public OnlineDto updateOnline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam int numChecked, @RequestParam String username, @RequestParam String password, @RequestParam String email){
-        Online online = onlineService.updateOnline(id, address, name, numChecked, username, password, email);
+    public OnlineDto updateOnline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam String password){
+        Online online = onlineService.updateOnline(id, address, name, password);
         return (Conversion.convertToDto(online));
     }
         /**
@@ -91,6 +93,12 @@ public class OnlineController {
     public OnlineDto returnMediaOnline(@PathVariable("id") int id, @RequestParam int mediaId){
         Online online = onlineService.returnAnItem(mediaId, id);
         return (Conversion.convertToDto(online));
+    }
+
+    @PutMapping(value = {"/reserve_media_online/{id}"})
+    public MediaDto reserveMediaOnline(@PathVariable("id") int id){
+        CheckOutItem media = (CheckOutItem) onlineService.reserveAnItem(id);
+        return (Conversion.convertToDto(media));
     }
         /**
      * 

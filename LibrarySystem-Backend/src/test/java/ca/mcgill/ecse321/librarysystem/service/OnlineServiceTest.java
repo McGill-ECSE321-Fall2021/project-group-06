@@ -479,23 +479,23 @@ public class OnlineServiceTest {
     public void testOnlineUpdate(){
         Online online = null;
         try{
-            online = onlineService.updateOnline(ONLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2, "vaxei", "can", "fc flamewall");
+            online = onlineService.updateOnline(ONLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", "can");
         } catch(IllegalArgumentException e) {
 			fail();
 		} 
         assertEquals("Ascension to Heaven HDDTHR", online.getAddress());
         assertEquals("Merami", online.getName());
-        assertEquals(2, online.getNumChecked());
-        assertEquals("vaxei", online.getUsername());
+        //assertEquals(2, online.getNumChecked());
+        //assertEquals("vaxei", online.getUsername());
         assertEquals("can", online.getPassword());
-        assertEquals("fc flamewall", online.getEmail());
+        //assertEquals("fc flamewall", online.getEmail());
     }
     @Test
     public void testOnlineUpdateInvalidID(){
         Online online = null;
         String error = null;
         try{
-            online = onlineService.updateOnline(0, "Ascension to Heaven HDDTHR" , "Merami", 2, "vaxei", "can", "fc flamewall");
+            online = onlineService.updateOnline(0, "Ascension to Heaven HDDTHR" , "Merami", "can");
         } catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		} 
@@ -507,7 +507,7 @@ public class OnlineServiceTest {
         Online online = null;
         String error = null;
         try{
-            online = onlineService.updateOnline(ONLINE_ID, "", "Merami", 2, "vaxei", "can", "fc flamewall");
+            online = onlineService.updateOnline(ONLINE_ID, "" , "Merami", "can");
         } catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		} 
@@ -519,61 +519,61 @@ public class OnlineServiceTest {
         Online online = null;
         String error = null;
         try{
-            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "", 2, "vaxei", "can", "fc flamewall");
+            online = onlineService.updateOnline(ONLINE_ID, "Ascension to Heaven HDDTHR" , "", "can");
         } catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		} 
         assertNull(online);
         assertEquals(error, "name cannot be empty");
     }
-    @Test
-    public void testOnlineUpdateInvalidItemsChecked(){
-        Online online = null;
-        String error = null;
-        try{
-            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", -23421, "vaxei", "can", "fc flamewall");
-        } catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		} 
-        assertNull(online);
-        assertEquals(error, "items checked cannot be less than 0");
-    }
-    @Test
-    public void testOnlineUpdateInvalidUsername(){
-        Online online = null;
-        String error = null;
-        try{
-            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "", "can", "fc flamewall");
-        } catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		} 
-        assertNull(online);
-        assertEquals(error, "username is not valid");
-    }
+    // @Test
+    // public void testOnlineUpdateInvalidItemsChecked(){
+    //     Online online = null;
+    //     String error = null;
+    //     try{
+    //         online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", -23421, "vaxei", "can", "fc flamewall");
+    //     } catch(IllegalArgumentException e) {
+	// 		error = e.getMessage();
+	// 	} 
+    //     assertNull(online);
+    //     assertEquals(error, "items checked cannot be less than 0");
+    // }
+    // @Test
+    // public void testOnlineUpdateInvalidUsername(){
+    //     Online online = null;
+    //     String error = null;
+    //     try{
+    //         online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "", "can", "fc flamewall");
+    //     } catch(IllegalArgumentException e) {
+	// 		error = e.getMessage();
+	// 	} 
+    //     assertNull(online);
+    //     assertEquals(error, "username is not valid");
+    // }
     @Test
     public void testOnlineUpdateInvalidPassword(){
         Online online = null;
         String error = null;
         try{
-            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "Vsauced", "", "fc flamewall");
+            online = onlineService.updateOnline(ONLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", "");
         } catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		} 
         assertNull(online);
         assertEquals(error, "must have a password");
     }
-    @Test
-    public void testOnlineUpdateInvalidEmail(){
-        Online online = null;
-        String error = null;
-        try{
-            online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "Vsauced", "Sandvich", "");
-        } catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		} 
-        assertNull(online);
-        assertEquals(error, "email must not be empty");
-    }
+    // @Test
+    // public void testOnlineUpdateInvalidEmail(){
+    //     Online online = null;
+    //     String error = null;
+    //     try{
+    //         online = onlineService.updateOnline(ONLINE_ID, "spah sappin mah sentreh" , "I am the spy", 12, "Vsauced", "Sandvich", "");
+    //     } catch(IllegalArgumentException e) {
+	// 		error = e.getMessage();
+	// 	} 
+    //     assertNull(online);
+    //     assertEquals(error, "email must not be empty");
+    // }
     @Test
     public void testOnlineCheckout(){
         Online online = null;

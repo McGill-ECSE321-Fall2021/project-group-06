@@ -114,8 +114,8 @@ public class OnlineService {
      * @param itemsChecked
      */
     @Transactional
-    public Online updateOnline(int aId, String aAddress, String aName, int itemsChecked, String username, String password, String email) {
-        usernameIsValid(username);
+    public Online updateOnline(int aId, String aAddress, String aName, String password) {
+        //usernameIsValid(username);
         if (accountRepository.findAccountById(aId) == null) {
             throw new IllegalArgumentException("Offline Account id does not exist.");
         }
@@ -125,25 +125,25 @@ public class OnlineService {
         if(aName.length()==0 || aName == null){
             throw new IllegalArgumentException("name cannot be empty");
         }
-        if(itemsChecked < 0){
-            throw new IllegalArgumentException("items checked cannot be less than 0");
-        }
-        if(!usernameIsValid(username) || username.length()==0){
-            throw new IllegalArgumentException("username is not valid");
-        }
+        // if(itemsChecked < 0){
+        //     throw new IllegalArgumentException("items checked cannot be less than 0");
+        // }
+        // if(!usernameIsValid(username) || username.length()==0){
+        //     throw new IllegalArgumentException("username is not valid");
+        // }
         if(password.length() == 0 || password == null){
             throw new IllegalArgumentException("must have a password");
         }
-        if(email.length() == 0 || password == null){
-            throw new IllegalArgumentException("email must not be empty");
-        }
+        // if(email.length() == 0 || password == null){
+        //     throw new IllegalArgumentException("email must not be empty");
+        // }
         Online online=(Online) accountRepository.findAccountById(aId);
     	online.setAddress(aAddress);
     	online.setName(aName);
-        online.setNumChecked(itemsChecked);
-        online.setUsername(username);
+        //online.setNumChecked(itemsChecked);
+        //online.setUsername(username);
         online.setPassword(password);
-        online.setEmail(email);
+        // online.setEmail(email);
         
         accountRepository.save(online);
 		return online;
@@ -242,6 +242,9 @@ public class OnlineService {
     public Media reserveAnItem(int mediaId){
         if(mediaRepository.findMediaByID(mediaId) == null){
             throw new IllegalArgumentException("This media Id is non-existent!");
+        }
+        if (mediaRepository.findMediaByID(mediaId) instanceof NonCheckOutItem){
+            throw new IllegalArgumentException("This media Id corresponds to an item that you cannot reserve!");
         }
         CheckOutItem mediaTest = (CheckOutItem) mediaRepository.findMediaByID(mediaId);
         if(mediaTest.getIsReserved()){

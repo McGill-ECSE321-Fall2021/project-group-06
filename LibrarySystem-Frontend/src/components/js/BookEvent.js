@@ -58,6 +58,31 @@ export default {
           .catch(e => {
             this.errorEvent = e
           })
+    },
+    reserveItem: function (mediaID){
+      AXIOS.put('/reserve_media_online/'.concat(mediaID), {}, {
+      })
+          .then(response => {
+            
+          })
+          .catch(e => {
+            this.errorEvent = e
+          })
+    },
+    updateInfo: function (name, password, address){
+      AXIOS.put('/edit_online/'.concat(localStorage.getItem('id')), {}, {
+        params: {
+          address: address,
+          name: name,
+          password: password
+        }
+      })
+          .then(response => {
+            
+          })
+          .catch(e => {
+            this.errorEvent = e
+          })
     }
   }
 
