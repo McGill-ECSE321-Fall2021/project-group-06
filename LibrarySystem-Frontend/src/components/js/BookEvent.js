@@ -18,7 +18,7 @@ export default {
         bookedEvents: [],
         id: '',
         name: '',
-		    errorLogin: '',
+		    errorEvent: '',
       	response: []
     }
   },
@@ -36,18 +36,19 @@ export default {
       var indexEvent = this.events.map(x => x.name).indexOf(name)
       var event = this.events[indexEvent]
 
-      AXIOS.put('/assignEvent/'.concat(id), {
+      AXIOS.put('/assignEvent/'.concat(id), {}, {
         params: {
           name: name
         }
       })
           .then(response => {
-            this.Account.events.push(event)
             this.Account = response.data
+            //this.Account.events.push(event)
+            
             this.bookedEvents = this.Account.events
           })
           .catch(e => {
-            this.errorLogin = e
+            this.errorEvent = e
           })
     }
   }
