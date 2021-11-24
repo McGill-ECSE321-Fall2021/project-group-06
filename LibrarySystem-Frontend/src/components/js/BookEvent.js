@@ -14,22 +14,36 @@ export default {
   data () {
     return {
         account: '',
-		errorLogin: '',
-    	response: []
+        events: [],
+        id: '',
+        name: '',
+		    errorLogin: '',
+      	response: []
     }
   },
-  
+  created: function () {
+    AXIOS.get('/events/getAllEvents')
+    .then(response => {
+      this.events = response.data
+    })
+    .catch(e => {
+      this.errorEvent = e
+    })
+  },
   methods: {
-
     bookEvent: function (id, name) {
+      var indexEvent = this.events.map(x => x.name).indexOf(name)
+      var event = this.events[indexEv]
+
       AXIOS.put('/assignEvent/'.concat(id), {
         params: {
           name: name
         }
       })
           .then(response => {
+            this.Account.events.push(event)
             this.Account = response.data
-
+            this.events = this.Account.events
           })
           .catch(e => {
             this.errorLogin = e
