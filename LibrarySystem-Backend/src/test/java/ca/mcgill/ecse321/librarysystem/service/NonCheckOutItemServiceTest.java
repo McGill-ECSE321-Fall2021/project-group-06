@@ -39,6 +39,7 @@ public class NonCheckOutItemServiceTest {
 
     private static final int MEDIA_ID = 123;
     private static final Item MEDIA_TYPE = Item.Book;
+	private static final String MEDIA_NAME = "Pain";
 
     
     @BeforeEach
@@ -48,6 +49,7 @@ public class NonCheckOutItemServiceTest {
                 NonCheckOutItem media = new NonCheckOutItem();
                 media.setType(MEDIA_TYPE);
                 media.setID(MEDIA_ID);
+				media.setName(MEDIA_NAME);
                 return media;
             } else {
                 return null;
@@ -98,7 +100,7 @@ public class NonCheckOutItemServiceTest {
 
     @Test
 	public void testCreateNonCheckOutItemEmptyID() {
-		assertEquals(0, mediaService.getAllMedias().size());
+		//assertEquals(0, mediaService.getAllMedias().size());
         String error = null;
         NonCheckOutItem nonCheckOutItem = null;
         Item mediaType = Item.Archive;
@@ -132,6 +134,24 @@ public class NonCheckOutItemServiceTest {
 		assertTrue(error.contains("Media ID invalid!"));
 	}
 
+	@Test
+	public void testCreateNonCheckOutItemEmptyName() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        String error = null;
+        NonCheckOutItem nonCheckOutItem = null;
+        Item mediaType = Item.Archive;
+        int mediaID = 1341;
+		try {
+            nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID, "");
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertNull(nonCheckOutItem);
+		assertTrue(error.contains("Media name cannot be empty!"));
+	}
+
     @Test
 	public void testUpdateNonCheckOutItem() {
 		assertEquals(0, mediaService.getAllMedias().size());
@@ -139,8 +159,9 @@ public class NonCheckOutItemServiceTest {
         NonCheckOutItem nonCheckOutItem = null;
         Item mediaType = Item.Newspaper;
         int mediaID = MEDIA_ID;
+		String newName = "example";
 		try {
-            nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID);
+            nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID, newName);
 
 		}catch(IllegalArgumentException e) {
 			fail();
@@ -149,6 +170,7 @@ public class NonCheckOutItemServiceTest {
 		assertNotNull(nonCheckOutItem);
 		assertEquals(mediaID, nonCheckOutItem.getID());
 		assertEquals(mediaType,nonCheckOutItem.getType());
+		assertEquals(newName, nonCheckOutItem.getName());
 	}
 
     @Test
@@ -157,9 +179,10 @@ public class NonCheckOutItemServiceTest {
         String error = null;
         NonCheckOutItem nonCheckOutItem = null;
         Item mediaType = Item.Archive;
+		String newName = "example";
         int mediaID = 0;
 		try {
-            nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID);
+            nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID, newName);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -176,8 +199,9 @@ public class NonCheckOutItemServiceTest {
         NonCheckOutItem nonCheckOutItem = null;
         Item mediaType = Item.Book;
         int mediaID = MEDIA_ID;
+		String newName = "example";
 		try {
-            nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID);
+            nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID, newName);
 
 		}catch(IllegalArgumentException e) {
 			error = e.getMessage();
@@ -186,6 +210,25 @@ public class NonCheckOutItemServiceTest {
 		assertNull(nonCheckOutItem);
 		assertTrue(error.contains("Media type invalid!"));
 	}
+
+	@Test
+	public void testUpdateNonCheckOutItemEmptyName() {
+		assertEquals(0, mediaService.getAllMedias().size());
+        String error = null;
+        NonCheckOutItem nonCheckOutItem = null;
+        Item mediaType = MEDIA_TYPE;
+        int mediaID = MEDIA_ID;
+		try {
+            nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID, "");
+
+		}catch(IllegalArgumentException e) {
+			error = e.getMessage();
+		}
+		
+		assertNull(nonCheckOutItem);
+		assertTrue(error.contains("Media name cannot be empty!"));
+	}
+
     @Test
     public void testGetExistingNonCheckOutItem(){
         assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());

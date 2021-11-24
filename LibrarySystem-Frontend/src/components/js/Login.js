@@ -54,7 +54,7 @@ export default {
           // JSON responses are automatically parsed.
             this.Account = response.data
             if(this.Account.accountCategory == "Online"){
-              // window.localStorage.setItem('id', "69")
+              window.localStorage.setItem('id', this.id)
               window.location.href = "#/Online"
               location.reload()
             } else if (this.Account.accountCategory == "Offline") {
