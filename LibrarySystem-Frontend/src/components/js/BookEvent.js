@@ -13,7 +13,13 @@ export default {
   name: 'BookEvent',
   data () {
     return {
-        account: '',
+        onlineName: '',
+        onlinePassword: '',
+        onlineAddress: '',
+        reserveMediaID: '',
+        checkOutMediaID: '',
+        media: '',
+        online: '',
         events: [],
         bookedEvents: [],
         id: window.localStorage.getItem('id'),
@@ -26,14 +32,14 @@ export default {
     AXIOS.get('/events/getAllEvents')
     .then(response => {
       this.events = response.data
-      this.id = window.localStorage.getItem('id')
+      // this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
       this.errorEvent = e
     })
   },
   methods: {
-    bookEvent: function (id, name) {
+    bookEvent: function (name) {
       var indexEvent = this.events.map(x => x.name).indexOf(name)
       var event = this.events[indexEvent]
 
