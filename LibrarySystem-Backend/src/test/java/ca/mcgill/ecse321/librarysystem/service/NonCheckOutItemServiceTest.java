@@ -100,7 +100,7 @@ public class NonCheckOutItemServiceTest {
 
     @Test
 	public void testCreateNonCheckOutItemEmptyID() {
-		assertEquals(0, mediaService.getAllMedias().size());
+		//assertEquals(0, mediaService.getAllMedias().size());
         String error = null;
         NonCheckOutItem nonCheckOutItem = null;
         Item mediaType = Item.Archive;
@@ -140,7 +140,7 @@ public class NonCheckOutItemServiceTest {
         String error = null;
         NonCheckOutItem nonCheckOutItem = null;
         Item mediaType = Item.Archive;
-        int mediaID = 7492757;
+        int mediaID = 1341;
 		try {
             nonCheckOutItem = nonCheckOutItemService.createNonCheckOutItem(mediaType, mediaID, "");
 
@@ -216,7 +216,7 @@ public class NonCheckOutItemServiceTest {
 		assertEquals(0, mediaService.getAllMedias().size());
         String error = null;
         NonCheckOutItem nonCheckOutItem = null;
-        Item mediaType = Item.Archive;
+        Item mediaType = MEDIA_TYPE;
         int mediaID = MEDIA_ID;
 		try {
             nonCheckOutItem = nonCheckOutItemService.updateNonCheckOutItem(mediaType, mediaID, "");

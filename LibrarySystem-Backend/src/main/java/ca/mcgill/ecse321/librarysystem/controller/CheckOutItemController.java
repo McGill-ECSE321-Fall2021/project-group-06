@@ -63,6 +63,7 @@ public class CheckOutItemController {
      * update checkOutItem
      * @param mediaID
      * @param newMediaType
+     * @param newName
      * @param newIsCheckedOut
      * @param newIsReserved
      * @param newBorrowingPeriod

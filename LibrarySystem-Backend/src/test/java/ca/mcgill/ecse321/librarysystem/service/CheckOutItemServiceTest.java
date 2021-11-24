@@ -206,7 +206,6 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
 		assertTrue(error.contains("startDate cannot be null"));
 	}
-
     @Test
     public void testCreateCheckOutItemEmptyName(){
         CheckOutItem checkOutItem = null;
@@ -226,7 +225,6 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
         assertTrue(error.contains("Media name cannot be empty!"));
     }
-
 
     @Test
     public void testUpdateCheckOutItem(){
@@ -341,7 +339,6 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
 		assertTrue(error.contains("startDate cannot be null"));
 	}
-
     @Test
     public void testUpdateCheckOutItemEmptyName(){
         CheckOutItem checkOutItem = null;
@@ -362,7 +359,6 @@ public class CheckOutItemServiceTest {
 		assertNull(checkOutItem);
         assertTrue(error.contains("Media name cannot be empty!"));
     }
-
     @Test
     public void testGetExistingCheckOutItem(){
         assertEquals(MEDIA_ID, mediaService.getMedia(MEDIA_ID).getID());

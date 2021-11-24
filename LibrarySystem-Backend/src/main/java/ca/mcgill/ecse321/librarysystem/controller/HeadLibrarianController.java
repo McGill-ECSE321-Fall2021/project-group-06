@@ -38,7 +38,7 @@ public class HeadLibrarianController {
 	 * @author Samuel Lin
 	 */
 	
-	@PostMapping(value= {"/updatePassword/{id}", "/updatePassword/{id}/"})
+	@PostMapping(value= {"/headLibrarian_UpdatePassword/{id}", "/headLibrarian_UpdatePassword/{id}/"})
 	public HeadLibrarianDto updateHeadLibrarianPassword (@PathVariable("id") int id, @RequestParam String password){
 		HeadLibrarian headLibrarian = headService.updatePassword(id, password);
 		return Conversion.convertToDto(headLibrarian);

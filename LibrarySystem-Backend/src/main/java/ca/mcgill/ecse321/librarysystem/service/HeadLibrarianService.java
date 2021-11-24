@@ -77,9 +77,9 @@ public class HeadLibrarianService {
 		if (librarianRepository.findLibrarianById(id) == null){
 			throw new IllegalArgumentException("Librarian id does not exist");
 		}
-		Librarian headLibrarian = librarianRepository.findLibrarianById(id);
+		HeadLibrarian headLibrarian = (HeadLibrarian) librarianRepository.findLibrarianById(id);
 		headLibrarian.setPassword(password);
-		return (HeadLibrarian)headLibrarian;
+		return headLibrarian;
 	}
 
 	/**
