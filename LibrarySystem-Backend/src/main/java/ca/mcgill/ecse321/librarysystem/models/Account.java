@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class Account
 {
-  public enum AccountCategory { Online, Offline }
+  public enum AccountCategory { Online, Offline, Librarian, HeadLibrarian }
 
   //All the Private Attributes to Account, ID is the primary key
   private int id;

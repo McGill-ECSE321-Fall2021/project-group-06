@@ -14,8 +14,8 @@ public class AccountController {
     @Autowired
 	private AccountService accountService;
 
-	@GetMapping(value={"/login", "/login/"})
-	public AccountDto login(@RequestParam int id, @RequestParam String password) throws IllegalArgumentException{
+	@GetMapping(value={"/login/{id}", "/login/{id}/"})
+	public AccountDto login(@PathVariable("id") int id, @RequestParam String password) throws IllegalArgumentException{
 		Account account = null;
 		account = accountService.login(id, password);
 		if (account instanceof Offline){
