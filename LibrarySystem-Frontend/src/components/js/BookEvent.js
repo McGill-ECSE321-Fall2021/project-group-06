@@ -1,4 +1,5 @@
 import axios from 'axios'
+import swal from 'sweetalert'
 var config = require('../../../config')
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
@@ -13,6 +14,7 @@ export default {
   name: 'BookEvent',
   data () {
     return {
+        Account:'',
         onlineName: '',
         onlinePassword: '',
         onlineAddress: '',
@@ -33,6 +35,14 @@ export default {
     AXIOS.get('/events/getAllEvents')
     .then(response => {
       this.events = response.data
+      // this.id = window.localStorage.getItem('id')
+    })
+    .catch(e => {
+      this.errorEvent = e
+    }),
+    AXIOS.get('/getOnline/'.concat(localStorage.getItem('id')))
+    .then(response => {
+      this.Account = response.data
       // this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
@@ -63,7 +73,7 @@ export default {
       AXIOS.put('/reserve_media_online/'.concat(mediaID), {}, {
       })
           .then(response => {
-            
+            swal("Success", "Media " + mediaID + " Reserved Successfully!", "success")
           })
           .catch(e => {
             this.errorEvent = e
@@ -78,7 +88,7 @@ export default {
         }
       })
           .then(response => {
-            
+            swal("Success", "Account Updated Successfully!", "success")
           })
           .catch(e => {
             this.errorEvent = e
