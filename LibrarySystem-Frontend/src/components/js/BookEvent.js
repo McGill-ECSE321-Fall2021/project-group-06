@@ -16,7 +16,7 @@ export default {
         account: '',
         events: [],
         bookedEvents: [],
-        id: window.localStorage.getItem('username'),
+        id: window.localStorage.getItem('id'),
         name: '',
 		    errorEvent: '',
       	response: []
@@ -36,7 +36,7 @@ export default {
       var indexEvent = this.events.map(x => x.name).indexOf(name)
       var event = this.events[indexEvent]
 
-      AXIOS.put('/assignEvent/'.concat(id), {}, {
+      AXIOS.put('/assignEvent/'.concat(localStorage.getItem('id')), {}, {
         params: {
           name: name
         }
