@@ -1,11 +1,14 @@
 <template>
 
   <div id="login">
-    <h2>User Login</h2>
+    <h1>User Login</h1>
     <table>
       <tr>
         <td>
-          login
+          <p style="font-size:30px">
+            Login
+          </p>
+
         </td>
       </tr>
       <tr>
@@ -15,7 +18,7 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td style="vertical-align: top;">
           <p>Password</p>
           <input type="text" v-model="password" placeholder="Password">
         </td>
@@ -33,7 +36,7 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td >
           <button v-bind:disabled="false" @click="switchToOH()">View Opening Hours</button>
         </td>
       </tr>
@@ -41,17 +44,19 @@
         <table>
       <tr>
         <td>
-          Register
+          <p style="font-size:30px">
+            Register
+          </p>
         </td>
       </tr>
       <tr>
-        <td>
-          <p >ID number:</p>
+        <td >
+          <p>ID number:</p>
           <input type="text" v-model="newId" placeholder="ID number">
         </td>
       </tr>
       <tr>
-        <td style="text-align:top">
+        <td style="vertical-align: top;">
           <p>Password</p>
           <input type="text" v-model="newPassword" placeholder="Password">
         </td>
