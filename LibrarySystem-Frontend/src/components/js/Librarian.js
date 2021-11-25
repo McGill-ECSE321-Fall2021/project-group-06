@@ -13,12 +13,29 @@ export default {
     name: 'Librarian',
     data () {
         return {
+            librarian : '',
+            id : '',
+            librarianPassword : '',
+            newOfflineID : '',
+            newAddress : '',
+            newName : '',
+            updateOfflineID : '',
+            updateAddress : '',
+            updateName : '',
+            deleteOfflineID : '',
             librarianError: '',
             response: []
         }
     },
     created: function () {
-        
+        AXIOS.get('/librarians/'.concat(localStorage.getItem('id')))
+        .then(response => {
+          this.librarian = response.data
+          // this.id = window.localStorage.getItem('id')
+        })
+        .catch(e => {
+          this.errorEvent = e
+        })
     },
     methods: {
         checkOutAnItem: function (userID, mediaID, date2){
@@ -59,11 +76,11 @@ export default {
                 this.librarianError = e
               })
         },
-        createOffline: function (userID, address, name){
-            AXIOS.post('/createOfflineAccount/'.concat(userID), {}, {
+        createOffline: function (newOfflineID, newAddress, newName){
+            AXIOS.post('/createOfflineAccount/'.concat(newOfflineID), {}, {
                 params: {
-                    addr: address,
-                    name: name
+                    addr: newAddress,
+                    name: newName
                 }
             })
             .then(response => {
