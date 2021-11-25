@@ -30,7 +30,7 @@
 </p>
 </div>
 </template>
-<script>
+<script src="./js/Event.js">
 </script>
 <style scoped>
 #scrollBox {
