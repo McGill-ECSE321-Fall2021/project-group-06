@@ -103,7 +103,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!newId || !newPassword || !newName || !newAddress || !newUsername || !newEmail" @click="login(newId, newPassword)">Register </button>
+          <button v-bind:disabled="!newId || !newPassword || !newName || !newAddress || !newUsername || !newEmail" @click="createOnline(newId,newAddress,newName,newIsLocal,newUsername, newPassword, newEmail)">Register </button>
         </td>
       </tr>
     </table>

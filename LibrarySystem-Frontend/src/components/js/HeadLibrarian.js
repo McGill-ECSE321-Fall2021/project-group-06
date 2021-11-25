@@ -42,7 +42,7 @@ export default {
       }
     },
     created: function () {
-        AXIOS.get('/create_openingHour/'.concat(id), {})
+        AXIOS.get('/openingHours')
         .then(response => {
           // JSON responses are automatically parsed.
           this.openingHours = response.data
@@ -78,61 +78,59 @@ export default {
     
     },
     methods: {
-      createHL: function(id, pwd){
-        AXIOS.post('/create_headlibrarian', '/create_headlibrarian/', {
-          params: {
-            id: id,
-            pwd: pwd,
-          }
-        })
-        .then(response => {
-          this.headLibrarians.push(response.data)
-          this.errorHL = ''
-          this.newHL = ''
-        })
-        .catch(e => {
-          this.erroHL = e
-        })
-      },
+      // createHL: function(id, pwd){
+      //   AXIOS.post('/create_headlibrarian', '/create_headlibrarian/', {
+      //     params: {
+      //       id: id,
+      //       pwd: pwd,
+      //     }
+      //   })
+      //   .then(response => {
+      //     this.headLibrarians.push(response.data)
+      //     this.errorHL = ''
+      //     this.newHL = ''
+      //   })
+      //   .catch(e => {
+      //     this.erroHL = e
+      //   })
+      // },
       createShift: function(shiftID, dayOfWeek, startTime, endTime){
-        AXIOS.post('/create_headlibrarian', '/create_headlibrarian/',{
+        AXIOS.post('/createShift/'.concat(shiftID), {}, {
           params: {
-            shiftID: shiftID,
-            dayOfWeek: dayOfWeek,
-            startTime: startTime,
-            endTime: endTime,
+            DayOfWeek: dayOfWeek,
+            start: startTime,
+            end: endTime,
           }
         })
         .then(response => {
-          this.shifts.push(response.data)
-          this.errorShift = ''
-          this.newShift = ''
+          swal("Success", "Shift Was Created Successfully!", "success")
         })
         .catch(e => {
           this.errorShift = e
         })
       },
-        createOH: function (id,DayOfWeek,startTime,endTime) {
-            AXIOS.post('/create_openingHour/'.concat(id), {}, {
-              params: {
-                id: id,
-                DayOfWeek: DayOfWeek,
-                startTime: startTime,
-                endTime: endTime,
-              }
-            })
-            .then(response => {
-            // JSON responses are automatically parsed.
+      createOH: function (id,DayOfWeek,startTime,endTime) {
+          AXIOS.post('/create_openingHour/'.concat(id), {}, {
+            params: {
+              dayOfWeek: DayOfWeek,
+              startTime: startTime,
+              endTime: endTime,
+            }
+          })
+          .then(response => {
+          // JSON responses are automatically parsed.
 
-            //@niels i think this whole thing could just be empty cause you are getting all of OpeningHours in ur created function above
-            //not 100% sure, just keep it like this
-              this.openingHours.push(response.data)
-              this.errorOH = ''
-              this.newOH = ''
-            })
-            .catch(e => {
-              this.errorOH = e
-            })
-        }
+          //@niels i think this whole thing could just be empty cause you are getting all of OpeningHours in ur created function above
+          //not 100% sure, just keep it like this
+          // This whole thing bad, lol -David
+            // this.openingHours.push(response.data)
+            // this.errorOH = ''
+            // this.newOH = ''
+            swal("Success", "Opening Hour Was Created Successfully!", "success")
+          })
+          .catch(e => {
+            this.errorOH = e
+          })
+      }
     }
 }
