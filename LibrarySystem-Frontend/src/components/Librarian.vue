@@ -286,7 +286,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createStartTime,createEventEndTime)"> create event</button>
+          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createEvent,createStartTime,createEventEndTime)"> create event</button>
         </td>
       </tr>
     </table>
@@ -319,35 +319,6 @@
       <tr>
         <td>
           <button v-bind:disabled="!updateEventName || !updateEventDate || !updateEventStartTime || !updateEventEndTime" @click="updateEvent(updateEventName,updateEventDate,updateEventStartTime,updateEventEndTime)"> update event</button>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td>
-          <p style="font-size:30px">
-            unregister media
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="CheckOutOnlineID" placeholder="Online user ID">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="CheckOutMediaOnlineID" placeholder="media id">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="CheckOutOnlineDate" placeholder="check out date">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!CheckOutOnlineID || !CheckOutMediaOnlineID || !CheckOutOnlineDate" @click="checkOutAnItemOnline(CheckOutOnlineID,CheckOutMediaOnlineID,CheckOutOnlineDate)"> Check out item</button>
         </td>
       </tr>
     </table>
