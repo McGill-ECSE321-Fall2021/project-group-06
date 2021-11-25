@@ -35,6 +35,16 @@ export default {
             returnUserOfflineID:'',
             returnMediaOfflineID:'',
             returnOfflineDate:'',
+            assignEventID:'',
+            assignEventName:'',
+            createEventName:'',
+            createEventDate:'',
+            createEventStartTime:'',
+            createEventEndTime:'',
+            updateEventName:'',
+            updateEventDate:'',
+            updateEventStartTime:'',
+            updateEventEndTime:'',
             librarianError: '',
             response: []
         }
