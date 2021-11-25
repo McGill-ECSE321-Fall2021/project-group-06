@@ -229,6 +229,92 @@
     <table>
       <tr>
         <td>
+          assign Event
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="assignEventID" placeholder="set id">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="assignEventName" placeholder="set Name">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!assignEventID || !assignEventName" @click="assignEvent(assignEventID,assignEventName)"> assign event</button>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          create event
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="createEventName" placeholder="set Name">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="createEventDate" placeholder="set date">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="createEventStartTime" placeholder="set start time">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="createEventEndTime" placeholder="set end time">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createEvent,createStartTime,createEventEndTime)"> create event</button>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          update event
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="updateEventName" placeholder="set Name">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="updateEventDate" placeholder="set date">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="updateEventStartTime" placeholder="set start time">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="updateEventEndTime" placeholder="set end time">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!updateEventName || !updateEventDate || !updateEventStartTime || !updateEventEndTime" @click="updateEvent(updateEventName,updateEventDate,updateEventStartTime,updateEventEndTime)"> update event</button>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
           <p style="font-size:30px">
              view shift
              <button @click="viewShift()"> view shift</button>
