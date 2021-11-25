@@ -322,6 +322,7 @@
         </td>
       </tr>
     </table>
+    <button @click="switchToLogin()"> sign out</button>
     <p>
       <span v-if="librarianError" style="color:red">Error: {{librarianError}} </span>
     </p>

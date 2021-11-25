@@ -145,6 +145,10 @@ export default {
         window.location.href = "#/LibrarianForHL"
         location.reload()
       },
+      switchToLogin(){
+        window.location.href = "#/"
+        location.reload()
+      },
       createShift: function(shiftID, dayOfWeek, startTime, endTime){
         AXIOS.post('/createShift/'.concat(shiftID), {}, {
           params: {

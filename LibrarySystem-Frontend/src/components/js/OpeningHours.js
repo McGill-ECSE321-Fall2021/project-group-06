@@ -68,6 +68,10 @@ var AXIOS = axios.create({
     
     },
     methods: {
+      switchToLogin(){
+        window.location.href = "#/"
+        location.reload()
+      },
         createOH: function (id,DayOfWeek,startTime,endTime) {
             AXIOS.post('/openingHours/'.concat(id), {}, {
               params: {

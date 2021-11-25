@@ -22,7 +22,7 @@
     </td>
   </tr>
 </table>
-
+<button @click="switchToLogin()"> go back to main menu</button>
 <p>
   <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
 </p>

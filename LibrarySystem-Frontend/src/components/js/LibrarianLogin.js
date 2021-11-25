@@ -26,7 +26,7 @@ export default {
   },
   
   methods: {
-
+    
     switchLogin(){
       window.location.href = "#/"
       location.reload()
