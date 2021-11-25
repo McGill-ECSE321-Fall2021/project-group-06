@@ -72,10 +72,7 @@
     height: 100%;
   }
   body{
-    /* height: 100%;
-    margin: 0; */
     background: #fff1e6
-    /* background: linear-gradient(45deg, #DB324D, #511C29); */
   }
   table{
     	width: 500px;
