@@ -53,6 +53,12 @@ public class OpeningHourService {
         if (endTime == null){
             throw new IllegalArgumentException("Opening Hour ending time cannot be empty");
         }
+        Iterable<OpeningHour> oHCheck = openingHourRepository.findAll();
+        for(OpeningHour oHC: oHCheck){
+            if (oHC.getDayOfWeek() == DayOfWeek) {
+                throw new IllegalArgumentException("Opening Hour cannot be created for an existing date");
+            }
+        }
         OpeningHour openingHour = new OpeningHour();
         openingHour.setId(id);
         openingHour.setDayOfWeek(DayOfWeek);

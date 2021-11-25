@@ -149,6 +149,19 @@ public class OpeningHourServiceTest {
         assertNull(oH);
         assertEquals("Opening Hour Id already exists", error);
     }
+    // @Test
+    // public void testCreateOpeningHourSameDay(){
+    //     OpeningHour oH = null;
+    //     String error = null;
+    //     try{
+    //         oH = openingHourService.createOpeningHour(ID_KEY_2, DAY_OF_WEEK, START_TIME_U, END_TIME_U);
+    //     } catch (IllegalArgumentException e){
+    //         error = e.getMessage();
+    //     }
+    //     assertNull(oH);
+    //     assertEquals("Opening Hour cannot be created for an existing date", error);
+        
+    // }
     //Done Test Create Opening Hour
     @Test
     public void testGetOpeningHourIDis0(){
@@ -256,4 +269,5 @@ public class OpeningHourServiceTest {
         assertNull(oH);
         assertEquals("OpeningHour cannot be found!", error);
     }
+
 }
