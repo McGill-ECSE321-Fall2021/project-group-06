@@ -33,38 +33,40 @@ export default {
     }
   },
   created: function () {
-    AXIOS.get('/events/getAllEvents')
-    .then(response => {
-      this.events = response.data
-      // this.id = window.localStorage.getItem('id')
-    })
-    .catch(e => {
-      this.errorEvent = e
-    }),
-    AXIOS.get('/checkOutItems')
-    .then(response => {
-      this.medias = response.data
-      // this.id = window.localStorage.getItem('id')
-    })
-    .catch(e => {
-      this.errorEvent = e
-    }),
-    AXIOS.get('/nonCheckOutItems')
-    .then(response => {
-      this.medias = response.data
-      // this.id = window.localStorage.getItem('id')
-    })
-    .catch(e => {
-      this.errorEvent = e
-    }),
     AXIOS.get('/getOnline/'.concat(localStorage.getItem('id')))
     .then(response => {
       this.Account = response.data
+      this.events = response.data.events
+      this.medias = response.data.medias
       // this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
       this.errorEvent = e
     })
+    // AXIOS.get('/events/getAllEvents')
+    // .then(response => {
+    //   this.events = response.data
+    //   // this.id = window.localStorage.getItem('id')
+    // })
+    // .catch(e => {
+    //   this.errorEvent = e
+    // }),
+    // AXIOS.get('/checkOutItems')
+    // .then(response => {
+    //   this.medias = response.data
+    //   // this.id = window.localStorage.getItem('id')
+    // })
+    // .catch(e => {
+    //   this.errorEvent = e
+    // }),
+    // AXIOS.get('/nonCheckOutItems')
+    // .then(response => {
+    //   this.medias = response.data
+    //   // this.id = window.localStorage.getItem('id')
+    // })
+    // .catch(e => {
+    //   this.errorEvent = e
+    // })
   },
   methods: {
     switchToLogin(){
@@ -92,6 +94,9 @@ export default {
     },
     reserveItem: function (mediaID){
       AXIOS.put('/reserve_media_online/'.concat(mediaID), {}, {
+        params: {
+          userId: localStorage.getItem('id')
+        }
       })
           .then(response => {
             swal("Success", "Media " + mediaID + " Reserved Successfully!", "success")

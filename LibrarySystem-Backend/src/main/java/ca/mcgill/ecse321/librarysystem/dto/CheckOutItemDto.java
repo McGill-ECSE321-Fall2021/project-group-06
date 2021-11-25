@@ -10,6 +10,7 @@ public class CheckOutItemDto extends MediaDto {
     private boolean isReserved;
     private int borrowingPeriod;
     private Date startDate;
+    private int userReserving;
     
 	public CheckOutItemDto() {
 	}
@@ -28,12 +29,13 @@ public class CheckOutItemDto extends MediaDto {
         this.startDate = startDate;
 	}
 
-    public CheckOutItemDto(int mediaID,Item mediaType,String name, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate) {
+    public CheckOutItemDto(int mediaID,Item mediaType,String name, boolean isCheckedOut, boolean isReserved, int borrowingPeriod, Date startDate, int userReserving) {
         super(mediaType, name, mediaID);
         this.isCheckedOut = isCheckedOut;
         this.isReserved = isReserved;
         this.borrowingPeriod = borrowingPeriod;
         this.startDate = startDate;
+        this.userReserving = userReserving;
 	}
 
     public boolean isCheckedOut() {
@@ -50,6 +52,10 @@ public class CheckOutItemDto extends MediaDto {
 
     public Date getStartDate(){
         return this.startDate;
+    }
+
+    public int getUserReserving(){
+        return this.userReserving;
     }
     
 }
