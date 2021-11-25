@@ -38,6 +38,11 @@
           <button v-bind:disabled="false" @click="switchToOH()">View Opening Hours</button>
         </td>
       </tr>
+      <tr>
+        <td >
+          <button v-bind:disabled="false" @click="switchToMedia()">view medias</button>
+        </td>
+      </tr>
     </table>
         <table>
       <tr>
@@ -54,14 +59,50 @@
         </td>
       </tr>
       <tr>
+        <td >
+          <p>name:</p>
+          
+          <input type="text" v-model="newName" placeholder="name">
+        </td>
+      </tr>
+      <tr>
         <td style="vertical-align: top;">
-          <p>Password</p>
+          
+          <p>Address: </p>
+          <input type="text" v-model="newAddress" placeholder="Address">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">
+          <p>local:</p>
+          <select v-model="newIsLocal">
+            <option value="True">local</option>
+            <option value="False">not local</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">
+          <p>username:</p>
+          <input type="text" v-model="newUsername" placeholder="Username">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">
+          
+          <p>email:</p>
+          <input type="text" v-model="newEmail" placeholder="Email">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">
+          <p>Password:</p>
           <input type="text" v-model="newPassword" placeholder="Password">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!newId || !newPassword" @click="login(newId, newPassword)">Register </button>
+          <button v-bind:disabled="!newId || !newPassword || !newName || !newAddress || !newUsername || !newEmail" @click="createOnline(newId,newAddress,newName,newIsLocal,newUsername, newPassword, newEmail)">Register </button>
         </td>
       </tr>
     </table>
@@ -79,6 +120,7 @@
 /* @import '/assets/design.css'; */
   #login {  
     min-height: 400px;
+
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     /* background: #f2ece8; */

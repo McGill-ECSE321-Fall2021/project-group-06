@@ -27,6 +27,7 @@ export default {
         medias: [],
         id: window.localStorage.getItem('id'),
         name: '',
+        
 		    errorEvent: '',
       	response: []
     }
@@ -35,6 +36,22 @@ export default {
     AXIOS.get('/events/getAllEvents')
     .then(response => {
       this.events = response.data
+      // this.id = window.localStorage.getItem('id')
+    })
+    .catch(e => {
+      this.errorEvent = e
+    }),
+    AXIOS.get('/checkOutItems')
+    .then(response => {
+      this.medias = response.data
+      // this.id = window.localStorage.getItem('id')
+    })
+    .catch(e => {
+      this.errorEvent = e
+    }),
+    AXIOS.get('/nonCheckOutItems')
+    .then(response => {
+      this.medias = response.data
       // this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
@@ -74,6 +91,7 @@ export default {
       })
           .then(response => {
             swal("Success", "Media " + mediaID + " Reserved Successfully!", "success")
+            this.checkedOutMedias = this.Account.medias
           })
           .catch(e => {
             this.errorEvent = e

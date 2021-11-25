@@ -79,6 +79,14 @@ public class CheckOutItemController {
                 CheckOutItem checkOutItem = checkOutItemService.updateCheckOutItem(mediaID, newMediaType, newName, newIsCheckedOut, newIsReserved, newBorrowingPeriod, newStartDate);
                 return Conversion.convertToDto(checkOutItem);
     }
+
+    @PutMapping(value = { "/edit_boolean/{id}"})
+    public CheckOutItemDto updateCheckOut(@PathVariable("id") int mediaID, @RequestParam boolean newIsCheckedOut, @RequestParam String date)
+            throws IllegalArgumentException {
+                Date newStartDate = Date.valueOf(date);
+                CheckOutItem checkOutItem = checkOutItemService.checkingOut(mediaID, newIsCheckedOut, newStartDate);
+                return Conversion.convertToDto(checkOutItem);
+    }
         /**
      * 
      * delete checkOutItem

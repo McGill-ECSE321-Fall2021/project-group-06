@@ -1,13 +1,45 @@
 <template>
-  <div id="headlibrarian">
-    <h2>HeadLibrarian</h2>
+  <div id="openinghours">
+    <h2>Opening Hours</h2>
     <table>
       <tr>
-          <td>Test HL</td>
+        <td>
+          Monday: {{ Monday.startTime }} to {{ Monday.endTime }} ID: {{ Monday.id }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Tuesday: {{ Tuesday.startTime }} to {{ Tuesday.endTime }} ID: {{ Tuesday.id }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Wednesday: {{ Wednesday.startTime }} to {{ Wednesday.endTime }} ID: {{ Wednesday.id }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Thursday: {{ Thursday.startTime }} to {{ Thursday.endTime }} ID: {{ Thursday.id }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Friday: {{ Friday.startTime }} to {{ Friday.endTime }} ID: {{ Friday.id }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Saturday : Closed
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Sunday : Closed
+        </td>
       </tr>
     </table>
     <p>
-        <span v-if="errorOH" style="color:red">Error: {{errorHL}} </span>
+        <span v-if="errorOH" style="color:red">Error: {{errorOH}} </span>
     </p>
   </div>
 </template>
@@ -17,7 +49,7 @@
 
 
 <style scoped>
-  #headlibrarian {
+  #openinghours {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     background: #f2ece8;

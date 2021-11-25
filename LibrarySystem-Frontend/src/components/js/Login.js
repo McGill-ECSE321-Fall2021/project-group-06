@@ -27,18 +27,24 @@ export default {
 			id: '',
       password: '',
       newId: '',
+      newName: '',
+      newAddress: '',
+      newIsLocal: '',
+      newUsername: '',
+      newEmail: '',
       newPassword: '',
       type: '',
-      // name: '',
-			// password: '',
 			errorLogin: '',
 			response: [],
-      //massageForChild: "my dick fell off"
     }
   },
   
   methods: {
 
+    switchToMedia(){
+      window.location.href = "#/Media"
+      location.reload()
+    },
     switchLogin(){
       window.location.href = "#/LibrarianLogin"
       location.reload()
@@ -68,6 +74,26 @@ export default {
           .catch(e => {
             this.errorLogin = e
           })
+    },
+    createOnline: function (userID, address, name, isLocal, username, password, email){
+      AXIOS.post('/onlines/'.concat(userID), {}, {
+          params: {
+              address: address,
+              name: name,
+              accountCategory: "Online",
+              isLocal: isLocal,
+              numChecked: "0",
+              username: username,
+              password: password,
+              email: email
+          }
+      })
+      .then(response => {
+          swal("Success", "Account Created Successfully! Please Login", "success")
+        })
+        .catch(e => {
+          this.librarianError = e
+        })
     }
     
     // login (username, password) {

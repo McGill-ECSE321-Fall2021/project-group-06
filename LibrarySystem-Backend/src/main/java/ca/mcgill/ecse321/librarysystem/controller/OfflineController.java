@@ -92,8 +92,8 @@ public class OfflineController {
      * @author Howard Yu, David
      */
     @PutMapping(value = {"/edit_offline/{id}"})
-    public OfflineDto updateOffline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name, @RequestParam int numChecked){
-        Offline offline = offlineService.updateOffline(id, address, name, numChecked);
+    public OfflineDto updateOffline(@PathVariable("id") int id, @RequestParam String address, @RequestParam String name){
+        Offline offline = offlineService.updateOffline(id, address, name);
         return (Conversion.convertToDto(offline));
     }
         /**
