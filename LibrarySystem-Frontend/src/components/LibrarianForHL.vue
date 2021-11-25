@@ -257,6 +257,7 @@
       <tr>
         <td>
           <input type="text" v-model="createEventName" placeholder="set Name">
+          {{ createEventName }}
         </td>
       </tr>
       <tr>
@@ -267,16 +268,18 @@
       <tr>
         <td>
           <input type="text" v-model="createEventStartTime" placeholder="set start time">
+          {{ createEventStartTime }}
         </td>
       </tr>
       <tr>
         <td>
           <input type="text" v-model="createEventEndTime" placeholder="set end time">
+          {{ createEventEndTime }}
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createEvent,createStartTime,createEventEndTime)"> create event</button>
+          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createEventStartTime,createEventEndTime)"> create event</button>
         </td>
       </tr>
     </table>

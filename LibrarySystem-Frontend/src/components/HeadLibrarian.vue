@@ -301,11 +301,11 @@
       </tr>
       <tr>
         <td>
-          <p>book type:</p>
+          <p>media type:</p>
           <select v-model="createCOIType">
-            <option value="book">book</option>
-            <option value="PLACEHOLDER">PLACEHOLDER</option>
-            <option value="CHANGE ME">DON'T FORGET TO CHANGE VALUE</option>
+            <option value="Book">book</option>
+            <option value="Movie">movie</option>
+            <option value="Music">music</option>
           </select>
         </td>
       </tr>
@@ -343,11 +343,11 @@
       </tr>
       <tr>
         <td>
-          <p>book type:</p>
+          <p>media type:</p>
           <select v-model="updateCOIType">
-            <option value="book">book</option>
-            <option value="PLACEHOLDER">PLACEHOLDER</option>
-            <option value="CHANGE ME">DON'T FORGET TO CHANGE VALUE</option>
+            <option value="Book">book</option>
+            <option value="Movie">movie</option>
+            <option value="Music">music</option>
           </select>
         </td>
       </tr>
@@ -415,16 +415,16 @@
       </tr>
       <tr>
         <td>
-          <p>set type:</p>
+          <p>media type:</p>
           <select v-model="createNCOIType">
-            <option value="newspaper">newspaper</option>
-            <option value="CHANGE ME">change</option>
+            <option value="Newspaper">newspaper</option>
+            <option value="Archive">archive</option>
           </select>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createNCOIName" placeholder="set id">
+          <input type="text" v-model="createNCOIName" placeholder="set name">
         </td>
       </tr>
       <tr>
@@ -446,16 +446,16 @@
       </tr>
       <tr>
         <td>
-          <p>set type:</p>
+          <p>media type:</p>
           <select v-model="updateNCOIType">
-            <option value="newspaper">newspaper</option>
-            <option value="CHANGE ME">change</option>
+            <option value="Newspaper">newspaper</option>
+            <option value="Archive">archive</option>
           </select>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateNCOIName" placeholder="set id">
+          <input type="text" v-model="updateNCOIName" placeholder="set name">
         </td>
       </tr>
       <tr>

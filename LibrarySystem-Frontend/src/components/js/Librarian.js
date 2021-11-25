@@ -203,7 +203,8 @@ export default {
                 params: {
                     eventDate: eventDate,
                     eventStart: eventStart,
-                    eventEnd: eventEnd
+                    eventEnd: eventEnd,
+                    
                 }
             })
             .then(response => {
@@ -214,9 +215,10 @@ export default {
               })
         },
         updateEvent: function (newName, newDate, newStart, newEnd){
+            location.reload()
             AXIOS.put('/update_events/'.concat(newName), {}, {
                 params: {
-                    ventDate: newDate,
+                    eventDate: newDate,
                     eventStart: newStart,
                     eventEnd: newEnd
                 }
