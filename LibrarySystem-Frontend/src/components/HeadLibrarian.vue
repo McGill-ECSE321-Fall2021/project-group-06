@@ -482,6 +482,7 @@
       </tr>
     </table>
     <button  @click="switchToLibrarian()"> switch to librarian options</button>
+    <button  @click="switchToLogin()"> sign out</button>
     <p>
         <span v-if="errorOH" style="color:red">Error: {{errorOH}} </span>
     </p>

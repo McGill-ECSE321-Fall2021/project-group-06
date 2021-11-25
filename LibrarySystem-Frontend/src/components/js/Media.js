@@ -39,6 +39,10 @@ export default {
     },
     
     methods: {
+      switchToLogin(){
+        window.location.href = "#/"
+        location.reload()
+      },
     }
   
 }
