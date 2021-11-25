@@ -207,11 +207,28 @@ export default {
                 params: {
                     eventDate: eventDate,
                     eventStart: eventStart,
-                    eventEnd: eventEnd
+                    eventEnd: eventEnd,
+                    
                 }
             })
             .then(response => {
                 swal("Success", "Event Created Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
+        updateEvent: function (newName, newDate, newStart, newEnd){
+            location.reload()
+            AXIOS.put('/update_events/'.concat(newName), {}, {
+                params: {
+                    eventDate: newDate,
+                    eventStart: newStart,
+                    eventEnd: newEnd
+                }
+            })
+            .then(response => {
+                swal("Success", "Event Was Updated Successfully!", "success")
               })
               .catch(e => {
                 this.librarianError = e
