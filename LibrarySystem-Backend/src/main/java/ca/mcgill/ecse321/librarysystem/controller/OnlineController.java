@@ -96,8 +96,8 @@ public class OnlineController {
     }
 
     @PutMapping(value = {"/reserve_media_online/{id}"})
-    public MediaDto reserveMediaOnline(@PathVariable("id") int id){
-        CheckOutItem media = (CheckOutItem) onlineService.reserveAnItem(id);
+    public MediaDto reserveMediaOnline(@PathVariable("id") int id, @RequestParam int userId){
+        CheckOutItem media = (CheckOutItem) onlineService.reserveAnItem(id, userId);
         return (Conversion.convertToDto(media));
     }
         /**
