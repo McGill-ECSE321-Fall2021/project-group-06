@@ -213,6 +213,21 @@ export default {
                 this.librarianError = e
               })
         },
+        updateEvent: function (newName, newDate, newStart, newEnd){
+            AXIOS.put('/update_events/'.concat(newName), {}, {
+                params: {
+                    ventDate: newDate,
+                    eventStart: newStart,
+                    eventEnd: newEnd
+                }
+            })
+            .then(response => {
+                swal("Success", "Event Was Updated Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
         assignEvent: function (userID, name){
             AXIOS.put('/assignEvent/'.concat(userID), {}, {
                 params: {
