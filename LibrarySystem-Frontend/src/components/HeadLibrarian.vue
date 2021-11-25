@@ -144,6 +144,28 @@
     <table>
       <tr>
         <td>
+          unassign shift to librarian
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="unAssignShiftID" placeholder="set shift id">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="unAssignLibrarianID" placeholder="set librarian id">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!unAssignShiftID || !unAssignLibrarianID" @click="unAssignShift(unAssignShiftID,unAssignLibrarianID)"> unAssign shift</button>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
           create opening hour
         </td>
       </tr>

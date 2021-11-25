@@ -286,7 +286,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createStartTime,createEventEndTime)"> create event</button>
+          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createEvent,createStartTime,createEventEndTime)"> create event</button>
         </td>
       </tr>
     </table>
