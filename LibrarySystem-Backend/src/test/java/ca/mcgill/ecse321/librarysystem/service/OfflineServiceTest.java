@@ -398,13 +398,12 @@ public class OfflineServiceTest {
     public void testOfflineUpdate(){
         Offline offline = null;
         try{
-            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "Merami", 2);
+            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "Merami");
         } catch(IllegalArgumentException e) {
 			fail();
 		} 
         assertEquals("Ascension to Heaven HDDTHR", offline.getAddress());
         assertEquals("Merami", offline.getName());
-        assertEquals(2, offline.getNumChecked());
     }
 
     @Test
@@ -412,7 +411,7 @@ public class OfflineServiceTest {
         Offline offline = null;
         String error = null;
         try{
-            offline = offlineService.updateOffline(0, "Ascension to Heaven HDDTHR" , "Merami", 2);
+            offline = offlineService.updateOffline(0, "Ascension to Heaven HDDTHR" , "Merami");
         } catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		} 
@@ -425,7 +424,7 @@ public class OfflineServiceTest {
         Offline offline = null;
         String error = null;
         try{
-            offline = offlineService.updateOffline(OFFLINE_ID, null, "Merami", 2);
+            offline = offlineService.updateOffline(OFFLINE_ID, null, "Merami");
         } catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		} 
@@ -438,7 +437,7 @@ public class OfflineServiceTest {
         Offline offline = null;
         String error = null;
         try{
-            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , null, 2);
+            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , null);
         } catch(IllegalArgumentException e) {
 			error = e.getMessage();
 		} 
@@ -446,18 +445,18 @@ public class OfflineServiceTest {
         assertEquals(error, "name cannot be empty");
     }
 
-    @Test
-    public void testOfflineUpdateInvalidItemsChecked(){
-        Offline offline = null;
-        String error = null;
-        try{
-            offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "something", -12323);
-        } catch(IllegalArgumentException e) {
-			error = e.getMessage();
-		} 
-        assertNull(offline);
-        assertEquals(error, "items checked cannot be less than 0");
-    }
+    // @Test
+    // public void testOfflineUpdateInvalidItemsChecked(){
+    //     Offline offline = null;
+    //     String error = null;
+    //     try{
+    //         offline = offlineService.updateOffline(OFFLINE_ID, "Ascension to Heaven HDDTHR" , "something", -12323);
+    //     } catch(IllegalArgumentException e) {
+	// 		error = e.getMessage();
+	// 	} 
+    //     assertNull(offline);
+    //     assertEquals(error, "items checked cannot be less than 0");
+    // }
     @Test
     public void testOfflineCheckout(){
         Offline offline = null;

@@ -10,7 +10,7 @@
       </tr>
       <tr>
         <td>
-          {{librarian.id}}
+          {{ librarian.id }}
         </td>
       </tr>
     </table>
@@ -29,7 +29,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!librarianPassword" @click="updateInfo(librarianPassword)"> update personal information </button>
+          <button v-bind:disabled="!librarianPassword" @click="updatePW(librarianPassword)"> update personal information </button>
         </td>
       </tr>
     </table>
@@ -87,7 +87,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!updateOfflineID || !updateAddress || !updateName" @click="createOffline(updateOfflineID, updateAddress, updateName)"> update Offline user</button>
+          <button v-bind:disabled="!updateOfflineID || !updateAddress || !updateName" @click="updateOffline(updateOfflineID, updateAddress, updateName)"> update Offline user</button>
         </td>
       </tr>
     </table>

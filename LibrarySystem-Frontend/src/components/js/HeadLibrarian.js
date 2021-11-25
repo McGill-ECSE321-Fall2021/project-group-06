@@ -123,9 +123,6 @@ export default {
           //@niels i think this whole thing could just be empty cause you are getting all of OpeningHours in ur created function above
           //not 100% sure, just keep it like this
           // This whole thing bad, lol -David
-            // this.openingHours.push(response.data)
-            // this.errorOH = ''
-            // this.newOH = ''
             swal("Success", "Opening Hour Was Created Successfully!", "success")
           })
           .catch(e => {
