@@ -27,18 +27,24 @@ export default {
 			id: '',
       password: '',
       newId: '',
+      newName: '',
+      newAddress: '',
+      newIsLocal: '',
+      newUsername: '',
+      newEmail: '',
       newPassword: '',
       type: '',
-      // name: '',
-			// password: '',
 			errorLogin: '',
 			response: [],
-      //massageForChild: "my dick fell off"
     }
   },
   
   methods: {
 
+    switchToMedia(){
+      window.location.href = "#/Media"
+      location.reload()
+    },
     switchLogin(){
       window.location.href = "#/LibrarianLogin"
       location.reload()
