@@ -2,7 +2,7 @@
 
   <div id="Online">
     <table>
-      <tr v="online">
+      <tr v="Account">
         <td>
           <p style="font-size:30px">
             Personal information
@@ -29,19 +29,14 @@
           {{ Account.numChecked }}
         </td>
       </tr>
-      <tr>
+      <tr v-for="event in bookedEvent" :key="event.name">
         <td>
-          VARIABLE_TO_CHANGE ONLINE EVENTS
+          {{event.name}}
         </td>
       </tr>
-      <tr>
+      <tr v-for="media in checkedOutMedias" :key="media.name">
         <td>
-          VARIABLE_TO_CHANGE ONLINE MEDIAS
-        </td>
-      </tr>
-      <tr>
-        <td>
-          VARIABLE_TO_CHANGE ONLINE PASSWORD
+          {{name}}
         </td>
       </tr>
       <tr>
@@ -98,29 +93,12 @@
         </td>
       </tr>
     </table>
-       <table>
-      <tr>
-        <td>
-          <p style="font-size:30px">
-            Checkout an Item
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="checkOutMediaID" placeholder="media ID">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!checkOutMediaID" @click="VARIABLE_TO_CHANGE(checkOutMediaID)"> checkout this item </button>
-        </td>
-      </tr>
-    </table>
     <div id="scrollBox">
       <table border=1 frame=hsides rules=rows style="width:100%">
         <tr v-for="media in medias" :key="media.name">
-          {{ media.name }}
+          <td>
+            {{ media.name }}
+          </td>
         </tr>
       </table>
     </div>

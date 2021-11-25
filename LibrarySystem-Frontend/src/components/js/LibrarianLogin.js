@@ -53,9 +53,11 @@ export default {
           // JSON responses are automatically parsed.
             this.Account = response.data
             if(this.Account.hl){
+                window.localStorage.setItem('id', this.id)
                 window.location.href = "#/HeadLibrarian"
                 location.reload()
             } else {
+                window.localStorage.setItem('id', this.id)
                 window.location.href = "#/Librarian"
                 location.reload()
             }

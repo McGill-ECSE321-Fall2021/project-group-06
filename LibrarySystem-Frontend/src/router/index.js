@@ -8,6 +8,8 @@ import LibrarianLogin from '@/components/LibrarianLogin'
 import Librarian from '@/components/Librarian'
 import OpeningHours from '@/components/OpeningHours'
 import HeadLibrarian from '@/components/HeadLibrarian'
+import Media from '@/components/Media'
+import ViewShift from '@/components/ViewShift'
 Vue.use(Router)
 
 export default new Router({
@@ -17,6 +19,7 @@ export default new Router({
     //   name: 'Hello',
     //   component: Hello
     // },
+    
     {
       path: '/',
       name: 'Login',
@@ -52,6 +55,16 @@ export default new Router({
       path: '/HeadLibrarian',
       name: 'HeadLibrarian',
       component: HeadLibrarian
-    }
+    },
+    {
+      path: '/Media',
+      name: 'Media',
+      component: Media
+    },
+    {
+      path: '/ViewShift',
+      name: 'ViewShift',
+      component: ViewShift
+    },
   ]
 })
