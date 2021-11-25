@@ -23,6 +23,12 @@ export default {
             updateAddress : '',
             updateName : '',
             deleteOfflineID : '',
+            CheckOutOfflineID:'',
+            CheckOutMediaID:'',
+            CheckOutDate:'',
+            returnUserID:'',
+            returnMediaID:'',
+            returnDate:'',
             librarianError: '',
             response: []
         }
