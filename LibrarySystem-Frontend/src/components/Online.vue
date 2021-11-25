@@ -109,6 +109,7 @@
         </tr>
       </table>
     </div>
+    <button @click="switchToLogin()"> sign out</button>
     <p>
       <span v-if="errorEvent" style="color:red">Error: {{errorEvent}} </span>
     </p>

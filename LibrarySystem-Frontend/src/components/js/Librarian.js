@@ -61,6 +61,10 @@ export default {
     },
     
     methods: {
+        switchToLogin(){
+            window.location.href = "#/"
+            location.reload()
+        },
         shiftToHeadLibrarian(){
             window.localStorage.setItem('id', localStorage.getItem('id'))
             window.location.href = "#/HeadLibrarian"
