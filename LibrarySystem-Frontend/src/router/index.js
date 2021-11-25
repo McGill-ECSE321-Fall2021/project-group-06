@@ -11,6 +11,8 @@ import HeadLibrarian from '@/components/HeadLibrarian'
 import Media from '@/components/Media'
 import ViewShift from '@/components/ViewShift'
 import LibrarianForHL from '@/components/LibrarianForHL'
+import Event from '@/components/Event'
+import ViewShiftForHL from '@/components/ViewShiftForHL'
 Vue.use(Router)
 
 export default new Router({
@@ -72,5 +74,16 @@ export default new Router({
       name: 'LibrarianForHL',
       component: LibrarianForHL
     },
+    {
+      path: '/Event',
+      name: 'Event',
+      component: Event
+    },
+    {
+      path: '/ViewShiftForHL',
+      name: 'ViewShiftForHL',
+      component: ViewShiftForHL
+    },
+
   ]
 })

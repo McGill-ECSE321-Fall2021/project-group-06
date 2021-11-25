@@ -34,6 +34,11 @@ export default {
         window.location.href = "#/Librarian"
         location.reload()
       },
+      switchToHeadLibrarian(){
+        window.localStorage.setItem('id', localStorage.getItem('id'))
+        window.location.href = "#/HeadLibrarian"
+        location.reload()
+      },
     }
   
 }
