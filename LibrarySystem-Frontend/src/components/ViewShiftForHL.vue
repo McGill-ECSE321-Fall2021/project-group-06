@@ -1,8 +1,9 @@
 <template> 
-<div id="scrollBox">
+<div>
   <h2>
     View Shift
   </h2>
+  <div id="scrollBox">
   <table>
   <tr v-for="shift in shifts" :key="shift.id">
     <td>
@@ -13,11 +14,12 @@
     </td>
   </tr>
 </table>
+</div>
   <table>
       <tr>
         <td>
           <p style="font-size:30px">
-             <button @click="switchToLibrarian()"> go back to main menu</button>
+             <button @click="switchToHeadLibrarian()"> go back to main menu</button>
           </p>
         </td>
       </tr>

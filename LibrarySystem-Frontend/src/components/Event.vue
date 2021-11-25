@@ -1,23 +1,26 @@
 <template> 
+<div>
+    <h2>
+        View Events
+    </h2>
 <div id="scrollBox">
-  <h2>
-    View Shift
-  </h2>
+  
   <table>
-  <tr v-for="shift in shifts" :key="shift.id">
+  <tr v-for="event in events" :key="event.id">
     <td>
-      {{ shift.shiftID }}
-      {{ shift.dayOfWeek }}
-      {{ shift.startTime }}
-      {{ endTime }}
+      {{ event.name}}
+      {{event.date}}
+      {{event.eventStart}}
+      {{event.eventEnd}}
     </td>
   </tr>
-</table>
+  </table>
+</div>
   <table>
       <tr>
         <td>
           <p style="font-size:30px">
-             <button @click="switchToLibrarian()"> go back to main menu</button>
+             <button @click="switchToLogin()"> go back to main menu</button>
           </p>
         </td>
       </tr>
@@ -27,7 +30,7 @@
 </p>
 </div>
 </template>
-<script src="./js/ViewShift.js">
+<script src="./js/BookEvent.js">
 </script>
 <style scoped>
 #scrollBox {

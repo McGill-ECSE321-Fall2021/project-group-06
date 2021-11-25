@@ -47,6 +47,11 @@
           <button v-bind:disabled="false" @click="switchToMedia()">View Medias</button>
         </td>
       </tr>
+      <tr>
+        <td >
+          <button v-bind:disabled="false" @click="switchToEvent()">View Events</button>
+        </td>
+      </tr>
     </table>
     </div>
     <div class = "column">
