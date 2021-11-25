@@ -323,12 +323,13 @@
       </tr>
     </table>
     <button @click="switchToLogin()"> sign out</button>
+    <button @click="switchToMedia()"> view Media</button>
     <p>
       <span v-if="librarianError" style="color:red">Error: {{librarianError}} </span>
     </p>
     </div>
 </template>
-<script src="./js/librarian.js">
+<script src="./js/Librarian.js">
 </script>
 <style>
   #librarian {

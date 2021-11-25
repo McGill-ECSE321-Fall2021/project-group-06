@@ -61,11 +61,6 @@ export default {
     },
     
     methods: {
-        switchToMedia(){
-            window.localStorage.setItem('id', localStorage.getItem('id'))
-            window.location.href = "#/MediaForLibrarian"
-            location.reload()
-        },
         switchToHLMedia(){
             window.localStorage.setItem('id', localStorage.getItem('id'))
             window.location.href = "#/MediaForHL"

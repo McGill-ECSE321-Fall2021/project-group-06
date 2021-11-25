@@ -323,12 +323,13 @@
       </tr>
     </table>
     <button  @click="shiftToHeadLibrarian()"> switch to HeadLibrarian options</button>
+    <button @click="switchToHLMedia()"> view Media</button>
     <p>
       <span v-if="librarianError" style="color:red">Error: {{librarianError}} </span>
     </p>
     </div>
 </template>
-<script src="./js/librarian.js">
+<script src="./js/LibrarianForHL.js">
 </script>
 <style>
   #librarian {
