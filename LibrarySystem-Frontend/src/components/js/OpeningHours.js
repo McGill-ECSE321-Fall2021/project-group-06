@@ -1,3 +1,5 @@
+import '../../assets/design.css'
+import '../../assets/background.css'
 import axios from 'axios'
 // var config = require('../../config')
 var config = require('../../../config')

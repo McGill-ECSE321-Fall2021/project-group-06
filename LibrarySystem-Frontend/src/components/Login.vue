@@ -116,8 +116,11 @@
 
 <script src="./js/Login.js">
 </script>
+<style scoped>
+/* @import '/assets/design.scss'; */
+</style>
 <style>
-/* @import '/assets/design.css'; */
+/* @import '/assets/design.scss'; */
   #login {  
     min-height: 400px;
 
@@ -134,32 +137,12 @@
     text-align:center;
     float: left;
   }
-  td{
+  /* td{
     width:33%;
     text-align:center;
-  }
+  }*/
   p{
     margin-bottom:0px;
-  }
-    /*Buttons */
-  button{
-    color: #000000;
-    border: none;
-    background: #ff477e;
-    padding: 20px 40px;
-    border-radius: 100px;
-    transition: all 0.5s eas-in-out;
-  }
-  button:disabled{
-    color: #000000;
-    background: #A29C9B;
-    padding: 20px 40px;
-    border-radius: 100px;
-    transition: all 0.2s eas-in-out;
-  }
-  button:hover:enabled{
-    color: #000000;
-    box-shadow: 0px 0px 40px #ff0a54;
   }
   html{
     height: 100%;

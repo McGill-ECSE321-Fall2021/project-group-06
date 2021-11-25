@@ -1,26 +1,45 @@
 <template>
 
   <div id="librarianlogin">
-    <h2>Librarian Login</h2>
-      <table>
-        <tr v="Account">
-          <td>{{ type }}</td>
-        </tr>
-    
-      <tr>
-          <td>
-              <input type="text" v-model="id" placeholder="Username">
-          </td>
-          <td>
-              <input type="text" v-model="password" placeholder="Password">
-          </td>
+    <h1>Librarian Login</h1>
+    <table>
+      <tr v="Acconut">
+        <td>
+          <p style="font-size:30px">
+            Login
+          </p>
+        </td>
       </tr>
       <tr>
-          <button v-bind:disabled="!id" @click="login(id, password)">Login </button>
-          <button v-bind:disabled="false" @click="switchLogin()">I'm an User!</button>
+        <td>
+          <p>ID number</p>
+          <input type="text" v-model="id" placeholder="ID number">
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">
+          <p>Password</p>
+          <input type="text" v-model="password" placeholder="Password">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button id="center" v-bind:disabled="!id || !password" @click="login(id, password)">Login </button>
+        </td>
+      </tr>
+    </table>
+ <table>
+      <tr>
+        <td>
+          <button v-bind:disabled="false" @click="switchLogin()">I'm a User!</button>
+        </td>
+      </tr>
+      <tr>
+        <td >
           <button v-bind:disabled="false" @click="switchToOH()">View Opening Hours</button>
+        </td>
       </tr>
-      </table>
+    </table>
       <p>
         <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
       </p>
@@ -52,26 +71,7 @@
   p{
     margin-bottom:0px;
   }
-  /* Buttons */
-  button{
-    color: #000000;
-    border: none;
-    background: #ff477e;
-    padding: 20px 40px;
-    border-radius: 100px;
-    transition: all 0.5s eas-in-out;
-  }
-  button:disabled{
-    color: #000000;
-    background: #A29C9B;
-    padding: 20px 40px;
-    border-radius: 100px;
-    transition: all 0.2s eas-in-out;
-  }
-  button:hover:enabled{
-    color: #000000;
-    box-shadow: 0px 0px 40px #ff0a54;
-  }
+
   html{
     height: 100%;
   }
