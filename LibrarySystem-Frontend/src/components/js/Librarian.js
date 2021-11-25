@@ -51,6 +51,11 @@ export default {
     },
     
     methods: {
+        shiftToHeadLibrarian(){
+            window.localStorage.setItem('id', localStorage.getItem('id'))
+            window.location.href = "#/HeadLibrarian"
+            location.reload()
+        },
         viewShift(){
             window.localStorage.setItem('id', localStorage.getItem('id'))
             window.location.href = "#/viewShift"

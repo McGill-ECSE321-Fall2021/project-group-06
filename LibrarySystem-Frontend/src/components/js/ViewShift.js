@@ -29,6 +29,11 @@ export default {
     },
     
     methods: {
+      switchToLibrarian(){
+        window.localStorage.setItem('id', localStorage.getItem('id'))
+        window.location.href = "#/Librarian"
+        location.reload()
+      },
     }
   
 }
