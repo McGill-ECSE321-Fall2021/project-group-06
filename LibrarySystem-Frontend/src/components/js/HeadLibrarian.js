@@ -42,58 +42,58 @@ export default {
       }
     },
     created: function () {
-        AXIOS.get('/create_openingHour/'.concat(id), {})
-        .then(response => {
-          // JSON responses are automatically parsed.
-          this.openingHours = response.data
-          for (let x in response.data){
-            if(response.data[x].dayOfWeek == "Monday"){
-              this.Monday = response.data[x];
-            }
-          }
-          for (let x in response.data){
-            if(response.data[x].dayOfWeek == "Tuesday"){
-              this.Tuesday = response.data[x];
-            }
-          }
-          for (let x in response.data){
-            if(response.data[x].dayOfWeek == "Wednesday"){
-              this.Wednesday = response.data[x];
-            }
-          }
-          for (let x in response.data){
-            if(response.data[x].dayOfWeek == "Thursday"){
-              this.Thursday = response.data[x];
-            }
-          }
-          for (let x in response.data){
-            if(response.data[x].dayOfWeek == "Friday"){
-              this.Friday = response.data[x];
-            }
-          }
-        })
-        .catch(e => {
-          this.errorOH = e
-        })
+        // AXIOS.get('/create_openingHour/'.concat(id), {})
+        // .then(response => {
+        //   // JSON responses are automatically parsed.
+        //   this.openingHours = response.data
+        //   for (let x in response.data){
+        //     if(response.data[x].dayOfWeek == "Monday"){
+        //       this.Monday = response.data[x];
+        //     }
+        //   }
+        //   for (let x in response.data){
+        //     if(response.data[x].dayOfWeek == "Tuesday"){
+        //       this.Tuesday = response.data[x];
+        //     }
+        //   }
+        //   for (let x in response.data){
+        //     if(response.data[x].dayOfWeek == "Wednesday"){
+        //       this.Wednesday = response.data[x];
+        //     }
+        //   }
+        //   for (let x in response.data){
+        //     if(response.data[x].dayOfWeek == "Thursday"){
+        //       this.Thursday = response.data[x];
+        //     }
+        //   }
+        //   for (let x in response.data){
+        //     if(response.data[x].dayOfWeek == "Friday"){
+        //       this.Friday = response.data[x];
+        //     }
+        //   }
+        // })
+        // .catch(e => {
+        //   this.errorOH = e
+        // })
     
     },
     methods: {
-      createHL: function(id, pwd){
-        AXIOS.post('/create_headlibrarian', '/create_headlibrarian/', {
-          params: {
-            id: id,
-            pwd: pwd,
-          }
-        })
-        .then(response => {
-          this.headLibrarians.push(response.data)
-          this.errorHL = ''
-          this.newHL = ''
-        })
-        .catch(e => {
-          this.erroHL = e
-        })
-      },
+      // createHL: function(id, pwd){
+      //   AXIOS.post('/create_headlibrarian', '/create_headlibrarian/', {
+      //     params: {
+      //       id: id,
+      //       pwd: pwd,
+      //     }
+      //   })
+      //   .then(response => {
+      //     this.headLibrarians.push(response.data)
+      //     this.errorHL = ''
+      //     this.newHL = ''
+      //   })
+      //   .catch(e => {
+      //     this.erroHL = e
+      //   })
+      // },
       createShift: function(shiftID, dayOfWeek, startTime, endTime){
         AXIOS.post('/create_headlibrarian', '/create_headlibrarian/',{
           params: {
