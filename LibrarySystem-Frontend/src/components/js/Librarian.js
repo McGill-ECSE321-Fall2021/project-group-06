@@ -95,6 +95,20 @@ export default {
                 this.librarianError = e
               })
         },
+        updateOffline: function (newOfflineID, newAddress, newName){
+            AXIOS.put('/edit_offline/'.concat(newOfflineID), {}, {
+                params: {
+                    address: newAddress,
+                    name: newName
+                }
+            })
+            .then(response => {
+                swal("Success", "Account Was Updated Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
         updatePW: function (password){
             AXIOS.post('/librarian_updatePassword/'.concat(localStorage.getItem('id')), {}, {
                 params: {
