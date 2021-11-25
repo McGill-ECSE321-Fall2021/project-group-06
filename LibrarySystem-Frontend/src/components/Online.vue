@@ -96,7 +96,9 @@
     <div id="scrollBox">
       <table border=1 frame=hsides rules=rows style="width:100%">
         <tr v-for="media in medias" :key="media.name">
-          {{ media.name }}
+          <td>
+            {{ media.name }}
+          </td>
         </tr>
       </table>
     </div>

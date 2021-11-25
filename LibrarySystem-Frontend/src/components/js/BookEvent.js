@@ -27,6 +27,7 @@ export default {
         medias: [],
         id: window.localStorage.getItem('id'),
         name: '',
+        
 		    errorEvent: '',
       	response: []
     }
