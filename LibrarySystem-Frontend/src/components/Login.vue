@@ -1,6 +1,8 @@
 <template>
   <div id="login">
     <h1>User Login</h1>
+     <div class="container">
+    <div class="column">
     <table>
       <tr>
         <td>
@@ -27,6 +29,8 @@
         </td>
       </tr>
     </table>
+    </div>
+    <div class = "column">
     <table>
       <tr>
         <td>
@@ -44,6 +48,8 @@
         </td>
       </tr>
     </table>
+    </div>
+    <div class = "column">
     <table>
       <tr>
         <td>
@@ -60,18 +66,18 @@
       </tr>
       <tr>
         <td >
-          <p>name:</p>
-          <input type="text" v-model="newName" placeholder="name">
+          <p>Name:</p>
+          <input type="text" v-model="newName" placeholder="Name">
         </td>
       </tr>
       <tr>
-        <td style="vertical-align: top;">
+        <td>
           <p>Address: </p>
           <input type="text" v-model="newAddress" placeholder="Address">
         </td>
       </tr>
       <tr>
-        <td style="vertical-align: top;">
+        <td>
           <p>Local:</p>
           <select v-model="newIsLocal">
             <option value="True">local</option>
@@ -80,13 +86,13 @@
         </td>
       </tr>
       <tr>
-        <td style="vertical-align: top;">
+        <td>
           <p>Username:</p>
           <input type="text" v-model="newUsername" placeholder="Username">
         </td>
       </tr>
       <tr>
-        <td style="vertical-align: top;">
+        <td>
           
           <p>Email:</p>
           <input type="text" v-model="newEmail" placeholder="Email">
@@ -104,12 +110,13 @@
         </td>
       </tr>
     </table>
+    </div>
       <p>
         <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
       </p>
       <!-- <Offline :massage="massageForChild"> </Offline> -->
   </div>
-  
+  </div>
 </template>
 
 <script src="./js/Login.js">
@@ -131,9 +138,16 @@
   }
   table{
     min-height: 300px;
-    width:33%;
+    /* width:33%; */
     text-align:center;
-    float: left;
+    /* float: left; */
+    border-spacing: 15px;
+    border-collapse: separate;
+
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.2px);
   }
   td{
     width:33%;
@@ -148,4 +162,17 @@
   body{
     background: #fff1e6
   }
+.column {
+  float: left;
+  vertical-align: 50%;
+  width: 33%;
+  padding: 10px;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.blank button{
+  color: #fff1e600;
+}
 </style>
