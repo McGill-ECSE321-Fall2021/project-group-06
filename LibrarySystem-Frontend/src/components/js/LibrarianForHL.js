@@ -13,7 +13,6 @@ export default {
     name: 'Librarian',
     data () {
         return {
-            currLib: '',
             librarian : '',
             id : '',
             librarianPassword : '',
@@ -51,7 +50,6 @@ export default {
         }
     },
     created: function () {
-        this.currLib = window.localStorage.getItem('lib')
         AXIOS.get('/librarians/'.concat(localStorage.getItem('id')))
         .then(response => {
           this.librarian = response.data
@@ -63,11 +61,6 @@ export default {
     },
     
     methods: {
-        switchToMedia(){
-            window.localStorage.setItem('id', localStorage.getItem('id'))
-            window.location.href = "#/MediaForLibrarian"
-            location.reload()
-        },
         switchToHLMedia(){
             window.localStorage.setItem('id', localStorage.getItem('id'))
             window.location.href = "#/MediaForHL"
@@ -219,28 +212,11 @@ export default {
                 params: {
                     eventDate: eventDate,
                     eventStart: eventStart,
-                    eventEnd: eventEnd,
-                    
+                    eventEnd: eventEnd
                 }
             })
             .then(response => {
                 swal("Success", "Event Created Successfully!", "success")
-              })
-              .catch(e => {
-                this.librarianError = e
-              })
-        },
-        updateEvent: function (newName, newDate, newStart, newEnd){
-            location.reload()
-            AXIOS.put('/update_events/'.concat(newName), {}, {
-                params: {
-                    eventDate: newDate,
-                    eventStart: newStart,
-                    eventEnd: newEnd
-                }
-            })
-            .then(response => {
-                swal("Success", "Event Was Updated Successfully!", "success")
               })
               .catch(e => {
                 this.librarianError = e
@@ -258,18 +234,6 @@ export default {
               .catch(e => {
                 this.librarianError = e
               })
-        },
-        unreserveItem: function (mediaID){
-            AXIOS.put('/unreserveMedia/'.concat(mediaID), {}, {
-              
-            })
-                .then(response => {
-                  swal("Success", "Media " + mediaID + " Un-Reserved Successfully!", "success")
-                  this.checkedOutMedias = this.Account.medias
-                })
-                .catch(e => {
-                  this.errorEvent = e
-                })
-          }
+        }
     }
 }
