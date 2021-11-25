@@ -143,7 +143,7 @@ public class OnlineService {
         //online.setNumChecked(itemsChecked);
         //online.setUsername(username);
         online.setPassword(password);
-        // online.setEmail(email);
+        //online.setEmail(email);
         
         accountRepository.save(online);
 		return online;
