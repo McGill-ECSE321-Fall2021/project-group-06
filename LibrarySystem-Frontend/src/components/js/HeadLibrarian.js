@@ -109,6 +109,44 @@ export default {
           this.errorShift = e
         })
       },
+      updateShift: function(shiftID, dayOfWeek, startTime, endTime){
+        AXIOS.put('/updateShift/'.concat(shiftID), {}, {
+          params: {
+            DayOfWeek: dayOfWeek,
+            start: startTime,
+            end: endTime
+          }
+        })
+        .then(response => {
+          swal("Success", "Shift Successfully Updated!", "success")
+        })
+        .catch(e => {
+          this.librarianError = e
+        })
+      },
+      deleteShift: function (id){
+        AXIOS.delete('/deleteShift/'.concat(id), {}, {
+        })
+        .then(response => {
+            swal("Success", "Shift Successfully Deleted!", "success")
+          })
+          .catch(e => {
+            this.librarianError = e
+          })
+      },
+      assignShift: function (shiftID, libID){
+        AXIOS.put('/assignShift/'.concat(libID), {}, {
+          params:{
+            shiftID: shiftID
+          }
+        })
+        .then(response => {
+            swal("Success", "Shift " + shiftID + " Successfully Assigned to " + libID + " !" , "success")
+          })
+          .catch(e => {
+            this.librarianError = e
+          })
+      },
       createOH: function (id,DayOfWeek,startTime,endTime) {
           AXIOS.post('/create_openingHour/'.concat(id), {}, {
             params: {
@@ -128,6 +166,142 @@ export default {
           .catch(e => {
             this.errorOH = e
           })
+      },
+      updateOH: function (ohID, dayOfWeek, startTime, endTime) {
+        AXIOS.put('/update_openingHour/'.concat(ohID), {}, {
+          params: {
+            DayOfWeek: dayOfWeek,
+            newStartTime: startTime,
+            newEndTime: endTime
+          }
+        })
+        .then(response => {
+          swal("Success", "Opening Hour Successfully Updated!", "success")
+        })
+        .catch(e => {
+          this.librarianError = e
+        })
+      },
+      deleteOpeningHour: function (id){
+        AXIOS.delete('/deleteOpeningHour/'.concat(id), {}, {
+        })
+        .then(response => {
+            swal("Success", "Opening Hour Successfully Deleted!", "success")
+          })
+          .catch(e => {
+            this.librarianError = e
+          })
+      },
+      hireLibrarian: function(libID, password){
+        AXIOS.post('/hireLibrarian/'.concat(libID), {}, {
+          params: {
+            pwd: password
+          }
+        })
+        .then(response => {
+          swal("Success", "Librarian Was Successfully Hired!", "success")
+        })
+        .catch(e => {
+          this.errorShift = e
+        })
+      },
+      fireLibrarian: function (id){
+        AXIOS.delete('/fireLibrarian/'.concat(id), {}, {
+        })
+        .then(response => {
+            swal("Success", "Librarian Successfully Fired!", "success")
+          })
+          .catch(e => {
+            this.librarianError = e
+          })
+      },
+      //media, coi
+      createCOI: function(mediaID, mediaType, name, borrowingPeriod, date){
+        AXIOS.post('/create_checkOutItems/'.concat(mediaID), {}, {
+          params: {
+            mediaType: mediaType,
+            name: name,
+            isCheckedOut: "false",
+            isReserved: "false",
+            borrowingPeriod: borrowingPeriod,
+            startDateString: date
+          }
+        })
+        .then(response => {
+          swal("Success", "Check Out Item Was Created Successfully!", "success")
+        })
+        .catch(e => {
+          this.errorShift = e
+        })
+      },
+      updateCOI: function(mediaID, mediaType, name, checkedOut, reserved, borrowingPeriod, date){
+        AXIOS.put('/edit_checkOutItems/'.concat(mediaID), {}, {
+          params: {
+            newMediaType: mediaType,
+            newName: name,
+            newIsCheckedOut: checkedOut,
+            newIsReserved: reserved,
+            newBorrowingPeriod: borrowingPeriod,
+            date: date
+          }
+        })
+        .then(response => {
+          swal("Success", "Check Out Item Successfully Updated!", "success")
+        })
+        .catch(e => {
+          this.librarianError = e
+        })
+      },
+      deleteCOI: function (id){
+        AXIOS.delete('/delete_CheckOutItem/'.concat(id), {}, {
+        })
+        .then(response => {
+            swal("Success", "Check Out Item Successfully Deleted!", "success")
+          })
+          .catch(e => {
+            this.librarianError = e
+          })
+      },
+      //NCOI
+      createNCOI: function(mediaID, mediaType, name){
+        AXIOS.post('/create_nonCheckOutItems/'.concat(mediaID), {}, {
+          params: {
+            mediaType: mediaType,
+            name: name
+          }
+        })
+        .then(response => {
+          swal("Success", "Non Check Out Item Was Created Successfully!", "success")
+        })
+        .catch(e => {
+          this.errorShift = e
+        })
+      },
+      updateNCOI: function(mediaID, mediaType, name){
+        AXIOS.put('/edit_nonCheckOutItems/'.concat(mediaID), {}, {
+          params: {
+            newMediaType: mediaType,
+            newMediaName: name,
+          
+          }
+        })
+        .then(response => {
+          swal("Success", "Non Check Out Item Successfully Updated!", "success")
+        })
+        .catch(e => {
+          this.librarianError = e
+        })
+      },
+      deleteCOI: function (id){
+        AXIOS.delete('/delete_nonCheckOutItem/'.concat(id), {}, {
+        })
+        .then(response => {
+            swal("Success", "Non Check Out Item Successfully Deleted!", "success")
+          })
+          .catch(e => {
+            this.librarianError = e
+          })
       }
+
     }
 }

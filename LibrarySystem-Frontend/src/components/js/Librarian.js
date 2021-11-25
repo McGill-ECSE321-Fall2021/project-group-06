@@ -121,6 +121,16 @@ export default {
               .catch(e => {
                 this.librarianError = e
               })
+        },
+        deleteOffline: function (id){
+            AXIOS.delete('/delete_offline/'.concat(id), {}, {
+            })
+            .then(response => {
+                swal("Success", "Account Successfully Deleted!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
         }
     }
 }
