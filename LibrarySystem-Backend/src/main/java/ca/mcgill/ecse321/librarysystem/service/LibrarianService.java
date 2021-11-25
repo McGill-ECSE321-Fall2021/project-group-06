@@ -65,6 +65,7 @@ public class LibrarianService {
 		}
 		Librarian lib = librarianRepository.findLibrarianById(id);
 		lib.setPassword(password);
+		librarianRepository.save(lib);
 		return lib;
 	}
     
