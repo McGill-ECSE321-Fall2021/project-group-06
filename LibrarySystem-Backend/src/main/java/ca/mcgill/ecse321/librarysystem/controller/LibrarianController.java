@@ -99,9 +99,9 @@ public class LibrarianController {
 	 * @return offline Dto
 	 * @author Howard Yu*/
 	 
-	@PostMapping(value= {"/createOfflineAccount/{id}/{addr}/{name}", "/createOfflineAccount/{id}/{addr}/{name}/"})
-	public OfflineDto createOfflineAccount(@PathVariable("id") int id, @PathVariable("addr") String addr, 
-			@PathVariable("name") String name) {
+	@PostMapping(value= {"/createOfflineAccount/{id}", "/createOfflineAccount/{id}/"})
+	public OfflineDto createOfflineAccount(@PathVariable("id") int id, @RequestParam String addr, 
+			@RequestParam String name) {
 		return Conversion.convertToDto(librarianService.createOfflineAccount(id, name, addr,AccountCategory.Offline, true, 0));
 	}
 	

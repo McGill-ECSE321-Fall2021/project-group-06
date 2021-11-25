@@ -39,6 +39,52 @@ export default {
               .catch(e => {
                 this.librarianError = e
               })
+        },
+        returnAnItem: function (userID, mediaID, date2){
+            AXIOS.put('/return_media_online/'.concat(userID), {}, {
+                params: {
+                    mediaId: mediaID
+                }
+            }),
+            AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
+                params: {
+                    newIsCheckedOut: "false",
+                    date: date2
+                }
+            })
+            .then(response => {
+                swal("Success", "Item Returned Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
+        createOffline: function (userID, address, name){
+            AXIOS.post('/createOfflineAccount/'.concat(userID), {}, {
+                params: {
+                    addr: address,
+                    name: name
+                }
+            })
+            .then(response => {
+                swal("Success", "Account Created Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
+        updatePW: function (password){
+            AXIOS.post('/librarian_updatePassword/'.concat(localStorage.getItem('id')), {}, {
+                params: {
+                    password: password
+                }
+            })
+            .then(response => {
+                swal("Success", "Password Updated Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
         }
     }
 }
