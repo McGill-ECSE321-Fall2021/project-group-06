@@ -17,16 +17,38 @@ export default {
       return {
         //HL
         headLibrarians: [],
+        hireLibrarianID:'',
+        hireLibrarianPassword:'',
+        assignLibrarianID: '',
         id: "",
         pwd: "",
         errorHL: "",
         //Shift
         shifts: [],
-        shiftID: "",
+        createShiftID:'',
+        createDayOfWeek:'',
+        createStartTime:'',
+        createEndTime:'',
+        updateShiftID:'',
+        updateDayOfWeek:'',
+        updateStartTime:'',
+        updateEndTime:'',
+        assignShiftID:'',
+        deleteShiftID:'',
+        shiftID: '',
         dayOfWeek: '',
         startTime: '',
         endTime: '',
         //OH
+        deleteOpeningHourID:'',
+        createOpeningHourID: '',
+        createOpeningHourDayOfWeek:'',
+        createOpeningHourStartTime:'',
+        createOpeningHourEndTime:'',
+        updateOpeningHourID: '',
+        updateOpeningHourDayOfWeek:'',
+        updateOpeningHourStartTime:'',
+        updateOpeningHourEndTime:'',
         openingHours: [],
         Monday: '',
         Tuesday: '',
@@ -37,6 +59,27 @@ export default {
         DayOfWeek: '',
         startTime: '',
         endTime: '',
+        //COI
+        createCOIID:'',
+        createCOIName:'',
+        createCOIType:'',
+        createCOIDate:'',
+        updateCOIID:'',
+        updateCOIName:'',
+        updateCOIType:'',
+        updateCOICheckedOut:'',
+        updateCOIReserved:'',
+        updateCOIDate:'',
+        deleteCOIID:'',
+        //NCOI
+        createNCOIID:'',
+        createNCOIType:'',
+        createNCOIName:'',
+        updateNCOIID:'',
+        updateNCOIType:'',
+        updateNCOIName:'',
+        deleteNCOIID:'',
+        updateCOIBorrowinPeriod:'',
         errorOH: '',
         response: []
       }
@@ -94,6 +137,11 @@ export default {
       //     this.erroHL = e
       //   })
       // },
+      switchToLibrarian(){
+        window.localStorage.setItem('id', this.id)
+        window.location.href = "#/LibrarianForHL"
+        location.reload()
+      },
       createShift: function(shiftID, dayOfWeek, startTime, endTime){
         AXIOS.post('/createShift/'.concat(shiftID), {}, {
           params: {
@@ -292,7 +340,7 @@ export default {
           this.librarianError = e
         })
       },
-      deleteCOI: function (id){
+      deleteNCOI: function (id){
         AXIOS.delete('/delete_nonCheckOutItem/'.concat(id), {}, {
         })
         .then(response => {

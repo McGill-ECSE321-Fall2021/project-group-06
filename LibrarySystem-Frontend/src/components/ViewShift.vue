@@ -13,6 +13,15 @@
     </td>
   </tr>
 </table>
+  <table>
+      <tr>
+        <td>
+          <p style="font-size:30px">
+             <button @click="switchToLibrarian()"> go back to main menu</button>
+          </p>
+        </td>
+      </tr>
+    </table>
 <p>
   <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>
 </p>

@@ -22,6 +22,7 @@
     </td>
   </tr>
 </table>
+
 <p>
   <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
 </p>
