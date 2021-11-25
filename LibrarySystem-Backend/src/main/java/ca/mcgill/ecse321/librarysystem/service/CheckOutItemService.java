@@ -71,6 +71,25 @@ public class CheckOutItemService {
         mediaRepository.save(checkOutItem);
         return checkOutItem;
     }
+
+    @Transactional
+    public CheckOutItem checkingOut (int mediaID, boolean newIsCheckedOut, Date startDate){
+        String error ="";
+        if(mediaRepository.findMediaByID(mediaID)==null){
+            error = error + "Media Id does not exist";
+        }
+        error = error.trim();
+        if (error.length() > 0) {
+            throw new IllegalArgumentException(error);
+        }
+        CheckOutItem checkOutItem = (CheckOutItem)mediaRepository.findMediaByID(mediaID);
+        checkOutItem.setIsCheckedOut(newIsCheckedOut);
+        checkOutItem.setStartDate(startDate);
+        checkOutItem.setIsReserved(false);
+        mediaRepository.save(checkOutItem);
+        return checkOutItem;
+
+    }
     @Transactional
     public CheckOutItem updateCheckOutItem (int mediaID, Item newMediaType, String newName, boolean newIsCheckedOut, boolean newIsReserved, int newBorrowingPeriod, Date newStartDate){
 
