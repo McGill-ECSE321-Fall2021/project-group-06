@@ -67,6 +67,10 @@ export default {
     })
   },
   methods: {
+    switchToLogin(){
+      window.location.href = "#/"
+      location.reload()
+    },
     bookEvent: function (name) {
       var indexEvent = this.events.map(x => x.name).indexOf(name)
       var event = this.events[indexEvent]

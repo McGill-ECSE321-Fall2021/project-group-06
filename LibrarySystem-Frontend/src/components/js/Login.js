@@ -46,6 +46,10 @@ export default {
       window.location.href = "#/OpeningHours"
       location.reload()
     },
+    switchToEvent(){
+      window.location.href = "#/Event"
+      location.reload()
+    },
     login: function (id, password) {
       AXIOS.get('/login/'.concat(id), {
         params: {
@@ -89,30 +93,6 @@ export default {
           this.librarianError = e
         })
     }
-    
-    // login (username, password) {
-    //   AXIOS.get('/login/',$.param({username: username, password: password}))
-    //   .then(response => {
-    //     this.user = response.data
-    //       this.type = this.user.userType
-    //       window.localStorage.setItem('username', this.user.username)
-    //       window.localStorage.setItem('type', this.type)
-
-    //       if(this.type.localeCompare("customer")==0){
-
-    //         window.location.href = "#/Online"
-    //       }
-    //       else{
-    //         window.location.href = "/#/Offline"
-    //       }
-    //       location.reload();
-    //   })
-    //   .catch(e => {
-
-    //     swal("ERROR", e.response.data, "error");
-
-    //   })
-    // }
   }
 
   }
