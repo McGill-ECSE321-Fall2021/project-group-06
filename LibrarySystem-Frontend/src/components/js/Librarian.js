@@ -256,6 +256,18 @@ export default {
               .catch(e => {
                 this.librarianError = e
               })
-        }
+        },
+        unreserveItem: function (mediaID){
+            AXIOS.put('/unreserveMedia/'.concat(mediaID), {}, {
+              
+            })
+                .then(response => {
+                  swal("Success", "Media " + mediaID + " Un-Reserved Successfully!", "success")
+                  this.checkedOutMedias = this.Account.medias
+                })
+                .catch(e => {
+                  this.errorEvent = e
+                })
+          }
     }
 }
