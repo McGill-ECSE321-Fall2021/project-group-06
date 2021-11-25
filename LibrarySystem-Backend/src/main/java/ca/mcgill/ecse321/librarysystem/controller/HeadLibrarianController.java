@@ -190,4 +190,10 @@ public class HeadLibrarianController {
 		 Librarian lib = headService.assignShift(id, shiftID);
 		 return (Conversion.convertToDto(lib));
 	 }
+
+	 @PutMapping(value= {"/unassignShift/{id}", "/unassignShift/{id}/"})
+	 public LibrarianDto unassignShift(@PathVariable(name="id") int id, @RequestParam int shiftID) {
+		 Librarian lib = headService.unassignShift(id, shiftID);
+		 return (Conversion.convertToDto(lib));
+	 }
 }
