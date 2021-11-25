@@ -1,40 +1,39 @@
 <template>
   <div id="openinghours">
     <h2>Opening Hours</h2>
-    <table>
+    <table class="center centerpage ohnoh">
       <tr>
-        <td>
-          Monday: {{ Monday.startTime }} to {{ Monday.endTime }}
+        <td> Monday </td> <td> 9:00:00 to 20:00:00
+          <!-- Monday </td> <td> {{ Monday.startTime }} to {{ Monday.endTime }} -->
+        </td>
+      </tr>
+      <tr>
+        <td> Tuesday </td> <td> {{ Tuesday.startTime }} to {{ Tuesday.endTime }}
         </td>
       </tr>
       <tr>
         <td>
-          Tuesday: {{ Tuesday.startTime }} to {{ Tuesday.endTime }}
+          Wednesday </td> <td> {{ Wednesday.startTime }} to {{ Wednesday.endTime }}
         </td>
       </tr>
       <tr>
         <td>
-          Wednesday: {{ Wednesday.startTime }} to {{ Wednesday.endTime }}
+          Thursday </td> <td> {{ Thursday.startTime }} to {{ Thursday.endTime }}
         </td>
       </tr>
       <tr>
         <td>
-          Thursday: {{ Thursday.startTime }} to {{ Thursday.endTime }}
+          Friday </td> <td> {{ Friday.startTime }} to {{ Friday.endTime }}
         </td>
       </tr>
       <tr>
         <td>
-          Friday: {{ Friday.startTime }} to {{ Friday.endTime }}
+          Saturday </td> <td> Closed
         </td>
       </tr>
       <tr>
         <td>
-          Saturday : Closed
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Sunday : Closed
+          Sunday </td> <td> Closed
         </td>
       </tr>
     </table>
@@ -48,10 +47,46 @@
 </script>
 
 
-<style scoped>
+<style>
+  .center {
+    text-align: center;
+    font-weight: bold;
+    border: 7px solid #332d2f;
+  }
+  .centerpage {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px
+  }
   #openinghours {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    color: #2c3e50;
-    background: #f2ece8;
+    color: #000000;
+    /* background: #f2ece8; */
   }
+  html{
+    height: 100%;
+  }
+  body{
+    /* height: 100%;
+    margin: 0; */
+    background: #fff1e6
+    /* background: linear-gradient(45deg, #DB324D, #511C29); */
+  }
+  table{
+    	width: 500px;
+	/* border-collapse: collapse;
+	overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); */
+  }
+  .ohnoh td {
+	padding: 20px;
+	background-color: rgba(255,255,255,0.2);
+	color: rgb(0, 0, 0);
+  }
+  .ohnoh tr:hover {background-color: rgba(109, 88, 88, 0.5)}
 </style>
