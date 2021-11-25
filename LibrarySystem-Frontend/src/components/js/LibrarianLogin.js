@@ -46,10 +46,12 @@ export default {
             this.Account = response.data
             if(this.Account.hl){
                 window.localStorage.setItem('id', this.id)
+                window.localStorage.setItem('lib', 1)
                 window.location.href = "#/HeadLibrarian"
                 location.reload()
             } else {
                 window.localStorage.setItem('id', this.id)
+                window.localStorage.setItem('lib', 2)
                 window.location.href = "#/Librarian"
                 location.reload()
             }
