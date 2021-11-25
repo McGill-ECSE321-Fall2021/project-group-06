@@ -9,6 +9,7 @@ import Librarian from '@/components/Librarian'
 import OpeningHours from '@/components/OpeningHours'
 import HeadLibrarian from '@/components/HeadLibrarian'
 import Media from '@/components/Media'
+import ViewShift from '@/components/ViewShift'
 Vue.use(Router)
 
 export default new Router({
@@ -59,6 +60,11 @@ export default new Router({
       path: '/Media',
       name: 'Media',
       component: Media
+    },
+    {
+      path: '/ViewShift',
+      name: 'ViewShift',
+      component: ViewShift
     },
   ]
 })
