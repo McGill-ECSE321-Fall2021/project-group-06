@@ -40,11 +40,11 @@
       </tr>
       <tr>
         <td >
-          <button v-bind:disabled="false" @click="switchToMedia()">view medias</button>
+          <button v-bind:disabled="false" @click="switchToMedia()">View Medias</button>
         </td>
       </tr>
     </table>
-        <table>
+    <table>
       <tr>
         <td>
           <p style="font-size:30px">
@@ -61,20 +61,18 @@
       <tr>
         <td >
           <p>name:</p>
-          
           <input type="text" v-model="newName" placeholder="name">
         </td>
       </tr>
       <tr>
         <td style="vertical-align: top;">
-          
           <p>Address: </p>
           <input type="text" v-model="newAddress" placeholder="Address">
         </td>
       </tr>
       <tr>
         <td style="vertical-align: top;">
-          <p>local:</p>
+          <p>Local:</p>
           <select v-model="newIsLocal">
             <option value="True">local</option>
             <option value="False">not local</option>
@@ -83,14 +81,14 @@
       </tr>
       <tr>
         <td style="vertical-align: top;">
-          <p>username:</p>
+          <p>Username:</p>
           <input type="text" v-model="newUsername" placeholder="Username">
         </td>
       </tr>
       <tr>
         <td style="vertical-align: top;">
           
-          <p>email:</p>
+          <p>Email:</p>
           <input type="text" v-model="newEmail" placeholder="Email">
         </td>
       </tr>
@@ -102,7 +100,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!newId || !newPassword || !newName || !newAddress || !newUsername || !newEmail" @click="createOnline(newId,newAddress,newName,newIsLocal,newUsername, newPassword, newEmail)">Register </button>
+          <button id = "center" v-bind:disabled="!newId || !newPassword || !newName || !newAddress || !newUsername || !newEmail" @click="createOnline(newId,newAddress,newName,newIsLocal,newUsername, newPassword, newEmail)">Register </button>
         </td>
       </tr>
     </table>
@@ -137,10 +135,10 @@
     text-align:center;
     float: left;
   }
-  /* td{
+  td{
     width:33%;
     text-align:center;
-  }*/
+  }
   p{
     margin-bottom:0px;
   }

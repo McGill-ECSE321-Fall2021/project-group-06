@@ -1,7 +1,7 @@
 <template> 
 <div id="Shift">
   <h2>
-    view Shift
+    View Shift
   </h2>
   <table>
   <tr v-for="shift in shifts" :key="shift.id">

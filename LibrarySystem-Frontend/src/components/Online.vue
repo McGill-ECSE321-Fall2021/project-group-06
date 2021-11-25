@@ -121,7 +121,7 @@
     min-height: 800px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background: #f2ece8;
+    /* background: #f2ece8; */
   }  
   table{
     min-height: 300px;
@@ -135,4 +135,10 @@
   overflow: scroll;
   float: left;
 }
+  html{
+    height: 100%;
+  }
+  body{
+    background: #fff1e6
+  }
 </style>
