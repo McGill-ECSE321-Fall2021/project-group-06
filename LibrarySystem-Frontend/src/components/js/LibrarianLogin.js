@@ -15,7 +15,8 @@ export default {
   data () {
     return {
         Account: '',
-	    id: '',
+	      id: '',
+        password: '',
         type: '',
         // name: '',
 		// password: '',

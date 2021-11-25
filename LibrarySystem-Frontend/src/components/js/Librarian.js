@@ -197,6 +197,34 @@ export default {
               .catch(e => {
                 this.librarianError = e
               })
+        },
+        createEvent: function (eventName, eventDate, eventStart, eventEnd){
+            AXIOS.post('/create_event/'.concat(eventName), {}, {
+                params: {
+                    eventDate: eventDate,
+                    eventStart: eventStart,
+                    eventEnd: eventEnd
+                }
+            })
+            .then(response => {
+                swal("Success", "Event Created Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
+        assignEvent: function (userID, name){
+            AXIOS.put('/assignEvent/'.concat(userID), {}, {
+                params: {
+                    name: name
+                }
+            })
+            .then(response => {
+                swal("Success", "Event Assigned Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
         }
     }
 }

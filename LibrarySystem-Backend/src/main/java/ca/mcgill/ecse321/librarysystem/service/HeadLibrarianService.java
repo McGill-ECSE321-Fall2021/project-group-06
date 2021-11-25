@@ -338,6 +338,7 @@ public class HeadLibrarianService {
 	 * @param shiftID
 	 * @return the librarian
 	 */
+	@Transactional
 	public Librarian assignShift(int id, int shiftID){
 		if(librarianRepository.findLibrarianById(id)==null){
 			throw new IllegalArgumentException("librarian does not exist");
@@ -355,4 +356,36 @@ public class HeadLibrarianService {
 		librarianRepository.save(l);
 		return l;
 	}
+
+	@Transactional
+    public Librarian unassignShift(int shiftID, int libID){
+        Librarian lib = (Librarian) librarianRepository.findLibrarianById(libID);
+        Shift shiftTest = new Shift();
+        if(lib == null){
+            throw new IllegalArgumentException("This librarian does not exist!");
+        }
+         else {
+            if(shiftRepository.findShiftByShiftID(shiftID) == null){
+                throw new IllegalArgumentException("This shift Id is non-existent!");
+            } else {
+                shiftTest=null;
+                for (Shift shift : lib.getShift()){
+                    if (shift.getShiftID()==shiftID){
+                        shiftTest = shift;
+                    }
+                }
+                if (shiftTest!=null){
+                    lib.getShift().remove(shiftTest);
+                    
+                    //offline.setNumChecked(id);
+                    librarianRepository.save(lib);
+                    shiftRepository.save(shiftRepository.findShiftByShiftID(shiftID));
+                    return lib;
+                } else {
+                    throw new IllegalArgumentException("This librarian does not have the following shift!");
+                }
+            }
+        }
+        //throw new IllegalArgumentException("System Error");
+    }
 }

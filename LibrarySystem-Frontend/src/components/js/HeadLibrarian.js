@@ -71,6 +71,7 @@ export default {
         updateCOIReserved:'',
         updateCOIDate:'',
         deleteCOIID:'',
+        fireLibrarianID: '',
         //NCOI
         createNCOIID:'',
         createNCOIType:'',
@@ -216,11 +217,11 @@ export default {
           })
       },
       updateOH: function (ohID, dayOfWeek, startTime, endTime) {
-        AXIOS.put('/update_openingHour/'.concat(ohID), {}, {
+        AXIOS.put('/updateOpeningHour/'.concat(ohID), {}, {
           params: {
-            DayOfWeek: dayOfWeek,
-            newStartTime: startTime,
-            newEndTime: endTime
+            newDay: dayOfWeek,
+            newStart: startTime,
+            newEnd: endTime
           }
         })
         .then(response => {
