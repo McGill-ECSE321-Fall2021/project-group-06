@@ -115,7 +115,7 @@
         <td>
           <p style="font-size:30px">
              view shift
-             <!-- <button @click="deleteOffline(deleteOfflineID)"> view shift</button> -->
+             <button @click="viewShift()"> view shift</button>
           </p>
         </td>
       </tr>

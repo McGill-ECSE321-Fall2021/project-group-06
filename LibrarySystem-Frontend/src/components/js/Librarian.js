@@ -37,7 +37,12 @@ export default {
           this.errorEvent = e
         })
     },
+    
     methods: {
+        viewShift(){
+            window.location.href = "#/viewShift"
+            location.reload()
+        },
         checkOutAnItem: function (userID, mediaID, date2){
             AXIOS.put('/add_media_online/'.concat(userID), {}, {
                 params: {
