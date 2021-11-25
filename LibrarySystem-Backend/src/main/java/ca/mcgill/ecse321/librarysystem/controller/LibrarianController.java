@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import ca.mcgill.ecse321.librarysystem.dto.*;
+import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.HeadLibrarian;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
@@ -90,6 +91,12 @@ public class LibrarianController {
 	public LibrarianDto deleteLibrarian(@PathVariable("id") int id) {
 		return Conversion.convertToDto(librarianService.deleteLibrarian(id));
 	}
+
+	@PutMapping(value = {"/unreserveMedia/{id}"})
+    public MediaDto reserveMediaOnline(@PathVariable("id") int id){
+        CheckOutItem media = (CheckOutItem) librarianService.unreserveAnItem(id);
+        return (Conversion.convertToDto(media));
+    }
 	
 	/**
 	 * Create offline account

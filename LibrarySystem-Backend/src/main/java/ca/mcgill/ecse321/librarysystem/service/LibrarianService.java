@@ -6,7 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcgill.ecse321.librarysystem.dao.*;
 import ca.mcgill.ecse321.librarysystem.models.Account.AccountCategory;
+import ca.mcgill.ecse321.librarysystem.models.CheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Librarian;
+import ca.mcgill.ecse321.librarysystem.models.Media;
+import ca.mcgill.ecse321.librarysystem.models.NonCheckOutItem;
 import ca.mcgill.ecse321.librarysystem.models.Offline;
 import ca.mcgill.ecse321.librarysystem.models.Shift;
 
@@ -21,6 +24,8 @@ public class LibrarianService {
 	 ShiftRepository shiftRepository;
 	 @Autowired
 	 AccountRepository accountRepository;
+	 @Autowired
+	 MediaRepository mediaRepository;
 	 
 	 /**
 	  * Librarian login with given parameters
@@ -41,6 +46,20 @@ public class LibrarianService {
 		 }
 		 else throw new IllegalArgumentException("Incorrect password");
 	 }
+
+	@Transactional
+    public Media unreserveAnItem(int mediaId){
+        if(mediaRepository.findMediaByID(mediaId) == null){
+            throw new IllegalArgumentException("This media Id is non-existent!");
+        }
+        if (mediaRepository.findMediaByID(mediaId) instanceof NonCheckOutItem){
+            throw new IllegalArgumentException("This media Id corresponds to an item that you cannot reserve!");
+        }
+        CheckOutItem mediaTest = (CheckOutItem) mediaRepository.findMediaByID(mediaId);
+        mediaTest.setIsReserved(false);
+        mediaRepository.save(mediaTest);
+        return mediaTest;
+    }
 	 
 	/**
 	 * @author Isabella Hao
