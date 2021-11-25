@@ -24,11 +24,17 @@ export default {
             updateName : '',
             deleteOfflineID : '',
             CheckOutOfflineID:'',
-            CheckOutMediaID:'',
-            CheckOutDate:'',
-            returnUserID:'',
-            returnMediaID:'',
-            returnDate:'',
+            CheckOutMediaOfflineID:'',
+            CheckOutOfflineDate:'',
+            CheckOutOnlineID:'',
+            CheckOutMediaOnlineID:'',
+            CheckOutOnlineDate:'',
+            returnUserOnlineID:'',
+            returnMediaOnlineID:'',
+            returnOnlineDate:'',
+            returnUserOfflineID:'',
+            returnMediaOfflineID:'',
+            returnOfflineDate:'',
             librarianError: '',
             response: []
         }
@@ -49,7 +55,7 @@ export default {
             window.location.href = "#/viewShift"
             location.reload()
         },
-        checkOutAnItem: function (userID, mediaID, date2){
+        checkOutAnItemOnline: function (userID, mediaID, date2){
             AXIOS.put('/add_media_online/'.concat(userID), {}, {
                 params: {
                     mediaId: mediaID
@@ -68,8 +74,46 @@ export default {
                 this.librarianError = e
               })
         },
-        returnAnItem: function (userID, mediaID, date2){
+        checkOutAnItemOffline: function (userID, mediaID, date2){
+            AXIOS.put('/add_media_offline/'.concat(userID), {}, {
+                params: {
+                    mediaId: mediaID
+                }
+            }),
+            AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
+                params: {
+                    newIsCheckedOut: "true",
+                    date: date2
+                }
+            })
+            .then(response => {
+                swal("Success", "Item Checked Out Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
+        returnAnItemOnline: function (userID, mediaID, date2){
             AXIOS.put('/return_media_online/'.concat(userID), {}, {
+                params: {
+                    mediaId: mediaID
+                }
+            }),
+            AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
+                params: {
+                    newIsCheckedOut: "false",
+                    date: date2
+                }
+            })
+            .then(response => {
+                swal("Success", "Item Returned Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
+        returnAnItemOffline: function (userID, mediaID, date2){
+            AXIOS.put('/return_media_offline/'.concat(userID), {}, {
                 params: {
                     mediaId: mediaID
                 }
@@ -123,6 +167,16 @@ export default {
             })
             .then(response => {
                 swal("Success", "Password Updated Successfully!", "success")
+              })
+              .catch(e => {
+                this.librarianError = e
+              })
+        },
+        deleteOffline: function (id){
+            AXIOS.delete('/delete_offline/'.concat(id), {}, {
+            })
+            .then(response => {
+                swal("Success", "Account Successfully Deleted!", "success")
               })
               .catch(e => {
                 this.librarianError = e

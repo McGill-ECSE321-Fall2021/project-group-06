@@ -114,7 +114,36 @@
       <tr>
         <td>
           <p style="font-size:30px">
-            check out an Item
+            check out an Item Online User
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="CheckOutOnlineID" placeholder="Online user ID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="CheckOutMediaOnlineID" placeholder="media id">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="CheckOutOnlineDate" placeholder="check out date">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!CheckOutOnlineID || !CheckOutMediaOnlineID || !CheckOutOnlineDate" @click="checkOutAnItemOnline(CheckOutOnlineID,CheckOutMediaOnlineID,CheckOutOnlineDate)"> Check out item</button>
+        </td>
+      </tr>
+    </table>
+        <table>
+      <tr>
+        <td>
+          <p style="font-size:30px">
+            check out an Item Offline User
           </p>
         </td>
       </tr>
@@ -125,46 +154,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutMediaID" placeholder="media id">
+          <input type="text" v-model="CheckOutMediaOfflineID" placeholder="media id">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutDate" placeholder="check out date">
+          <input type="text" v-model="CheckOutOfflineDate" placeholder="check out date">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!CheckOutOfflineID || !CheckOutMediaID || !CheckOutDate" @click="checkOutAnItem(CheckOutOfflineID,CheckOutMediaID,CheckOutDate)"> Check out item</button>
-        </td>
-      </tr>
-    </table>
-        <table>
-      <tr>
-        <td>
-          <p style="font-size:30px">
-            check out an Item
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="CheckOutOfflineID" placeholder="Offline user ID">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="CheckOutMediaID" placeholder="media id">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="CheckOutDate" placeholder="check out date">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!CheckOutOfflineID || !CheckOutMediaID || !CheckOutDate" @click="checkOutAnItem(CheckOutOfflineID,CheckOutMediaID,CheckOutDate)"> Check out item</button>
+          <button v-bind:disabled="!CheckOutOfflineID || !CheckOutMediaOfflineID || !CheckOutOfflineDate" @click="checkOutAnItemOffline(CheckOutOfflineID,CheckOutMediaOfflineID,CheckOutOfflineDate)"> Check out item</button>
         </td>
       </tr>
     </table>
@@ -172,28 +172,57 @@
       <tr>
         <td>
           <p style="font-size:30px">
-            return an Item
+            return an Item Online User
           </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnUserID" placeholder="Offline user ID">
+          <input type="text" v-model="returnUserOnlineID" placeholder="Online user ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnMediaID" placeholder="media id">
+          <input type="text" v-model="returnMediaOnlineID" placeholder="media id">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnDate" placeholder="check out date">
+          <input type="text" v-model="returnOnlineDate" placeholder="check out date">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!returnUserID || !returnMediaID || !returnDate" @click="returnAnItem(returnUserID,returnMediaID,returnDate)"> return user item</button>
+          <button v-bind:disabled="!returnUserOnlineID || !returnMediaOnlineID || !returnOnlineDate" @click="returnAnItemOnline(returnUserOnlineID,returnMediaOnlineID,returnOnlineDate)"> return online user item</button>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          <p style="font-size:30px">
+            return an Item Offline User
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="returnUserOfflineID" placeholder="Offline user ID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="returnMediaOfflineID" placeholder="media id">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="returnOfflineDate" placeholder="check out date">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!returnUserOfflineID || !returnMediaOfflineID || !returnOfflineDate" @click="returnAnItemOffline(returnUserOfflineID,returnMediaOfflineID,returnOfflineDate)"> return user offline item</button>
         </td>
       </tr>
     </table>

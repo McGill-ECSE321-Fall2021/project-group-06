@@ -1,17 +1,8 @@
 import axios from 'axios'
 var config = require('../../../config')
 
-// var backendConfigurer = function(){
-//   switch(process.env.NODE_ENV){
-//       case 'development':
-//           return 'http://' + config.dev.backendHost + ':' + config.dev.backendPort;
-//       case 'production':
-//           return 'https://' + config.build.backendHost + ':' + config.build.backendPort ;
-//   }
-// };
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
-// var backendUrl = backendConfigurer();
 
 var AXIOS = axios.create({
   baseURL: backendUrl,
@@ -67,7 +58,8 @@ export default {
               window.location.href = "#/Online"
               location.reload()
             } else if (this.Account.accountCategory == "Offline") {
-              this.type = "vagina"
+              window.location.href = "#/Media"
+              location.reload()
             }
             //this.id = '727'
           })
