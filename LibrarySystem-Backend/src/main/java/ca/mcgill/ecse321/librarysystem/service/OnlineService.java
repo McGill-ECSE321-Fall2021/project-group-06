@@ -239,7 +239,7 @@ public class OnlineService {
     }
 
     @Transactional
-    public Media reserveAnItem(int mediaId){
+    public Media reserveAnItem(int mediaId, int userID){
         if(mediaRepository.findMediaByID(mediaId) == null){
             throw new IllegalArgumentException("This media Id is non-existent!");
         }
@@ -251,6 +251,8 @@ public class OnlineService {
             throw new IllegalArgumentException("This media is already reserved!");
         }
         mediaTest.setIsReserved(true);
+        mediaTest.setUserReserving(userID);
+        mediaRepository.save(mediaTest);
         return mediaTest;
     }
 

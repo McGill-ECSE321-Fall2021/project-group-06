@@ -611,7 +611,7 @@ public class OnlineServiceTest {
         CheckOutItem mediaTest = null;
         //String error = "";
         try{
-            mediaTest = (CheckOutItem) onlineService.reserveAnItem(CHECKOUTITEM_ID);
+            mediaTest = (CheckOutItem) onlineService.reserveAnItem(CHECKOUTITEM_ID, 727);
         } catch(IllegalArgumentException e) {
             fail();
 		} 

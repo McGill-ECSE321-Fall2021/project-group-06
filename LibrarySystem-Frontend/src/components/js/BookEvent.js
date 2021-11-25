@@ -94,6 +94,9 @@ export default {
     },
     reserveItem: function (mediaID){
       AXIOS.put('/reserve_media_online/'.concat(mediaID), {}, {
+        params: {
+          userId: localStorage.getItem('id')
+        }
       })
           .then(response => {
             swal("Success", "Media " + mediaID + " Reserved Successfully!", "success")
