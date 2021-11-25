@@ -40,6 +40,22 @@ export default {
     .catch(e => {
       this.errorEvent = e
     }),
+    AXIOS.get('/checkOutItems')
+    .then(response => {
+      this.medias = response.data
+      // this.id = window.localStorage.getItem('id')
+    })
+    .catch(e => {
+      this.errorEvent = e
+    }),
+    AXIOS.get('/nonCheckOutItems')
+    .then(response => {
+      this.medias = response.data
+      // this.id = window.localStorage.getItem('id')
+    })
+    .catch(e => {
+      this.errorEvent = e
+    }),
     AXIOS.get('/getOnline/'.concat(localStorage.getItem('id')))
     .then(response => {
       this.Account = response.data
@@ -74,6 +90,7 @@ export default {
       })
           .then(response => {
             swal("Success", "Media " + mediaID + " Reserved Successfully!", "success")
+            this.checkedOutMedias = this.Account.medias
           })
           .catch(e => {
             this.errorEvent = e
