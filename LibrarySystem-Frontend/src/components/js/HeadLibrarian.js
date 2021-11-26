@@ -15,6 +15,7 @@ export default {
     name: 'headLibrarian',
     data () {
       return {
+        currLib: '',
         //HL
         headLibrarians: [],
         hireLibrarianID:'',
@@ -88,7 +89,8 @@ export default {
       }
     },
     created: function () {
-        AXIOS.get('/openingHours')
+      this.currLib = window.localStorage.getItem('lib')
+      AXIOS.get('/openingHours')
         .then(response => {
           // JSON responses are automatically parsed.
           this.openingHours = response.data
@@ -146,6 +148,8 @@ export default {
         location.reload()
       },
       switchToLogin(){
+        window.localStorage.removeItem('id')
+        window.localStorage.removeItem('lib')
         window.location.href = "#/"
         location.reload()
       },

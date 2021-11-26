@@ -74,6 +74,8 @@ export default {
             location.reload()
         },
         switchToLogin(){
+            window.localStorage.removeItem('id')
+            window.localStorage.removeItem('lib')
             window.location.href = "#/"
             location.reload()
         },
