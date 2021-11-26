@@ -63,7 +63,7 @@ export default {
     
     methods: {
         switchToHLMedia(){
-            window.localStorage.setItem('id', localStorage.getItem('id'))
+            // window.localStorage.setItem('id', localStorage.getItem('id'))
             window.location.href = "#/MediaForHL"
             location.reload()
         },
@@ -186,7 +186,7 @@ export default {
               })
         },
         updatePW: function (password){
-            AXIOS.post('/librarian_updatePassword/'.concat(localStorage.getItem('id')), {}, {
+            AXIOS.put('/headLibrarian_UpdatePassword/'.concat(localStorage.getItem('id')), {}, {
                 params: {
                     password: password
                 }
