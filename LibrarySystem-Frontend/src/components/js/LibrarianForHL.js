@@ -78,7 +78,7 @@ export default {
         },
         viewShift(){
             window.localStorage.setItem('id', localStorage.getItem('id'))
-            window.location.href = "#/viewShift"
+            window.location.href = "#/ViewShiftForHL"
             location.reload()
         },
         checkOutAnItemOnline: function (userID, mediaID, date2){
