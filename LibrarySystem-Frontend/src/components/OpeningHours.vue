@@ -66,7 +66,7 @@
   }
   #openinghours {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    color: #000000;
+    color: #2c3e50;
     /* background: #f2ece8; */
   }
   html{
@@ -97,7 +97,7 @@
   border-radius: 16px;
 	padding: 20px;
 	background-color: rgba(192, 27, 27, 0.2);
-	color: rgb(0, 0, 0);
+	color: #2c3e50;
   }
   .ohnoh tr:hover {background-color: rgba(109, 88, 88, 0.5)}
 </style>
