@@ -116,6 +116,7 @@ export default {
       })
           .then(response => {
             swal("Success", "Account Updated Successfully!", "success")
+            location.reload()
           })
           .catch(e => {
             this.errorEvent = e

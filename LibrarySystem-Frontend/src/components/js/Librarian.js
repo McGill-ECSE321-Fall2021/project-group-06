@@ -13,6 +13,7 @@ export default {
     name: 'Librarian',
     data () {
         return {
+            currLib: '',
             librarian : '',
             id : '',
             librarianPassword : '',
@@ -51,6 +52,7 @@ export default {
         }
     },
     created: function () {
+        this.currLib = window.localStorage.getItem('lib')
         AXIOS.get('/librarians/'.concat(localStorage.getItem('id')))
         .then(response => {
           this.librarian = response.data
@@ -73,6 +75,8 @@ export default {
             location.reload()
         },
         switchToLogin(){
+            window.localStorage.removeItem('id')
+            window.localStorage.removeItem('lib')
             window.location.href = "#/"
             location.reload()
         },

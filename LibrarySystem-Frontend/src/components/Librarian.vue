@@ -29,7 +29,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!librarianPassword" @click="updatePW(librarianPassword)"> update personal information </button>
+          <button v-bind:disabled="!currLib || !librarianPassword" @click="updatePW(librarianPassword)"> update personal information </button>
         </td>
       </tr>
     </table>
@@ -58,7 +58,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!newOfflineID || !newAddress || !newName" @click="createOffline(newOfflineID, newAddress, newName)"> create new offline user </button>
+          <button v-bind:disabled="!currLib || !newOfflineID || !newAddress || !newName" @click="createOffline(newOfflineID, newAddress, newName)"> create new offline user </button>
         </td>
       </tr>
     </table>
@@ -87,7 +87,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!updateOfflineID || !updateAddress || !updateName" @click="updateOffline(updateOfflineID, updateAddress, updateName)"> update Offline user</button>
+          <button v-bind:disabled="!currLib || !updateOfflineID || !updateAddress || !updateName" @click="updateOffline(updateOfflineID, updateAddress, updateName)"> update Offline user</button>
         </td>
       </tr>
     </table>
@@ -106,7 +106,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!deleteOfflineID" @click="deleteOffline(deleteOfflineID)"> delete Offline user</button>
+          <button v-bind:disabled="!currLib || !deleteOfflineID" @click="deleteOffline(deleteOfflineID)"> delete Offline user</button>
         </td>
       </tr>
     </table>
@@ -135,7 +135,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!CheckOutOnlineID || !CheckOutMediaOnlineID || !CheckOutOnlineDate" @click="checkOutAnItemOnline(CheckOutOnlineID,CheckOutMediaOnlineID,CheckOutOnlineDate)"> Check out item</button>
+          <button v-bind:disabled="!currLib || !CheckOutOnlineID || !CheckOutMediaOnlineID || !CheckOutOnlineDate" @click="checkOutAnItemOnline(CheckOutOnlineID,CheckOutMediaOnlineID,CheckOutOnlineDate)"> Check out item</button>
         </td>
       </tr>
     </table>
@@ -164,7 +164,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!CheckOutOfflineID || !CheckOutMediaOfflineID || !CheckOutOfflineDate" @click="checkOutAnItemOffline(CheckOutOfflineID,CheckOutMediaOfflineID,CheckOutOfflineDate)"> Check out item</button>
+          <button v-bind:disabled="!currLib || !CheckOutOfflineID || !CheckOutMediaOfflineID || !CheckOutOfflineDate" @click="checkOutAnItemOffline(CheckOutOfflineID,CheckOutMediaOfflineID,CheckOutOfflineDate)"> Check out item</button>
         </td>
       </tr>
     </table>
@@ -193,7 +193,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!returnUserOnlineID || !returnMediaOnlineID || !returnOnlineDate" @click="returnAnItemOnline(returnUserOnlineID,returnMediaOnlineID,returnOnlineDate)"> return online user item</button>
+          <button v-bind:disabled="!currLib || !returnUserOnlineID || !returnMediaOnlineID || !returnOnlineDate" @click="returnAnItemOnline(returnUserOnlineID,returnMediaOnlineID,returnOnlineDate)"> return online user item</button>
         </td>
       </tr>
     </table>
@@ -222,7 +222,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!returnUserOfflineID || !returnMediaOfflineID || !returnOfflineDate" @click="returnAnItemOffline(returnUserOfflineID,returnMediaOfflineID,returnOfflineDate)"> return user offline item</button>
+          <button v-bind:disabled="!currLib || !returnUserOfflineID || !returnMediaOfflineID || !returnOfflineDate" @click="returnAnItemOffline(returnUserOfflineID,returnMediaOfflineID,returnOfflineDate)"> return user offline item</button>
         </td>
       </tr>
     </table>
@@ -254,7 +254,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!assignEventID || !assignEventName" @click="assignEvent(assignEventID,assignEventName)"> assign event</button>
+          <button v-bind:disabled="!currLib || !assignEventID || !assignEventName" @click="assignEvent(assignEventID,assignEventName)"> assign event</button>
         </td>
       </tr>
     </table>
@@ -289,7 +289,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createEventStartTime,createEventEndTime)"> create event</button>
+          <button v-bind:disabled="!currLib || !createEventName || !createEventDate || !createEventStartTime || !createEventEndTime" @click="createEvent(createEventName,createEventDate,createEventStartTime,createEventEndTime)"> create event</button>
         </td>
       </tr>
     </table>
@@ -321,7 +321,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!updateEventName || !updateEventDate || !updateEventStartTime || !updateEventEndTime" @click="updateEvent(updateEventName,updateEventDate,updateEventStartTime,updateEventEndTime)"> update event</button>
+          <button v-bind:disabled="!currLib || !updateEventName || !updateEventDate || !updateEventStartTime || !updateEventEndTime" @click="updateEvent(updateEventName,updateEventDate,updateEventStartTime,updateEventEndTime)"> update event</button>
         </td>
       </tr>
     </table>

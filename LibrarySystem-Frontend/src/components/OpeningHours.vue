@@ -3,8 +3,8 @@
     <h2>Opening Hours</h2>
     <table class="center centerpage ohnoh">
       <tr>
-        <td> Monday </td> <td> 9:00:00 to 20:00:00
-          <!-- Monday </td> <td> {{ Monday.startTime }} to {{ Monday.endTime }} -->
+        <!-- <td> Monday </td> <td> 9:00:00 to 20:00:00 -->
+          <td> Monday </td> <td> {{ Monday.startTime }} to {{ Monday.endTime }}
         </td>
       </tr>
       <tr>

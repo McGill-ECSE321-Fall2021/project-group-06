@@ -15,15 +15,17 @@ export default {
     name: 'headLibrarian',
     data () {
       return {
+        librarians: [],
+        currLib: '',
         //HL
         headLibrarians: [],
         hireLibrarianID:'',
         hireLibrarianPassword:'',
         assignLibrarianID: '',
         unAssignLibrarianID:'',
-        id: "",
-        pwd: "",
-        errorHL: "",
+        id: '',
+        pwd: '',
+        errorHL: '',
         //Shift
         shifts: [],
         createShiftID:'',
@@ -88,7 +90,22 @@ export default {
       }
     },
     created: function () {
-        AXIOS.get('/openingHours')
+      this.currLib = window.localStorage.getItem('lib')
+      AXIOS.get('/librarians/')
+        .then(response => {
+          this.librarians = response.data
+        })
+        .catch(e => {
+          this.errorOH = e
+        }),
+      AXIOS.get('/getShifts/')
+      .then(response => {
+        this.shifts = response.data
+      })
+      .catch(e => {
+        this.errorOH = e
+      })
+      AXIOS.get('/openingHours')
         .then(response => {
           // JSON responses are automatically parsed.
           this.openingHours = response.data
@@ -141,11 +158,13 @@ export default {
       //   })
       // },
       switchToLibrarian(){
-        window.localStorage.setItem('id', this.id)
+        // window.localStorage.setItem('id', this.id)
         window.location.href = "#/LibrarianForHL"
         location.reload()
       },
       switchToLogin(){
+        window.localStorage.removeItem('id')
+        window.localStorage.removeItem('lib')
         window.location.href = "#/"
         location.reload()
       },
@@ -232,6 +251,19 @@ export default {
         })
         .then(response => {
           swal("Success", "Opening Hour Successfully Updated!", "success")
+        })
+        .catch(e => {
+          this.librarianError = e
+        })
+      },
+      unAssignShift: function (id, shiftID) {
+        AXIOS.put('/unassignShift/'.concat(id), {}, {
+          params: {
+            shiftID: shiftID
+          }
+        })
+        .then(response => {
+          swal("Success", "Shift Successfully Unassigned!", "success")
         })
         .catch(e => {
           this.librarianError = e

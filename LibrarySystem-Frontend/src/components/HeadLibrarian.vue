@@ -66,7 +66,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createShiftID || !createDayOfWeek || !createStartTime || !createEndTime" @click="createShift(createShiftID,createDayOfWeek,createStartTime,createEndTime)"> create a shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1 ||!createShiftID || !createDayOfWeek || !createStartTime || !createEndTime" @click="createShift(createShiftID,createDayOfWeek,createStartTime,createEndTime)"> create a shift</button>
         </td>
       </tr>
     </table>
@@ -98,7 +98,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!updateShiftID || !updateDayOfWeek || !updateStartTime || !updateEndTime" @click="updateShift(updateShiftID,updateDayOfWeek,updateStartTime,updateEndTime)"> update a shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !updateShiftID || !updateDayOfWeek || !updateStartTime || !updateEndTime" @click="updateShift(updateShiftID,updateDayOfWeek,updateStartTime,updateEndTime)"> update a shift</button>
         </td>
       </tr>
     </table>
@@ -115,7 +115,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!deleteShiftID" @click="deleteShift(deleteShiftID)"> delete shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteShiftID" @click="deleteShift(deleteShiftID)"> delete shift</button>
         </td>
       </tr>
     </table>
@@ -137,7 +137,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!assignShiftID || !assignLibrarianID" @click="assignShift(assignShiftID,assignLibrarianID)"> assign shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !assignShiftID || !assignLibrarianID" @click="assignShift(assignShiftID,assignLibrarianID)"> assign shift</button>
         </td>
       </tr>
     </table>
@@ -159,7 +159,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!unAssignShiftID || !unAssignLibrarianID" @click="unAssignShift(unAssignShiftID,unAssignLibrarianID)"> unAssign shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !unAssignShiftID || !unAssignLibrarianID" @click="unAssignShift(unAssignShiftID,unAssignLibrarianID)"> unAssign shift</button>
         </td>
       </tr>
     </table>
@@ -191,7 +191,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createOpeningHourID || !createOpeningHourDayOfWeek || !createOpeningHourStartTime || !createOpeningHourEndTime" @click="createOH(createOpeningHourID,createOpeningHourDayOfWeek,createOpeningHourStartTime,createOpeningHourEndTime)"> create opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !createOpeningHourID || !createOpeningHourDayOfWeek || !createOpeningHourStartTime || !createOpeningHourEndTime" @click="createOH(createOpeningHourID,createOpeningHourDayOfWeek,createOpeningHourStartTime,createOpeningHourEndTime)"> create opening hour</button>
         </td>
       </tr>
     </table>
@@ -223,7 +223,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!updateOpeningHourID || !updateOpeningHourDayOfWeek || !updateOpeningHourStartTime || !updateOpeningHourEndTime" @click="updateOH(updateOpeningHourID,updateOpeningHourDayOfWeek,updateOpeningHourStartTime,updateOpeningHourEndTime)"> update opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !updateOpeningHourID || !updateOpeningHourDayOfWeek || !updateOpeningHourStartTime || !updateOpeningHourEndTime" @click="updateOH(updateOpeningHourID,updateOpeningHourDayOfWeek,updateOpeningHourStartTime,updateOpeningHourEndTime)"> update opening hour</button>
         </td>
       </tr>
     </table>
@@ -240,7 +240,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!deleteOpeningHourID" @click="deleteOpeningHour(deleteOpeningHourID)"> delete opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteOpeningHourID" @click="deleteOpeningHour(deleteOpeningHourID)"> delete opening hour</button>
         </td>
       </tr>
     </table>
@@ -262,7 +262,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!hireLibrarianID || !hireLibrarianPassword" @click="hireLibrarian(hireLibrarianID,hireLibrarianPassword)"> hire librarian</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !hireLibrarianID || !hireLibrarianPassword" @click="hireLibrarian(hireLibrarianID,hireLibrarianPassword)"> hire librarian</button>
         </td>
       </tr>
     </table>
@@ -279,7 +279,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!fireLibrarianID" @click="fireLibrarian(fireLibrarianID)"> fire librarian</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !fireLibrarianID" @click="fireLibrarian(fireLibrarianID)"> fire librarian</button>
         </td>
       </tr>
     </table>
@@ -321,7 +321,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createCOIID || !createCOIName || !createCOIType || !createCOIBorrowingPeriod|| !createCOIDate" @click="createCOI(createCOIID,createCOIType,createCOIName,createCOIBorrowingPeriod,createCOIDate)"> create COI</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !createCOIID || !createCOIName || !createCOIType || !createCOIBorrowingPeriod|| !createCOIDate" @click="createCOI(createCOIID,createCOIType,createCOIName,createCOIBorrowingPeriod,createCOIDate)"> create COI</button>
         </td>
       </tr>
     </table>
@@ -381,7 +381,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!updateCOIID || !updateCOIName || !updateCOIType || !updateCOICheckedOut ||!updateCOIReserved || !updateCOIBorrowingPeriod|| !updateCOIDate" @click="updateCOI(updateCOIID,updateCOIType,updateCOIName,updateCOICheckedOut,updateCOIReserved,updateCOIBorrowingPeriod,updateCOIDate)"> update COI</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !updateCOIID || !updateCOIName || !updateCOIType || !updateCOICheckedOut ||!updateCOIReserved || !updateCOIBorrowingPeriod|| !updateCOIDate" @click="updateCOI(updateCOIID,updateCOIType,updateCOIName,updateCOICheckedOut,updateCOIReserved,updateCOIBorrowingPeriod,updateCOIDate)"> update COI</button>
         </td>
       </tr>
     </table>
@@ -398,7 +398,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!deleteCOIID" @click="deleteCOI(deleteCOIID)"> delete COI</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !deleteCOIID" @click="deleteCOI(deleteCOIID)"> delete COI</button>
         </td>
       </tr>
     </table>
@@ -429,7 +429,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!createNCOIID || !createNCOIType || !createNCOIName" @click="createNCOI(createNCOIID,createNCOIType,createNCOIName)"> create NCOI</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !createNCOIID || !createNCOIType || !createNCOIName" @click="createNCOI(createNCOIID,createNCOIType,createNCOIName)"> create NCOI</button>
         </td>
       </tr>
     </table>
@@ -460,7 +460,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!updateNCOIID || !updateNCOIType || !updateNCOIName" @click="updateNCOI(updateNCOIID,updateNCOIType,updateNCOIName)"> update NCOI</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !updateNCOIID || !updateNCOIType || !updateNCOIName" @click="updateNCOI(updateNCOIID,updateNCOIType,updateNCOIName)"> update NCOI</button>
         </td>
       </tr>
     </table>
@@ -477,7 +477,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!deleteNCOIID" @click="deleteNCOI(deleteNCOIID)"> delete NCOI</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteNCOIID" @click="deleteNCOI(deleteNCOIID)"> delete NCOI</button>
         </td>
       </tr>
     </table>
