@@ -29,6 +29,11 @@
           {{ Account.numChecked }}
         </td>
       </tr>
+      <tr>
+        <td>
+          {{ Account.email }}
+        </td>
+      </tr>
       <tr v-for="event in bookedEvent" :key="event.name">
         <td>
           {{event.name}}
