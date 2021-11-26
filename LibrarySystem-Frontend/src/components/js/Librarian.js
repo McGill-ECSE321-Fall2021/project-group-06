@@ -46,6 +46,7 @@ export default {
             updateEventDate:'',
             updateEventStartTime:'',
             updateEventEndTime:'',
+            unReserveItemID:'',
             librarianError: '',
             response: []
         }
