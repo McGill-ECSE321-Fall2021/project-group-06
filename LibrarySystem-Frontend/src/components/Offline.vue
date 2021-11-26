@@ -66,7 +66,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!offlineName || !offlinePassword || !offlineAddress" @click="updateInfo(offlineName,offlinePassword,offlineAddress)"> update personal information </button>
+          <button v-bind:disabled="!offlineName || !offlineAddress" @click="updateInfo(offlineName,offlineAddress)"> update personal information </button>
         </td>
       </tr>
     </table>
