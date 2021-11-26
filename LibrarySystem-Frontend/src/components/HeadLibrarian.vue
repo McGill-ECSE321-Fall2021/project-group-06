@@ -481,6 +481,25 @@
         </td>
       </tr>
     </table>
+    <table>
+      view all Librarian
+      <tr v-for="librarian in librarians" :key="librarian.id">
+        <td>
+          {{librarian.id}}
+        </td>
+      </tr>
+    </table>
+    <table>
+      view all shift
+      <tr v-for="shift in shifts" :key="shift.id">
+        <td>
+          {{shift.shiftID}}
+          {{shift.dayOfWeek}}
+          {{shift.startTime}}
+          {{shift.endTime}}
+        </td>
+      </tr>
+    </table>
     <button  @click="switchToLibrarian()"> switch to librarian options</button>
     <button  @click="switchToLogin()"> sign out</button>
     <p>
