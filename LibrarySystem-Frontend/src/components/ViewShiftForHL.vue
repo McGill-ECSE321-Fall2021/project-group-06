@@ -19,7 +19,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-             <button @click="switchToHeadLibrarian()"> go back to main menu</button>
+             <button @click="switchToHeadLibrarian()"> go back to head librarian menu</button>
           </p>
         </td>
       </tr>
@@ -29,7 +29,7 @@
 </p>
 </div>
 </template>
-<script src="./js/ViewShift.js">
+<script src="./js/ViewShiftForHL.js">
 </script>
 <style scoped>
 #scrollBox {
