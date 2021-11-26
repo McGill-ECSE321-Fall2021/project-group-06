@@ -325,6 +325,23 @@
         </td>
       </tr>
     </table>
+    <table>
+      <tr>
+        <td>
+          unreserve Item
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="unReserveItemID" placeholder="set ID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!unReserveItemID" @click="unreserveItem(unReserveItemID)"> unreserve Item</button>
+        </td>
+      </tr>
+    </table>
     <button  @click="shiftToHeadLibrarian()"> switch to HeadLibrarian options</button>
     <button @click="switchToHLMedia()"> view Media</button>
     <p>
