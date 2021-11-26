@@ -29,11 +29,7 @@
           {{ Account.numChecked }}
         </td>
       </tr>
-      <tr>
-        <td>
-          {{ Account.email }}
-        </td>
-      </tr>
+
       <tr v-for="event in bookedEvent" :key="event.name">
         <td>
           {{event.name}}
@@ -60,22 +56,22 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="onlineName" placeholder="update online name">
+          <input type="text" v-model="offlineName" placeholder="update online name">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="onlinePassword" placeholder="update online password">
+          <input type="text" v-model="offlinePassword" placeholder="update online password">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="onlineAddress" placeholder="update online address">
+          <input type="text" v-model="offlineAddress" placeholder="update online address">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!onlineName || !onlinePassword || !onlineAddress" @click="updateInfo(onlineName,onlinePassword,onlineAddress)"> update personal information </button>
+          <button v-bind:disabled="!offlineName || !offlinePassword || !offlineAddress" @click="updateInfo(offlineName,offlinePassword,offlineAddress)"> update personal information </button>
         </td>
       </tr>
     </table>
