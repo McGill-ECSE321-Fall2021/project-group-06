@@ -61,11 +61,6 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="offlinePassword" placeholder="update online password">
-        </td>
-      </tr>
-      <tr>
-        <td>
           <input type="text" v-model="offlineAddress" placeholder="update online address">
         </td>
       </tr>
