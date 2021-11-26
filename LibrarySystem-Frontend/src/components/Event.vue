@@ -1,49 +1,63 @@
 <template> 
-<div>
-    <h2>
-        View Events
-    </h2>
-<div id="scrollBox">
-  
-  <table>
-  <tr v-for="event in events" :key="event.id">
-    <td>
-      {{ event.name}}
-      {{event.date}}
-      {{event.eventStart}}
-      {{event.eventEnd}}
-    </td>
-  </tr>
-  </table>
-</div>
-  <table>
-      <tr>
+<div id="Event" class="center centerpage evt">
+  <h2>
+    View Events
+  </h2>
+  <div id="scrollBox" >
+    <table>
+      <tr v-for="event in events" :key="event.id">
         <td>
-          <p style="font-size:30px">
-             <button @click="switchToLogin()"> go back to main menu</button>
-          </p>
+          {{ event.name}}
+          {{event.date}}
+          {{event.eventStart}}
+          {{event.eventEnd}}
         </td>
       </tr>
     </table>
-<p>
-  <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>
-</p>
+  </div>
+  <button id="btn" @click="switchToLogin()"> go back to main menu</button>
+  <p>
+    <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>
+  </p>
 </div>
 </template>
 <script src="./js/Event.js">
 </script>
 <style scoped>
 #scrollBox {
-  border: 1px solid black;
-  width: 300px;
-  height: 200px;
+  border: 1px solid #2c3e50;
+  min-width: 300px;
+  min-height: 200px;
   overflow: scroll;
-  float: left;
+  /*float:left*/
+  /*I thought it'd be better to have it center aligned 
+  since there's only the scrollbar to view mainly*/
 }
-  html{
-    height: 100%;
-  }
-  body{
-    background: #fff1e6
-  }
+.center{
+  text-align: center;
+  font-weight: bold;
+}
+.centerpage{
+  margin-left: 75px;
+  margin-right: 75px;
+}
+.evt td{
+  border-radius: 16px;
+	padding: 20px;
+  text-align:center
+}
+#Event{
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+}
+#btn{
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+}
+html{
+  height: 100%;
+}
+body{
+  background: #fff1e6
+}
 </style>
