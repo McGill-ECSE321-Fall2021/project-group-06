@@ -528,7 +528,7 @@
     background: #fff1e6;
   }
   table{
-    min-height: 300px;
+    min-height: 400px;
     text-align:center;
     /*float: left;*/
     border-spacing: 15px;
@@ -554,7 +554,7 @@
     float:left
   }
   .COI{
-    min-height: 525px;
+    min-height: 650px;
   }
   .centerpage{
     margin-left: auto;
