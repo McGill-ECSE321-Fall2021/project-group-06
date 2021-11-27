@@ -1,7 +1,7 @@
 <template> 
-<div>
+<div id="HLShift" class="centerpage center shft">
   <h2>
-    View Shift
+    View Shift(s)
   </h2>
   <div id="scrollBox">
   <table>
@@ -15,15 +15,9 @@
   </tr>
 </table>
 </div>
-  <table>
-      <tr>
-        <td>
-          <p style="font-size:30px">
-             <button @click="switchToHeadLibrarian()"> go back to head librarian menu</button>
-          </p>
-        </td>
-      </tr>
-    </table>
+<p>
+  <button @click="switchToHeadLibrarian()"> go back to head librarian menu</button>
+</p>
 <p>
   <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>
 </p>
@@ -34,15 +28,32 @@
 <style scoped>
 #scrollBox {
   border: 1px solid black;
-  width: 300px;
-  height: 200px;
+  min-width: 300px;
+  min-height: 200px;
   overflow: scroll;
-  float: left;
+  /*float: left;*/
 }
   html{
     height: 100%;
   }
   body{
     background: #fff1e6
+  }
+  #HLShift{
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    color: #2c3e50;
+  }
+  .centerpage{
+    margin-left: 75px;
+    margin-right: 75px;
+  }
+  .center{
+    text-align: center;
+    font-weight: bold;
+  }
+  .shft td{
+    border-radius: 16px;
+	  padding: 20px;
+    text-align:center
   }
 </style>
