@@ -22,7 +22,7 @@
       </td>
     </tr>
   </table>
-  <button @click="switchToLogin()"> go back to main menu</button>
+  <button @click="switchToLogin()"> Go back to main menu</button>
   <p>
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
 </p>
@@ -30,7 +30,7 @@
 </template>
 <script src="./js/Media.js">
 </script>
-<style scoped>
+<style>
   .center {
     text-align: center;
     font-weight: bold;

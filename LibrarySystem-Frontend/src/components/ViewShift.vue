@@ -16,7 +16,7 @@
 </table>
 </div>
 <p>
-  <button @click="switchToLibrarian()"> go back to librarian menu</button>
+  <button @click="switchToLibrarian()"> Go back to librarian menu</button>
 </p>
 <p>
   <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>
@@ -25,7 +25,7 @@
 </template>
 <script src="./js/ViewShift.js">
 </script>
-<style scoped>
+<style>
   #scrollBox {
     border: 1px solid black;
     min-width: 300px;

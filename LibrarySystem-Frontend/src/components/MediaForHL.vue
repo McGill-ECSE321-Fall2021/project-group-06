@@ -22,7 +22,7 @@
     </td>
   </tr>
 </table>
-<button @click="switchToHeadLibrarian()"> go back to Head Librarian menu</button>
+<button @click="switchToHeadLibrarian()"> Go back to Head Librarian menu</button>
 <p>
   <span v-if="errorLogin" style="color:red">Erroçr: {{errorLogin}} </span>
 </p>
@@ -30,7 +30,7 @@
 </template>
 <script src="./js/MediaForHeadLibrarian.js">
 </script>
-<style scoped>
+<style>
   .center {
     text-align: center;
     font-weight: bold;

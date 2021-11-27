@@ -15,7 +15,7 @@
       </tr>
     </table>
   </div>
-  <button id="btn" @click="switchToLogin()"> go back to main menu</button>
+  <button id="btn" @click="switchToLogin()"> Go back to main menu</button>
   <p>
     <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>
   </p>
@@ -23,7 +23,7 @@
 </template>
 <script src="./js/Event.js">
 </script>
-<style scoped>
+<style>
 #scrollBox {
   border: 1px solid #2c3e50;
   min-width: 300px;

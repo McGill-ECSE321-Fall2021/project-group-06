@@ -518,7 +518,7 @@
 </script>
 
 
-<style scoped>
+<style>
   #openinghours {
     min-height: 600px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
