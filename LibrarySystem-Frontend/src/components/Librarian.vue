@@ -187,7 +187,6 @@
         </td>
       </tr>
     </table>
-    
     <table class="leftHalf">
       <tr>
         <td>
@@ -301,7 +300,7 @@
     <table class="middleThird">
       <tr>
         <td>
-          Assign Event to User
+          Assign Event to Account
         </td>
       </tr>
       <tr>
@@ -316,7 +315,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || !assignEventID || !assignEventName" @click="assignEvent(assignEventID,assignEventName)"> assign event</button>
+          <button v-bind:disabled="!currLib || !assignEventID || !assignEventName" @click="assignEvent(assignEventID,assignEventName)"> Assign event</button>
         </td>
       </tr>
     </table>
@@ -333,17 +332,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEventDate" placeholder="Enter new date">
+          <input type="text" v-model="updateEventDate" placeholder="Set new date">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEventStartTime" placeholder="Enter new start time">
+          <input type="text" v-model="updateEventStartTime" placeholder="Set new start time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEventEndTime" placeholder="Enter new end time">
+          <input type="text" v-model="updateEventEndTime" placeholder="Set new end time">
         </td>
       </tr>
       <tr>

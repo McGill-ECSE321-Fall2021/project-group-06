@@ -1,7 +1,11 @@
 <template>
   <div id="openinghours">
-    <h2>Head Librarian</h2>
-    <table>
+    <h2>Head Librarian menu</h2>
+    <div>
+    <button  @click="switchToLibrarian()"> switch to Librarian services</button>
+    <button  @click="switchToLogin()"> sign out</button>
+    </div>
+    <table class="fourth">
       <tr>
         <td>
           Monday: {{ Monday.startTime }} to {{ Monday.endTime }} ID: {{ Monday.id }}
@@ -38,265 +42,265 @@
         </td>
       </tr>
     </table>
-    <table>
+    <table class="fourth">
       <tr>
         <td>
-          create a shift
+          Create opening hour
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createShiftID" placeholder="set ID for shift">
+          <input type="text" v-model="createOpeningHourID" placeholder="Set ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createDayOfWeek" placeholder="set day of week for shift">
+          <input type="text" v-model="createOpeningHourDayOfWeek" placeholder="Set day of week">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createStartTime" placeholder="set start time">
+          <input type="text" v-model="createOpeningHourStartTime" placeholder="Set start time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createEndTime" placeholder="set end time">
+          <input type="text" v-model="createOpeningHourEndTime" placeholder="Set end time">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 ||!createShiftID || !createDayOfWeek || !createStartTime || !createEndTime" @click="createShift(createShiftID,createDayOfWeek,createStartTime,createEndTime)"> create a shift</button>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td>
-          update a shift
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="updateShiftID" placeholder="set ID for shift">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="updateDayOfWeek" placeholder="set day of week for shift">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="updateStartTime" placeholder="set start time">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="updateEndTime" placeholder="set end time">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !updateShiftID || !updateDayOfWeek || !updateStartTime || !updateEndTime" @click="updateShift(updateShiftID,updateDayOfWeek,updateStartTime,updateEndTime)"> update a shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !createOpeningHourID || !createOpeningHourDayOfWeek || !createOpeningHourStartTime || !createOpeningHourEndTime" @click="createOH(createOpeningHourID,createOpeningHourDayOfWeek,createOpeningHourStartTime,createOpeningHourEndTime)"> Create opening hour</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="fourth">
       <tr>
         <td>
-          delete a shift
+          Update opening hour
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteShiftID" placeholder="set shift id to be deleted">
+          <input type="text" v-model="updateOpeningHourID" placeholder="Enter ID">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !deleteShiftID" @click="deleteShift(deleteShiftID)"> delete shift</button>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td>
-          assign shift to librarian
+          <input type="text" v-model="updateOpeningHourDayOfWeek" placeholder="Set new day of week">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="assignShiftID" placeholder="assign shift ID">
+          <input type="text" v-model="updateOpeningHourStartTime" placeholder="Set new start time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="assignLibrarianID" placeholder="Id of librarian to be assigned">
+          <input type="text" v-model="updateOpeningHourEndTime" placeholder="Set new end time">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !assignShiftID || !assignLibrarianID" @click="assignShift(assignShiftID,assignLibrarianID)"> assign shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !updateOpeningHourID || !updateOpeningHourDayOfWeek || !updateOpeningHourStartTime || !updateOpeningHourEndTime" @click="updateOH(updateOpeningHourID,updateOpeningHourDayOfWeek,updateOpeningHourStartTime,updateOpeningHourEndTime)"> Update opening hour</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="fourth">
       <tr>
         <td>
-          unassign shift to librarian
+          Delete opening hour
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="unAssignShiftID" placeholder="set shift id">
+          <input type="text" v-model="deleteOpeningHourID" placeholder="Enter ID to be deleted">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="unAssignLibrarianID" placeholder="set librarian id">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !unAssignShiftID || !unAssignLibrarianID" @click="unAssignShift(unAssignShiftID,unAssignLibrarianID)"> unAssign shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteOpeningHourID" @click="deleteOpeningHour(deleteOpeningHourID)"> Delete opening hour</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="half">
       <tr>
         <td>
-          create opening hour
+          Hire a librarian
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createOpeningHourID" placeholder="set id">
+          <input type="text" v-model="hireLibrarianID" placeholder="Set ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createOpeningHourDayOfWeek" placeholder="set day of week">
+          <input type="text" v-model="hireLibrarianPassword" placeholder="Set password">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createOpeningHourStartTime" placeholder="set start time">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="createOpeningHourEndTime" placeholder="set end time">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !createOpeningHourID || !createOpeningHourDayOfWeek || !createOpeningHourStartTime || !createOpeningHourEndTime" @click="createOH(createOpeningHourID,createOpeningHourDayOfWeek,createOpeningHourStartTime,createOpeningHourEndTime)"> create opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !hireLibrarianID || !hireLibrarianPassword" @click="hireLibrarian(hireLibrarianID,hireLibrarianPassword)"> Hire librarian</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="half">
       <tr>
         <td>
-          update opening hour
+          Fire a librarian
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateOpeningHourID" placeholder="update id">
+          <input type="text" v-model="fireLibrarianID" placeholder="Enter ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateOpeningHourDayOfWeek" placeholder="update day of week">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="updateOpeningHourStartTime" placeholder="update start time">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="updateOpeningHourEndTime" placeholder="update end time">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !updateOpeningHourID || !updateOpeningHourDayOfWeek || !updateOpeningHourStartTime || !updateOpeningHourEndTime" @click="updateOH(updateOpeningHourID,updateOpeningHourDayOfWeek,updateOpeningHourStartTime,updateOpeningHourEndTime)"> update opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !fireLibrarianID" @click="fireLibrarian(fireLibrarianID)"> Fire librarian</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="third">
       <tr>
         <td>
-          delete opening hour
+          Create a shift
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteOpeningHourID" placeholder="id to delete">
+          <input type="text" v-model="createShiftID" placeholder="Set ID">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !deleteOpeningHourID" @click="deleteOpeningHour(deleteOpeningHourID)"> delete opening hour</button>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td>
-          hire a librarian
+          <input type="text" v-model="createDayOfWeek" placeholder="Set day of week">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="hireLibrarianID" placeholder="set id">
+          <input type="text" v-model="createStartTime" placeholder="Set start time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="hireLibrarianPassword" placeholder="set password">
+          <input type="text" v-model="createEndTime" placeholder="Set end time">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !hireLibrarianID || !hireLibrarianPassword" @click="hireLibrarian(hireLibrarianID,hireLibrarianPassword)"> hire librarian</button>
+          <button v-bind:disabled="!currLib || currLib!=1 ||!createShiftID || !createDayOfWeek || !createStartTime || !createEndTime" @click="createShift(createShiftID,createDayOfWeek,createStartTime,createEndTime)"> Create shift</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="third">
       <tr>
         <td>
-          fire a ibrarian
+          Update a shift
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="fireLibrarianID" placeholder="set id">
+          <input type="text" v-model="updateShiftID" placeholder="Enter shiftID">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !fireLibrarianID" @click="fireLibrarian(fireLibrarianID)"> fire librarian</button>
+          <input type="text" v-model="updateDayOfWeek" placeholder="Set new day of week">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="updateStartTime" placeholder="Set new start time">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="updateEndTime" placeholder="Set new end time">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!currLib || currLib!=1 || !updateShiftID || !updateDayOfWeek || !updateStartTime || !updateEndTime" @click="updateShift(updateShiftID,updateDayOfWeek,updateStartTime,updateEndTime)"> Update shift</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="third">
       <tr>
         <td>
-          create COI
+          Delete a shift
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIID" placeholder="set id">
+          <input type="text" v-model="deleteShiftID" placeholder="Enter shiftID to be deleted">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIName" placeholder="set name">
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteShiftID" @click="deleteShift(deleteShiftID)"> Delete shift</button>
+        </td>
+      </tr>
+    </table>
+    <table class="half">
+      <tr>
+        <td>
+          Assign shift to librarian
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="assignShiftID" placeholder="Enter shiftID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="assignLibrarianID" placeholder="Enter librarianID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!currLib || currLib!=1  || !assignShiftID || !assignLibrarianID" @click="assignShift(assignShiftID,assignLibrarianID)"> Assign shift</button>
+        </td>
+      </tr>
+    </table>
+    <table class="half">
+      <tr>
+        <td>
+          Unassign shift to librarian
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="unAssignShiftID" placeholder="Enter shiftID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="unAssignLibrarianID" placeholder="Enter librarianID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!currLib || currLib!=1  || !unAssignShiftID || !unAssignLibrarianID" @click="unAssignShift(unAssignShiftID,unAssignLibrarianID)"> Unassign shift</button>
+        </td>
+      </tr>
+    </table>
+    <table class="third COI">
+      <tr>
+        <td>
+          Create COI
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="createCOIID" placeholder="Set ItemID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="createCOIName" placeholder="Set Item title">
         </td>
       </tr>
       <tr>
@@ -311,34 +315,34 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIBorrowingPeriod" placeholder="set borrowing period">
+          <input type="text" v-model="createCOIBorrowingPeriod" placeholder="Set borrowing period">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIDate" placeholder="set date">
+          <input type="text" v-model="createCOIDate" placeholder="Set date">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !createCOIID || !createCOIName || !createCOIType || !createCOIBorrowingPeriod|| !createCOIDate" @click="createCOI(createCOIID,createCOIType,createCOIName,createCOIBorrowingPeriod,createCOIDate)"> create COI</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !createCOIID || !createCOIName || !createCOIType || !createCOIBorrowingPeriod|| !createCOIDate" @click="createCOI(createCOIID,createCOIType,createCOIName,createCOIBorrowingPeriod,createCOIDate)"> Create COI</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="third COI">
       <tr>
         <td>
-          update COI
+          Update COI
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIID" placeholder="update id">
+          <input type="text" v-model="updateCOIID" placeholder="Enter ItemID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIName" placeholder="update name">
+          <input type="text" v-model="updateCOIName" placeholder="Enter new title">
         </td>
       </tr>
       <tr>
@@ -371,46 +375,46 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIBorrowingPeriod" placeholder="update borrowing period">
+          <input type="text" v-model="updateCOIBorrowingPeriod" placeholder="Set new borrowing period">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIDate" placeholder="update date">
+          <input type="text" v-model="updateCOIDate" placeholder="Set new date">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !updateCOIID || !updateCOIName || !updateCOIType || !updateCOICheckedOut ||!updateCOIReserved || !updateCOIBorrowingPeriod|| !updateCOIDate" @click="updateCOI(updateCOIID,updateCOIType,updateCOIName,updateCOICheckedOut,updateCOIReserved,updateCOIBorrowingPeriod,updateCOIDate)"> update COI</button>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td>
-          delete COI
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input type="text" v-model="deleteCOIID" placeholder="set id">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !deleteCOIID" @click="deleteCOI(deleteCOIID)"> delete COI</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !updateCOIID || !updateCOIName || !updateCOIType || !updateCOICheckedOut ||!updateCOIReserved || !updateCOIBorrowingPeriod|| !updateCOIDate" @click="updateCOI(updateCOIID,updateCOIType,updateCOIName,updateCOICheckedOut,updateCOIReserved,updateCOIBorrowingPeriod,updateCOIDate)"> Update COI</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="third COI">
       <tr>
         <td>
-          create NCOI
+          Delete COI
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createNCOIID" placeholder="set id">
+          <input type="text" v-model="deleteCOIID" placeholder="Enter ItemID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!currLib || currLib!=1  || !deleteCOIID" @click="deleteCOI(deleteCOIID)"> Delete COI</button>
+        </td>
+      </tr>
+    </table>
+    <table class="third">
+      <tr>
+        <td>
+          Create NCOI
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="createNCOIID" placeholder="Set ItemID">
         </td>
       </tr>
       <tr>
@@ -424,24 +428,24 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createNCOIName" placeholder="set name">
+          <input type="text" v-model="createNCOIName" placeholder="Set Item title">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !createNCOIID || !createNCOIType || !createNCOIName" @click="createNCOI(createNCOIID,createNCOIType,createNCOIName)"> create NCOI</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !createNCOIID || !createNCOIType || !createNCOIName" @click="createNCOI(createNCOIID,createNCOIType,createNCOIName)"> Create NCOI</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="third">
       <tr>
         <td>
-          update NCOI
+          Update NCOI
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateNCOIID" placeholder="set id">
+          <input type="text" v-model="updateNCOIID" placeholder="Enter ItemID">
         </td>
       </tr>
       <tr>
@@ -455,42 +459,45 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateNCOIName" placeholder="set name">
+          <input type="text" v-model="updateNCOIName" placeholder="Enter new title">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !updateNCOIID || !updateNCOIType || !updateNCOIName" @click="updateNCOI(updateNCOIID,updateNCOIType,updateNCOIName)"> update NCOI</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !updateNCOIID || !updateNCOIType || !updateNCOIName" @click="updateNCOI(updateNCOIID,updateNCOIType,updateNCOIName)"> Update NCOI</button>
         </td>
       </tr>
     </table>
-    <table>
+    <table class="third">
       <tr>
         <td>
-          delete NCOI
+          Delete NCOI
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteNCOIID" placeholder="set id">
+          <input type="text" v-model="deleteNCOIID" placeholder="Enter ItemID">
         </td>
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !deleteNCOIID" @click="deleteNCOI(deleteNCOIID)"> delete NCOI</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteNCOIID" @click="deleteNCOI(deleteNCOIID)"> Delete NCOI</button>
         </td>
       </tr>
     </table>
-    <table>
-      view all Librarian
+    <div>
+    <table class="centerpage">
+      View all librarians
       <tr v-for="librarian in librarians" :key="librarian.id">
         <td>
           {{librarian.id}}
         </td>
       </tr>
     </table>
-    <table>
-      view all shift
+    </div>
+    <div>
+    <table class="centerpage">
+      View all shifts
       <tr v-for="shift in shifts" :key="shift.id">
         <td>
           {{shift.shiftID}}
@@ -500,8 +507,7 @@
         </td>
       </tr>
     </table>
-    <button  @click="switchToLibrarian()"> switch to librarian options</button>
-    <button  @click="switchToLogin()"> sign out</button>
+    </div>
     <p>
         <span v-if="errorOH" style="color:red">Error: {{errorOH}} </span>
     </p>
@@ -517,10 +523,41 @@
     min-height: 600px;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
-    background: #f2ece8;
-  }  table{
+  }  
+  body{
+    background: #fff1e6;
+  }
+  table{
     min-height: 300px;
     text-align:center;
-    float: left;
+    /*float: left;*/
+    border-spacing: 15px;
+    border-collapse: seperate;
+
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.2px);
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .fourth {
+    width:25%;
+    float:left
+  }
+  .half{
+    width:50%;
+    float:left
+  }
+  .third{
+    width:33%;
+    float:left
+  }
+  .COI{
+    min-height: 525px;
+  }
+  .centerpage{
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
