@@ -559,5 +559,10 @@
   .centerpage{
     margin-left: auto;
     margin-right: auto;
+    min-width: 300px;
+    min-height: 150px
+  }
+  .centerpage tr:hover{
+    background-color: rgba(109, 88, 88, 0.5)
   }
 </style>

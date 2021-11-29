@@ -44,7 +44,12 @@
 .evt td{
   border-radius: 16px;
 	padding: 20px;
-  text-align:center
+  text-align:center;
+	background-color: rgba(192, 27, 27, 0.2);
+	color: #2c3e50;
+}
+.evt tr:hover {
+  background-color: rgba(109, 88, 88, 0.5)
 }
 #Event{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
