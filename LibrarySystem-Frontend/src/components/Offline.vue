@@ -2,9 +2,8 @@
 
   <div id="Offline">
     <h1>User Offline Account</h1>
-      <div class="container">
 
-    <div class="column">
+    <div class="second4">
       <table class="Account_Table">
         <tr v="Account">
           <th style="font-size:30px" colspan=2>Personal Information</th>
@@ -27,14 +26,6 @@
         </tr>
         <tr>
           <td class="Account_Table_left">
-            <p style="font-size:20px">Local Account?</p>
-          </td>
-          <td class="Account_Table_right"> 
-            <p style="font-size:20px">{{ Account.local }} </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="Account_Table_left">
             <p style="font-size:20px">Home Address</p>
           </td>
           <td class="Account_Table_right"> 
@@ -50,38 +41,14 @@
           </td>
         </tr>
       </table>
-    </div>
-    <div class="column">
-      <table class="UpdateAcc">
-        <tr v="Account">
-          <th style="font-size:30px;font-weight:bold" colspan=2>Update Personal Information</th>
-        </tr>
-        <tr>
-          <td>
-            <p style="font-size:20px">Update Account Name</p>
-            <input type="text" v-model="offlineName" placeholder="New Name">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <p style="font-size:20px">Update Home Address</p>
-            <input type="text" v-model="offlineAddress" placeholder="New Home Address">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button id="persInfo" v-bind:disabled="!offlineName || !offlineAddress" @click="updateInfo(offlineName,offlineAddress)"> Update Personal Information </button>
-          </td>
-        </tr>
-      </table>
-    </div>
+    
     </div>
 
     <div class="container">
       <div class="column">
         <table class="User_Media">
           <tr>
-            <th style="font-size:25px">Current Media Checked Out</th>
+            <!-- <th style="font-size:25px">Current Media Checked Out</th> -->
           </tr>
           <tr v-for="media in checkedOutMedias" :key="media.name">
             <td class="Account_Table_right">
@@ -93,7 +60,7 @@
       <div class="column">
         <table class="User_Event">
           <tr>
-            <th style="font-size:25px">Current Booked Events</th>
+            <!-- <th style="font-size:25px">Current Booked Events</th> -->
           </tr>
           <tr v-for="event in bookedEvent" :key="event.name">
             <td class="Account_Table_right">
@@ -269,6 +236,11 @@
   width: 33%;
   padding: 10px;
 }
+
+.second4{
+    width: 100%;
+    float: left
+  }
 .container {
   display: flex;
   justify-content: space-between;
