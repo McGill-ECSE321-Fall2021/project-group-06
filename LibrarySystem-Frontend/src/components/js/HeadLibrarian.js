@@ -96,14 +96,16 @@ export default {
           this.librarians = response.data
         })
         .catch(e => {
-          this.errorOH = e
+          swal("ERROR", "get Librarians: " + e.response.data, "error");
+          this.errorOH = e;
         }),
       AXIOS.get('/getShifts/')
       .then(response => {
         this.shifts = response.data
       })
       .catch(e => {
-        this.errorOH = e
+        swal("ERROR", "get Shifts: " + e.response.data, "error");
+        this.errorOH = e;
       })
       AXIOS.get('/openingHours')
         .then(response => {
@@ -136,7 +138,8 @@ export default {
           }
         })
         .catch(e => {
-          this.errorOH = e
+          swal("ERROR", "get OpeningHours: " + e.response.data, "error");
+          this.errorOH = e;
         })
     
     },
@@ -180,6 +183,7 @@ export default {
           swal("Success", "Shift Was Created Successfully!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorShift = e
         })
       },
@@ -195,6 +199,7 @@ export default {
           swal("Success", "Shift Successfully Updated!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.librarianError = e
         })
       },
@@ -205,6 +210,7 @@ export default {
             swal("Success", "Shift Successfully Deleted!", "success")
           })
           .catch(e => {
+            swal("ERROR", e.response.data, "error");
             this.librarianError = e
           })
       },
@@ -218,6 +224,7 @@ export default {
             swal("Success", "Shift " + shiftID + " Successfully Assigned to " + libID + " !" , "success")
           })
           .catch(e => {
+            swal("ERROR", e.response.data, "error");
             this.librarianError = e
           })
       },
@@ -238,6 +245,7 @@ export default {
             swal("Success", "Opening Hour Was Created Successfully!", "success")
           })
           .catch(e => {
+            swal("ERROR", e.response.data, "error");
             this.errorOH = e
           })
       },
@@ -253,6 +261,7 @@ export default {
           swal("Success", "Opening Hour Successfully Updated!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.librarianError = e
         })
       },
@@ -266,6 +275,7 @@ export default {
           swal("Success", "Shift Successfully Unassigned!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.librarianError = e
         })
       },
@@ -276,6 +286,7 @@ export default {
             swal("Success", "Opening Hour Successfully Deleted!", "success")
           })
           .catch(e => {
+            swal("ERROR", e.response.data, "error");
             this.librarianError = e
           })
       },
@@ -289,6 +300,7 @@ export default {
           swal("Success", "Librarian Was Successfully Hired!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorShift = e
         })
       },
@@ -299,6 +311,7 @@ export default {
             swal("Success", "Librarian Successfully Fired!", "success")
           })
           .catch(e => {
+            swal("ERROR", e.response.data, "error");
             this.librarianError = e
           })
       },
@@ -318,6 +331,7 @@ export default {
           swal("Success", "Check Out Item Was Created Successfully!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorShift = e
         })
       },
@@ -336,6 +350,7 @@ export default {
           swal("Success", "Check Out Item Successfully Updated!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.librarianError = e
         })
       },
@@ -346,6 +361,7 @@ export default {
             swal("Success", "Check Out Item Successfully Deleted!", "success")
           })
           .catch(e => {
+            swal("ERROR", e.response.data, "error");
             this.librarianError = e
           })
       },
@@ -361,6 +377,7 @@ export default {
           swal("Success", "Non Check Out Item Was Created Successfully!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorShift = e
         })
       },
@@ -376,6 +393,7 @@ export default {
           swal("Success", "Non Check Out Item Successfully Updated!", "success")
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.librarianError = e
         })
       },
@@ -386,6 +404,7 @@ export default {
             swal("Success", "Non Check Out Item Successfully Deleted!", "success")
           })
           .catch(e => {
+            swal("ERROR", e.response.data, "error");
             this.librarianError = e
           })
       }
