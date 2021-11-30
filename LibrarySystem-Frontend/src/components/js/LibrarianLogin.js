@@ -31,6 +31,7 @@ export default {
       window.location.href = "#/"
       location.reload()
     },
+    
     switchToOH(){
         window.location.href = "#/OpeningHours"
         location.reload()

@@ -23,6 +23,7 @@ export default {
             updateOfflineID : '',
             updateAddress : '',
             updateName : '',
+            offlineIDtoget: '',
             deleteOfflineID : '',
             CheckOutOfflineID:'',
             CheckOutMediaOfflineID:'',
@@ -71,6 +72,11 @@ export default {
         switchToMedia(){
             window.localStorage.setItem('id', localStorage.getItem('id'))
             window.location.href = "#/MediaForLibrarian"
+            location.reload()
+        },
+        switchToOfflineAccountToGet(){
+            window.localStorage.setItem('offid', this.offlineIDtoget)
+            window.location.href = "#/Offline"
             location.reload()
         },
         switchToHLMedia(){
