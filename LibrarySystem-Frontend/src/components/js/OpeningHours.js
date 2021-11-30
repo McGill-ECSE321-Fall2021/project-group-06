@@ -63,6 +63,7 @@ var AXIOS = axios.create({
           }
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorOH = e
         })
     
@@ -91,6 +92,7 @@ var AXIOS = axios.create({
               this.newOH = ''
             })
             .catch(e => {
+              swal("ERROR", e.response.data, "error");
               this.errorOH = e
             })
         }

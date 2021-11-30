@@ -26,6 +26,7 @@ export default {
           // this.id = window.localStorage.getItem('id')
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorEvent = e
         }),
         AXIOS.get('/nonCheckOutItems/')
@@ -34,6 +35,7 @@ export default {
           // this.id = window.localStorage.getItem('id')
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorEvent = e
         })
     },
