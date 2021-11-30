@@ -41,7 +41,7 @@ export default {
       // this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
-      this.errorEvent = e
+      swal("ERROR", e.response.data, "error");
     })
     // AXIOS.get('/events/getAllEvents')
     // .then(response => {
