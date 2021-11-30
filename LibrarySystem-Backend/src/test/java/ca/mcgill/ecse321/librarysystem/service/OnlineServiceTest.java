@@ -316,30 +316,30 @@ public class OnlineServiceTest {
         assertNull(online);
         assertEquals(error, "Online account must be of type online.");
     }
-    @Test
-    public void testCreateOnlineInvalidlocal(){
-        assertEquals(0, onlineService.getAllOnlines().size());
+    // @Test
+    // public void testCreateOnlineInvalidlocal(){
+    //     assertEquals(0, onlineService.getAllOnlines().size());
 
-        int id = 234234;
-        String address = "Badeu C-TYPEDTHRFL street";
-        String name = "LazyPurple";
-        AccountCategory accountCategory = AccountCategory.Online;
-        boolean isLocal = false;
-        int numChecked = 4;
-        Online online = null;
-        String username = "Atomizer";
-        String password = "Scottish Cyclops";
-        String email = "Crazed@Gunman.tf2";
-        String error = "";
-        try {
-            online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
-        } catch (IllegalArgumentException e){
-            error = e.getMessage();
-        }
+    //     int id = 234234;
+    //     String address = "Badeu C-TYPEDTHRFL street";
+    //     String name = "LazyPurple";
+    //     AccountCategory accountCategory = AccountCategory.Online;
+    //     boolean isLocal = false;
+    //     int numChecked = 4;
+    //     Online online = null;
+    //     String username = "Atomizer";
+    //     String password = "Scottish Cyclops";
+    //     String email = "Crazed@Gunman.tf2";
+    //     String error = "";
+    //     try {
+    //         online = onlineService.createOnline(id, address, name, accountCategory, isLocal, numChecked, username, password, email);
+    //     } catch (IllegalArgumentException e){
+    //         error = e.getMessage();
+    //     }
 
-        assertNull(online);
-        assertEquals(error, "Online Account must be a local");
-    }
+    //     assertNull(online);
+    //     assertEquals(error, "Online Account must be a local");
+    // }
     @Test
     public void testCreateOnlineInvalidUsername(){
         assertEquals(0, onlineService.getAllOnlines().size());
