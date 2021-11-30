@@ -465,19 +465,23 @@
     float:left
   }
   .first4{
-    width:25%;
-    float:left
+    width: 25%;
+    height:300px;
+    float: left
   }
   .second4{
     width: 25%;
+    height:300px;
     float: left
   }
   .third4{
     width: 25%;
-    float:left
+    height:300px;
+    float: left
   }
   .fourth4{
     width: 25%;
-    float:left
+    height: 300px;
+    float: left
   }
 </style>

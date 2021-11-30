@@ -25,7 +25,7 @@ export default {
         events: [],
         bookedEvents: [],
         medias: [],
-        id: window.localStorage.getItem('id'),
+        id: window.localStorage.getItem('offid'),
         name: '',
         
 		    errorEvent: '',
@@ -33,7 +33,7 @@ export default {
     }
   },
   created: function () {
-    AXIOS.get('/getOffline/'.concat(localStorage.getItem('id')))
+    AXIOS.get('/getOffline/'.concat(window.localStorage.getItem('offid')))
     .then(response => {
       this.Account = response.data
       this.events = response.data.events
