@@ -271,7 +271,7 @@
       <tr>
         <td>
           <input type="text" v-model="createEventName" placeholder="Set Name">
-          {{ createEventName }}
+          
         </td>
       </tr>
       <tr>
@@ -282,13 +282,13 @@
       <tr>
         <td>
           <input type="text" v-model="createEventStartTime" placeholder="Set start time">
-          {{ createEventStartTime }}
+          
         </td>
       </tr>
       <tr>
         <td>
           <input type="text" v-model="createEventEndTime" placeholder="Set end time">
-          {{ createEventEndTime }}
+         
         </td>
       </tr>
       <tr>

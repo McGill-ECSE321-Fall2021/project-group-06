@@ -68,13 +68,19 @@ export default {
             window.location.href = "#/MediaForHL"
             location.reload()
         },
-        switchToLogin(){
-            window.location.href = "#/"
-            location.reload()
-        },
+        // switchToLogin(){
+        //     window.location.href = "#/"
+        //     location.reload()
+        // },
         shiftToHeadLibrarian(){
             window.localStorage.setItem('id', localStorage.getItem('id'))
             window.location.href = "#/HeadLibrarian"
+            location.reload()
+        },
+        switchToLogin(){
+            window.localStorage.removeItem('id')
+            window.localStorage.removeItem('lib')
+            window.location.href = "#/"
             location.reload()
         },
         viewShift(){

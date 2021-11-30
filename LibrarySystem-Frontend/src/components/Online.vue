@@ -30,7 +30,7 @@
             <p style="font-size:20px">Local Account?</p>
           </td>
           <td class="Account_Table_right"> 
-            <p style="font-size:20px">{{ Account.isLocal }} </p>
+            <p style="font-size:20px">{{ Account.local }} </p>
           </td>
         </tr>
         <tr>

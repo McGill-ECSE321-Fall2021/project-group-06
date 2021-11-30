@@ -4,6 +4,7 @@
     <div>
     <button  @click="shiftToHeadLibrarian()"> switch to Head Librarian-exclusive services</button>
     <button @click="switchToHLMedia()"> view Media</button>
+    <button  @click="switchToLogin()"> sign out</button>
     </div>
     <table class="leftThird">
       <tr>
@@ -269,7 +270,7 @@
       <tr>
         <td>
           <input type="text" v-model="createEventName" placeholder="Set Name">
-          {{ createEventName }}
+          
         </td>
       </tr>
       <tr>
@@ -280,13 +281,13 @@
       <tr>
         <td>
           <input type="text" v-model="createEventStartTime" placeholder="Set start time">
-          {{ createEventStartTime }}
+         
         </td>
       </tr>
       <tr>
         <td>
           <input type="text" v-model="createEventEndTime" placeholder="Set end time">
-          {{ createEventEndTime }}
+         
         </td>
       </tr>
       <tr>

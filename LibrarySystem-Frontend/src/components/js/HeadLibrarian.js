@@ -96,7 +96,7 @@ export default {
           this.librarians = response.data
         })
         .catch(e => {
-          swal("ERROR", "get Librarians: " + e.response.data, "error");
+          swal("Error", "get Librarians: " + e.response.data, "error");
           this.errorOH = e;
         }),
       AXIOS.get('/getShifts/')
@@ -245,7 +245,8 @@ export default {
             swal("Success", "Opening Hour Was Created Successfully!", "success")
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", e.response.data, "error");
+            //Swal.fire("lol");
             this.errorOH = e
           })
       },

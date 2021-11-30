@@ -12,6 +12,8 @@
       {{ checkOutItem.checkedOut }}
       {{ checkOutItem.reserved }}
       {{ checkOutItem.mediaName }}
+      {{ checkOutItem.startDate }}
+      {{ checkOutItem.userReserving }}
     </td>
   </tr>
   <tr v-for="nonCheckOutItem in nonCheckOutItems" :key="nonCheckOutItem.id">

@@ -7,10 +7,10 @@
   <table>
   <tr v-for="shift in shifts" :key="shift.id">
     <td>
-      {{ shift.shiftID }}
+      <!-- {{ shift.shiftID }} -->
       {{ shift.dayOfWeek }}
       {{ shift.startTime }}
-      {{ endTime }}
+      {{ shift.endTime }}
     </td>
   </tr>
 </table>
