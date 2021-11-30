@@ -46,6 +46,9 @@ export default {
             updateEventStartTime:'',
             updateEventEndTime:'',
             unReserveItemID:'',
+            unassignEventID:'',
+            unassignEventName:'',
+            deleteEventName:'',
             librarianError: '',
             response: []
         }
