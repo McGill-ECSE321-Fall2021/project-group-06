@@ -16,6 +16,7 @@ public class CheckOutItem extends Media
   private int borrowingPeriod;
   private Date startDate;
   private int userReserving;
+  private int userChecking;
 
   public void setIsCheckedOut(boolean aIsCheckedOut)
   {
@@ -53,6 +54,14 @@ public class CheckOutItem extends Media
 
   public void setUserReserving(int userID){
     this.userReserving = userID;
+  }
+
+  public int getUserChecking(){
+    return this.userChecking;
+  }
+
+  public void setUserChecking(int userID){
+    this.userChecking = userID;
   }
 
   public boolean getIsReserved()

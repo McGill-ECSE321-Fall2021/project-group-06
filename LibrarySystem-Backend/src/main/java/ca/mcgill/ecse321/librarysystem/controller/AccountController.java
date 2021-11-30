@@ -42,4 +42,17 @@ public class AccountController {
 			return null;
 		}
 	 }
+
+	 @PutMapping(value= {"/unassignEvent/{id}", "/unassignEvent/{od}/"})
+	 public AccountDto unassignEvent(@PathVariable(name="id") int id, @RequestParam String name) {
+		 Account acc = accountService.unassignEvent(name, id);
+		 if (acc instanceof Offline){
+			return Conversion.convertToDto((Offline) acc);
+		} else if (acc instanceof Online){
+			
+			return Conversion.convertToDto((Online) acc);
+		} else {
+			return null;
+		}
+	 }
 }

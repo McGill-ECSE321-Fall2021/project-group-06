@@ -100,7 +100,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "true",
-                    date: date2
+                    date: date2,
+                    userID: userID
                 }
             })
             .then(response => {
@@ -120,7 +121,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "true",
-                    date: date2
+                    date: date2,
+                    userID: userID
                 }
             })
             .then(response => {
@@ -140,7 +142,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "false",
-                    date: date2
+                    date: date2,
+                    userID: 0
                 }
             })
             .then(response => {
@@ -160,7 +163,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "false",
-                    date: date2
+                    date: date2,
+                    userID: 0
                 }
             })
             .then(response => {

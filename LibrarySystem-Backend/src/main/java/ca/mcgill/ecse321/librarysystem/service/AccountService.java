@@ -90,5 +90,37 @@ public class AccountService {
         //event.setAccount(accountRepository.findAccountById(id));
         //throw new IllegalArgumentException("System Error");
     }
+
+    @Transactional
+    public Account unassignEvent(String name, int userID){
+        Account acc = accountRepository.findAccountById(userID);
+        Event eventTest = new Event();
+        if(acc == null){
+            throw new IllegalArgumentException("This Account does not exist!");
+        }
+         else {
+            if(eventRepository.findEventByName(name) == null){
+                throw new IllegalArgumentException("This Event is non-existent!");
+            } else {
+                eventTest=null;
+                for (Event event : acc.getEvents()){
+                    if (event.getName().equals(name)){
+                        eventTest = event;
+                    }
+                }
+                if (eventTest!=null){
+                    acc.getEvents().remove(eventTest);
+                    
+                    //offline.setNumChecked(id);
+                    accountRepository.save(acc);
+                    eventRepository.save(eventRepository.findEventByName(name));
+                    return acc;
+                } else {
+                    throw new IllegalArgumentException("This User does not have the following Event!");
+                }
+            }
+        }
+        //throw new IllegalArgumentException("System Error");
+    }
     
 }

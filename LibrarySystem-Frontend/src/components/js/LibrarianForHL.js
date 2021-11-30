@@ -97,7 +97,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "true",
-                    date: date2
+                    date: date2,
+                    userID: userID
                 }
             })
             .then(response => {
@@ -117,7 +118,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "true",
-                    date: date2
+                    date: date2,
+                    userID: userID
                 }
             })
             .then(response => {
@@ -137,7 +139,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "false",
-                    date: date2
+                    date: date2,
+                    userID: 0
                 }
             })
             .then(response => {
@@ -157,7 +160,8 @@ export default {
             AXIOS.put('/edit_boolean/'.concat(mediaID), {}, {
                 params: {
                     newIsCheckedOut: "false",
-                    date: date2
+                    date: date2,
+                    userID: 0
                 }
             })
             .then(response => {
@@ -247,6 +251,31 @@ export default {
             })
             .then(response => {
                 swal("Success", "Event Assigned Successfully!", "success")
+              })
+              .catch(e => {
+                swal("ERROR", e.response.data, "error");
+                this.librarianError = e
+              })
+        },
+        unassignEvent: function (userID, name){
+            AXIOS.put('/unassignEvent/'.concat(userID), {}, {
+                params: {
+                    name: name
+                }
+            })
+            .then(response => {
+                swal("Success", "Event Unassigned Successfully!", "success")
+              })
+              .catch(e => {
+                swal("ERROR", e.response.data, "error");
+                this.librarianError = e
+              })
+        },
+        deleteEvent: function (name){
+            AXIOS.delete('/update_events/'.concat(name), {}, {
+            })
+            .then(response => {
+                swal("Success", "Event Successfully Deleted!", "success")
               })
               .catch(e => {
                 swal("ERROR", e.response.data, "error");

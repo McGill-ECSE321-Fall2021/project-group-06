@@ -81,10 +81,10 @@ public class CheckOutItemController {
     }
 
     @PutMapping(value = { "/edit_boolean/{id}"})
-    public CheckOutItemDto updateCheckOut(@PathVariable("id") int mediaID, @RequestParam boolean newIsCheckedOut, @RequestParam String date)
+    public CheckOutItemDto updateCheckOut(@PathVariable("id") int mediaID, @RequestParam boolean newIsCheckedOut, @RequestParam String date, @RequestParam int userID)
             throws IllegalArgumentException {
                 Date newStartDate = Date.valueOf(date);
-                CheckOutItem checkOutItem = checkOutItemService.checkingOut(mediaID, newIsCheckedOut, newStartDate);
+                CheckOutItem checkOutItem = checkOutItemService.checkingOut(mediaID, newIsCheckedOut, newStartDate, userID);
                 return Conversion.convertToDto(checkOutItem);
     }
         /**
