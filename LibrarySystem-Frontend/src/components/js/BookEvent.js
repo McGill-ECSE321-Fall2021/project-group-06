@@ -85,11 +85,12 @@ export default {
           .then(response => {
             this.Account = response.data
             //this.Account.events.push(event)
+            swal("Success", "Event " + name + " successfully booked!", "success");
             
             this.bookedEvents = this.Account.events
           })
           .catch(e => {
-            this.errorEvent = e
+            swal("ERROR", e.response.data, "error");
           })
     },
     reserveItem: function (mediaID){
@@ -103,7 +104,7 @@ export default {
             this.checkedOutMedias = this.Account.medias
           })
           .catch(e => {
-            this.errorEvent = e
+            swal("ERROR", e.response.data, "error");
           })
     },
     updateInfo: function (name, password, address){
@@ -119,7 +120,7 @@ export default {
             location.reload()
           })
           .catch(e => {
-            this.errorEvent = e
+            swal("ERROR", e.response.data, "error");
           })
     }
   }
