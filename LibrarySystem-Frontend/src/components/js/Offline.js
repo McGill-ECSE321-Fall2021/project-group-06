@@ -71,6 +71,8 @@ export default {
   },
   methods: {
     switchToLogin(){
+      window.localStorage.removeItem('offid')
+      window.localStorage.removeItem('id')
       window.location.href = "#/"
       location.reload()
     },
