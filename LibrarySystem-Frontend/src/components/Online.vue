@@ -99,7 +99,7 @@
           </tr>
           <tr v-for="media in checkedOutMedias" :key="media.name">
             <td class="Account_Table_right">
-              {{name}}
+              {{media.name}}
             </td>
           </tr>
         </table>

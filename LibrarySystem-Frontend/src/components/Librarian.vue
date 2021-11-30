@@ -351,6 +351,45 @@
         </td>
       </tr>
     </table>
+    <table>
+      <tr>
+        <td>
+          Unassign event from account
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="unassignEventID" placeholder="Enter ID">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="unassignEventName" placeholder="Enter Event Name">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!currLib || !unassignEventID || !unassignEventName" @click="unassignEvent(unassignEventID,unassignEventName)"> Unassign event</button>
+        </td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td>
+          delete event
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="deleteEventName" placeholder="Enter Event Name">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!currLib || !deleteEventName" @click="deleteEvent(deleteEventName)"> Delete vent</button>
+        </td>
+      </tr>
+    </table>
     <p>
       <span v-if="librarianError" style="color:red">Error: {{librarianError}} </span>
     </p>

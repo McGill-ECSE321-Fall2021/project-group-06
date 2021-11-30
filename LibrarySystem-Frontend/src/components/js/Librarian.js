@@ -47,6 +47,9 @@ export default {
             updateEventStartTime:'',
             updateEventEndTime:'',
             unReserveItemID:'',
+            unassignEventID:'',
+            unassignEventName:'',
+            deleteEventName:'',
             librarianError: '',
             response: []
         }
@@ -272,6 +275,31 @@ export default {
             })
             .then(response => {
                 swal("Success", "Event Assigned Successfully!", "success")
+              })
+              .catch(e => {
+                swal("ERROR", e.response.data, "error");
+                this.librarianError = e
+              })
+        },
+        unassignEvent: function (userID, name){
+            AXIOS.put('/unassignEvent/'.concat(userID), {}, {
+                params: {
+                    name: name
+                }
+            })
+            .then(response => {
+                swal("Success", "Event Unassigned Successfully!", "success")
+              })
+              .catch(e => {
+                swal("ERROR", e.response.data, "error");
+                this.librarianError = e
+              })
+        },
+        deleteEvent: function (name){
+            AXIOS.delete('/update_events/'.concat(name), {}, {
+            })
+            .then(response => {
+                swal("Success", "Event Successfully Deleted!", "success")
               })
               .catch(e => {
                 swal("ERROR", e.response.data, "error");
