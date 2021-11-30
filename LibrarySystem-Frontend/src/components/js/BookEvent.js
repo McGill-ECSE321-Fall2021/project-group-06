@@ -42,6 +42,7 @@ export default {
     })
     .catch(e => {
       swal("ERROR", e.response.data, "error");
+      this.errorEvent = e;
     })
     // AXIOS.get('/events/getAllEvents')
     // .then(response => {
@@ -91,6 +92,7 @@ export default {
           })
           .catch(e => {
             swal("ERROR", e.response.data, "error");
+            this.errorEvent = e;
           })
     },
     reserveItem: function (mediaID){
@@ -105,6 +107,7 @@ export default {
           })
           .catch(e => {
             swal("ERROR", e.response.data, "error");
+            this.errorEvent = e;
           })
     },
     updateInfo: function (name, password, address){
@@ -121,6 +124,7 @@ export default {
           })
           .catch(e => {
             swal("ERROR", e.response.data, "error");
+            this.errorEvent = e;
           })
     }
   }

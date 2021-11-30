@@ -71,6 +71,7 @@ export default {
           })
           .catch(e => {
             swal("ERROR", e.response.data, "error");
+            this.errorLogin = e;
           })
     },
     createOnline: function (userID, address, name, isLocal, username, password, email){
@@ -91,6 +92,7 @@ export default {
         })
         .catch(e => {
           swal("ERROR", e.response.data, "error");
+          this.errorLogin = e;
         })
     }
   }
