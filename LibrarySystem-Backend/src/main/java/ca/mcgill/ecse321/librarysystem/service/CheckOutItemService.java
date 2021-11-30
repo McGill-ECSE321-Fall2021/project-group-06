@@ -73,7 +73,7 @@ public class CheckOutItemService {
     }
 
     @Transactional
-    public CheckOutItem checkingOut (int mediaID, boolean newIsCheckedOut, Date startDate){
+    public CheckOutItem checkingOut (int mediaID, boolean newIsCheckedOut, Date startDate, int userID){
         String error ="";
         if(mediaRepository.findMediaByID(mediaID)==null){
             error = error + "Media Id does not exist";
@@ -86,6 +86,7 @@ public class CheckOutItemService {
         checkOutItem.setIsCheckedOut(newIsCheckedOut);
         checkOutItem.setStartDate(startDate);
         checkOutItem.setIsReserved(false);
+        checkOutItem.setUserChecking(userID);
         mediaRepository.save(checkOutItem);
         return checkOutItem;
 
