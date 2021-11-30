@@ -63,9 +63,7 @@ public class OnlineService {
     	if (accountCategory==AccountCategory.Offline || accountCategory == null) {
     		throw new IllegalArgumentException("Online account must be of type online.");
     	}
-    	if (local==false) {
-    		throw new IllegalArgumentException("Online Account must be a local");
-    	}
+    	
         if (username==null || username.length()==0){
             throw new IllegalArgumentException("Online Account must have a username");
         }

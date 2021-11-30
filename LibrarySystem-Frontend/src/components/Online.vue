@@ -95,7 +95,7 @@
       <div class="column">
         <table class="User_Media">
           <tr>
-            <th style="font-size:25px">Current Media Checked Out</th>
+            <!-- <th style="font-size:25px">Current Media Checked Out</th> -->
           </tr>
           <tr v-for="media in checkedOutMedias" :key="media.name">
             <td class="Account_Table_right">
@@ -107,7 +107,7 @@
       <div class="column">
         <table class="User_Event">
           <tr>
-            <th style="font-size:25px">Current Booked Events</th>
+            <!-- <th style="font-size:25px">Current Booked Events</th> -->
           </tr>
           <tr v-for="event in bookedEvent" :key="event.name">
             <td class="Account_Table_right">
