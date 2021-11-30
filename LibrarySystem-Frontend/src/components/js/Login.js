@@ -70,7 +70,8 @@ export default {
             //this.id = '727'
           })
           .catch(e => {
-            this.errorLogin = e
+            swal("ERROR", e.response.data, "error");
+            this.errorLogin = e;
           })
     },
     createOnline: function (userID, address, name, isLocal, username, password, email){
@@ -86,11 +87,12 @@ export default {
               email: email
           }
       })
-      .then(response => {
+        .then(response => {
           swal("Success", "Account Created Successfully! Please Login", "success")
         })
         .catch(e => {
-          this.librarianError = e
+          swal("ERROR", e.response.data, "error");
+          this.errorLogin = e;
         })
     }
   }

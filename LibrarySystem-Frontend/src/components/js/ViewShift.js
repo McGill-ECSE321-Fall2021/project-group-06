@@ -24,6 +24,7 @@ export default {
           this.shifts = response.data
         })
         .catch(e => {
+          swal("ERROR", e.response.data, "error");
           this.errorEvent = e
         })
     },

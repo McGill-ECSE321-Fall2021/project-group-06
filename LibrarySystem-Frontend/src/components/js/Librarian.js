@@ -59,7 +59,8 @@ export default {
           // this.id = window.localStorage.getItem('id')
         })
         .catch(e => {
-          this.errorEvent = e
+            swal("ERROR", e.response.data, "error");
+            this.errorEvent = e
         })
     },
     
@@ -106,6 +107,7 @@ export default {
                 swal("Success", "Item Checked Out Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -125,6 +127,7 @@ export default {
                 swal("Success", "Item Checked Out Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -144,6 +147,7 @@ export default {
                 swal("Success", "Item Returned Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -163,6 +167,7 @@ export default {
                 swal("Success", "Item Returned Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -177,6 +182,7 @@ export default {
                 swal("Success", "Account Created Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -191,6 +197,7 @@ export default {
                 swal("Success", "Account Was Updated Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -204,6 +211,7 @@ export default {
                 swal("Success", "Password Updated Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -214,6 +222,7 @@ export default {
                 swal("Success", "Account Successfully Deleted!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -230,6 +239,7 @@ export default {
                 swal("Success", "Event Created Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -246,6 +256,7 @@ export default {
                 swal("Success", "Event Was Updated Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -259,6 +270,7 @@ export default {
                 swal("Success", "Event Assigned Successfully!", "success")
               })
               .catch(e => {
+                swal("ERROR", e.response.data, "error");
                 this.librarianError = e
               })
         },
@@ -271,7 +283,8 @@ export default {
                   this.checkedOutMedias = this.Account.medias
                 })
                 .catch(e => {
-                  this.errorEvent = e
+                    swal("ERROR", e.response.data, "error");
+                    this.errorEvent = e
                 })
           }
     }

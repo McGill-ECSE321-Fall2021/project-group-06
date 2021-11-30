@@ -41,7 +41,8 @@ export default {
       // this.id = window.localStorage.getItem('id')
     })
     .catch(e => {
-      this.errorEvent = e
+      swal("ERROR", e.response.data, "error");
+      this.errorEvent = e;
     })
     // AXIOS.get('/events/getAllEvents')
     // .then(response => {
@@ -85,11 +86,13 @@ export default {
           .then(response => {
             this.Account = response.data
             //this.Account.events.push(event)
+            swal("Success", "Event " + name + " successfully booked!", "success");
             
             this.bookedEvents = this.Account.events
           })
           .catch(e => {
-            this.errorEvent = e
+            swal("ERROR", e.response.data, "error");
+            this.errorEvent = e;
           })
     },
     reserveItem: function (mediaID){
@@ -103,7 +106,8 @@ export default {
             this.checkedOutMedias = this.Account.medias
           })
           .catch(e => {
-            this.errorEvent = e
+            swal("ERROR", e.response.data, "error");
+            this.errorEvent = e;
           })
     },
     updateInfo: function (name, password, address){
@@ -119,7 +123,8 @@ export default {
             location.reload()
           })
           .catch(e => {
-            this.errorEvent = e
+            swal("ERROR", e.response.data, "error");
+            this.errorEvent = e;
           })
     }
   }
