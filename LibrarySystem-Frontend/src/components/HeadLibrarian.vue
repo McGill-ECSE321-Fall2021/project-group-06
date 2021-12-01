@@ -5,7 +5,47 @@
     <button  @click="switchToLibrarian()"> Switch To Librarian Services</button>
     <button  @click="switchToLogin()"> Sign Out</button>
     </div>
+      <div>
+      <table class="half">
+        <p style=font-size:30px> View All Librarians </p>
+        <tr>
+          <td>
+            <p style=font-size:20px> Librarian ID </p>
+          </td>
+        </tr>
+        <tr v-for="librarian in librarians" :key="librarian.id">
+          <td>
+            {{librarian.id}}
+          </td>
+        </tr>
+      </table>
+      </div>
+      <div>
+      <table class="half">
+        <p style=font-size:30px> View All Shifts </p>
+        <div>
+        <colgroup span="4" style="width: 200px"> </colgroup>
+        <tr>
+          <th> Shift ID </th>
+          <th> Day of Week </th>
+          <th> Start Time </th>
+          <th> End Time </th>
+        </tr>
+        <tr v-for="shift in shifts" :key="shift.id">
+          <td> {{shift.shiftID}} </td>
+          <td> {{ shift.dayOfWeek }} </td>
+          <td> {{ shift.startTime }} </td>
+          <td> {{ shift.endTime }} </td>
+        </tr>
+        </div>
+      </table>
+    </div>
     <table class="fourth">
+      <tr>
+        <td>
+          <p style=font-size:30px> Current Opening Hours </p>
+        </td>
+      </tr>
       <tr>
         <td>
           Monday: {{ Monday.startTime }} to {{ Monday.endTime }} ID: {{ Monday.id }}
@@ -517,30 +557,6 @@
         </td>
       </tr>
     </table>
-    <div>
-    <table class="half">
-      View All Librarians
-      <tr v-for="librarian in librarians" :key="librarian.id">
-        <td>
-          {{librarian.id}}
-        </td>
-      </tr>
-    </table>
-    </div>
-    <div>
-    <table class="half">
-      <p> View All Shifts </p>
-      <div>
-      <colgroup span="4" style="width: 150px"> </colgroup>
-      <tr v-for="shift in shifts" :key="shift.id">
-        <td>  {{shift.shiftID}} </td>
-        <td> {{ shift.dayOfWeek }} </td>
-        <td> {{ shift.startTime }} </td>
-        <td>  {{ shift.endTime }} </td>
-      </tr>
-      </div>
-    </table>
-    </div>
     <p>
         <span v-if="errorOH" style="color:red">Error: {{errorOH}} </span>
     </p>
