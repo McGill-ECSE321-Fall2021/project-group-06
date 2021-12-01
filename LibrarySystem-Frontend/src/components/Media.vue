@@ -1,4 +1,4 @@
-<template> 
+<template>
 <div id="Media">
   <div class="container">
   <h2>
@@ -38,11 +38,11 @@
     </tr>
   </table>
   </div>
-  </div>
-  <button @click="switchToLogin()"> Go Back to Main Menu</button>
+  <button id=btn2 @click="switchToLogin()"> Go back to main menu</button>
   <p>
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
   </p>
+</div>
 </div>
 </template>
 
@@ -61,6 +61,9 @@
   #Media {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
+  }
+  #btn2 {
+    margin-top: 30px;
   }
   #scrollBox {
     height: 500px;
@@ -100,6 +103,5 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.2px);
   }
-  
+
 </style>
-      

@@ -69,6 +69,9 @@
     color: #2c3e50;
     /* background: #f2ece8; */
   }
+  #btn1{
+    margin-top: 30px;
+  }
   html{
     height: 100%;
   }
