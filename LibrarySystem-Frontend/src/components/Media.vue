@@ -3,6 +3,7 @@
   <h2>
     List of Media
   </h2>
+
   <div id="scrollBox">
   <table class="center centerpage md">
     <colgroup span="6" style="width: 200px"> </colgroup>

@@ -320,7 +320,7 @@
         </td>
       </tr>
     </table>
-    <table class="middleThird"> 
+    <table class="middleThird" style="min-width:350px"> 
       <tr>
         <td>
           <p style="font-size:30px">
