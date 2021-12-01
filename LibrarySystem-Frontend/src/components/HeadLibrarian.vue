@@ -9,17 +9,19 @@
       <table class="half">
         <p style=font-size:30px> View All Librarians </p>
         <div>
-        <colgroup style="margin-left:auto margin-right:auto"> </colgroup>
+          <table class = "center centerpage ohnoh" style = overflow:auto>
+        <!-- <colgroup style="margin-left:auto margin-right:auto"> </colgroup> -->
         <tr>
-          <td>
+          <th>
             <p style=font-size:20px> Librarian ID </p>
-          </td>
+          </th>
         </tr>
         <tr v-for="librarian in librarians" :key="librarian.id">
           <td>
             {{librarian.id}}
           </td>
         </tr>
+          </table>
         </div>
       </table>
       </div>
@@ -617,4 +619,16 @@
   .centerpage tr:hover{
     background-color: rgba(109, 88, 88, 0.5)
   }
+  .center{
+  text-align: center;
+  font-weight: bold;
+}
+  .ohnoh td {
+  border-radius: 16px;
+	padding: 5px;
+	/* background-color: rgba(192, 27, 27, 0.2); */
+	color: #2c3e50;
+  }
+  .ohnoh tr:hover {background-color: rgba(109, 88, 88, 0.5)}
+  
 </style>
