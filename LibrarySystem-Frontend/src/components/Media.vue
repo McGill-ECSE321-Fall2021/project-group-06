@@ -43,6 +43,7 @@
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
   </p>
 </div>
+</div>
 </template>
 
 <script src="./js/Media.js">

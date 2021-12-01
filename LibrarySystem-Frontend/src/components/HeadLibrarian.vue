@@ -8,6 +8,8 @@
       <div>
       <table class="half">
         <p style=font-size:30px> View All Librarians </p>
+        <div>
+        <colgroup style="margin-left:auto margin-right:auto"> </colgroup>
         <tr>
           <td>
             <p style=font-size:20px> Librarian ID </p>
@@ -18,6 +20,7 @@
             {{librarian.id}}
           </td>
         </tr>
+        </div>
       </table>
       </div>
       <div>
