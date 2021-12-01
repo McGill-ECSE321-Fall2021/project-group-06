@@ -1,19 +1,27 @@
 <template> 
 <div id="Event" class="center centerpage evt">
+  <div class="container">
   <h2>
     View Events
   </h2>
-  <div id="scrollBox" >
-    <table>
-      <tr v-for="event in events" :key="event.id">
-        <td>
-          Name: {{event.name}}
-          Date: {{event.date}}
-          Start Time: {{event.eventStart}}
-          End Time: {{event.endTime}}
-        </td>
+  </div>
+  <div class="container">
+  <div class="columnCEN">
+<table class="center centerpage ohnoh scroll">
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+        <tr v-for="event in events" :key="event.id">
+        <td> {{event.name}} </td>
+          <td> {{event.date}} </td>
+          <td> {{event.eventStart}}</td>
+          <td>{{event.endTime}}</td>
       </tr>
     </table>
+  </div>
   </div>
   <button id="btn" @click="switchToLogin()"> Go Back To Main Menu</button>
   <p>
@@ -21,8 +29,10 @@
   </p>
 </div>
 </template>
+
 <script src="./js/Event.js">
 </script>
+
 <style>
 #scrollBox {
   border: 1px solid #2c3e50;
@@ -40,6 +50,22 @@
 .centerpage{
   margin-left: 75px;
   margin-right: 75px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.column {
+  float: left;
+  vertical-align: 50%;
+  width: 80%;
+  padding: 10px;
+}
+.columnCEN {
+  float: center;
+  /* vertical-align: 50%; */
+  /* width: 50%; */
+  padding: 10px;
 }
 .evt td{
   border-radius: 16px;
@@ -65,4 +91,25 @@ html{
 body{
   background: #fff1e6
 }
+  table{
+    min-width: 700px;
+    min-height: 300px;
+    /* width:33%; */
+    text-align:center;
+    /* float: left; */
+    border-spacing: 15px;
+    border-collapse: separate;
+
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.2px);
+  }
+  .ohnoh td {
+  border-radius: 16px;
+	padding: 20px;
+	background-color: rgba(192, 27, 27, 0.2);
+	color: #2c3e50;
+  }
+  .ohnoh tr:hover {background-color: rgba(109, 88, 88, 0.5)}
 </style>

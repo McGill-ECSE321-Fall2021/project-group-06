@@ -3,25 +3,31 @@
   <h2>
     List of Media
   </h2>
+  <div style="height: 800px; overflow:auto">
   <table class="center centerpage md">
+    <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Period Of Borrowing</th>
+          <th>Checked Out</th>
+          <th>Reserved</th>
+          <th>Name</th>
+        </tr>
     <tr v-for="checkOutItem in checkOutItems" :key="checkOutItem.id">
-      <td>
-        ID: {{ checkOutItem.mediaID }} |
-        Type: {{ checkOutItem.mediaType }} |
-        Period of Borrowing: {{ checkOutItem.borrowingPeriod }} |
-        Checked Out: {{ checkOutItem.checkedOut }} |
-        Reserved: {{ checkOutItem.reserved }} |
-        Name: {{ checkOutItem.mediaName }}
-      </td>
+        <td>{{ checkOutItem.mediaID }}</td>
+        <td>{{ checkOutItem.mediaType }}</td>
+        <td>{{ checkOutItem.borrowingPeriod }}</td>
+        <td>{{ checkOutItem.checkedOut }}</td>
+        <td>{{ checkOutItem.reserved }}</td>
+        <td>{{ checkOutItem.mediaName }}</td>
     </tr>
     <tr v-for="nonCheckOutItem in nonCheckOutItems" :key="nonCheckOutItem.id">
-      <td>
-        ID: {{ nonCheckOutItem.mediaID }} |
-        Type: {{ nonCheckOutItem.mediaType }} |
-        Name: {{ nonCheckOutItem.mediaName }}
-      </td>
+        <td>{{ nonCheckOutItem.mediaID }}</td>
+        <td>{{ nonCheckOutItem.mediaType }}</td>
+        <td>{{ nonCheckOutItem.mediaName }}</td>
     </tr>
   </table>
+  </div>
   <button @click="switchToLogin()"> Go back to main menu</button>
   <p>
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
