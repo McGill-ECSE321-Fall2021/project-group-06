@@ -67,6 +67,7 @@
 #btn{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  margin-top: 30px;
 }
 html{
   height: 100%;
