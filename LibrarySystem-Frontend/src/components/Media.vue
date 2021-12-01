@@ -33,7 +33,7 @@
     </tr>
   </table>
   </div>
-  <button @click="switchToLogin()"> Go back to main menu</button>
+  <button id=btn2 @click="switchToLogin()"> Go back to main menu</button>
   <p>
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
   </p>
@@ -53,6 +53,9 @@
   #Media {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
+  }
+  #btn2 {
+    margin-top: 30px;
   }
   #scrollBox {
     width: 1200px;
