@@ -27,7 +27,6 @@ export default {
         medias: [],
         id: window.localStorage.getItem('id'),
         name: '',
-        
 		    errorEvent: '',
       	response: []
     }
@@ -91,7 +90,7 @@ export default {
             this.bookedEvents = this.Account.events
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Assigning Event to Account", "error")
             this.errorEvent = e;
           })
     },
@@ -106,7 +105,7 @@ export default {
             this.checkedOutMedias = this.Account.medias
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Reserving Media", "error")
             this.errorEvent = e;
           })
     },
@@ -123,7 +122,7 @@ export default {
             location.reload()
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Updating Online Account", "error")
             this.errorEvent = e;
           })
     }

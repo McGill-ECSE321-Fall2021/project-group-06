@@ -23,13 +23,13 @@
       <tr v="Librarian">
         <td>
           <p style="font-size:30px">
-            Account Information
+            Account Information: {{ librarian.id }}
           </p>
         </td>
       </tr>
       <tr>
         <td>
-          {{ librarian.id }}
+          
         </td>
       </tr>
     </table>
@@ -52,7 +52,7 @@
         </td>
       </tr>
     </table>
-    <table class="leftThird">
+    <table class="first4">
       <tr>
         <td>
           <p style="font-size:30px">
@@ -81,7 +81,7 @@
         </td>
       </tr>
     </table>
-    <table class="middleThird">
+    <table class="second4">
       <tr>
         <td>
           <p style="font-size:30px">
@@ -110,7 +110,7 @@
         </td>
       </tr>
     </table>
-    <table class="rightThird">
+    <table class="third4">
       <tr>
         <td>
           <p style="font-size:30px">
@@ -126,6 +126,25 @@
       <tr>
         <td>
           <button v-bind:disabled="!currLib || !deleteOfflineID" @click="deleteOffline(deleteOfflineID)"> Delete Offline user</button>
+        </td>
+      </tr>
+    </table>
+    <table class="fourth4">
+      <tr>
+        <td>
+          <p style="font-size:30px">
+            Lookup Offline
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input type="text" v-model="offlineIDtoget" placeholder="Enter Offline ID to be Lookup">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button v-bind:disabled="!offlineIDtoget" @click="switchToOfflineAccountToGet"> Lookup Offline User</button>
         </td>
       </tr>
     </table>
@@ -448,5 +467,25 @@
   .middleThird{
     width: 33%;
     float:left
+  }
+  .first4{
+    width: 25%;
+    height:300px;
+    float: left
+  }
+  .second4{
+    width: 25%;
+    height:300px;
+    float: left
+  }
+  .third4{
+    width: 25%;
+    height:300px;
+    float: left
+  }
+  .fourth4{
+    width: 25%;
+    height: 300px;
+    float: left
   }
 </style>

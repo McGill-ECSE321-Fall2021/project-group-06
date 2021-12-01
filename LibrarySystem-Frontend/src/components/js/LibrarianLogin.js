@@ -31,6 +31,7 @@ export default {
       window.location.href = "#/"
       location.reload()
     },
+    
     switchToOH(){
         window.location.href = "#/OpeningHours"
         location.reload()
@@ -59,7 +60,7 @@ export default {
             //this.id = '727'
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Logging In", "error")
             this.errorLogin = e
           })
     }

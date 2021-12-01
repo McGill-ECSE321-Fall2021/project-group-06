@@ -7,10 +7,10 @@
     <table>
       <tr v-for="event in events" :key="event.id">
         <td>
-          {{ event.name}}
-          {{event.date}}
-          {{event.eventStart}}
-          {{event.eventEnd}}
+          Name: {{event.name}}
+          Date: {{event.date}}
+          Start Time: {{event.eventStart}}
+          End Time: {{event.endTime}}
         </td>
       </tr>
     </table>

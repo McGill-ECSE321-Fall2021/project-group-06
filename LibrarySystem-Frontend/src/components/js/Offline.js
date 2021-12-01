@@ -25,7 +25,7 @@ export default {
         events: [],
         bookedEvents: [],
         medias: [],
-        id: window.localStorage.getItem('id'),
+        id: window.localStorage.getItem('offid'),
         name: '',
         
 		    errorEvent: '',
@@ -33,7 +33,7 @@ export default {
     }
   },
   created: function () {
-    AXIOS.get('/getOffline/'.concat(localStorage.getItem('id')))
+    AXIOS.get('/getOffline/'.concat(window.localStorage.getItem('offid')))
     .then(response => {
       this.Account = response.data
       this.events = response.data.events
@@ -71,6 +71,8 @@ export default {
   },
   methods: {
     switchToLogin(){
+      window.localStorage.removeItem('offid')
+      window.localStorage.removeItem('id')
       window.location.href = "#/"
       location.reload()
     },
@@ -91,7 +93,7 @@ export default {
             this.bookedEvents = this.Account.events
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Booking Event", "error")
             this.errorEvent = e;
           })
     },
@@ -107,7 +109,7 @@ export default {
             location.reload()
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Updating Account", "error")
             this.errorEvent = e;
           })
     }

@@ -70,7 +70,7 @@ export default {
             //this.id = '727'
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Logging In As Librarian", "error")
             this.errorLogin = e;
           })
     },
@@ -91,7 +91,7 @@ export default {
           swal("Success", "Account Created Successfully! Please Login", "success")
         })
         .catch(e => {
-          swal("ERROR", e.response.data, "error");
+          swal("Error", "Error Creating Account", "error")
           this.errorLogin = e;
         })
     }

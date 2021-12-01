@@ -92,7 +92,7 @@ var AXIOS = axios.create({
               this.newOH = ''
             })
             .catch(e => {
-              swal("ERROR", e.response.data, "error");
+              swal("Error", "Error Creating Opening Hour", "error")
               this.errorOH = e
             })
         }
