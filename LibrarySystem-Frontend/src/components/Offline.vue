@@ -33,7 +33,7 @@
       <div class="column">
       <h2>List of Media</h2>
       <table class="center centerpage ohnoh scroll">
-        <tr v-for="media in checkedOutMedias" :key="media.name">
+        <tr v-for="media in medias" :key="media.name">
             Name: {{ media.mediaName }} | ID: {{ media.mediaID }}
           </tr>
     </table>
