@@ -2,96 +2,74 @@
 
   <div id="Offline">
     <h1>User Offline Account</h1>
-
-    <div class="second4">
-      <table class="Account_Table">
-        <tr v="Account">
-          <th style="font-size:30px" colspan=2>Personal Information</th>
-        </tr>
-        <tr>
-          <td class="Account_Table_left">
-            <p style="font-size:20px">ID Number</p>
-          </td>
-          <td class="Account_Table_right">
-            <p style="font-size:20px">{{ Account.id }} </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="Account_Table_left">
-            <p style="font-size:20px">Name</p>
-          </td>
-          <td class="Account_Table_right"> 
-            <p style="font-size:20px">{{ Account.name }} </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="Account_Table_left">
-            <p style="font-size:20px">Home Address</p>
-          </td>
-          <td class="Account_Table_right"> 
-            <p style="font-size:20px">{{ Account.address }} </p>
-          </td>
-        </tr>
-        <tr>
-          <td class="Account_Table_left">
-            <p style="font-size:20px">Number of Checked Out Media</p>
-          </td>
-          <td class="Account_Table_right"> 
-            <p style="font-size:20px">{{ Account.numChecked }} </p>
-          </td>
-        </tr>
-      </table>
-    
+    <div class = "container>">
+    <h2>Personal Information</h2>
+    <div class="columnCEN">
+      <table class="center centerpage ohnoh">
+      <tr>
+        <!-- <td> Monday </td> <td> 9:00:00 to 20:00:00 -->
+          <td> ID Number </td> <td> {{Account.id}}
+        </td>
+      </tr>
+      <tr>
+        <td> Name </td> <td> {{Account.name}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Home Address </td> <td> {{Account.address}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Number of Checked Out Media </td> <td>  {{Account.numChecked}}
+        </td>
+      </tr>
+    </table>
+    </div>
     </div>
 
-    <div class="container">
+    <div class = "container">
       <div class="column">
-        <table class="User_Media">
-          <tr>
-            <!-- <th style="font-size:25px">Current Media Checked Out</th> -->
+      <h2>List of Media</h2>
+      <table class="center centerpage ohnoh scroll">
+        <tr v-for="media in checkedOutMedias" :key="media.name">
+            Name: {{ media.mediaName }} | ID: {{ media.mediaID }}
           </tr>
+    </table>
+    </div>
+      <div class="column">
+      <h2>List of Events</h2>
+      <table class="center centerpage ohnoh scroll">
+             <tr v-for="event in events" :key="event.name">
+            Name: {{ event.name }}
+          </tr>
+    </table>
+    </div>
+    </div>
+
+    <!-- <div class="container">
+      <div class="column">
+        <h2>List of Media</h2>
+        <div style="overflow-y:auto">
+        <table class="User_Media" id = "scrollBox">
           <tr v-for="media in checkedOutMedias" :key="media.name">
-            <td class="Account_Table_right">
-              {{media.name}}
-            </td>
+            Name: {{ media.mediaName }} | ID: {{ media.mediaID }}
           </tr>
         </table>
+        </div>
       </div>
       <div class="column">
-        <table class="User_Event">
-          <tr>
-            <!-- <th style="font-size:25px">Current Booked Events</th> -->
-          </tr>
-          <tr v-for="event in bookedEvent" :key="event.name">
-            <td class="Account_Table_right">
-              {{event.name}}
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="container">
-  
-      <div id="scrollBox">
-          <p style="font-size:25px">List of Media</p>
-          <table class="sb1" border=1 frame=hsides rules=rows style="width:100%">
-            <tr v-for="media in medias" :key="media.mediaName">       
-                Name: {{ media.mediaName }} | ID: {{ media.mediaID }}
-            </tr>
-          </table>
-      </div>
-
-      <div id="scrollBox">
-        <p style="font-size:25px">List of Events</p>
+        <h2>List of Events</h2>
+        <div style="overflow-y:auto">
         <table class="sb2" border=1 frame=hsides rules=rows style="width:100%">
           <tr v-for="event in events" :key="event.name">
             Name: {{ event.name }}
           </tr>
         </table>
+        </div>
       </div>
-    </div>
-
+    </div> -->
     <div class="buttonContainer">
       <button @click="switchToLogin()"> Sign Out</button>
       <p>
@@ -159,8 +137,8 @@
     float: middle;
   }
   table.User_Event{
-    min-width: 450px;
-    max-width: 450px;
+    min-width: 500px;
+    /* max-width: 450px; */
     text-align:center;
     /*float: left; */
     border-spacing: 1px;
@@ -173,7 +151,7 @@
     float: right;
   }
   table.Media{
-    min-width: 300px;
+    min-width: 500px;
     min-height: 300px;
     text-align:center;
     border-spacing: 1px;
@@ -184,34 +162,7 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.2px);
     float: middle;
-  }
-  td.Account_Table_left{
-    border-radius: 25px;
-    border:1px solid black;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    vertical-align: middle;
-    min-width: 60px;
-    max-width: 60px;
-  }
-  td.Account_Table_right{
-    border:1px solid black;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    vertical-align: middle;
-    min-width: 100px;
-    max-width: 100px;
-  }
-  td{
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+  } 
 
 #persInfo {
   margin-top: 50px;
@@ -236,11 +187,13 @@
   width: 33%;
   padding: 10px;
 }
+.columnCEN {
+  float: center;
+  /* vertical-align: 50%; */
+  /* width: 50%; */
+  padding: 10px;
+}
 
-.second4{
-    width: 100%;
-    float: left
-  }
 .container {
   display: flex;
   justify-content: space-between;
@@ -251,5 +204,48 @@
   margin-right: 20px;
   text-align: right;
 }
+
+  td{
+    min-width: 250px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px
+  }
+  .center {
+    text-align: center;
+    font-weight: bold;
+    /* border: 7px solid #332d2f; */
+  }
+  .centerpage {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  table{
+    min-width: 700px;
+    min-height: 300px;
+    /* width:33%; */
+    text-align:center;
+    /* float: left; */
+    border-spacing: 15px;
+    border-collapse: separate;
+
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.2px);
+  }
+  .ohnoh td {
+  border-radius: 16px;
+	padding: 20px;
+	background-color: rgba(192, 27, 27, 0.2);
+	color: #2c3e50;
+  }
+  .ohnoh tr:hover {background-color: rgba(109, 88, 88, 0.5)}
+
+  .scroll {
+    overflow-y: auto;
+    max-height: 500px;
+  }
 
 </style>
