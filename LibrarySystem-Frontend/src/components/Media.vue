@@ -3,29 +3,39 @@
   <h2>
     List of Media
   </h2>
+  <div id="scrollBox">
   <table class="center centerpage md">
+    <colgroup span="6" style="width: 200px"> </colgroup>
+    <tr>
+      <th> ID </th>
+      <th> Type </th>
+      <th> Title </th>
+      <th> Borrowing Period </th>
+      <th> Checkout Status </th>
+      <th> Reserve Status </th>
+    </tr>
     <tr v-for="checkOutItem in checkOutItems" :key="checkOutItem.id">
-      <td>
-        ID: {{ checkOutItem.mediaID }} |
-        Type: {{ checkOutItem.mediaType }} |
-        Period of Borrowing: {{ checkOutItem.borrowingPeriod }} |
-        Checked Out: {{ checkOutItem.checkedOut }} |
-        Reserved: {{ checkOutItem.reserved }} |
-        Name: {{ checkOutItem.mediaName }}
-      </td>
+      <td> {{ checkOutItem.mediaID }} </td>
+      <td>  {{ checkOutItem.mediaType }} </td>
+      <td>  {{ checkOutItem.mediaName }} </td>
+      <td>  {{ checkOutItem.borrowingPeriod }} </td>
+      <td>  {{ checkOutItem.checkedOut }} </td>
+      <td>  {{ checkOutItem.reserved }} </td>
     </tr>
     <tr v-for="nonCheckOutItem in nonCheckOutItems" :key="nonCheckOutItem.id">
-      <td>
-        ID: {{ nonCheckOutItem.mediaID }} |
-        Type: {{ nonCheckOutItem.mediaType }} |
-        Name: {{ nonCheckOutItem.mediaName }}
-      </td>
+      <td> {{ nonCheckOutItem.mediaID }} </td>
+      <td> {{ nonCheckOutItem.mediaType }} </td>
+      <td>  {{ nonCheckOutItem.mediaName }} </td>
+      <td>  -  </td>
+      <td>  -  </td>
+      <td>  -  </td>
     </tr>
   </table>
+  </div>
   <button @click="switchToLogin()"> Go back to main menu</button>
   <p>
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
-</p>
+  </p>
 </div>
 </template>
 <script src="./js/Media.js">
@@ -39,25 +49,13 @@
     margin-left: auto;
     margin-right: auto;
   }
-  td{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-right: 10px;
-    padding-left: 10px
-  }
   #Media {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
   }
-  html{
-    height: 100%;
-  }
-  body{
-    background: #fff1e6
-  }
-  table {
-    width: 90%;
-    min-height: 300px;
+  #scrollBox {
+    width: 1200px;
+    height: 500px;
     text-align: center;
     border-spacing: 15px;
     border-collapse: seperate;
@@ -66,8 +64,11 @@
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.2px);
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto
   }
-  .md td {
+  .md tr {
     border-radius: 16px;
 	  padding: 20px;
 	  background-color: rgba(192, 27, 27, 0.2);
@@ -75,6 +76,12 @@
   }
   .md tr:hover {
     background-color: rgba(109, 88, 88, 0.5)
+  }
+  html{
+    height: 100%;
+  }
+  body{
+    background: #fff1e6
   }
 </style>
       
