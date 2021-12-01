@@ -48,7 +48,7 @@
   </table>
   </div>
   </div>
-<button @click="switchToHeadLibrarian()"> Go back to Head Librarian menu</button>
+<button @click="switchToHeadLibrarian()"> Go Back to Head Librarian Menu</button>
 <p>
   <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
 </p>
