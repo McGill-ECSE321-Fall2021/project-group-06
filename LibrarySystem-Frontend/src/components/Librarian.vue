@@ -370,7 +370,7 @@
         </td>
       </tr>
     </table>
-    <table>
+    <table class = 'leftHalf'>
       <tr>
         <td>
           Unassign event from account
@@ -392,7 +392,7 @@
         </td>
       </tr>
     </table>
-    <table>
+    <table class = 'rightHalf'>
       <tr>
         <td>
           delete event
