@@ -45,27 +45,29 @@
     <table class="fourth">
       <tr>
         <td>
-          Create Opening Hour
+          <p style="font-size:30px">
+          Create opening hour
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createOpeningHourID" placeholder="Set ID">
+          <input type="text" v-model="createOpeningHourID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createOpeningHourDayOfWeek" placeholder="Set Day Of Week">
+          <input type="text" v-model="createOpeningHourDayOfWeek" placeholder="Day of Week">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createOpeningHourStartTime" placeholder="Set Start Time">
+          <input type="text" v-model="createOpeningHourStartTime" placeholder="Start Time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createOpeningHourEndTime" placeholder="Set End Time">
+          <input type="text" v-model="createOpeningHourEndTime" placeholder="End Time">
         </td>
       </tr>
       <tr>
@@ -77,27 +79,29 @@
     <table class="fourth">
       <tr>
         <td>
-          Update Opening Hour
+          <p style="font-size:30px">
+          Update opening hour
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateOpeningHourID" placeholder="Enter ID">
+          <input type="text" v-model="updateOpeningHourID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateOpeningHourDayOfWeek" placeholder="Set New Day Of Week">
+          <input type="text" v-model="updateOpeningHourDayOfWeek" placeholder="New Day of Week">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateOpeningHourStartTime" placeholder="Set New Start Time">
+          <input type="text" v-model="updateOpeningHourStartTime" placeholder="New Start Time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateOpeningHourEndTime" placeholder="Set New End Time">
+          <input type="text" v-model="updateOpeningHourEndTime" placeholder="New End Time">
         </td>
       </tr>
       <tr>
@@ -109,12 +113,14 @@
     <table class="fourth">
       <tr>
         <td>
-          Delete Opening Hour
+          <p style="font-size:30px">
+          Delete opening hour
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteOpeningHourID" placeholder="Enter ID To Be Deleted">
+          <input type="text" v-model="deleteOpeningHourID" placeholder="ID to be deleted">
         </td>
       </tr>
       <tr>
@@ -126,17 +132,19 @@
     <table class="half">
       <tr>
         <td>
-          Hire A Librarian
+          <p style="font-size:30px">
+          Hire a librarian
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="hireLibrarianID" placeholder="Set ID">
+          <input type="text" v-model="hireLibrarianID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="hireLibrarianPassword" placeholder="Set Password">
+          <input type="text" v-model="hireLibrarianPassword" placeholder="Password">
         </td>
       </tr>
       <tr>
@@ -148,12 +156,14 @@
     <table class="half">
       <tr>
         <td>
-          Fire A Librarian
+          <p style="font-size:30px">
+          Fire a librarian
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="fireLibrarianID" placeholder="Enter ID">
+          <input type="text" v-model="fireLibrarianID" placeholder="ID to be Fired">
         </td>
       </tr>
       <tr>
@@ -165,27 +175,29 @@
     <table class="third">
       <tr>
         <td>
-          Create A Shift
+          <p style="font-size:30px">
+          Create a shift
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createShiftID" placeholder="Set ID">
+          <input type="text" v-model="createShiftID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createDayOfWeek" placeholder="Set Day Of Week">
+          <input type="text" v-model="createDayOfWeek" placeholder="Day of Week">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createStartTime" placeholder="Set Start Time">
+          <input type="text" v-model="createStartTime" placeholder="Start Time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createEndTime" placeholder="Set End Time">
+          <input type="text" v-model="createEndTime" placeholder="End Time">
         </td>
       </tr>
       <tr>
@@ -197,27 +209,29 @@
     <table class="third">
       <tr>
         <td>
-          Update A Shift
+          <p style="font-size:30px">
+          Update a shift
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateShiftID" placeholder="Enter ShiftID">
+          <input type="text" v-model="updateShiftID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateDayOfWeek" placeholder="Set New Day Of Week">
+          <input type="text" v-model="updateDayOfWeek" placeholder="New Day of Week">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateStartTime" placeholder="Set New Start Time">
+          <input type="text" v-model="updateStartTime" placeholder="New Start Time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEndTime" placeholder="Set New End Time">
+          <input type="text" v-model="updateEndTime" placeholder="New End Time">
         </td>
       </tr>
       <tr>
@@ -229,12 +243,14 @@
     <table class="third">
       <tr>
         <td>
-          Delete A Shift
+          <p style="font-size:30px">
+          Delete a shift
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteShiftID" placeholder="Enter ShiftID To Be Deleted">
+          <input type="text" v-model="deleteShiftID" placeholder="ID to be deleted">
         </td>
       </tr>
       <tr>
@@ -246,17 +262,19 @@
     <table class="half">
       <tr>
         <td>
-          Assign Shift To Librarian
+          <p style="font-size:30px">
+          Assign shift to librarian
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="assignShiftID" placeholder="Enter ShiftID">
+          <input type="text" v-model="assignShiftID" placeholder="Shift ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="assignLibrarianID" placeholder="Enter LibrarianID">
+          <input type="text" v-model="assignLibrarianID" placeholder="Librarian ID">
         </td>
       </tr>
       <tr>
@@ -268,17 +286,19 @@
     <table class="half">
       <tr>
         <td>
-          Unassign Shift To Librarian
+          <p style="font-size:30px">
+          Unassign shift to librarian
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="unAssignShiftID" placeholder="Enter ShiftID">
+          <input type="text" v-model="unAssignShiftID" placeholder="Shift ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="unAssignLibrarianID" placeholder="Enter LibrarianID">
+          <input type="text" v-model="unAssignLibrarianID" placeholder="Librarian ID">
         </td>
       </tr>
       <tr>
@@ -290,17 +310,19 @@
     <table class="third COI">
       <tr>
         <td>
+          <p style="font-size:30px">
           Create COI
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIID" placeholder="Set ItemID">
+          <input type="text" v-model="createCOIID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIName" placeholder="Set Item Title">
+          <input type="text" v-model="createCOIName" placeholder="Name">
         </td>
       </tr>
       <tr>
@@ -315,12 +337,12 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIBorrowingPeriod" placeholder="Set Borrowing Period">
+          <input type="text" v-model="createCOIBorrowingPeriod" placeholder="Borrowing Period">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createCOIDate" placeholder="Set Date">
+          <input type="text" v-model="createCOIDate" placeholder="Date Borrowed">
         </td>
       </tr>
       <tr>
@@ -332,17 +354,19 @@
     <table class="third COI">
       <tr>
         <td>
+          <p style="font-size:30px">
           Update COI
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIID" placeholder="Enter ItemID">
+          <input type="text" v-model="updateCOIID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIName" placeholder="Enter new title">
+          <input type="text" v-model="updateCOIName" placeholder="New Name">
         </td>
       </tr>
       <tr>
@@ -375,12 +399,12 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIBorrowingPeriod" placeholder="Set New Borrowing Period">
+          <input type="text" v-model="updateCOIBorrowingPeriod" placeholder="New Borrowing Period">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateCOIDate" placeholder="Set New Date">
+          <input type="text" v-model="updateCOIDate" placeholder="New Date">
         </td>
       </tr>
       <tr>
@@ -392,12 +416,14 @@
     <table class="third COI">
       <tr>
         <td>
+          <p style="font-size:30px">
           Delete COI
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteCOIID" placeholder="Enter ItemID">
+          <input type="text" v-model="deleteCOIID" placeholder="ID to be Deleted">
         </td>
       </tr>
       <tr>
@@ -409,12 +435,14 @@
     <table class="third">
       <tr>
         <td>
+          <p style="font-size:30px">
           Create NCOI
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createNCOIID" placeholder="Set ItemID">
+          <input type="text" v-model="createNCOIID" placeholder="ID">
         </td>
       </tr>
       <tr>
@@ -428,7 +456,7 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createNCOIName" placeholder="Set Item Title">
+          <input type="text" v-model="createNCOIName" placeholder="Name">
         </td>
       </tr>
       <tr>
@@ -440,12 +468,14 @@
     <table class="third">
       <tr>
         <td>
+          <p style="font-size:30px">
           Update NCOI
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateNCOIID" placeholder="Enter ItemID">
+          <input type="text" v-model="updateNCOIID" placeholder="ID">
         </td>
       </tr>
       <tr>
@@ -459,7 +489,7 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateNCOIName" placeholder="Enter New Title">
+          <input type="text" v-model="updateNCOIName" placeholder="New Title">
         </td>
       </tr>
       <tr>
@@ -471,12 +501,14 @@
     <table class="third">
       <tr>
         <td>
+          <p style="font-size:30px">
           Delete NCOI
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteNCOIID" placeholder="Enter ItemID">
+          <input type="text" v-model="deleteNCOIID" placeholder="ID to be Deleted">
         </td>
       </tr>
       <tr>
