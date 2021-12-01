@@ -39,7 +39,7 @@
   </table>
   </div>
   </div>
-  <button @click="switchToLogin()"> Go Back To Main Menu</button>
+  <button @click="switchToLogin()"> Go Back to Main Menu</button>
   <p>
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
   </p>

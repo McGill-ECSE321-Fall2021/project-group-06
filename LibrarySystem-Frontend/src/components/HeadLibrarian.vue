@@ -2,7 +2,7 @@
   <div id="openinghours">
     <h2>Head Librarian menu</h2>
     <div>
-    <button  @click="switchToLibrarian()"> Switch To Librarian Services</button>
+    <button  @click="switchToLibrarian()"> Switch to Librarian Services</button>
     <button  @click="switchToLogin()"> Sign Out</button>
     </div>
     <table class="fourth">
@@ -46,7 +46,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Create opening hour
+          Create Opening Hour
           </p>
         </td>
       </tr>
@@ -80,7 +80,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Update opening hour
+          Update Opening Hour
           </p>
         </td>
       </tr>
@@ -114,7 +114,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Delete opening hour
+          Delete Opening Hour
           </p>
         </td>
       </tr>
@@ -133,7 +133,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Hire a librarian
+          Hire a Librarian
           </p>
         </td>
       </tr>
@@ -157,7 +157,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Fire a librarian
+          Fire a Librarian
           </p>
         </td>
       </tr>
@@ -176,7 +176,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Create a shift
+          Create a Shift
           </p>
         </td>
       </tr>
@@ -210,7 +210,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Update a shift
+          Update a Shift
           </p>
         </td>
       </tr>
@@ -244,13 +244,13 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Delete a shift
+          Delete a Shift
           </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteShiftID" placeholder="ID to be deleted">
+          <input type="text" v-model="deleteShiftID" placeholder="ID to be Deleted">
         </td>
       </tr>
       <tr>
@@ -263,7 +263,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Assign shift to librarian
+          Assign Shift to Librarian
           </p>
         </td>
       </tr>
@@ -287,7 +287,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Unassign shift to librarian
+          Unassign Shift to Librarian
           </p>
         </td>
       </tr>
@@ -327,10 +327,10 @@
       </tr>
       <tr>
         <td>
-          <p>media type:</p>
+          <p>Media Type:</p>
           <select v-model="createCOIType">
             <option value="Book">Book</option>
-            <option value="Movie">Novie</option>
+            <option value="Movie">Movie</option>
             <option value="Music">Music</option>
           </select>
         </td>
@@ -371,7 +371,7 @@
       </tr>
       <tr>
         <td>
-          <p>media type:</p>
+          <p>Media Type:</p>
           <select v-model="updateCOIType">
             <option value="Book">Book</option>
             <option value="Movie">Movie</option>
