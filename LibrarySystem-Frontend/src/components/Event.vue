@@ -20,7 +20,7 @@
       </tr>
     </table>
   </div>
-  <button id="btn" @click="switchToLogin()"> Go back to main menu</button>
+  <button id="btn" @click="switchToLogin()"> Go Back To Main Menu</button>
   <p>
     <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>
   </p>

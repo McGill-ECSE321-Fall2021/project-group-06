@@ -23,13 +23,13 @@
       <tr v="Librarian">
         <td>
           <p style="font-size:30px">
-            Account Information
+            Account Information: {{ librarian.id }}
           </p>
         </td>
       </tr>
       <tr>
         <td>
-          {{ librarian.id }}
+          
         </td>
       </tr>
     </table>
@@ -43,7 +43,7 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="librarianPassword" placeholder="Set new password">
+          <input type="text" v-model="librarianPassword" placeholder="New Password">
         </td>
       </tr>
       <tr>
@@ -62,17 +62,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="newOfflineID" placeholder="Set OfflineID">
+          <input type="text" v-model="newOfflineID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="newAddress" placeholder="Enter Address">
+          <input type="text" v-model="newAddress" placeholder="Address">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="newName" placeholder="Enter Name">
+          <input type="text" v-model="newName" placeholder="Name">
         </td>
       </tr>
       <tr>
@@ -91,17 +91,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateOfflineID" placeholder="Enter OfflineID to be updated">
+          <input type="text" v-model="updateOfflineID" placeholder="ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateAddress" placeholder="Enter new Address">
+          <input type="text" v-model="updateAddress" placeholder="New Address">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateName" placeholder="Enter new Name">
+          <input type="text" v-model="updateName" placeholder="New Name">
         </td>
       </tr>
       <tr>
@@ -120,7 +120,7 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteOfflineID" placeholder="Enter OfflineID to be deleted">
+          <input type="text" v-model="deleteOfflineID" placeholder="ID to be deleted">
         </td>
       </tr>
       <tr>
@@ -139,7 +139,7 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="offlineIDtoget" placeholder="Enter Offline ID to be Lookup">
+          <input type="text" v-model="offlineIDtoget" placeholder="ID">
         </td>
       </tr>
       <tr>
@@ -158,17 +158,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutOfflineID" placeholder="Enter OfflineID">
+          <input type="text" v-model="CheckOutOfflineID" placeholder="Offline Account ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutMediaOfflineID" placeholder="Enter MediaID">
+          <input type="text" v-model="CheckOutMediaOfflineID" placeholder="Media ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutOfflineDate" placeholder="Enter Checked out date">
+          <input type="text" v-model="CheckOutOfflineDate" placeholder="Check Out Date">
         </td>
       </tr>
       <tr>
@@ -187,17 +187,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutOnlineID" placeholder="Enter OnlineID">
+          <input type="text" v-model="CheckOutOnlineID" placeholder="Online Account ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutMediaOnlineID" placeholder="Enter MediaID">
+          <input type="text" v-model="CheckOutMediaOnlineID" placeholder="Media ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="CheckOutOnlineDate" placeholder="Enter Checked out date">
+          <input type="text" v-model="CheckOutOnlineDate" placeholder="Check Out Date">
         </td>
       </tr>
       <tr>
@@ -216,17 +216,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnUserOfflineID" placeholder="Enter OfflineID">
+          <input type="text" v-model="returnUserOfflineID" placeholder="Offline Account ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnMediaOfflineID" placeholder="Enter MediaID">
+          <input type="text" v-model="returnMediaOfflineID" placeholder="Media ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnOfflineDate" placeholder="Enter Check out date">
+          <input type="text" v-model="returnOfflineDate" placeholder="Enter Return Date">
         </td>
       </tr>
       <tr>
@@ -245,17 +245,17 @@
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnUserOnlineID" placeholder="Enter OnlineID">
+          <input type="text" v-model="returnUserOnlineID" placeholder="Online Account ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnMediaOnlineID" placeholder="Enter MediaID">
+          <input type="text" v-model="returnMediaOnlineID" placeholder="Media ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="returnOnlineDate" placeholder="Enter Check out date">
+          <input type="text" v-model="returnOnlineDate" placeholder="Enter Return Date">
         </td>
       </tr>
       <tr>
@@ -267,12 +267,14 @@
     <table class="center">
       <tr>
         <td>
+          <!-- <p style="font-size:30px"> -->
           Unreserve Item
+          <!-- </p> -->
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="unReserveItemID" placeholder="Enter MediaID">
+          <input type="text" v-model="unReserveItemID" placeholder="ID">
         </td>
       </tr>
       <tr>
@@ -284,29 +286,31 @@
     <table class="leftThird">
       <tr>
         <td>
+          <p style="font-size:30px">
           Create event
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createEventName" placeholder="Set Name">
+          <input type="text" v-model="createEventName" placeholder="Name">
           
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createEventDate" placeholder="Set date">
+          <input type="text" v-model="createEventDate" placeholder="Date">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createEventStartTime" placeholder="Set start time">
+          <input type="text" v-model="createEventStartTime" placeholder="Start Time">
           
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="createEventEndTime" placeholder="Set end time">
+          <input type="text" v-model="createEventEndTime" placeholder="End Time">
          
         </td>
       </tr>
@@ -319,17 +323,19 @@
     <table class="middleThird">
       <tr>
         <td>
+          <p style="font-size:30px">
           Assign Event to Account
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="assignEventID" placeholder="Enter ID">
+          <input type="text" v-model="assignEventID" placeholder="Account ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="assignEventName" placeholder="Enter Event Name">
+          <input type="text" v-model="assignEventName" placeholder="Event Name">
         </td>
       </tr>
       <tr>
@@ -341,27 +347,29 @@
     <table class='rightThird'>
       <tr>
         <td>
+          <p style="font-size:30px">
           Update event
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEventName" placeholder="Enter Name">
+          <input type="text" v-model="updateEventName" placeholder="Name">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEventDate" placeholder="Set new date">
+          <input type="text" v-model="updateEventDate" placeholder="New Date">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEventStartTime" placeholder="Set new start time">
+          <input type="text" v-model="updateEventStartTime" placeholder="New Start Time">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="updateEventEndTime" placeholder="Set new end time">
+          <input type="text" v-model="updateEventEndTime" placeholder="New End Time">
         </td>
       </tr>
       <tr>
@@ -373,17 +381,19 @@
     <table class = 'leftHalf'>
       <tr>
         <td>
-          Unassign event from account
+          <p style="font-size:30px">
+          Unassign Event From Account
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="unassignEventID" placeholder="Enter ID">
+          <input type="text" v-model="unassignEventID" placeholder="Account ID">
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="unassignEventName" placeholder="Enter Event Name">
+          <input type="text" v-model="unassignEventName" placeholder="Event Name">
         </td>
       </tr>
       <tr>
@@ -395,12 +405,14 @@
     <table class = 'rightHalf'>
       <tr>
         <td>
-          delete event
+          <p style="font-size:30px">
+          Delete Event
+          </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteEventName" placeholder="Enter Event Name">
+          <input type="text" v-model="deleteEventName" placeholder="Event Name To Be Deleted">
         </td>
       </tr>
       <tr>

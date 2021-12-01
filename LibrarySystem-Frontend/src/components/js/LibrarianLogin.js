@@ -60,7 +60,7 @@ export default {
             //this.id = '727'
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Logging In As A Librarian", "error")
             this.errorLogin = e
           })
     }
