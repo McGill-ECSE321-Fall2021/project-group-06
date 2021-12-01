@@ -23,13 +23,13 @@
       <tr v="Librarian">
         <td>
           <p style="font-size:30px">
-            Account Information
+            Account Information: {{ librarian.id }}
           </p>
         </td>
       </tr>
       <tr>
         <td>
-          {{ librarian.id }}
+          
         </td>
       </tr>
     </table>

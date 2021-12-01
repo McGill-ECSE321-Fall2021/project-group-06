@@ -93,7 +93,7 @@ export default {
             this.bookedEvents = this.Account.events
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Booking Event", "error")
             this.errorEvent = e;
           })
     },
@@ -109,7 +109,7 @@ export default {
             location.reload()
           })
           .catch(e => {
-            swal("ERROR", e.response.data, "error");
+            swal("Error", "Error Updating Account", "error")
             this.errorEvent = e;
           })
     }
