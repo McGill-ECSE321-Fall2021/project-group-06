@@ -417,7 +417,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || !deleteEventName" @click="deleteEvent(deleteEventName)"> Delete vent</button>
+          <button v-bind:disabled="!currLib || !deleteEventName" @click="deleteEvent(deleteEventName)"> Delete Event</button>
         </td>
       </tr>
     </table>
