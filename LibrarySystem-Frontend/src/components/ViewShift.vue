@@ -16,7 +16,7 @@
 </table>
 </div>
 <p>
-  <button @click="switchToLibrarian()"> Go back to librarian menu</button>
+  <button @click="switchToLibrarian()"> Go Back to Librarian Menu</button>
 </p>
 <p>
   <span v-if="errorShift" style="color:red">Error: {{errorShift}} </span>

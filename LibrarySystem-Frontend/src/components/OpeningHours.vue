@@ -37,7 +37,7 @@
         </td>
       </tr>
     </table>
-    <button id=btn1 @click="switchToLogin()"> Go back to main menu</button>
+    <button @click="switchToLogin()"> Go Back to Main Menu</button>
     <p>
         <span v-if="errorOH" style="color:red">Error: {{errorOH}} </span>
     </p>
