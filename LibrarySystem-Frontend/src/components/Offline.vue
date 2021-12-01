@@ -54,29 +54,6 @@
     </table>
     </div>
     </div>
-
-    <!-- <div class="container">
-      <div class="column">
-        <h2>List of Media</h2>
-        <div style="overflow-y:auto">
-        <table class="User_Media" id = "scrollBox">
-          <tr v-for="media in checkedOutMedias" :key="media.name">
-            Name: {{ media.mediaName }} | ID: {{ media.mediaID }}
-          </tr>
-        </table>
-        </div>
-      </div>
-      <div class="column">
-        <h2>List of Events</h2>
-        <div style="overflow-y:auto">
-        <table class="sb2" border=1 frame=hsides rules=rows style="width:100%">
-          <tr v-for="event in events" :key="event.name">
-            Name: {{ event.name }}
-          </tr>
-        </table>
-        </div>
-      </div>
-    </div> -->
     <div>
       <button @click="switchToLogin()"> Sign Out</button>
       <p>
@@ -98,79 +75,7 @@
     color: #2c3e50;
     /* background: #f2ece8; */
   }  
-  table.Account_Table{
-    min-height: 300px;
-    min-width: 500px;
-    max-width: 500px;
-    text-align:center;
-    /*float: left; */
-    border-collapse: collapse;
-
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.2px);
-    float: middle;
-    margin-top: 30px;
-  }
-  table.UpdateAcc{
-    min-height: 300px;
-    min-width: 450px;
-    max-width: 450px;
-    text-align:center;
-    /*float: left; */
-    border-spacing: 1px;
-    border-collapse: separate;
-
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    box-shadow: 0px 4px 30px 5px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.2px);
-    float: right;
-    margin-top: 30px;
-  }
-  table.User_Media{
-    min-width: 500px;
-    max-width: 500px;
-    text-align:center;
-    /*float: left; */
-    border-spacing: 1px;
-    border-collapse: separate;
-
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    /*box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);*/
-    backdrop-filter: blur(3.2px);
-    float: middle;
-  }
-  table.User_Event{
-    min-width: 500px;
-    /* max-width: 450px; */
-    text-align:center;
-    /*float: left; */
-    border-spacing: 1px;
-    border-collapse: separate;
-
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    /*box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);*/
-    backdrop-filter: blur(3.2px);
-    float: right;
-  }
-  table.Media{
-    min-width: 500px;
-    min-height: 300px;
-    text-align:center;
-    border-spacing: 1px;
-    border-collapse: separate;
-
-    background: rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.2px);
-    float: middle;
-  } 
-
+  
 #persInfo {
   margin-top: 50px;
 }
@@ -204,12 +109,6 @@
 .container {
   display: flex;
   justify-content: center;
-}
-.buttonContainer {
-  margin-bottom: 20px;
-  margin-top: 20px;
-  margin-right: 20px;
-  text-align: right;
 }
 
   td{
