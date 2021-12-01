@@ -33,16 +33,23 @@
       <div class="column">
       <h2>List of Media</h2>
       <table class="center centerpage ohnoh scroll">
+        <tr>
+          <th>Name</th>
+          <th>MediaID</th>
+        </tr>
         <tr v-for="media in medias" :key="media.name">
-            Name: {{ media.mediaName }} | ID: {{ media.mediaID }}
+            <td>{{ media.mediaName }}</td><td>{{ media.mediaID }}</td>
           </tr>
     </table>
     </div>
       <div class="column">
       <h2>List of Events</h2>
       <table class="center centerpage ohnoh scroll">
+              <tr>
+          <th>Name</th>
+        </tr>
              <tr v-for="event in events" :key="event.name">
-            Name: {{ event.name }}
+            <td>{{ event.name }}</td>
           </tr>
     </table>
     </div>
@@ -70,7 +77,7 @@
         </div>
       </div>
     </div> -->
-    <div class="buttonContainer">
+    <div>
       <button @click="switchToLogin()"> Sign Out</button>
       <p>
         <span v-if="errorEvent" style="color:red">Error: {{errorEvent}} </span>
@@ -184,7 +191,7 @@
 .column {
   float: left;
   vertical-align: 50%;
-  width: 33%;
+  width: 80%;
   padding: 10px;
 }
 .columnCEN {
@@ -196,7 +203,7 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .buttonContainer {
   margin-bottom: 20px;

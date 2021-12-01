@@ -2,8 +2,8 @@
   <div id="openinghours">
     <h2>Head Librarian menu</h2>
     <div>
-    <button  @click="switchToLibrarian()"> switch to Librarian services</button>
-    <button  @click="switchToLogin()"> sign out</button>
+    <button  @click="switchToLibrarian()"> Switch To Librarian Services</button>
+    <button  @click="switchToLogin()"> Sign Out</button>
     </div>
     <table class="fourth">
       <tr>
@@ -72,7 +72,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !createOpeningHourID || !createOpeningHourDayOfWeek || !createOpeningHourStartTime || !createOpeningHourEndTime" @click="createOH(createOpeningHourID,createOpeningHourDayOfWeek,createOpeningHourStartTime,createOpeningHourEndTime)"> Create opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !createOpeningHourID || !createOpeningHourDayOfWeek || !createOpeningHourStartTime || !createOpeningHourEndTime" @click="createOH(createOpeningHourID,createOpeningHourDayOfWeek,createOpeningHourStartTime,createOpeningHourEndTime)"> Create Opening Hour</button>
         </td>
       </tr>
     </table>
@@ -106,7 +106,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !updateOpeningHourID || !updateOpeningHourDayOfWeek || !updateOpeningHourStartTime || !updateOpeningHourEndTime" @click="updateOH(updateOpeningHourID,updateOpeningHourDayOfWeek,updateOpeningHourStartTime,updateOpeningHourEndTime)"> Update opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !updateOpeningHourID || !updateOpeningHourDayOfWeek || !updateOpeningHourStartTime || !updateOpeningHourEndTime" @click="updateOH(updateOpeningHourID,updateOpeningHourDayOfWeek,updateOpeningHourStartTime,updateOpeningHourEndTime)"> Update Opening Hour</button>
         </td>
       </tr>
     </table>
@@ -125,7 +125,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !deleteOpeningHourID" @click="deleteOpeningHour(deleteOpeningHourID)"> Delete opening hour</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteOpeningHourID" @click="deleteOpeningHour(deleteOpeningHourID)"> Delete Opening Hour</button>
         </td>
       </tr>
     </table>
@@ -149,7 +149,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !hireLibrarianID || !hireLibrarianPassword" @click="hireLibrarian(hireLibrarianID,hireLibrarianPassword)"> Hire librarian</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !hireLibrarianID || !hireLibrarianPassword" @click="hireLibrarian(hireLibrarianID,hireLibrarianPassword)"> Hire Librarian</button>
         </td>
       </tr>
     </table>
@@ -168,7 +168,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !fireLibrarianID" @click="fireLibrarian(fireLibrarianID)"> Fire librarian</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !fireLibrarianID" @click="fireLibrarian(fireLibrarianID)"> Fire Librarian</button>
         </td>
       </tr>
     </table>
@@ -202,7 +202,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 ||!createShiftID || !createDayOfWeek || !createStartTime || !createEndTime" @click="createShift(createShiftID,createDayOfWeek,createStartTime,createEndTime)"> Create shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1 ||!createShiftID || !createDayOfWeek || !createStartTime || !createEndTime" @click="createShift(createShiftID,createDayOfWeek,createStartTime,createEndTime)"> Create Shift</button>
         </td>
       </tr>
     </table>
@@ -236,7 +236,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !updateShiftID || !updateDayOfWeek || !updateStartTime || !updateEndTime" @click="updateShift(updateShiftID,updateDayOfWeek,updateStartTime,updateEndTime)"> Update shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !updateShiftID || !updateDayOfWeek || !updateStartTime || !updateEndTime" @click="updateShift(updateShiftID,updateDayOfWeek,updateStartTime,updateEndTime)"> Update Shift</button>
         </td>
       </tr>
     </table>
@@ -255,7 +255,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1 || !deleteShiftID" @click="deleteShift(deleteShiftID)"> Delete shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1 || !deleteShiftID" @click="deleteShift(deleteShiftID)"> Delete Shift</button>
         </td>
       </tr>
     </table>
@@ -279,7 +279,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !assignShiftID || !assignLibrarianID" @click="assignShift(assignShiftID,assignLibrarianID)"> Assign shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !assignShiftID || !assignLibrarianID" @click="assignShift(assignShiftID,assignLibrarianID)"> Assign Shift</button>
         </td>
       </tr>
     </table>
@@ -303,7 +303,7 @@
       </tr>
       <tr>
         <td>
-          <button v-bind:disabled="!currLib || currLib!=1  || !unAssignShiftID || !unAssignLibrarianID" @click="unAssignShift(unAssignShiftID,unAssignLibrarianID)"> Unassign shift</button>
+          <button v-bind:disabled="!currLib || currLib!=1  || !unAssignShiftID || !unAssignLibrarianID" @click="unAssignShift(unAssignShiftID,unAssignLibrarianID)"> Unassign Shift</button>
         </td>
       </tr>
     </table>
@@ -329,9 +329,9 @@
         <td>
           <p>media type:</p>
           <select v-model="createCOIType">
-            <option value="Book">book</option>
-            <option value="Movie">movie</option>
-            <option value="Music">music</option>
+            <option value="Book">Book</option>
+            <option value="Movie">Novie</option>
+            <option value="Music">Music</option>
           </select>
         </td>
       </tr>
@@ -373,15 +373,15 @@
         <td>
           <p>media type:</p>
           <select v-model="updateCOIType">
-            <option value="Book">book</option>
-            <option value="Movie">movie</option>
-            <option value="Music">music</option>
+            <option value="Book">Book</option>
+            <option value="Movie">Movie</option>
+            <option value="Music">Music</option>
           </select>
         </td>
       </tr>
       <tr>
         <td>
-          <p>is checked out?:</p>
+          <p>Is Checked Out?</p>
           <select v-model="updateCOICheckedOut">
             <option value="True">True</option>
             <option value="False">False</option>
@@ -390,7 +390,7 @@
       </tr>
       <tr>
         <td>
-          <p>is reserved:</p>
+          <p>Is Reserved?</p>
           <select v-model="updateCOIReserved">
             <option value="True">True</option>
             <option value="False">False</option>
@@ -447,10 +447,10 @@
       </tr>
       <tr>
         <td>
-          <p>media type:</p>
+          <p>Media Type:</p>
           <select v-model="createNCOIType">
-            <option value="Newspaper">newspaper</option>
-            <option value="Archive">archive</option>
+            <option value="Newspaper">Newspaper</option>
+            <option value="Archive">Archive</option>
           </select>
         </td>
       </tr>
@@ -480,10 +480,10 @@
       </tr>
       <tr>
         <td>
-          <p>media type:</p>
+          <p>Media Type:</p>
           <select v-model="updateNCOIType">
-            <option value="Newspaper">newspaper</option>
-            <option value="Archive">archive</option>
+            <option value="Newspaper">Newspaper</option>
+            <option value="Archive">Archive</option>
           </select>
         </td>
       </tr>
@@ -518,8 +518,8 @@
       </tr>
     </table>
     <div>
-    <table class="centerpage">
-      View all librarians
+    <table class="half">
+      View All Librarians
       <tr v-for="librarian in librarians" :key="librarian.id">
         <td>
           {{librarian.id}}
@@ -528,8 +528,8 @@
     </table>
     </div>
     <div>
-    <table class="centerpage">
-      View all shifts
+    <table class="half">
+      View All Shifts
       <tr v-for="shift in shifts" :key="shift.id">
         <td>
           {{shift.shiftID}}

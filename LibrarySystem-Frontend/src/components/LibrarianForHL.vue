@@ -377,7 +377,8 @@
           <button v-bind:disabled="!updateEventName || !updateEventDate || !updateEventStartTime || !updateEventEndTime" @click="updateEvent(updateEventName,updateEventDate,updateEventStartTime,updateEventEndTime)"> Update event</button>
         </td>
       </tr>
-      <table>
+    </table>
+      <table class = 'leftHalf'>
       <tr>
         <td>
           <p style="font-size:30px">
@@ -401,7 +402,7 @@
         </td>
       </tr>
     </table>
-    <table>
+    <table class = 'rightHalf'>
       <tr>
         <td>
           <p style="font-size:30px">
@@ -419,7 +420,6 @@
           <button v-bind:disabled="!currLib || !deleteEventName" @click="deleteEvent(deleteEventName)"> Delete vent</button>
         </td>
       </tr>
-    </table>
     </table>
     <p>
       <span v-if="librarianError" style="color:red">Error: {{librarianError}} </span>
