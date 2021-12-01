@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * HeadLibrarian.js Has All the Methods Used by HeadLibrarians
+ */
+
 import axios from 'axios'
 // var config = require('../../config')
 var config = require('../../../config')
@@ -144,22 +149,7 @@ export default {
     
     },
     methods: {
-      // createHL: function(id, pwd){
-      //   AXIOS.post('/create_headlibrarian', '/create_headlibrarian/', {
-      //     params: {
-      //       id: id,
-      //       pwd: pwd,
-      //     }
-      //   })
-      //   .then(response => {
-      //     this.headLibrarians.push(response.data)
-      //     this.errorHL = ''
-      //     this.newHL = ''
-      //   })
-      //   .catch(e => {
-      //     this.erroHL = e
-      //   })
-      // },
+      
       switchToLibrarian(){
         // window.localStorage.setItem('id', this.id)
         window.location.href = "#/LibrarianForHL"

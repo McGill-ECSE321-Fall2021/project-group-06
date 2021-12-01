@@ -1,3 +1,9 @@
+/**
+ * @author David Hu 
+ * LibrarianForHL.js Has All the Methods Used by Librarians. Needed a second page for HeadLibrarians
+ * since they needed a specific button regular Librarians should not have access to
+ */
+
 import axios from 'axios'
 import swal from 'sweetalert'
 var config = require('../../../config')

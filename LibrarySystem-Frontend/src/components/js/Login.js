@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * Login.js Is the login page for regular users.
+ */
+
 import '../../assets/design.css'
 import '../../assets/background.css'
 import axios from 'axios'

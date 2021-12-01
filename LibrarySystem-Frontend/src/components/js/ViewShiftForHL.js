@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * ViewShiftForHL.js Is how the HeadLibrarians view shifts. It passes the shifts through shifts[]
+ */
+
 import axios from 'axios'
 var config = require('../../../config')
 

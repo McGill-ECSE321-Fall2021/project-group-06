@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * LibrarianLogin.js is the login page for Librarian. Needed it to be different since
+ * they are not considered accounts in our model
+ */
 import axios from 'axios'
 var config = require('../../../config')
 
