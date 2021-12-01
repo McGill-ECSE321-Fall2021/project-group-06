@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * OpeningHours.js gets all the Opening Hours and passes them to the vue with openingHours[]
+ */
+
 import '../../assets/design.css'
 import '../../assets/background.css'
 import axios from 'axios'

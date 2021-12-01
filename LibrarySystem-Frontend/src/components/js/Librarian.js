@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * Librarian.js Has All the Methods Used by Librarians
+ */
+
 import axios from 'axios'
 import swal from 'sweetalert'
 var config = require('../../../config')

@@ -4,21 +4,21 @@
   <h2>
     View Events
   </h2>
-  </div>
-  <div class="container">
-  <div class="columnCEN">
-<table class="center centerpage ohnoh scroll">
-        <tr>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Start Time</th>
-          <th>End Time</th>
-        </tr>
-        <tr v-for="event in events" :key="event.id">
-        <td> {{event.name}} </td>
-          <td> {{event.date}} </td>
-          <td> {{event.eventStart}}</td>
-          <td>{{event.endTime}}</td>
+
+  <div id="scrollBox" >
+    <table>
+      <colgroup span="4" style="width: 250px"> </colgroup>
+      <tr>
+        <th> Name </th>
+        <th> Date </th>
+        <th> Start Time </th>
+        <th> End Time </th>
+      </tr>
+      <tr v-for="event in events" :key="event.id">
+        <td> {{ event.name}} </td>
+        <td> {{event.date}} </td>
+        <td> {{event.eventStart}} </td>
+        <td> {{event.eventEnd}} </td>
       </tr>
     </table>
   </div>
@@ -35,10 +35,18 @@
 
 <style>
 #scrollBox {
-  border: 1px solid #2c3e50;
-  min-width: 300px;
-  min-height: 200px;
-  overflow: scroll;
+  width: 1000px;
+  height: 300px;
+  border-spacing: 15px;
+  border-collapse: seperate;
+
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.2px);
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
   /*float:left*/
   /*I thought it'd be better to have it center aligned 
   since there's only the scrollbar to view mainly*/
@@ -48,26 +56,11 @@
   font-weight: bold;
 }
 .centerpage{
-  margin-left: 75px;
-  margin-right: 75px;
+  margin-left: auto;
+  margin-right: auto
 }
-.container {
-  display: flex;
-  justify-content: center;
-}
-.column {
-  float: left;
-  vertical-align: 50%;
-  width: 80%;
-  padding: 10px;
-}
-.columnCEN {
-  float: center;
-  /* vertical-align: 50%; */
-  /* width: 50%; */
-  padding: 10px;
-}
-.evt td{
+
+.evt tr{
   border-radius: 16px;
 	padding: 20px;
   text-align:center;

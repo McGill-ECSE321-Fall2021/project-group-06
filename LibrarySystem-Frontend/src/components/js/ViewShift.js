@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * ViewShift.js Is how the Librarians view shifts. It passes the shifts through shifts[]
+ */
+
 import axios from 'axios'
 var config = require('../../../config')
 

@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * MediaForHeadLibrarians.js Is how the headLibrarian views medias
+ */
+
 import axios from 'axios'
 var config = require('../../../config')
 

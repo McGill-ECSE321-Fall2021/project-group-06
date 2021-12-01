@@ -1,5 +1,9 @@
+/**
+ * @author David Hu 
+ * Event.js Gets all the events for the Event.vue
+ */
+
 import axios from 'axios'
-import swal from 'sweetalert'
 var config = require('../../../config')
 var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
 var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
