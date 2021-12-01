@@ -594,6 +594,7 @@
     backdrop-filter: blur(3.2px);
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow:auto
   }
   .fourth {
     width:25%;
