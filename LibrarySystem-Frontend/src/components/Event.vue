@@ -16,9 +16,9 @@
       </tr>
       <tr v-for="event in events" :key="event.id">
         <td> {{ event.name}} </td>
-        <td> {{event.date}} </td>
+        <td> {{event.eventDate}} </td>
         <td> {{event.eventStart}} </td>
-        <td> {{event.eventEnd}} </td>
+        <td> {{event.endTime}} </td>
       </tr>
     </table>
   </div>
