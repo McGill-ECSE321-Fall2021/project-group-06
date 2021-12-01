@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * MediaForLibrarians.js Is how the Librarians view medias
+ */
+
 import axios from 'axios'
 var config = require('../../../config')
 

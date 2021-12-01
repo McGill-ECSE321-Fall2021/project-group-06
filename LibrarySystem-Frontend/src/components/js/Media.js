@@ -1,3 +1,9 @@
+/**
+ * @author David Hu 
+ * Media.js is how the users will view the media. Different from MediaForHeadLibrarians
+ * and MediaForLibrarians since they can see who reserved and who borrowed each item.
+ */
+
 import axios from 'axios'
 var config = require('../../../config')
 

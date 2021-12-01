@@ -1,3 +1,8 @@
+/**
+ * @author David Hu 
+ * BookEvent.js has all the methods used by Online users
+ */
+
 import axios from 'axios'
 import swal from 'sweetalert'
 var config = require('../../../config')
@@ -43,30 +48,7 @@ export default {
       swal("ERROR", e.response.data, "error");
       this.errorEvent = e;
     })
-    // AXIOS.get('/events/getAllEvents')
-    // .then(response => {
-    //   this.events = response.data
-    //   // this.id = window.localStorage.getItem('id')
-    // })
-    // .catch(e => {
-    //   this.errorEvent = e
-    // }),
-    // AXIOS.get('/checkOutItems')
-    // .then(response => {
-    //   this.medias = response.data
-    //   // this.id = window.localStorage.getItem('id')
-    // })
-    // .catch(e => {
-    //   this.errorEvent = e
-    // }),
-    // AXIOS.get('/nonCheckOutItems')
-    // .then(response => {
-    //   this.medias = response.data
-    //   // this.id = window.localStorage.getItem('id')
-    // })
-    // .catch(e => {
-    //   this.errorEvent = e
-    // })
+    
   },
   methods: {
     switchToLogin(){
