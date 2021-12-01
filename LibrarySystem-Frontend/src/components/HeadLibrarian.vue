@@ -529,15 +529,16 @@
     </div>
     <div>
     <table class="half">
-      View All Shifts
+      <p> View All Shifts </p>
+      <div>
+      <colgroup span="4" style="width: 150px"> </colgroup>
       <tr v-for="shift in shifts" :key="shift.id">
-        <td>
-          {{shift.shiftID}}
-          {{shift.dayOfWeek}}
-          {{shift.startTime}}
-          {{shift.endTime}}
-        </td>
+        <td>  {{shift.shiftID}} </td>
+        <td> {{ shift.dayOfWeek }} </td>
+        <td> {{ shift.startTime }} </td>
+        <td>  {{ shift.endTime }} </td>
       </tr>
+      </div>
     </table>
     </div>
     <p>
