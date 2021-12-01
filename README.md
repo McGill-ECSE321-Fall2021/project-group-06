@@ -12,6 +12,8 @@ The goal of this project is to build a system via website and mobile Android app
 
 [Sprint 2 Report: Backend Services, Behavior Modeling and Testing](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki/Sprint-2---Backend-Services,-Behavior-Modeling,-and-Testing)
 
+[Sprint 3: Web Frontend and Architecture Modeling](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki/Sprint-3:-Web-Frontend-and-Architecture-Modeling)
+
 # Team Roles #
 
 |Name            | General Team Roles      |
@@ -48,3 +50,16 @@ The goal of this project is to build a system via website and mobile Android app
 |Joyce Liu       |Backend Implementation and Unit Testing (Head-Librarian), Software Quality Assurance Plan & Report, GitHub documentation  |20    |
 |Niels Mainville |Backend Implementation and Unit Testing (OpeningHours, Shift, Librarian)  |35    |
 |Samuel Lin      |Backend implementation and Unit Testing (Event), Software Quality Assurance Plan & Report, GitHub documentation (Wiki + README.md), Meeting Minutes   |30  |
+
+# Sprint 3 #
+
+### Tasks and efforts ###
+
+|Members         | Tasks | Ind. Efforts (hours) |
+|----------------|------|----|
+|David Hu        |All the js files, Testing all functionalities, General bug fixes, Modifying Backend for New Functionalities |60    |
+|Howard Yu       |All the js files, Testing all functionalities, General bug fixes, Modifying Backend for New Functionalities |60    |
+|Isabella Hao    |Head-librarian.vue styling |10    |
+|Joyce Liu       |Media/Event/HeadLibrarian/Librarian/Shift related .vue |20    |
+|Niels Mainville |Various .vue files styling and web design fixes |20    |
+|Samuel Lin      |Architecture Modeling, GitHub Documentation, Online.vue styling and other web design fixes |25    |
