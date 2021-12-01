@@ -114,7 +114,7 @@ export default {
                 swal("Success", "Item Checked Out Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Checking Out Item", "error")
                 this.librarianError = e
               })
         },
@@ -135,7 +135,7 @@ export default {
                 swal("Success", "Item Checked Out Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Checking Out Item", "error")
                 this.librarianError = e
               })
         },
@@ -156,7 +156,7 @@ export default {
                 swal("Success", "Item Returned Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Returning Item", "error")
                 this.librarianError = e
               })
         },
@@ -177,7 +177,7 @@ export default {
                 swal("Success", "Item Returned Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Returning Item", "error")
                 this.librarianError = e
               })
         },
@@ -192,7 +192,7 @@ export default {
                 swal("Success", "Account Created Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Creating Offline Account", "error")
                 this.librarianError = e
               })
         },
@@ -207,7 +207,7 @@ export default {
                 swal("Success", "Account Was Updated Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Updating Offline Account", "error")
                 this.librarianError = e
               })
         },
@@ -221,7 +221,7 @@ export default {
                 swal("Success", "Password Updated Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Updating Password", "error")
                 this.librarianError = e
               })
         },
@@ -232,7 +232,7 @@ export default {
                 swal("Success", "Account Successfully Deleted!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Deleting Offline Account", "error")
                 this.librarianError = e
               })
         },
@@ -248,7 +248,7 @@ export default {
                 swal("Success", "Event Created Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Creating Event", "error")
                 this.librarianError = e
               })
         },
@@ -262,7 +262,7 @@ export default {
                 swal("Success", "Event Assigned Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Assigning Event", "error")
                 this.librarianError = e
               })
         },
@@ -276,7 +276,7 @@ export default {
                 swal("Success", "Event Unassigned Successfully!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Unassigning Event to Account", "error")
                 this.librarianError = e
               })
         },
@@ -287,7 +287,7 @@ export default {
                 swal("Success", "Event Successfully Deleted!", "success")
               })
               .catch(e => {
-                swal("ERROR", e.response.data, "error");
+                swal("Error", "Error Deleting Event", "error")
                 this.librarianError = e
               })
         },
@@ -300,7 +300,7 @@ export default {
                   this.checkedOutMedias = this.Account.medias
                 })
                 .catch(e => {
-                    swal("ERROR", e.response.data, "error");
+                    swal("Error", "Error Unreserving Item", "error")
                     this.errorEvent = e
                 })
           }

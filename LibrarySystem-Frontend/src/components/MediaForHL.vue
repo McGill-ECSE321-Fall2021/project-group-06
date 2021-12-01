@@ -6,22 +6,22 @@
   <table class="center centerpage md">
   <tr v-for="checkOutItem in checkOutItems" :key="checkOutItem.id">
     <td>
-      {{ checkOutItem.mediaID }}
-      {{ checkOutItem.mediaType }}
-      {{ checkOutItem.borrowingPeriod }}
-      {{ checkOutItem.checkedOut }}
-      {{ checkOutItem.reserved }}
-      {{ checkOutItem.mediaName }}
-      {{ checkOutItem.startDate }}
-      {{ checkOutItem.userReserving }}
-      {{ checkOutItem.userChecking }}
+      ID : {{ checkOutItem.mediaID }} |
+      Type: {{ checkOutItem.mediaType }} |
+      Period of Checking: {{ checkOutItem.borrowingPeriod }} |
+      Checked Out: {{ checkOutItem.checkedOut }} |
+      Reserved: {{ checkOutItem.reserved }} |
+      Name: {{ checkOutItem.mediaName }} |
+      Start of Borrowing: {{ checkOutItem.startDate }} |
+      User Reserving: {{ checkOutItem.userReserving }} |
+      User Checking: {{ checkOutItem.userChecking }}
     </td>
   </tr>
   <tr v-for="nonCheckOutItem in nonCheckOutItems" :key="nonCheckOutItem.id">
     <td>
-      {{ nonCheckOutItem.mediaID }}
-      {{ nonCheckOutItem.mediaType }}
-      {{ nonCheckOutItem.mediaName }}
+      ID: {{ nonCheckOutItem.mediaID }} |
+      Type: {{ nonCheckOutItem.mediaType }} |
+      Name: {{ nonCheckOutItem.mediaName }} 
     </td>
   </tr>
 </table>

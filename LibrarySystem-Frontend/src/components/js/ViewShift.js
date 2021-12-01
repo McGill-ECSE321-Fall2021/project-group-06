@@ -24,7 +24,7 @@ export default {
           this.shifts = response.data
         })
         .catch(e => {
-          swal("ERROR", e.response.data, "error");
+          swal("Error", "Error Viewing Shifts", "error")
           this.errorEvent = e
         })
     },
