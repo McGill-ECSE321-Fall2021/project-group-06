@@ -1,13 +1,14 @@
 <template> 
 <div id="Media">
+  <div class="container">
   <h2>
     List of Media
   </h2>
-
-  <div id="scrollBox">
-  <table class="center centerpage md">
+</div>
+<div class="container">
+   <table class="center centerpage md htable">
     <colgroup span="6" style="width: 200px"> </colgroup>
-    <tr>
+    <tr style = "background-color: #fff1e6;">
       <th> ID </th>
       <th> Type </th>
       <th> Title </th>
@@ -15,6 +16,10 @@
       <th> Checkout Status </th>
       <th> Reserve Status </th>
     </tr>
+   </table>
+  <div id="scrollBox">
+  <table class="center centerpage md">
+    <colgroup span="6" style="width: 200px"> </colgroup>
     <tr v-for="checkOutItem in checkOutItems" :key="checkOutItem.id">
       <td> {{ checkOutItem.mediaID }} </td>
       <td>  {{ checkOutItem.mediaType }} </td>
@@ -33,14 +38,17 @@
     </tr>
   </table>
   </div>
-  <button @click="switchToLogin()"> Go back to main menu</button>
+  </div>
+  <button @click="switchToLogin()"> Go Back To Main Menu</button>
   <p>
     <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
   </p>
 </div>
 </template>
+
 <script src="./js/Media.js">
 </script>
+
 <style>
   .center {
     text-align: center;
@@ -55,14 +63,13 @@
     color: #2c3e50;
   }
   #scrollBox {
-    width: 1200px;
     height: 500px;
     text-align: center;
     border-spacing: 15px;
     border-collapse: seperate;
 
     background: rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
+    border-radius: 0px 0px 16px 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.2px);
     overflow: auto;
@@ -76,7 +83,7 @@
 	  color: #2c3e50;
   }
   .md tr:hover {
-    background-color: rgba(109, 88, 88, 0.5)
+    background-color: rgba(109, 88, 88, 0.5);
   }
   html{
     height: 100%;
@@ -84,5 +91,15 @@
   body{
     background: #fff1e6
   }
+  .htable{
+    border-spacing: 15px;
+    border-collapse: separate;
+
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 16px 16px 0px 0px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.2px);
+  }
+  
 </style>
       

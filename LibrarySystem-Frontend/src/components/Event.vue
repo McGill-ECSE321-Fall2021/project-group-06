@@ -4,10 +4,10 @@
   <h2>
     View Events
   </h2>
-
-  <div id="scrollBox" >
-    <table>
-      <colgroup span="4" style="width: 250px"> </colgroup>
+  </div>
+<div class="container">
+  <div class="columnCEN">
+    <table class="center centerpage ohnoh">
       <tr>
         <th> Name </th>
         <th> Date </th>
@@ -34,22 +34,22 @@
 </script>
 
 <style>
-#scrollBox {
-  width: 1000px;
-  height: 300px;
-  border-spacing: 15px;
-  border-collapse: seperate;
+.column {
+  float: left;
+  vertical-align: 50%;
+  width: 80%;
+  padding: 10px;
+}
+.columnCEN {
+  float: center;
+  /* vertical-align: 50%; */
+  /* width: 50%; */
+  padding: 10px;
+}
 
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.2px);
-  overflow: auto;
-  margin-left: auto;
-  margin-right: auto;
-  /*float:left*/
-  /*I thought it'd be better to have it center aligned 
-  since there's only the scrollbar to view mainly*/
+.container {
+  display: flex;
+  justify-content: center;
 }
 .center{
   text-align: center;
@@ -60,16 +60,6 @@
   margin-right: auto
 }
 
-.evt tr{
-  border-radius: 16px;
-	padding: 20px;
-  text-align:center;
-	background-color: rgba(192, 27, 27, 0.2);
-	color: #2c3e50;
-}
-.evt tr:hover {
-  background-color: rgba(109, 88, 88, 0.5)
-}
 #Event{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
