@@ -51,41 +51,37 @@
           <p style=font-size:30px> Current Opening Hours </p>
         </td>
       </tr>
+      <div>
+        <colgroup span="4" style="width: 100px"> </colgroup>
+        <tr>
+          <th> Day </th>
+          <th> Start Time </th>
+          <th> to </th>
+          <th> End Time </th>
+          <th> ID </th>
+        </tr>
       <tr>
-        <td>
-          Monday: {{ Monday.startTime }} to {{ Monday.endTime }} ID: {{ Monday.id }}
-        </td>
+        <td>Monday</td><td>{{ Monday.startTime }}</td><td>to</td><td>{{ Monday.endTime }}</td><td>ID:</td><td>{{ Monday.id }}</td>
       </tr>
       <tr>
-        <td>
-          Tuesday: {{ Tuesday.startTime }} to {{ Tuesday.endTime }} ID: {{ Tuesday.id }}
-        </td>
+         <td>Tuesday</td><td>{{Tuesday.startTime }}</td><td>to</td><td>{{Tuesday.endTime }}</td><td>ID:</td><td>{{Tuesday.id }}</td>
       </tr>
       <tr>
-        <td>
-          Wednesday: {{ Wednesday.startTime }} to {{ Wednesday.endTime }} ID: {{ Wednesday.id }}
-        </td>
+         <td>Wednesday</td><td>{{Wednesday.startTime }}</td><td>to</td><td>{{Wednesday.endTime }}</td><td>ID:</td><td>{{Wednesday.id }}</td>
       </tr>
       <tr>
-        <td>
-          Thursday: {{ Thursday.startTime }} to {{ Thursday.endTime }} ID: {{ Thursday.id }}
-        </td>
+        <td>Thursday</td><td>{{Thursday.startTime }}</td><td>to</td><td>{{Thursday.endTime }}</td><td>ID:</td><td>{{Thursday.id }}</td>
       </tr>
       <tr>
-        <td>
-          Friday: {{ Friday.startTime }} to {{ Friday.endTime }} ID: {{ Friday.id }}
-        </td>
+        <td>Friday</td><td>{{Friday.startTime }}</td><td>to</td><td>{{Friday.endTime }}</td><td>ID:</td><td>{{Friday.id }}</td>
       </tr>
       <tr>
-        <td>
-          Saturday : Closed
-        </td>
+        <td>Saturday</td><td>Closed</td><td></td><td></td><td></td><td></td>
       </tr>
       <tr>
-        <td>
-          Sunday : Closed
-        </td>
+        <td>Sunday</td><td>Closed</td><td></td><td></td><td></td><td></td>
       </tr>
+      </div>
     </table>
     <table class="fourth">
       <tr>
