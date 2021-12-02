@@ -14,8 +14,8 @@
       </tr>
       <tr>
         <td>
-          <p>ID number</p>
-          <input type="text" v-model="id" placeholder="ID number">
+          <p>ID Number</p>
+          <input type="text" v-model="id" placeholder="ID Number">
         </td>
       </tr>
       <tr>
@@ -26,7 +26,7 @@
       </tr>
       <tr>
         <td>
-          <button id="center" v-bind:disabled="!id || !password" @click="login(id, password)">Login </button>
+          <button id="center" v-bind:disabled="!id || !password" @click="login(id, password)">Login</button>
         </td>
       </tr>
     </table>

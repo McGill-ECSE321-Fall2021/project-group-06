@@ -37,7 +37,7 @@
         </td>
       </tr>
     </table>
-    <button @click="switchToLogin()"> Go back to main menu</button>
+    <button @click="switchToLogin()"> Go Back to Main Menu</button>
     <p>
         <span v-if="errorOH" style="color:red">Error: {{errorOH}} </span>
     </p>
@@ -68,6 +68,9 @@
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     color: #2c3e50;
     /* background: #f2ece8; */
+  }
+  #btn1{
+    margin-top: 30px;
   }
   html{
     height: 100%;

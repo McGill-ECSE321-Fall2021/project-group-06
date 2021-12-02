@@ -13,8 +13,8 @@
       </tr>
       <tr>
         <td>
-          <p>ID number</p>
-          <input type="text" v-model="id" placeholder="ID number">
+          <p>ID Number</p>
+          <input type="text" v-model="id" placeholder="ID Number">
         </td>
       </tr>
       <tr>
@@ -65,7 +65,7 @@
       </tr>
       <tr>
         <td >
-          <p>ID number:</p>
+          <p>ID Number:</p>
           <input type="text" v-model="newId" placeholder="ID number">
         </td>
       </tr>
@@ -111,7 +111,7 @@
       </tr>
       <tr>
         <td>
-          <button id = "center" v-bind:disabled="!newId || !newPassword || !newName || !newAddress || !newUsername || !newEmail" @click="createOnline(newId,newAddress,newName,newIsLocal,newUsername, newPassword, newEmail)">Register </button>
+          <button id = "center" v-bind:disabled="!newId || !newPassword || !newName || !newAddress || !newUsername || !newEmail" @click="createOnline(newId,newAddress,newName,newIsLocal,newUsername, newPassword, newEmail)">Register</button>
         </td>
       </tr>
     </table>
@@ -119,7 +119,6 @@
       <p>
         <span v-if="errorLogin" style="color:red">Error: {{errorLogin}} </span>
       </p>
-      <!-- <Offline :massage="massageForChild"> </Offline> -->
   </div>
   </div>
 </template>

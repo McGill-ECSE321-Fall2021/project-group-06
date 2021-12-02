@@ -2,8 +2,48 @@
   <div id="openinghours">
     <h2>Head Librarian menu</h2>
     <div>
-    <button  @click="switchToLibrarian()"> Switch To Librarian Services</button>
+    <button  @click="switchToLibrarian()"> Switch to Librarian Services</button>
     <button  @click="switchToLogin()"> Sign Out</button>
+    </div>
+      <div>
+      <table class="half">
+        <p style=font-size:30px> View All Librarians </p>
+        <div>
+          <table class = "center centerpage ohnoh" style = overflow:auto>
+        <!-- <colgroup style="margin-left:auto margin-right:auto"> </colgroup> -->
+        <tr>
+          <th>
+            <p style=font-size:20px> Librarian ID </p>
+          </th>
+        </tr>
+        <tr v-for="librarian in librarians" :key="librarian.id">
+          <td>
+            {{librarian.id}}
+          </td>
+        </tr>
+          </table>
+        </div>
+      </table>
+      </div>
+      <div>
+      <table class="half">
+        <p style=font-size:30px> View All Shifts </p>
+        <div>
+        <colgroup span="4" style="width: 200px"> </colgroup>
+        <tr>
+          <th> Shift ID </th>
+          <th> Day of Week </th>
+          <th> Start Time </th>
+          <th> End Time </th>
+        </tr>
+        <tr v-for="shift in shifts" :key="shift.id">
+          <td> {{shift.shiftID}} </td>
+          <td> {{ shift.dayOfWeek }} </td>
+          <td> {{ shift.startTime }} </td>
+          <td> {{ shift.endTime }} </td>
+        </tr>
+        </div>
+      </table>
     </div>
     <table class="fourth">
       <tr>
@@ -47,7 +87,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Create opening hour
+          Create Opening Hour
           </p>
         </td>
       </tr>
@@ -81,7 +121,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Update opening hour
+          Update Opening Hour
           </p>
         </td>
       </tr>
@@ -115,7 +155,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Delete opening hour
+          Delete Opening Hour
           </p>
         </td>
       </tr>
@@ -134,7 +174,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Hire a librarian
+          Hire a Librarian
           </p>
         </td>
       </tr>
@@ -158,7 +198,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Fire a librarian
+          Fire a Librarian
           </p>
         </td>
       </tr>
@@ -177,7 +217,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Create a shift
+          Create a Shift
           </p>
         </td>
       </tr>
@@ -211,7 +251,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Update a shift
+          Update a Shift
           </p>
         </td>
       </tr>
@@ -245,13 +285,13 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Delete a shift
+          Delete a Shift
           </p>
         </td>
       </tr>
       <tr>
         <td>
-          <input type="text" v-model="deleteShiftID" placeholder="ID to be deleted">
+          <input type="text" v-model="deleteShiftID" placeholder="ID to be Deleted">
         </td>
       </tr>
       <tr>
@@ -264,7 +304,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Assign shift to librarian
+          Assign Shift to Librarian
           </p>
         </td>
       </tr>
@@ -288,7 +328,7 @@
       <tr>
         <td>
           <p style="font-size:30px">
-          Unassign shift to librarian
+          Unassign Shift to Librarian
           </p>
         </td>
       </tr>
@@ -328,10 +368,10 @@
       </tr>
       <tr>
         <td>
-          <p>media type:</p>
+          <p>Media Type:</p>
           <select v-model="createCOIType">
             <option value="Book">Book</option>
-            <option value="Movie">Novie</option>
+            <option value="Movie">Movie</option>
             <option value="Music">Music</option>
           </select>
         </td>
@@ -372,7 +412,7 @@
       </tr>
       <tr>
         <td>
-          <p>media type:</p>
+          <p>Media Type:</p>
           <select v-model="updateCOIType">
             <option value="Book">Book</option>
             <option value="Movie">Movie</option>
@@ -518,29 +558,6 @@
         </td>
       </tr>
     </table>
-    <div>
-    <table class="half">
-      View All Librarians
-      <tr v-for="librarian in librarians" :key="librarian.id">
-        <td>
-          {{librarian.id}}
-        </td>
-      </tr>
-    </table>
-    </div>
-    <div>
-    <table class="half">
-      View All Shifts
-      <tr v-for="shift in shifts" :key="shift.id">
-        <td>
-          {{shift.shiftID}}
-          {{shift.dayOfWeek}}
-          {{shift.startTime}}
-          {{shift.endTime}}
-        </td>
-      </tr>
-    </table>
-    </div>
     <p>
         <span v-if="errorOH" style="color:red">Error: {{errorOH}} </span>
     </p>
@@ -573,6 +590,7 @@
     backdrop-filter: blur(3.2px);
     margin-top: 10px;
     margin-bottom: 10px;
+    overflow:auto
   }
   .fourth {
     width:25%;
@@ -598,4 +616,16 @@
   .centerpage tr:hover{
     background-color: rgba(109, 88, 88, 0.5)
   }
+  .center{
+  text-align: center;
+  font-weight: bold;
+}
+  .ohnoh td {
+  border-radius: 16px;
+	padding: 5px;
+	/* background-color: rgba(192, 27, 27, 0.2); */
+	color: #2c3e50;
+  }
+  .ohnoh tr:hover {background-color: rgba(109, 88, 88, 0.5)}
+  
 </style>
