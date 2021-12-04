@@ -9,4 +9,9 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="newpersonname_hint">EventName?</string>
+    <string name="newpersondate_hint">EventDate?</string>
+    <string name="newpersonstart_hint">EventStart?</string>
+    <string name="newpersonend_hint">EventEnd?</string>
+    <string name="newperson_button">Add Event</string>
 </resources>
