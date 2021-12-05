@@ -91,6 +91,29 @@ public class MainActivity extends AppCompatActivity {
             tvError.setVisibility(View.VISIBLE);
         }
     }
+    public void login(View v) {
+        error="";
+        RequestParams rq=new RequestParams();
+        final TextView userID=(TextView) findViewById(R.id.userID);
+        final TextView pwd=(TextView) findViewById(R.id.pwd);
+        rq.put("pwd", pwd.getText().toString());
+        HttpUtils.post("/login" + userID.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                setContentView(R.layout.LoggedIn);
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
 
     public void addEvent(View v) {
         error = "";
