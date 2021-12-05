@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         HttpUtils.post("/login" + userID.getText().toString(), rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                setContentView(R.layout.LoggedIn);
+                setContentView(R.layout.Online);
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
