@@ -147,4 +147,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void createOpeningHours(View v){
+        error = "";
+        RequestParams rq = new RequestParams();
+        final TextView id = (TextView) findViewById(R.id.newperson_id);
+        final TextView dayOfWeek = (TextView) findViewById(R.id.newperson_day);
+        final TextView startTime = (TextView) findViewById(R.id.newperson_start);
+        final TextView endTime = (TextView) findViewById(R.id.newperson_end);
+        rq.put("dayOfWeek", dayOfWeek.getText().toString());
+        rq.put("startTime", startTime.getText().toString());
+        rq.put("endTime", endTime.getText().toString());
+        HttpUtils.post("openingHours/" + id.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                id.setText("");
+                dayOfWeek.setText("");
+                startTime.setText("");
+                endTime.setText("");
+
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
 }
