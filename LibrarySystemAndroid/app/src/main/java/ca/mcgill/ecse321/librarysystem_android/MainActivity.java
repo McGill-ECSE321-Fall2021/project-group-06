@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.sql.Time;
+import java.time.LocalDate;
 
 public class MainActivity extends AppCompatActivity {
     private String error = null;
@@ -237,13 +238,13 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     for(int i=0; i<allOP[0].length(); i++) {
                         object = allOP[0].getJSONObject(i);
-                        String date=object.getString("DayOfWeek");
-                        String start=object.getString("startTime");
-                        String end= object.getString("endTime");
+                        String date= String.valueOf(object.get("DayOfWeek"));
+                        String start=String.valueOf(object.get("startTime"));
+                        String end=String.valueOf(object.get("endTime"));
 
-                        TextView tvDate=(TextView) findViewById(R.id.evt_date);
-                        TextView tvStart=(TextView) findViewById(R.id.evt_start_time);
-                        TextView tvEnd=(TextView) findViewById(R.id.evt_end_time);
+                        TextView tvDate=(TextView) findViewById(R.id.op_date);
+                        TextView tvStart=(TextView) findViewById(R.id.op_start_time);
+                        TextView tvEnd=(TextView) findViewById(R.id.op_end_time);
                         tvDate.setText(date);
                         tvStart.setText(start);
                         tvEnd.setText(end);
@@ -312,6 +313,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }*/
     //Opening Hours End
+
     public void getAllMedia(View v) {
         error = "";
         RequestParams rq = new RequestParams();
@@ -324,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     for(int i=0; i<allOP[0].length(); i++) {
                         object = allOP[0].getJSONObject(i);
-                        String type=(String) object.get("mediaType");
+                        String type=String.valueOf(object.get("mediaType"));
                         int id=object.getInt("mediaID");
                         String name= object.getString("name");
                         String checkoutStatus=String.valueOf(object.getBoolean("isCheckedOut"));
@@ -345,6 +347,87 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 setContentView(R.layout.media);
+                refreshErrorMessage();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+        HttpUtils.post("nonCheckOutItems/", rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                final JSONArray[] allOP= {new JSONArray()};
+                allOP[0]=response;
+                JSONObject object= null;
+                try {
+                    for(int i=0; i<allOP[0].length(); i++) {
+                        object = allOP[0].getJSONObject(i);
+                        String type=(String) object.get("mediaType");
+                        int id=object.getInt("mediaID");
+                        String name= object.getString("name");
+
+                        TextView tvType=(TextView) findViewById(R.id.media_type);
+                        TextView tvID=(TextView) findViewById(R.id.media_id);
+                        TextView tvName=(TextView) findViewById(R.id.media_title);
+                        tvType.setText(type);
+                        tvID.setText(id);
+                        tvName.setText(name);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                setContentView(R.layout.media);
+                refreshErrorMessage();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+    public void getAllEvents(View v) {
+        error = "";
+        RequestParams rq = new RequestParams();
+        HttpUtils.post("events/getAllEvents/", rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                final JSONArray[] allOP= {new JSONArray()};
+                allOP[0]=response;
+                JSONObject object= null;
+                try {
+                    for(int i=0; i<allOP[0].length(); i++) {
+                        object = allOP[0].getJSONObject(i);
+                        String name= object.getString("name");
+                        String date=String.valueOf(object.get("date"));
+                        String start=String.valueOf(object.get("eventStart"));
+                        String end=String.valueOf(object.get("eventEnd"));
+
+                        TextView tvName=(TextView) findViewById(R.id.evt_name);
+                        TextView tvDate=(TextView) findViewById(R.id.evt_date);
+                        TextView tvStart=(TextView) findViewById(R.id.evt_start);
+                        TextView tvEnd=(TextView) findViewById(R.id.evt_end)
+                        tvDate.setText(date);
+                        tvStart.setText(start);
+                        tvEnd.setText(end);
+                        tvName.setText(name);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                setContentView(R.layout.event);
                 refreshErrorMessage();
             }
             @Override

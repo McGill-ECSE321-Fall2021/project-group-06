@@ -31,6 +31,10 @@
 
     <string name="event_label">Events</string>
     <string name="event">View All Events</string>
+    <string name="event_name">Event Name</string>
+    <string name="event_date">Date</string>
+    <string name="event_start">Start Time</string>
+    <string name="event_end">End Time</string>
     
     <string name="newpersonname_hint">EventName?</string>
     <string name="newpersondate_hint">EventDate?</string>
