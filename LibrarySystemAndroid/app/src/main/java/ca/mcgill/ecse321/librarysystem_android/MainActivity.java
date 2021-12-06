@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.librarysystem_android;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.sql.Time;
 
@@ -94,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
             tvError.setVisibility(View.VISIBLE);
         }
     }
+
+    public void returnToMain(View v) {
+        error="";
+        setContentView(R.layout.content_main);
+    }
+
     public void login(View v) {
         error="";
         RequestParams rq=new RequestParams();
@@ -227,20 +235,22 @@ public class MainActivity extends AppCompatActivity {
                 allOP[0]=response;
                 JSONObject object= null;
                 try {
-                    object = allOP[0].getJSONObject(0);
-                    String start=object.getString("startTime");
-                    String end= object.getString("endTime");
+                    for(int i=0; i<allOP[0].length(); i++) {
+                        object = allOP[0].getJSONObject(i);
+                        String date=object.getString("DayOfWeek");
+                        String start=object.getString("startTime");
+                        String end= object.getString("endTime");
 
-                    TextView tvStart=(TextView) findViewById(R.id.start_time);
-                    TextView tvEnd=(TextView) findViewById(R.id.end_time);
-                    tvStart.setText(start_time);
-                    tvEnd.setText(end_time);
-                    //honestly don't think this is right
+                        TextView tvDate=(TextView) findViewById(R.id.evt_date);
+                        TextView tvStart=(TextView) findViewById(R.id.evt_start_time);
+                        TextView tvEnd=(TextView) findViewById(R.id.evt_end_time);
+                        tvDate.setText(date);
+                        tvStart.setText(start);
+                        tvEnd.setText(end);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
                 setContentView(R.layout.opening_hour);
                 refreshErrorMessage();
             }
@@ -302,4 +312,51 @@ public class MainActivity extends AppCompatActivity {
         });
     }*/
     //Opening Hours End
+    public void getAllMedia(View v) {
+        error = "";
+        RequestParams rq = new RequestParams();
+        HttpUtils.post("checkoutItems/", rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                final JSONArray[] allOP= {new JSONArray()};
+                allOP[0]=response;
+                JSONObject object= null;
+                try {
+                    for(int i=0; i<allOP[0].length(); i++) {
+                        object = allOP[0].getJSONObject(i);
+                        String type=(String) object.get("mediaType");
+                        int id=object.getInt("mediaID");
+                        String name= object.getString("name");
+                        String checkoutStatus=String.valueOf(object.getBoolean("isCheckedOut"));
+                        String reserveStatus=String.valueOf(object.getBoolean("isReserved"));
+
+                        TextView tvType=(TextView) findViewById(R.id.media_type);
+                        TextView tvID=(TextView) findViewById(R.id.media_id);
+                        TextView tvName=(TextView) findViewById(R.id.media_title);
+                        TextView tvChecked=(TextView) findViewById(R.id.media_checked);
+                        TextView tvReserved=(TextView) findViewById(R.id.media_reserved);
+                        tvType.setText(type);
+                        tvID.setText(id);
+                        tvName.setText(name);
+                        tvChecked.setText(checkoutStatus);
+                        tvReserved.setText(reserveStatus);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                setContentView(R.layout.media);
+                refreshErrorMessage();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
 }

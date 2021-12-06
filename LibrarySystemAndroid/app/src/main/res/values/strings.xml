@@ -19,16 +19,15 @@
 
     <string name="oh_label">Opening Hours</string>
     <string name="oh">View Opening Hours</string>
-    <string name="monday">Monday:</string>
-    <string name="tuesday">Tuesday:</string>
-    <string name="wednesday">Wednesday</string>
-    <string name="thursday">Thursday</string>
-    <string name="friday">Friday:</string>
-    <string name="saturday">Saturday:</string>
-    <string name="sunday">Sunday:</string>
+    <string name="to"> to </string>
 
     <string name="media_label">Media</string>
     <string name="media">View All Media</string>
+    <string name="media_name">Title</string>
+    <string name="media_id">Media ID</string>
+    <string name="media_type">Media Type</string>
+    <string name="media_check_status">Status</string>
+    <string name="media_reserve_status">Reserved?</string>
 
     <string name="event_label">Events</string>
     <string name="event">View All Events</string>
