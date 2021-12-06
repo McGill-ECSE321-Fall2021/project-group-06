@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    //Opening Hours Begin
     public void createOpeningHours(View v){
         error = "";
         RequestParams rq = new RequestParams();
@@ -179,4 +180,101 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public void updateOpeningHours(View v){
+        error = "";
+        RequestParams rq = new RequestParams();
+        final TextView id = (TextView) findViewById(R.id.newperson_id);
+        final TextView dayOfWeek = (TextView) findViewById(R.id.newperson_day);
+        final TextView startTime = (TextView) findViewById(R.id.newperson_start);
+        final TextView endTime = (TextView) findViewById(R.id.newperson_end);
+        rq.put("dayOfWeek", dayOfWeek.getText().toString());
+        rq.put("startTime", startTime.getText().toString());
+        rq.put("endTime", endTime.getText().toString());
+        HttpUtils.post("updateOpeningHour/" + id.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                id.setText("");
+                dayOfWeek.setText("");
+                startTime.setText("");
+                endTime.setText("");
+
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+    public void getAllOpeningHours(View v){
+        error = "";
+        RequestParams rq = new RequestParams();
+        HttpUtils.post("openingHours/", rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+    public void getOpeningHourById(View v){
+        error = "";
+        RequestParams rq = new RequestParams();
+        final TextView id = (TextView) findViewById(R.id.newperson_id);
+        HttpUtils.post("getopeningHours/" + id.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                id.setText("");
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+    public void deleteOpeningHours(View v){
+        error = "";
+        RequestParams rq = new RequestParams();
+        final TextView id = (TextView) findViewById(R.id.newperson_id);
+        HttpUtils.post("deleteOpeningHour/" + id.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                id.setText("");
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+    //Opening Hours End
 }
