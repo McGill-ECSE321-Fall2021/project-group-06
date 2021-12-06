@@ -38,4 +38,8 @@
     <string name="newpersonstart_hint">EventStart?</string>
     <string name="newpersonend_hint">EventEnd?</string>
     <string name="newperson_button">Add Event</string>
+
+    <string name="user_login_header">User Login</string>
+    <string name="user_login_header_context">User Login Header</string>
+    <string name="user_login_button">Log in</string>
 </resources>
