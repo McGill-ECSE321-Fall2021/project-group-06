@@ -22,8 +22,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.sql.Time;
 
 public class MainActivity extends AppCompatActivity {
     private String error = null;
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 setContentView(R.layout.Online);
+                refreshErrorMessage();
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
@@ -147,7 +151,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    //Opening Hours Begin
+    //Opening Hours Begin, for now only View All OH is needed
+    /*
     public void createOpeningHours(View v){
         error = "";
         RequestParams rq = new RequestParams();
@@ -211,13 +216,32 @@ public class MainActivity extends AppCompatActivity {
                 refreshErrorMessage();
             }
         });
-    }
+    }*/
     public void getAllOpeningHours(View v){
         error = "";
         RequestParams rq = new RequestParams();
         HttpUtils.post("openingHours/", rq, new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+                final JSONArray[] allOP= {new JSONArray()};
+                allOP[0]=response;
+                JSONObject object= null;
+                try {
+                    object = allOP[0].getJSONObject(0);
+                    String start=object.getString("startTime");
+                    String end= object.getString("endTime");
+
+                    TextView tvStart=(TextView) findViewById(R.id.start_time);
+                    TextView tvEnd=(TextView) findViewById(R.id.end_time);
+                    tvStart.setText(start_time);
+                    tvEnd.setText(end_time);
+                    //honestly don't think this is right
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                setContentView(R.layout.opening_hour);
                 refreshErrorMessage();
             }
             @Override
@@ -232,6 +256,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    /*
     public void getOpeningHourById(View v){
         error = "";
         RequestParams rq = new RequestParams();
@@ -275,6 +300,6 @@ public class MainActivity extends AppCompatActivity {
                 refreshErrorMessage();
             }
         });
-    }
+    }*/
     //Opening Hours End
 }
