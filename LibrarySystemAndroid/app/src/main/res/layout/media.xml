@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout
-        android:id="@+id/content_ophour"
+        android:id="@+id/content_media"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/padding"
@@ -21,42 +21,56 @@
             android:visibility="gone"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/oh_label"
+                android:text="@string/media_label"
                 android:textAllCaps="true"
                 android:background="@color/purple_200"
                 android:textSize="@dimen/title"/>
-
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="0"
+                android:stretchColumns="*"
                 android:orientation="vertical">
                 <TableRow
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/evt_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="start"/>
+                        android:text="@string/media_id"/>
                     <TextView
-                        android:id="@+id/evt_start_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="end"/>
+                        android:text="@string/media_name"/>
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/to"
-                        android:gravity="end"/>
+                        android:text="@string/media_type"/>
                     <TextView
-                        android:id="@+id/evt_end_time"
-                        android:layout_width="wrap_content"
+                        android:text="@string/media_check_status"/>
+                    <TextView
+                        android:text="@string/media_reserve_status"/>
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/media_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/media_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/media_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/media_checked"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/media_reserved"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </TableRow>
             </TableLayout>
@@ -64,8 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/go_back"
-                android:layout_gravity="end"
-                android:onClick="returnToMain"/>
+                android:onClick="returnToMain"
+                android:layout_gravity="end"/>
         </LinearLayout>
     </RelativeLayout>
 
