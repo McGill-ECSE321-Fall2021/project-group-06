@@ -47,6 +47,13 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/login_label"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/title"
+                    android:background="@color/purple_200"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:text=""
                     android:textColor="#FF0000"/>
@@ -67,6 +74,63 @@
                     android:layout_gravity="end"
                     android:onClick="login"
                     android:text="@string/login"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/oh_label"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/title"
+                    android:background="@color/purple_200"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/oh"
+                    android:onClick="getAllOpeningHours"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/media_label"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/title"
+                    android:background="@color/purple_200"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/media"
+                    android:onClick="getAllMedia"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/event_label"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/title"
+                    android:background="@color/purple_200"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/event"
+                    android:onClick="getAllEvents"/>
             </LinearLayout>
 
             <LinearLayout
