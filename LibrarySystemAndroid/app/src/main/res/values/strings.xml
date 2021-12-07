@@ -17,6 +17,23 @@
     <string name="askPwd">Enter password</string>
     <string name="login">Login</string>
 
+    <string name="online_label">Online User Account</string>
+    <string name="ask_for_ID">Enter your ID</string>
+    <string name="updated_addr">Enter new Address</string>
+    <string name="updated_name">Enter new Name</string>
+    <string name="updated_pwd">Enter new Password</string>
+    <string name="update_online">Update Online Info</string>
+    <string name="reserve_label">Reserve Media</string>
+    <string name="reserve_media">Enter Media ID</string>
+    <string name="reserve">Reserve</string>
+    <string name="book_evt_label">Book an Event</string>
+    <string name="book_evt_name">Enter Event Name</string>
+    <string name="book_evt_date">Enter Event Date</string>
+    <string name="book_evt_start">Enter Start Time</string>
+    <string name="book_evt_end">Enter End Time</string>
+    <string name="book_evt">Book Event</string>
+    <string name="logout">Log Out</string>
+
     <string name="oh_label">Opening Hours</string>
     <string name="oh">View Opening Hours</string>
     <string name="to"> to </string>
@@ -35,10 +52,5 @@
     <string name="event_date">Date</string>
     <string name="event_start">Start Time</string>
     <string name="event_end">End Time</string>
-    
-    <string name="newpersonname_hint">EventName?</string>
-    <string name="newpersondate_hint">EventDate?</string>
-    <string name="newpersonstart_hint">EventStart?</string>
-    <string name="newpersonend_hint">EventEnd?</string>
-    <string name="newperson_button">Add Event</string>
+
 </resources>
