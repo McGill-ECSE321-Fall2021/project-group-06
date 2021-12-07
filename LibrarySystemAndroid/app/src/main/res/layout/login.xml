@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,201 +9,202 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".FirstFragment">
+    <!--
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="230dp"
+            android:layout_height="161dp"
+            android:layout_marginStart="57dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="57dp"
+            android:contentDescription="@string/user_login_header_context"
+            android:scaleType="centerInside"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="230dp"
-        android:layout_height="161dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="57dp"
-        android:contentDescription="@string/user_login_header_context"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/userLogin"
-        android:layout_width="168dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="120dp"
-        android:text="@string/user_login_header"
-        android:textAlignment="center"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/user_loginID"
-        android:layout_width="247dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userLogin">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:ellipsize="middle"
-            android:gravity="center_horizontal"
-            android:hint="@string/askID"
+        <TextView
+            android:id="@+id/userLogin"
+            android:layout_width="168dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="120dp"
+            android:text="@string/user_login_header"
             android:textAlignment="center"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/user_loginID"
+            android:layout_width="247dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userLogin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:ellipsize="middle"
+                android:gravity="center_horizontal"
+                android:hint="@string/askID"
+                android:textAlignment="center"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/user_loginPwd"
+            android:layout_width="247dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            android:hint="@string/askPwd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_loginID">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:ellipsize="middle"
+                android:gravity="center_horizontal"
+                android:hint="@string/askID"
+                android:textAlignment="center"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="135dp"
+            android:background="#FF9898"
+            android:backgroundTint="#FF9191"
+            android:foregroundTint="#FF8E8E"
+            android:text="@string/user_login_button"
+            app:iconTint="#DF7B7B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_loginPwd"
             tools:ignore="TextContrastCheck" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/media_button"
+            android:layout_width="267dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/media"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/user_loginPwd"
-        android:layout_width="247dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginEnd="80dp"
-        android:hint="@string/askPwd"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_loginID">
+        <Button
+            android:id="@+id/event_button"
+            android:layout_width="267dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/event"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/media_button" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:ellipsize="middle"
-            android:gravity="center_horizontal"
-            android:hint="@string/askID"
+        <Button
+            android:id="@+id/oh_button"
+            android:layout_width="267dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginEnd="73dp"
+            android:text="@string/oh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_button" />
+
+        <TextView
+            android:id="@+id/userRegister"
+            android:layout_width="344dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/user_register_header"
             android:textAlignment="center"
-            tools:ignore="TextContrastCheck" />
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oh_button" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:id="@+id/userRegisterID"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="96dp"
+            android:backgroundTint="#020202"
+            android:ellipsize="middle"
+            android:foregroundTint="#F8F8F8"
+            android:gravity="center_horizontal"
+            android:hint="@string/user_register_id"
+            android:textAlignment="center"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userRegister"
+            android:importantForAutofill="no"/>
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="135dp"
-        android:background="#FF9898"
-        android:backgroundTint="#FF9191"
-        android:foregroundTint="#FF8E8E"
-        android:text="@string/user_login_button"
-        app:iconTint="#DF7B7B"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_loginPwd"
-        tools:ignore="TextContrastCheck" />
+        <EditText
+            android:id="@+id/userRegisterName"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginEnd="96dp"
+            android:backgroundTint="#020202"
+            android:ellipsize="middle"
+            android:foregroundTint="#F8F8F8"
+            android:gravity="center_horizontal"
+            android:hint="@string/user_register_name"
+            android:textAlignment="center"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userRegisterID"
+            android:importantForAutofill="no"/>
 
-    <Button
-        android:id="@+id/media_button"
-        android:layout_width="267dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="73dp"
-        android:text="@string/media"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button" />
-
-    <Button
-        android:id="@+id/event_button"
-        android:layout_width="267dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginEnd="73dp"
-        android:text="@string/event"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/media_button" />
-
-    <Button
-        android:id="@+id/oh_button"
-        android:layout_width="267dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginEnd="73dp"
-        android:text="@string/oh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/event_button" />
-
-    <TextView
-        android:id="@+id/userRegister"
-        android:layout_width="344dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="@string/user_register_header"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/oh_button" />
-
-    <EditText
-        android:id="@+id/userRegisterID"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="96dp"
-        android:backgroundTint="#020202"
-        android:ellipsize="middle"
-        android:foregroundTint="#F8F8F8"
-        android:gravity="center_horizontal"
-        android:hint="@string/user_register_id"
-        android:textAlignment="center"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userRegister"
-        android:importantForAutofill="no"/>
-
-    <EditText
-        android:id="@+id/userRegisterName"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginEnd="96dp"
-        android:backgroundTint="#020202"
-        android:ellipsize="middle"
-        android:foregroundTint="#F8F8F8"
-        android:gravity="center_horizontal"
-        android:hint="@string/user_register_name"
-        android:textAlignment="center"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userRegisterID"
-        android:importantForAutofill="no"/>
-
-    <EditText
-        android:id="@+id/userRegisterAddress"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginEnd="96dp"
-        android:backgroundTint="#020202"
-        android:ellipsize="middle"
-        android:foregroundTint="#F8F8F8"
-        android:gravity="center_horizontal"
-        android:hint="@string/user_register_address"
-        android:textAlignment="center"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userRegisterName"
-        android:importantForAutofill="no"/>
-
+        <EditText
+            android:id="@+id/userRegisterAddress"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="96dp"
+            android:layout_marginEnd="96dp"
+            android:backgroundTint="#020202"
+            android:ellipsize="middle"
+            android:foregroundTint="#F8F8F8"
+            android:gravity="center_horizontal"
+            android:hint="@string/user_register_address"
+            android:textAlignment="center"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userRegisterName"
+            android:importantForAutofill="no"/>
+    -->
     <!-- Local should be changed to spinner -->
+<!--
     <EditText
         android:id="@+id/userRegisterLocal"
         android:layout_width="250dp"
@@ -294,5 +296,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userRegisterPassword"
         app:layout_constraintVertical_bias="0.028" />
-
+-->
 </androidx.constraintlayout.widget.ConstraintLayout>
