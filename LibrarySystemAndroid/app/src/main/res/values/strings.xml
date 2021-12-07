@@ -68,4 +68,9 @@
     <string name="user_register_password">Password</string>
     <string name="user_register_button">Register</string>
 
+    <string name="event_name">Event Name</string>
+    <string name="event_date">Date</string>
+    <string name="event_start">Start Time</string>
+    <string name="event_end">End Time</string>
+
 </resources>
