@@ -1,31 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <!--<fragment
-        android:id="@+id/nav_host_fragment_content_main"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />-->
-
     <RelativeLayout
         android:id="@+id/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/padding"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="ca.mcgill.ecse321.eventregistration_android.MainActivity"
-        tools:showIn="@layout/activity_main">
+        android:padding="@dimen/padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:contentDescription="@string/user_login_header_context"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/logo" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_200"
+                android:text="@string/login_label"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="@dimen/title"
+                tools:layout_conversion_absoluteHeight="34dp"
+                tools:layout_conversion_absoluteWidth="383dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="148dp" />
+
+            <EditText
+                android:id="@+id/userID"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/askID"
+                android:inputType="text"
+                android:textAlignment="center"
+                tools:ignore="Autofill"
+                tools:layout_conversion_absoluteHeight="45dp"
+                tools:layout_conversion_absoluteWidth="383dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="103dp" />
+
+            <EditText
+                android:id="@+id/pwd"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/askPwd"
+                android:inputType="text"
+                android:textAlignment="center"
+                tools:ignore="Autofill"
+                tools:layout_conversion_absoluteHeight="45dp"
+                tools:layout_conversion_absoluteWidth="383dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="58dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="login"
+                android:text="@string/login"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="88dp"
+                tools:layout_editor_absoluteX="157dp"
+                tools:layout_editor_absoluteY="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_200"
+                android:text="@string/oh_label"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="@dimen/title"
+                tools:layout_conversion_absoluteHeight="34dp"
+                tools:layout_conversion_absoluteWidth="383dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="229dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="getAllOpeningHours"
+                android:text="@string/oh"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="202dp"
+                tools:layout_editor_absoluteX="101dp"
+                tools:layout_editor_absoluteY="181dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_200"
+                android:text="@string/media_label"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="@dimen/title"
+                tools:layout_conversion_absoluteHeight="34dp"
+                tools:layout_conversion_absoluteWidth="383dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="311dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="getAllMedia"
+                android:text="@string/media"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="158dp"
+                tools:layout_editor_absoluteX="122dp"
+                tools:layout_editor_absoluteY="263dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_200"
+                android:text="@string/event_label"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="@dimen/title"
+                tools:layout_conversion_absoluteHeight="34dp"
+                tools:layout_conversion_absoluteWidth="383dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="437dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="getAllEvents"
+                android:text="@string/event"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="168dp"
+                tools:layout_editor_absoluteX="117dp"
+                tools:layout_editor_absoluteY="344dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_200"
+                android:text="@string/user_register_header"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textSize="@dimen/title" />
+
+            <EditText
+                android:id="@+id/userRegisterID"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/user_register_id"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/userRegisterName"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/user_register_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/userRegisterAddress"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/user_register_address"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/userRegisterLocal"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/user_register_local"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/userRegisterUsername"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/user_register_username"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/userRegisterEmail"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/user_register_email"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textAlignment="center"
+                tools:ignore="TextFields" />
+
+            <EditText
+                android:id="@+id/userRegisterPassword"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="	#D3D3D3"
+                android:hint="@string/user_register_id"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textAlignment="center"
+                tools:ignore="TextFields" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#FF0000"
+                android:visibility="gone"
+                android:background="	#D3D3D3"
+                tools:layout_conversion_absoluteHeight="0dp"
+                tools:layout_conversion_absoluteWidth="0dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="10dp" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="register"
+                android:text="@string/user_register_button" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="#16552e" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/error"
@@ -35,115 +269,11 @@
             android:textColor="#FF0000"
             android:visibility="gone" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login_label"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/title"
-                    android:background="@color/purple_200"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:text=""
-                    android:textColor="#FF0000"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/userID"
-                    android:hint="@string/askID"/>
-
-                <EditText
-                    android:id="@+id/pwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/askPwd" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:onClick="login"
-                    android:text="@string/login"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/oh_label"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/title"
-                    android:background="@color/purple_200"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/oh"
-                    android:onClick="getAllOpeningHours"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/media_label"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/title"
-                    android:background="@color/purple_200"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/media"
-                    android:onClick="getAllMedia"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/event_label"
-                    android:textAllCaps="true"
-                    android:textSize="@dimen/title"
-                    android:background="@color/purple_200"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/event"
-                    android:onClick="getAllEvents"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:orientation="vertical">
-
-            <View
-                android:layout_height="2dp"
-                android:layout_width="fill_parent"
-                android:background="#16552e"/>
-        </LinearLayout>
-
     </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment_content_main"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+</RelativeLayout>

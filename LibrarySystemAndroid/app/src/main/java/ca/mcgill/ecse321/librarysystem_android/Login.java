@@ -1,3 +1,4 @@
+/*
 package ca.mcgill.ecse321.librarysystem_android;
 
 import android.content.Context;
@@ -192,3 +193,4 @@ public class Login extends AppCompatActivity{
     }
 
 }
+*/
