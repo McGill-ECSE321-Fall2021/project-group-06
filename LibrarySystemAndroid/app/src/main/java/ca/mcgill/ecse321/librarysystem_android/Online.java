@@ -95,4 +95,50 @@ public class Online extends AppCompatActivity {
         }
     }
 
+    /**
+     * Creates an event
+     * @param v
+     */
+    public void addEvent(View v) {
+        error = "";
+        RequestParams rq = new RequestParams();
+        final TextView eventName = (TextView) findViewById(R.id.event_name);
+        final TextView eventDate = (TextView) findViewById(R.id.event_date);
+        final TextView eventStart = (TextView) findViewById(R.id.event_start);
+        final TextView eventEnd = (TextView) findViewById(R.id.event_end);
+        rq.put("eventDate", eventDate.getText().toString());
+        rq.put("eventStart", eventStart.getText().toString());
+        rq.put("eventEnd", eventEnd.getText().toString());
+        HttpUtils.post("/create_event/" + eventName.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                eventName.setText("");
+                eventDate.setText("");
+                eventStart.setText("");
+                eventEnd.setText("");
+
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+    /**
+     * Set content view back to main
+     * @param v
+     */
+    public void returnToMain(View v) {
+        error="";
+        setContentView(R.layout.content_main);
+    }
+
 }
