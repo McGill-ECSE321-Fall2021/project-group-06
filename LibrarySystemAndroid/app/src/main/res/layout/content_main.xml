@@ -71,6 +71,7 @@
                 tools:layout_editor_absoluteY="58dp" />
 
             <Button
+                android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="login"
@@ -94,6 +95,7 @@
                 tools:layout_editor_absoluteY="229dp" />
 
             <Button
+                android:id="@+id/oHButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="getAllOpeningHours"
@@ -117,6 +119,7 @@
                 tools:layout_editor_absoluteY="311dp" />
 
             <Button
+                android:id="@+id/mediaButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="getAllMedia"
@@ -140,6 +143,7 @@
                 tools:layout_editor_absoluteY="437dp" />
 
             <Button
+                android:id="@+id/eventButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="getAllEvents"
@@ -243,6 +247,7 @@
                 tools:layout_editor_absoluteY="10dp" />
 
             <Button
+                android:id="@+id/registerButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="register"
