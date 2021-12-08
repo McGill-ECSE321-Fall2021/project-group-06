@@ -118,9 +118,8 @@ public class MainActivity extends AppCompatActivity {
         RequestParams rq=new RequestParams();
         final TextView userID=(EditText) findViewById(R.id.userID);
         final TextView pwd=(EditText) findViewById(R.id.pwd);
-        rq.put("userID", userID.getText().toString());
-        rq.put("pwd", pwd.getText().toString());
-        HttpUtils.post("/login" + "/" + userID.getText().toString(), rq, new JsonHttpResponseHandler() {
+        rq.put("password", pwd.getText().toString());
+        HttpUtils.post("login/" + userID.getText().toString(), rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 setContentView(R.layout.online);
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     public void getAllOpeningHours(View v){
         error = "";
         RequestParams rq = new RequestParams();
-        HttpUtils.post("/openingHours/", rq, new JsonHttpResponseHandler() {
+        HttpUtils.post("openingHours/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
@@ -193,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
         error = "";
         RequestParams rq = new RequestParams();
         //media checkout-able
-        HttpUtils.post("/checkoutItems/", rq, new JsonHttpResponseHandler() {
+        HttpUtils.post("checkoutItems/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
