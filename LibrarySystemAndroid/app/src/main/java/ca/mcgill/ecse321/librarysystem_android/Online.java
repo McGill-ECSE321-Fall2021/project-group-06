@@ -133,6 +133,68 @@ public class Online extends AppCompatActivity {
     }
 
     /**
+     * Updates Online Account information
+     * If some fields are to remain unchanged, reenter previously entered information
+     * @param v
+     */
+    public void updateInfo(View v) {
+        error = "";
+        RequestParams rq = new RequestParams();
+        final TextView accountID = (EditText) findViewById(R.id.account_to_update);
+        final TextView addr = (EditText) findViewById(R.id.updated_address);
+        final TextView name = (EditText) findViewById(R.id.updated_name);
+        final TextView pwd = (EditText) findViewById(R.id.updated_password);
+        rq.put("address", addr.getText().toString());
+        rq.put("name", name.getText().toString());
+        rq.put("password", pwd.getText().toString());
+        HttpUtils.post("edit_online/" + accountID.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                accountID.setText("");
+                addr.setText("");
+                name.setText("");
+                pwd.setText("");
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+    public void reserveMedia(View v) {
+        error = "";
+        RequestParams rq = new RequestParams();
+        final TextView accountID = (EditText) findViewById(R.id.userID);
+        final TextView mediaID = (EditText) findViewById(R.id.mediaID);
+        rq.put("userId", accountID.getText().toString());
+        HttpUtils.post("reserve_media_online/" + mediaID.getText().toString(), rq, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                refreshErrorMessage();
+                accountID.setText("");
+                mediaID.setText("");
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                try {
+                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
+                    error += errorResponse.get("message").toString();
+                } catch (JSONException e) {
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
+    }
+
+    /**
      * Set content view back to main
      * @param v
      */
