@@ -14,6 +14,8 @@ The goal of this project is to build a system via website and mobile Android app
 
 [Sprint 3: Web Frontend and Architecture Modeling](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki/Sprint-3:-Web-Frontend-and-Architecture-Modeling)
 
+[Sprint 4: Android App and User Documentation](https://github.com/McGill-ECSE321-Fall2021/project-group-06/wiki/Sprint-4:-Android-App-and-User-Documentation)
+
 # Team Roles #
 
 |Name            | General Team Roles      |
@@ -63,3 +65,16 @@ The goal of this project is to build a system via website and mobile Android app
 |Joyce Liu       |Media/Event/HeadLibrarian/Librarian/Shift related .vue |20    |
 |Niels Mainville |Various .vue files styling and web design fixes |20    |
 |Samuel Lin      |Architecture Modeling, GitHub Documentation, Online.vue styling and other web design fixes |25    |
+
+# Sprint 4 #
+
+### Tasks and efforts ###
+
+|Members | Tasks | Ind. Efforts (hours) |
+|---|---|---|
+| David Hu | Setting up the Android repository, addEvent method | 10 |
+| Howard Yu | Setting up the Android repository, addEvent method | 10 |
+| Isabella Hao | - | - |
+| Joyce Liu | Media & Events Java Implementation, .xml files, User Documentation | 20 |
+| Niels Mainville | Opening Hours Java Implementation, MainActivity java and xml implementation | 35 |
+| Samuel Lin | Online Account Java Implementation, MainActivity java and xml implementation, GitHub and User documentation | 25 | 
