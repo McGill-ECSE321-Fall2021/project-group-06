@@ -39,27 +39,37 @@
                     android:id="@+id/account_to_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/ask_for_ID"/>
+                    android:hint="@string/ask_for_ID"
+                    android:inputType="number"
+                    tools:ignore="Autofill"/>
                 <EditText
                     android:id="@+id/updated_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/updated_addr"/>
+                    android:hint="@string/updated_addr"
+                    android:inputType="text"
+                    tools:ignore="Autofill"/>
                 <EditText
                     android:id="@+id/updated_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/updated_name"/>
+                    android:hint="@string/updated_name"
+                    android:inputType="text"
+                    tools:ignore="Autofill"/>
                 <EditText
                     android:id="@+id/updated_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/updated_pwd"/>
+                    android:hint="@string/updated_pwd"
+                    android:inputType="text"
+                    tools:ignore="Autofill,TextFields"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="@string/update_online"/>
+                    android:text="@string/update_online"
+                    tools:ignore="Autofill"
+                    android:onClick="updateInfo"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,17 +86,22 @@
                     android:id="@+id/userID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/ask_for_ID"/>
+                    android:inputType="number"
+                    android:hint="@string/ask_for_ID"
+                    tools:ignore="Autofill" />
                 <EditText
                     android:id="@+id/mediaID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/reserve_media"/>
+                    android:inputType="text"
+                    android:hint="@string/reserve_media"
+                    tools:ignore="Autofill" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="@string/reserve"/>
+                    android:text="@string/reserve"
+                    android:onClick="reserveMedia"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,22 +118,30 @@
                     android:id="@+id/event_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/book_evt_name"/>
+                    android:inputType="text"
+                    android:hint="@string/book_evt_name"
+                    tools:ignore="Autofill" />
                 <EditText
                     android:id="@+id/event_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/book_evt_date"/>
+                    android:inputType="text"
+                    android:hint="@string/book_evt_date"
+                    tools:ignore="TextFields, Autofill" />
                 <EditText
                     android:id="@+id/event_start"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/book_evt_start"/>
+                    android:inputType="text"
+                    android:hint="@string/book_evt_start"
+                    tools:ignore="Autofill"/>
                 <EditText
                     android:id="@+id/event_end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/book_evt_end"/>
+                    android:inputType="text"
+                    android:hint="@string/book_evt_end"
+                    tools:ignore="Autofill"/>
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
