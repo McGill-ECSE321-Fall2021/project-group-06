@@ -204,6 +204,7 @@
                 android:background="	#D3D3D3"
                 android:backgroundTint="@color/white"
                 android:hint="@string/user_register_local"
+                android:prompt="@string/user_register_local"
                 android:inputType="text"
                 android:textAlignment="center" />
 
