@@ -2,11 +2,8 @@ package ca.mcgill.ecse321.librarysystem_android;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -30,10 +27,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,69 +41,39 @@ public class MainActivity extends AppCompatActivity {
     private Button eventbutton;
     private Button registerbutton;
 
-    private List<String> localOptions = new ArrayList<>(2);
-    private ArrayAdapter<String> localAdapter;
+    private final List<String> localOptions = new ArrayList<>(2);
 
+    // Initializing application with data from server
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        loginbutton = (Button) findViewById(R.id.loginButton);
-        oHbutton = (Button) findViewById(R.id.oHButton);
-        mediabutton = (Button) findViewById(R.id.mediaButton);
-        eventbutton = (Button) findViewById(R.id.eventButton);
-        registerbutton = (Button) findViewById(R.id.registerButton);
+        // Map buttons with respective button IDs in content_main.xml
+        oHbutton = findViewById(R.id.oHButton);
+        mediabutton = findViewById(R.id.mediaButton);
+        eventbutton = findViewById(R.id.eventButton);
+        registerbutton = findViewById(R.id.registerButton);
 
+        //        loginbutton = (Button) findViewById(R.id.loginButton);
 //        loginbutton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v){
 //                startActivity(new Intent(MainActivity.this, Online.class));
 //            }
 //        });
-        oHbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, OpeningHours.class));
-            }
-        });
-        mediabutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, Media.class));
-            }
-        });
-        eventbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, Event.class));
-            }
-        });
 
-//        button = findViewById(R.id.fab);
+        oHbutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, OpeningHours.class)));
+        mediabutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Media.class)));
+        eventbutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Event.class)));
 
-//        binding = ActivityMainBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//
-//        setSupportActionBar(binding.toolbar);
-//
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-//        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//
-//        binding.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
+        // Add the two selectable options for the Local attribute spinner
         localOptions.add("Local");
         localOptions.add("Non-local");
 
-        Spinner localSpinner = (Spinner) findViewById(R.id.userRegisterLocal);
-        localAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localOptions);
+        // Set Local Spinner with the two options ready at application launch
+        Spinner localSpinner = findViewById(R.id.userRegisterLocal);
+        ArrayAdapter<String> localAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, localOptions);
         localAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         localSpinner.setAdapter(localAdapter);
     }
@@ -144,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void refreshErrorMessage() {
         // set the error message
-        TextView tvError = (TextView) findViewById(R.id.error);
+        TextView tvError = findViewById(R.id.error);
         tvError.setText(error);
 
         if (error == null || error.length() == 0) {
@@ -155,8 +119,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Set content view back to main
-     * @param v
+     * returnToMain
+     * Set content view back to main page (Login page)
+     * @param v: current view
      */
     public void returnToMain(View v) {
         error="";
@@ -164,17 +129,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Login
+     * login
      * Sets content view to Online if entered params are correct
-     * @param v
+     * @param v: current view
      */
     public void login(View v) {
         error="";
         RequestParams rq=new RequestParams();
-        final TextView userID=(EditText) findViewById(R.id.userID);
-        final TextView pwd=(EditText) findViewById(R.id.pwd);
+        final TextView userID = findViewById(R.id.userID);
+        final TextView pwd = findViewById(R.id.pwd);
         rq.put("password", pwd.getText().toString());
-        HttpUtils.post("login/" + userID.getText().toString(), rq, new JsonHttpResponseHandler() {
+
+        // REST Service call GET with Http: logs in user with correct URL on success (see AccountController.java in Controller backend)
+        // On failure: displays an error message on top of the screen
+        HttpUtils.get("login/" + userID.getText().toString(), rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 startActivity(new Intent(MainActivity.this, Online.class));
@@ -183,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
-                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
                     error += errorResponse.get("message").toString();
                 } catch (JSONException e) {
                     error += e.getMessage();
@@ -195,10 +162,12 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Register
-     * Registers an Online account with the entered parameters
-     * @param v
+     * Registers an Online account with the user entered parameters, calling from current view
+     * @param v: current view
      */
     public void register(View v){
+
+        // Retrieve all fields written by user and add as requested parameters
         error="";
         final TextView newUserID = findViewById(R.id.userRegisterID);
         final TextView newName = findViewById(R.id.userRegisterName);
@@ -219,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
         rq.put("password", newPassword.getText().toString());
         rq.put("email", newEmail.getText().toString());
 
+        // REST Service call POST with Http: creates an Online account on success (see OnlineController.java in backend)
+        // On failure: displays error message on top of screen
         HttpUtils.post("onlines/" + newUserID_str, rq, new JsonHttpResponseHandler(){
 
             @Override
@@ -241,18 +212,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Gets all opening hours
-     * @param v
+     * getAllOpeningHours
+     * Get all opening hours from database and write to OH view, calling from current view
+     * @param v: current view
      */
     public void getAllOpeningHours(View v){
         error = "";
         RequestParams rq = new RequestParams();
-        HttpUtils.post("openingHours/", rq, new JsonHttpResponseHandler() {
+
+        // REST service call GET with Http: gets all OH and writes details on OH page on success
+        // On failure: displays error message on top of screen of current view
+        HttpUtils.get("openingHours/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
                 allOP[0]=response;
-                JSONObject object= null;
+                JSONObject object;
                 try {
                     for(int i=0; i<allOP[0].length(); i++) {
                         object = allOP[0].getJSONObject(i);
@@ -260,42 +235,42 @@ public class MainActivity extends AppCompatActivity {
                         String start=String.valueOf(object.get("startTime"));
                         String end=String.valueOf(object.get("endTime"));
 
-                        if (date == "Monday") {
-                            TextView tvDate=(TextView) findViewById(R.id.oh_date_monday);
-                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_monday);
-                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_monday);
+                        if (date.equals("Monday")) {
+                            TextView tvDate = findViewById(R.id.oh_date_monday);
+                            TextView tvStart = findViewById(R.id.oh_start_time_monday);
+                            TextView tvEnd = findViewById(R.id.oh_end_time_monday);
                             tvDate.setText(date);
                             tvStart.setText(start);
                             tvEnd.setText(end); 
                         }
-                        if (date == "Tuesday") {
-                            TextView tvDate=(TextView) findViewById(R.id.oh_date_tuesday);
-                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_tuesday);
-                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_tuesday);
+                        if (date.equals("Tuesday")) {
+                            TextView tvDate = findViewById(R.id.oh_date_tuesday);
+                            TextView tvStart = findViewById(R.id.oh_start_time_tuesday);
+                            TextView tvEnd = findViewById(R.id.oh_end_time_tuesday);
                             tvDate.setText(date);
                             tvStart.setText(start);
                             tvEnd.setText(end);
                         }
-                        if (date == "Wednesday") {
-                            TextView tvDate=(TextView) findViewById(R.id.oh_date_wednesday);
-                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_wednesday);
-                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_wednesday);
+                        if (date.equals("Wednesday")) {
+                            TextView tvDate = findViewById(R.id.oh_date_wednesday);
+                            TextView tvStart = findViewById(R.id.oh_start_time_wednesday);
+                            TextView tvEnd = findViewById(R.id.oh_end_time_wednesday);
                             tvDate.setText(date);
                             tvStart.setText(start);
                             tvEnd.setText(end);
                         }
-                        if (date == "Thursday") {
-                            TextView tvDate=(TextView) findViewById(R.id.oh_date_thursday);
-                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_thursday);
-                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_thursday);
+                        if (date.equals("Thursday")) {
+                            TextView tvDate = findViewById(R.id.oh_date_thursday);
+                            TextView tvStart = findViewById(R.id.oh_start_time_thursday);
+                            TextView tvEnd = findViewById(R.id.oh_end_time_thursday);
                             tvDate.setText(date);
                             tvStart.setText(start);
                             tvEnd.setText(end);
                         }
-                        if (date == "Friday") {
-                            TextView tvDate=(TextView) findViewById(R.id.oh_date_friday);
-                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_friday);
-                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_friday);
+                        if (date.equals("Friday")) {
+                            TextView tvDate = findViewById(R.id.oh_date_friday);
+                            TextView tvStart = findViewById(R.id.oh_start_time_friday);
+                            TextView tvEnd = findViewById(R.id.oh_end_time_friday);
                             tvDate.setText(date);
                             tvStart.setText(start);
                             tvEnd.setText(end);
@@ -310,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
-                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
                     error += errorResponse.get("message").toString();
                 } catch (JSONException e) {
                     error += e.getMessage();
@@ -321,19 +295,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Gets all media of both types
-     * @param v
+     * getAllMedia
+     * Gets all media of both types (checkOut and nonCheckout) from database, calling from current view
+     * @param v: current view
      */
     public void getAllMedia(View v) {
         error = "";
         RequestParams rq = new RequestParams();
-        //media checkout-able
-        HttpUtils.post("checkoutItems/", rq, new JsonHttpResponseHandler() {
+
+        // REST service call GET with Http: gets all checkoutItems and writes details on Media page on success
+        // On failure: displays error message on top of screen of current view
+        HttpUtils.get("checkoutItems/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
                 allOP[0]=response;
-                JSONObject object= null;
+                JSONObject object;
                 try {
                     for(int i=0; i<allOP[0].length(); i++) {
                         object = allOP[0].getJSONObject(i);
@@ -343,11 +320,11 @@ public class MainActivity extends AppCompatActivity {
                         String checkoutStatus=String.valueOf(object.getBoolean("isCheckedOut"));
                         String reserveStatus=String.valueOf(object.getBoolean("isReserved"));
 
-                        TextView tvType=(TextView) findViewById(R.id.media_type);
-                        TextView tvID=(TextView) findViewById(R.id.media_id);
-                        TextView tvName=(TextView) findViewById(R.id.media_title);
-                        TextView tvChecked=(TextView) findViewById(R.id.media_checked);
-                        TextView tvReserved=(TextView) findViewById(R.id.media_reserved);
+                        TextView tvType = findViewById(R.id.media_type);
+                        TextView tvID = findViewById(R.id.media_id);
+                        TextView tvName = findViewById(R.id.media_title);
+                        TextView tvChecked = findViewById(R.id.media_checked);
+                        TextView tvReserved = findViewById(R.id.media_reserved);
                         tvType.setText(type);
                         tvID.setText(id);
                         tvName.setText(name);
@@ -363,7 +340,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
-                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
                     error += errorResponse.get("message").toString();
                 } catch (JSONException e) {
                     error += e.getMessage();
@@ -371,13 +347,15 @@ public class MainActivity extends AppCompatActivity {
                 refreshErrorMessage();
             }
         });
-        //media non checkout-able
-        HttpUtils.post("nonCheckOutItems/", rq, new JsonHttpResponseHandler() {
+
+        // REST service call GET with Http: gets all nonCheckoutItems and writes details on Media page on success
+        // On failure: displays error message on top of screen of current view
+        HttpUtils.get("nonCheckOutItems/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
                 allOP[0]=response;
-                JSONObject object= null;
+                JSONObject object;
                 try {
                     for(int i=0; i<allOP[0].length(); i++) {
                         object = allOP[0].getJSONObject(i);
@@ -385,9 +363,9 @@ public class MainActivity extends AppCompatActivity {
                         int id=object.getInt("mediaID");
                         String name= object.getString("name");
 
-                        TextView tvType=(TextView) findViewById(R.id.media_type);
-                        TextView tvID=(TextView) findViewById(R.id.media_id);
-                        TextView tvName=(TextView) findViewById(R.id.media_title);
+                        TextView tvType = findViewById(R.id.media_type);
+                        TextView tvID = findViewById(R.id.media_id);
+                        TextView tvName = findViewById(R.id.media_title);
                         tvType.setText(type);
                         tvID.setText(id);
                         tvName.setText(name);
@@ -401,7 +379,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
-                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
                     error += errorResponse.get("message").toString();
                 } catch (JSONException e) {
                     error += e.getMessage();
@@ -412,18 +389,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Gets all events
-     * @param v
+     * getAllEvents
+     * Gets all events from database to current view
+     * @param v: current view
      */
     public void getAllEvents(View v) {
         error = "";
         RequestParams rq = new RequestParams();
+
+        // REST service call GET with Http: gets all Events and writes details on Event page on success
+        // On failure: displays error message on top of screen of current view
         HttpUtils.get("events/getAllEvents/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
                 allOP[0]=response;
-                JSONObject object= null;
+                JSONObject object;
                 try {
                     for(int i=0; i<allOP[0].length(); i++) {
                         object = allOP[0].getJSONObject(i);
@@ -432,10 +413,10 @@ public class MainActivity extends AppCompatActivity {
                         String start=String.valueOf(object.get("eventStart"));
                         String end=String.valueOf(object.get("eventEnd"));
 
-                        TextView tvName=(TextView) findViewById(R.id.evt_name);
-                        TextView tvDate=(TextView) findViewById(R.id.evt_date);
-                        TextView tvStart=(TextView) findViewById(R.id.evt_start);
-                        TextView tvEnd=(TextView) findViewById(R.id.evt_end);
+                        TextView tvName = findViewById(R.id.evt_name);
+                        TextView tvDate = findViewById(R.id.evt_date);
+                        TextView tvStart = findViewById(R.id.evt_start);
+                        TextView tvEnd = findViewById(R.id.evt_end);
                         tvDate.setText(date);
                         tvStart.setText(start);
                         tvEnd.setText(end);
@@ -450,7 +431,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
-                    //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
                     error += errorResponse.get("message").toString();
                 } catch (JSONException e) {
                     error += e.getMessage();
