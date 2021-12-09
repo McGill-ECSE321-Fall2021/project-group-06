@@ -55,18 +55,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginbutton = (Button) findViewById(R.id.loginButton);
+//        loginbutton = (Button) findViewById(R.id.loginButton);
         oHbutton = (Button) findViewById(R.id.oHButton);
         mediabutton = (Button) findViewById(R.id.mediaButton);
         eventbutton = (Button) findViewById(R.id.eventButton);
         registerbutton = (Button) findViewById(R.id.registerButton);
 
-        loginbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, Online.class));
-            }
-        });
+//        loginbutton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v){
+//                startActivity(new Intent(MainActivity.this, Online.class));
+//            }
+//        });
         oHbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         HttpUtils.post("login/" + userID.getText().toString(), rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                setContentView(R.layout.online);
+                startActivity(new Intent(MainActivity.this, Online.class));
                 refreshErrorMessage();
             }
             @Override
