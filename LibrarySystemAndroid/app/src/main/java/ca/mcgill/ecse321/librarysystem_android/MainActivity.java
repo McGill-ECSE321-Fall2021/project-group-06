@@ -208,11 +208,13 @@ public class MainActivity extends AppCompatActivity {
     public void getAllOpeningHours(View v){
         error = "";
         RequestParams rq = new RequestParams();
-        HttpUtils.post("openingHours/", rq, new JsonHttpResponseHandler() {
+        HttpUtils.get("openingHours/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
+                // JSONObject test = response.getJSONObject("openinHour");
                 allOP[0]=response;
+                System.out.println(allOP[0]);
                 JSONObject object= null;
                 try {
                     for(int i=0; i<allOP[0].length(); i++) {
@@ -221,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                         String start=String.valueOf(object.get("startTime"));
                         String end=String.valueOf(object.get("endTime"));
 
-                        if (date == "Monday") {
+                        if (date.equals("Monday")) {
                             TextView tvDate=(TextView) findViewById(R.id.oh_date_monday);
                             TextView tvStart=(TextView) findViewById(R.id.oh_start_time_monday);
                             TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_monday);
@@ -229,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                             tvStart.setText(start);
                             tvEnd.setText(end); 
                         }
-                        if (date == "Tuesday") {
+                        if (date.equals("Tuesday")) {
                             TextView tvDate=(TextView) findViewById(R.id.oh_date_tuesday);
                             TextView tvStart=(TextView) findViewById(R.id.oh_start_time_tuesday);
                             TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_tuesday);
@@ -237,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                             tvStart.setText(start);
                             tvEnd.setText(end);
                         }
-                        if (date == "Wednesday") {
+                        if (date.equals("Wednesday")) {
                             TextView tvDate=(TextView) findViewById(R.id.oh_date_wednesday);
                             TextView tvStart=(TextView) findViewById(R.id.oh_start_time_wednesday);
                             TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_wednesday);
@@ -245,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                             tvStart.setText(start);
                             tvEnd.setText(end);
                         }
-                        if (date == "Thursday") {
+                        if (date.equals("Thursday")) {
                             TextView tvDate=(TextView) findViewById(R.id.oh_date_thursday);
                             TextView tvStart=(TextView) findViewById(R.id.oh_start_time_thursday);
                             TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_thursday);
@@ -253,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                             tvStart.setText(start);
                             tvEnd.setText(end);
                         }
-                        if (date == "Friday") {
+                        if (date.equals("Friday")) {
                             TextView tvDate=(TextView) findViewById(R.id.oh_date_friday);
                             TextView tvStart=(TextView) findViewById(R.id.oh_start_time_friday);
                             TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_friday);
@@ -289,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
         error = "";
         RequestParams rq = new RequestParams();
         //media checkout-able
-        HttpUtils.post("checkoutItems/", rq, new JsonHttpResponseHandler() {
+        HttpUtils.get("checkoutItems/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
