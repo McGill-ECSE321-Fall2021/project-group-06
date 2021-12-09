@@ -200,8 +200,9 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Gets all opening hours
+     * @param v
      */
-    public void getAllOpeningHours(){
+    public void getAllOpeningHours(View v){
         error = "";
         RequestParams rq = new RequestParams();
         HttpUtils.get("openingHours/", rq, new JsonHttpResponseHandler() {
