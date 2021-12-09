@@ -3,7 +3,6 @@ package ca.mcgill.ecse321.librarysystem_android;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -30,10 +29,7 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mediabutton;
     private Button eventbutton;
     private Button registerbutton;
+    private static MainActivity instance;
 
     private List<String> localOptions = new ArrayList<>(2);
     private ArrayAdapter<String> localAdapter;
@@ -112,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
         localAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localOptions);
         localAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         localSpinner.setAdapter(localAdapter);
+    }
+
+    public static MainActivity getInstance() {
+        return instance;
     }
 
     @Override
@@ -203,30 +204,33 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Gets all opening hours
-     * @param v
      */
-    public void getAllOpeningHours(View v){
+    public void getAllOpeningHours(){
         error = "";
         RequestParams rq = new RequestParams();
         HttpUtils.get("openingHours/", rq, new JsonHttpResponseHandler() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                final JSONArray[] allOP= {new JSONArray()};
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONArray response) {
+                // final JSONArray[] allOP= {new JSONArray()};
                 // JSONObject test = response.getJSONObject("openinHour");
-                allOP[0]=response;
-                System.out.println(allOP[0]);
-                JSONObject object= null;
+                // allOP[0]=response;
+                // System.out.println(allOP[0]);
+//                JSONObject object= null;
                 try {
-                    for(int i=0; i<allOP[0].length(); i++) {
-                        object = allOP[0].getJSONObject(i);
-                        String date= String.valueOf(object.get("DayOfWeek"));
-                        String start=String.valueOf(object.get("startTime"));
-                        String end=String.valueOf(object.get("endTime"));
+                    for(int i=0; i<response.length(); i++) {
+                        JSONObject object = response.getJSONObject(i);
+//                        object = allOP[0].getJSONObject(i);
+                        // String date= String.valueOf(object.get("DayOfWeek"));
+                        // String start=String.valueOf(object.get("startTime"));
+                        // String end=String.valueOf(object.get("endTime"));
+                        String date= object.getString("DayOfWeek");
+                        String start= object.getString("startTime");
+                        String end= object.getString("endTime");
 
                         if (date.equals("Monday")) {
-                            TextView tvDate=(TextView) findViewById(R.id.oh_date_monday);
-                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_monday);
-                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_monday);
+                            TextView tvDate= findViewById(R.id.oh_date_monday);
+                            TextView tvStart= findViewById(R.id.oh_start_time_monday);
+                            TextView tvEnd= findViewById(R.id.oh_end_time_monday);
                             tvDate.setText(date);
                             tvStart.setText(start);
                             tvEnd.setText(end); 
@@ -267,18 +271,18 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                setContentView(R.layout.opening_hour);
-                refreshErrorMessage();
+                // setContentView(R.layout.opening_hour);
+                // refreshErrorMessage();
             }
             @Override
-            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+            public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 try {
                     //error += HttpUtils.getAbsoluteUrl("persons/" + tv.getText().toString());
                     error += errorResponse.get("message").toString();
                 } catch (JSONException e) {
                     error += e.getMessage();
                 }
-                refreshErrorMessage();
+                // refreshErrorMessage();
             }
         });
     }
@@ -335,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //media non checkout-able
-        HttpUtils.post("nonCheckOutItems/", rq, new JsonHttpResponseHandler() {
+        HttpUtils.get("nonCheckOutItems/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
