@@ -22,6 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".OpeningHours">
+        </activity>
+        <activity
+            android:name=".Media">
+        </activity>
+        <activity
+            android:name=".Event">
+        </activity>
+        <activity
+            android:name=".Online">
+        </activity>
     </application>
 
 </manifest>
