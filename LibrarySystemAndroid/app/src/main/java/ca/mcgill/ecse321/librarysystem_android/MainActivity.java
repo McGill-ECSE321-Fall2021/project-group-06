@@ -193,12 +193,51 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Register
+     * Registers an Online account with the entered parameters
+     * @param v
+     */
     public void register(View v){
         error="";
         final TextView newUserID = findViewById(R.id.userRegisterID);
         final TextView newName = findViewById(R.id.userRegisterName);
         final TextView newAddress = findViewById(R.id.userRegisterAddress);
+        Spinner localSpinner = findViewById(R.id.userRegisterLocal);
+        final TextView newUsername = findViewById(R.id.userRegisterUsername);
+        final TextView newEmail = findViewById(R.id.userRegisterEmail);
+        final TextView newPassword = findViewById(R.id.userRegisterPassword);
 
+        RequestParams rq = new RequestParams();
+        String newUserID_str = newUserID.getText().toString();
+        rq.put("address", newAddress.getText().toString());
+        rq.put("name", newName.getText().toString());
+        rq.put("accountCategory", "Online");
+        rq.put("isLocal", localSpinner.getSelectedItem().toString());
+        rq.put("numChecked", "0");
+        rq.put("username", newUsername.getText().toString());
+        rq.put("password", newPassword.getText().toString());
+        rq.put("email", newEmail.getText().toString());
+
+        HttpUtils.post("onlines/" + newUserID_str, rq, new JsonHttpResponseHandler(){
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response){
+                refreshErrorMessage();
+                localSpinner.setSelection(0);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse){
+                try {
+                    error += errorResponse.get("message").toString();
+                }
+                catch (JSONException e){
+                    error += e.getMessage();
+                }
+                refreshErrorMessage();
+            }
+        });
     }
 
     /**
