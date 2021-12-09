@@ -69,10 +69,10 @@
             </TableLayout>
 
             <Button
+                android:id="@+id/homeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:onClick="returnToMain"
                 android:text="@string/go_back" />
         </LinearLayout>
     </RelativeLayout>

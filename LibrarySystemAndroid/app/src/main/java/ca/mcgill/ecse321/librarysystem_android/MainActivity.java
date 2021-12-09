@@ -57,25 +57,25 @@ public class MainActivity extends AppCompatActivity {
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                setContentView(R.layout.login);
+                startActivity(new Intent(MainActivity.this, Online.class));
             }
         });
         oHbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                setContentView(R.layout.opening_hour);
+                startActivity(new Intent(MainActivity.this, OpeningHours.class));
             }
         });
         mediabutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                setContentView(R.layout.media);
+                startActivity(new Intent(MainActivity.this, Media.class));
             }
         });
         eventbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                setContentView(R.layout.event);
+                startActivity(new Intent(MainActivity.this, Event.class));
             }
         });
 
