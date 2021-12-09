@@ -21,8 +21,10 @@ import cz.msebera.android.httpclient.Header;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -32,6 +34,8 @@ import org.w3c.dom.Text;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String error = null;
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private Button mediabutton;
     private Button eventbutton;
     private Button registerbutton;
+
+    private List<String> localOptions = new ArrayList<>(2);
+    private ArrayAdapter<String> localAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +104,14 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        localOptions.add("Local");
+        localOptions.add("Non-local");
+
+        Spinner localSpinner = (Spinner) findViewById(R.id.userRegisterLocal);
+        localAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, localOptions);
+        localAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        localSpinner.setAdapter(localAdapter);
     }
 
     @Override
@@ -176,6 +191,14 @@ public class MainActivity extends AppCompatActivity {
                 refreshErrorMessage();
             }
         });
+    }
+
+    public void register(View v){
+        error="";
+        final TextView newUserID = findViewById(R.id.userRegisterID);
+        final TextView newName = findViewById(R.id.userRegisterName);
+        final TextView newAddress = findViewById(R.id.userRegisterAddress);
+
     }
 
     /**
@@ -322,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
     public void getAllEvents(View v) {
         error = "";
         RequestParams rq = new RequestParams();
-        HttpUtils.post("events/getAllEvents/", rq, new JsonHttpResponseHandler() {
+        HttpUtils.get("events/getAllEvents/", rq, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
                 final JSONArray[] allOP= {new JSONArray()};
