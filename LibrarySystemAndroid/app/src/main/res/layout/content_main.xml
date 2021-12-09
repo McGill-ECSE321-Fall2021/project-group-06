@@ -192,13 +192,13 @@
                 android:inputType="text"
                 android:textAlignment="center" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/userRegisterLocal"
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:background="	#D3D3D3"
+                android:prompt="@string/user_register_local"
                 android:hint="@string/user_register_local"
-                android:importantForAutofill="no"
                 android:inputType="text"
                 android:textAlignment="center" />
 
@@ -228,7 +228,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:background="	#D3D3D3"
-                android:hint="@string/user_register_id"
+                android:hint="@string/user_register_password"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textAlignment="center"
