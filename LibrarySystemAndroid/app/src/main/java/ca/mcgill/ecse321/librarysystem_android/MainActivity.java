@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private Button mediabutton;
     private Button eventbutton;
     private Button registerbutton;
-    private static MainActivity instance;
 
     private List<String> localOptions = new ArrayList<>(2);
     private ArrayAdapter<String> localAdapter;
@@ -111,9 +110,6 @@ public class MainActivity extends AppCompatActivity {
         localSpinner.setAdapter(localAdapter);
     }
 
-    public static MainActivity getInstance() {
-        return instance;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
