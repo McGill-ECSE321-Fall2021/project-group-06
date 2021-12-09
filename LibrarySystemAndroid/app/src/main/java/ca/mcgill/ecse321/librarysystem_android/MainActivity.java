@@ -199,12 +199,46 @@ public class MainActivity extends AppCompatActivity {
                         String start=String.valueOf(object.get("startTime"));
                         String end=String.valueOf(object.get("endTime"));
 
-                        TextView tvDate=(TextView) findViewById(R.id.op_date);
-                        TextView tvStart=(TextView) findViewById(R.id.op_start_time);
-                        TextView tvEnd=(TextView) findViewById(R.id.op_end_time);
-                        tvDate.setText(date);
-                        tvStart.setText(start);
-                        tvEnd.setText(end);
+                        if (date == "Monday") {
+                            TextView tvDate=(TextView) findViewById(R.id.oh_date_monday);
+                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_monday);
+                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_monday);
+                            tvDate.setText(date);
+                            tvStart.setText(start);
+                            tvEnd.setText(end); 
+                        }
+                        if (date == "Tuesday") {
+                            TextView tvDate=(TextView) findViewById(R.id.oh_date_tuesday);
+                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_tuesday);
+                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_tuesday);
+                            tvDate.setText(date);
+                            tvStart.setText(start);
+                            tvEnd.setText(end);
+                        }
+                        if (date == "Wednesday") {
+                            TextView tvDate=(TextView) findViewById(R.id.oh_date_wednesday);
+                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_wednesday);
+                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_wednesday);
+                            tvDate.setText(date);
+                            tvStart.setText(start);
+                            tvEnd.setText(end);
+                        }
+                        if (date == "Thursday") {
+                            TextView tvDate=(TextView) findViewById(R.id.oh_date_thursday);
+                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_thursday);
+                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_thursday);
+                            tvDate.setText(date);
+                            tvStart.setText(start);
+                            tvEnd.setText(end);
+                        }
+                        if (date == "Friday") {
+                            TextView tvDate=(TextView) findViewById(R.id.oh_date_friday);
+                            TextView tvStart=(TextView) findViewById(R.id.oh_start_time_friday);
+                            TextView tvEnd=(TextView) findViewById(R.id.oh_end_time_friday);
+                            tvDate.setText(date);
+                            tvStart.setText(start);
+                            tvEnd.setText(end);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

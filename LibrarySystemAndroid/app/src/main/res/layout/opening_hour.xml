@@ -44,13 +44,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/op_date"
+                        android:id="@+id/oh_date_monday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start" />
 
                     <TextView
-                        android:id="@+id/op_start_time"
+                        android:id="@+id/oh_start_time_monday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end" />
@@ -62,9 +62,158 @@
                         android:text="@string/to" />
 
                     <TextView
-                        android:id="@+id/op_end_time"
+                        android:id="@+id/oh_end_time_monday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
+                </TableRow>
+                
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/oh_date_tuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:id="@+id/oh_start_time_tuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/to" />
+
+                    <TextView
+                        android:id="@+id/oh_end_time_tuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+                
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/oh_date_wednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:id="@+id/oh_start_time_wednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/to" />
+
+                    <TextView
+                        android:id="@+id/oh_end_time_wednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+                
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/oh_date_thursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:id="@+id/oh_start_time_thursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/to" />
+
+                    <TextView
+                        android:id="@+id/oh_end_time_thursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+                
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/oh_date_friday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start" />
+
+                    <TextView
+                        android:id="@+id/oh_start_time_friday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/to" />
+
+                    <TextView
+                        android:id="@+id/oh_end_time_friday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </TableRow>
+                
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/oh_date_saturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Saturday"/>
+
+                    <TextView
+                        android:id="@+id/oh_start_time_saturday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="Closed" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/oh_date_sunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="Sunday" />
+                    <TextView
+                        android:id="@+id/oh_start_time_sunday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="Closed"/>
                 </TableRow>
             </TableLayout>
 
