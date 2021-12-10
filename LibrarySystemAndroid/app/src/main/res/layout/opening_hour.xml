@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".OpeningHours"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout
@@ -48,7 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Day of the Week"/>
+                        android:text="@string/dayOfWeek"/>
 
 
                     <TextView
@@ -56,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Opening Time"/>
+                        android:text="@string/openingTime"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -69,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Closing Time"/>
+                        android:text="@string/closingTime"/>
                 </TableRow>
 
                 <TableRow
@@ -241,7 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Saturday"/>
+                        android:text="@string/saturday"/>
 
                     <TextView
                         android:id="@+id/oh_start_time_saturday"
@@ -253,7 +254,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Closed" />
+                        android:text="@string/closed" />
 
                     <TextView
                         android:id="@+id/oh_end_time_saturday"
@@ -272,7 +273,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Sunday" />
+                        android:text="@string/sunday" />
                     <TextView
                         android:id="@+id/oh_start_time_sunday"
                         android:layout_width="wrap_content"
@@ -283,7 +284,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Closed" />
+                        android:text="@string/closed" />
 
                     <TextView
                         android:id="@+id/oh_end_time_sunday"

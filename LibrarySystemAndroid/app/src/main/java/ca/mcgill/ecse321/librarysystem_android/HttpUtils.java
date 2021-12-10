@@ -6,7 +6,6 @@ import com.loopj.android.http.RequestParams;
 
 public class HttpUtils {
     public static final String DEFAULT_BASE_URL = "https://librarysystem-backend-06g.herokuapp.com/";
-//    public static final String DEFAULT_BASE_URL = "http://localhost:8080/";
 
     private static String baseUrl;
     private static AsyncHttpClient client = new AsyncHttpClient();

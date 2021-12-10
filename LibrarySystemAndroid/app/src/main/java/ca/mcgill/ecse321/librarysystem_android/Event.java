@@ -4,8 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -32,18 +30,12 @@ public class Event extends AppCompatActivity {
     }
 
     public void configureHomeButton(){
-        Button homeButton = (Button) findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        Button homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> finish());
     }
     /**
      * getAllEvents
      * Gets all events from database to current view
-     * @param v: current view
      */
     public void getAllEvents() {
         error = "";

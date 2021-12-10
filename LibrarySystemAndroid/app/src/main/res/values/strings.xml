@@ -73,4 +73,11 @@
     <string name="event_start">Start Time</string>
     <string name="event_end">End Time</string>
 
+    <string name="dayOfWeek">Day of the Week</string>
+    <string name="openingTime">Opening Time</string>
+    <string name="closingTime">Closing Time</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="closed">Closed</string>
+
 </resources>

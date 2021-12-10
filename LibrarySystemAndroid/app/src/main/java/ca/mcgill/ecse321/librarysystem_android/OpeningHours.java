@@ -4,9 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,18 +28,12 @@ public class OpeningHours extends AppCompatActivity {
     }
 
     public void configureHomeButton(){
-        Button homeButton = (Button) findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        Button homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> finish());
     }
     /**
      * getAllOpeningHours
      * Get all opening hours from database and write to OH view, calling from current view
-     * @param v: current view
      */
     public void getAllOpeningHours(){
         error = "";

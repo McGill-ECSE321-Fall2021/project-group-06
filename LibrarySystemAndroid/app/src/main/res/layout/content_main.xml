@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".MainActivity"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout
@@ -237,7 +238,7 @@
                 android:layout_height="75dp"
                 android:background="	#D3D3D3"
                 android:backgroundTint="@color/white"
-                android:hint="Password"
+                android:hint="@string/user_register_password"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:textAlignment="center"

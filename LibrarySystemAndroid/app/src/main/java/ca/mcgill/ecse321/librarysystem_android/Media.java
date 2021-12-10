@@ -4,15 +4,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,18 +28,12 @@ public class Media extends AppCompatActivity {
     }
 
     public void configureHomeButton(){
-        Button homeButton = (Button) findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        Button homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> finish());
     }
     /**
      * getAllMedia
      * Gets all media of both types (checkOut and nonCheckout) from database, calling from current view
-     * @param v: current view
      */
     public void getAllMedia() {
         error = "";

@@ -35,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private String error = null;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
-    private Button loginbutton;
-    private Button oHbutton;
-    private Button mediabutton;
-    private Button eventbutton;
-    private Button registerbutton;
 
     private final List<String> localOptions = new ArrayList<>(2);
 
@@ -50,22 +45,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Map buttons with respective button IDs in content_main.xml
-        oHbutton = findViewById(R.id.oHButton);
-        mediabutton = findViewById(R.id.mediaButton);
-        eventbutton = findViewById(R.id.eventButton);
-        registerbutton = findViewById(R.id.registerButton);
+        Button loginbutton = findViewById(R.id.loginButton);
+        Button oHbutton = findViewById(R.id.oHButton);
+        Button mediabutton = findViewById(R.id.mediaButton);
+        Button eventbutton = findViewById(R.id.eventButton);
+        Button registerbutton = findViewById(R.id.registerButton);
 
-        //        loginbutton = (Button) findViewById(R.id.loginButton);
-//        loginbutton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v){
-//                startActivity(new Intent(MainActivity.this, Online.class));
-//            }
-//        });
-
+        loginbutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Online.class)));
         oHbutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, OpeningHours.class)));
         mediabutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Media.class)));
         eventbutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Event.class)));
+        registerbutton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Online.class)));
 
         // Add the two selectable options for the Local attribute spinner
         localOptions.add("Local");
