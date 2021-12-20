@@ -63,7 +63,7 @@ The goal of this project is to build a system via website and mobile Android app
 |Howard Yu       |All the js files, Testing all functionalities, General bug fixes, Modifying Backend for New Functionalities |60    |
 |Isabella Hao    |Head-librarian.vue styling |10    |
 |Joyce Liu       |Media/Event/HeadLibrarian/Librarian/Shift related .vue |20    |
-|Niels Mainville |Various .vue files styling and web design fixes |20    |
+|Niels Mainville |Various .vue files styling and web design fixes |30    |
 |Samuel Lin      |Architecture Modeling, GitHub Documentation, Online.vue styling and other web design fixes |25    |
 
 # Sprint 4 #
